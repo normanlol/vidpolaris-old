@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>vidpolaris</title>
+		<link href="img/favicon.ico" rel="icon" type="image/x-icon" />
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+		<link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet"> 
+		<link rel="icon" type="image/png" href="img/favicon.ico">
+		<meta charset="UTF-8">
+		<meta name="author" content="n0rmancodes">
+		<meta name="keywords" content="video, youtube, youtube alt client">
+		<meta name="description" content="A slick, clean, alternative client for YouTube">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	</head>
+	<body id="b" onhashchange="refresh()" onresize="resize()">
+		<div class="centerMe">
+			<a href="#" class="invisibleLink" onclick="home()" style="width:151px;"><h1>vidpolaris</h1></a>
+			<div id="searchContainer">
+				<input id="q" autocomplete="off">
+				<button onclick="getSLink()">search</button>
+				<button onclick="feelingLucky()">i'm feeling lucky</button>
+				<a href="#settings"><button>settings</button></a>
+			</div>
+			<div id="homePage" class="centerMe">
+				<div id="trendingLoader">
+					<div class="loader centerMe"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+					<h2>loading home page...</h2>
+				</div>
+				<div id="trending" style="display:none;">
+					<h2>trending right now</h2>
+					<a id="l1"><div class="video">
+						<img id="r1" class="largeThumb">
+						<h3 id="t1"></h3>
+					</div></a>
+					<a id="l2"><div class="video">
+						<img id="r2" class="largeThumb">
+						<h3 id="t2"></h3>
+					</div></a>
+					<a id="l3"><div class="video">
+						<img id="r3" class="largeThumb">
+						<h3 id="t3"></h3>
+					</div></a>
+					<a id="l4"><div class="video">
+						<img id="r4" class="largeThumb">
+						<h3 id="t4"></h3>
+					</div></a>
+					<a id="l5"><div class="video">
+						<img id="r5" class="largeThumb">
+						<h3 id="t5"></h3>
+					</div></a>
+					<a id="l6"><div class="video">
+						<img id="r6" class="largeThumb">
+						<h3 id="t6"></h3>
+					</div></a>
+					<a id="l7"><div class="video">
+						<img id="r7" class="largeThumb">
+						<h3 id="t7"></h3>
+					</div></a>
+					<a id="l8"><div class="video">
+						<img id="r8" class="largeThumb">
+						<h3 id="t8"></h3>
+					</div></a>
+					<a id="l9"><div class="video">
+						<img id="r9" class="largeThumb">
+						<h3 id="t9"></h3>
+					</div></a>
+					<a id="l10"><div class="video">
+						<img id="r10" class="largeThumb">
+						<h3 id="t10"></h3>
+					</div></a>
+					<a id="l11"><div class="video">
+						<img id="r11" class="largeThumb">
+						<h3 id="t11"></h3>
+					</div></a>
+					<a id="l12"><div class="video">
+						<img id="r12" class="largeThumb">
+						<h3 id="t12"></h3>
+					</div></a>
+					<a id="l13"><div class="video">
+						<img id="r13" class="largeThumb">
+						<h3 id="t13"></h3>
+					</div></a>
+					<a id="l14"><div class="video">
+						<img id="r14" class="largeThumb">
+						<h3 id="t14"></h3>
+					</div></a>
+					<a id="l15"><div class="video">
+						<img id="r15" class="largeThumb">
+						<h3 id="t15"></h3>
+					</div></a>
+					<a id="l16"><div class="video">
+						<img id="r16" class="largeThumb">
+						<h3 id="t16"></h3>
+					</div></a>
+					<a id="l17"><div class="video">
+						<img id="r17" class="largeThumb">
+						<h3 id="t17"></h3>
+					</div></a>
+					<a id="l18"><div class="video">
+						<img id="r18" class="largeThumb">
+						<h3 id="t18"></h3>
+					</div></a>
+					<a id="l19"><div class="video">
+						<img id="r19" class="largeThumb">
+						<h3 id="t19"></h3>
+					</div></a>
+					<a id="l20"><div class="video">
+						<img id="r20" class="largeThumb">
+						<h3 id="t20"></h3>
+					</div></a>
+					<a id="l21"><div class="video">
+						<img id="r21" class="largeThumb">
+						<h3 id="t21"></h3>
+					</div></a>
+					<a id="l22"><div class="video">
+						<img id="r22" class="largeThumb">
+						<h3 id="t22"></h3>
+					</div></a>
+					<a id="l23"><div class="video">
+						<img id="r23" class="largeThumb">
+						<h3 id="t23"></h3>
+					</div></a>
+					<a id="l24"><div class="video">
+						<img id="r24" class="largeThumb">
+						<h3 id="t24"></h3>
+					</div></a>
+				</div>
+			</div>
+			<div id="vidPage" style="display:none;">
+				<div id="vidLoader" class="loader centerMe"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+				<div id="videoViewer" style="display:none;" class="centerMe">
+					<video id="player" oncontextmenu="return false;" controls></video>
+					<audio id="audioPlayer"></audio>
+					<div class="details">
+						<div class="maindetails">
+							<h2 class="stat" id="title"></h2>
+							<h3 class="stat"><span class="material-icons ico">person</span> <a id="authorL" class="channelLink"><span id="author"></span></a></h3>
+							<h3 class="stat"><span class="material-icons ico">remove_red_eye</span> <span id="viewNum">[Loading]</span> views</h3>
+							<h3 class="stat"><span class="material-icons ico">thumb_up</span> <span id="likeNum">[Loading]</span> likes</h3>
+							<h3 class="stat"><span class="material-icons ico">thumb_down</span> <span id="dlikNum">[Loading]</span> dislikes</h3>
+							<h3 class="stat" id="qSelector"><span class="material-icons ico">hd</span> <select id="qOptions" onclick="changeQ()"></select></h3>
+							<h3 class="stat"><span class="material-icons ico">calendar_today</span> <span id="pubM">[Loading]</span>/<span id="pubD">[Loading]</span>/<span id="pubY">[Loading]</span></h3>
+							<h3 class="stat" id="itag" style="display:none;"></h3>
+						</div>
+						<p id="desc"></p>
+						<div id="ldDiv" style="display:none;">
+							<p id="longDesc"></p>
+						</div>
+						<button id="ldBtn" onclick="longDesc()">see more</button>
+						<button id="theat" onclick="theatre()">theater mode</button>
+						<button class="material-icons ico" onclick="share()">link</button>
+						<div id="sharBox" style="display:none;">
+							<p>Full URL:</p>
+							<input id="fUrlShar" onclick="this.select()">
+							<p>Shortened URL:</p>
+							<input id="sUrlShar" onclick="this.select()">
+						</div>
+						<div id="autoPlayBlock">
+							<label onclick="toggleAuto()" class="switch">
+								<input id="apSwitch" type="checkbox" checked>
+								<span class="slider"></span>
+							</label>
+							<h3>Related Videos</h3>
+						</div>
+						<div id="relatedVideos">
+							<a id="rv1"><div class="smallVideo">
+								<img id="rTh1" class="relatedThumb">
+								<h4 id="rTit1" class="noMargin"></h4>
+								<h5 class="stat"><span class="material-icons ico">person</span> <span id="rAut1"></span></h5>
+								<h5 class="stat"><span class="material-icons ico">remove_red_eye</span> <span id="rVie1"></span> views</h5>
+							</div></a>
+							<a id="rv2"><div class="smallVideo">
+								<img id="rTh2" class="relatedThumb">
+								<h4 id="rTit2" class="noMargin"></h4>
+								<h5 class="stat"><span class="material-icons ico">person</span> <span id="rAut2"></span></h5>
+								<h5 class="stat"><span class="material-icons ico">remove_red_eye</span> <span id="rVie2"></span> views</h5>
+							</div></a>
+							<a id="rv3"><div class="smallVideo">
+								<img id="rTh3" class="relatedThumb">
+								<h4 id="rTit3" class="noMargin"></h4>
+								<h5 class="stat"><span class="material-icons ico">person</span> <span id="rAut3"></span></h5>
+								<h5 class="stat"><span class="material-icons ico">remove_red_eye</span> <span id="rVie3"></span> views</h5>
+							</div></a>
+							<a id="rv4"><div class="smallVideo">
+								<img id="rTh4" class="relatedThumb">
+								<h4 id="rTit4" class="noMargin"></h4>
+								<h5 class="stat"><span class="material-icons ico">person</span> <span id="rAut4"></span></h5>
+								<h5 class="stat"><span class="material-icons ico">remove_red_eye</span> <span id="rVie4"></span> views</h5>
+							</div></a>
+							<a id="rv5"><div class="smallVideo">
+								<img id="rTh5" class="relatedThumb">
+								<h4 id="rTit5" class="noMargin"></h4>
+								<h5 class="stat"><span class="material-icons ico">person</span> <span id="rAut5"></span></h5>
+								<h5 class="stat"><span class="material-icons ico">remove_red_eye</span> <span id="rVie5"></span> views</h5>
+							</div></a>
+							<a id="rv6"><div class="smallVideo">
+								<img id="rTh6" class="relatedThumb">
+								<h4 id="rTit6" class="noMargin"></h4>
+								<h5 class="stat"><span class="material-icons ico">person</span> <span id="rAut6"></span></h5>
+								<h5 class="stat"><span class="material-icons ico">remove_red_eye</span> <span id="rVie6"></span> views</h5>
+							</div></a>
+							<a id="rv7"><div class="smallVideo">
+								<img id="rTh7" class="relatedThumb">
+								<h4 id="rTit7" class="noMargin"></h4>
+								<h5 class="stat"><span class="material-icons ico">person</span> <span id="rAut7"></span></h5>
+								<h5 class="stat"><span class="material-icons ico">remove_red_eye</span> <span id="rVie7"></span> views</h5>
+							</div></a>
+							<a id="rv8"><div class="smallVideo">
+								<img id="rTh8" class="relatedThumb">
+								<h4 id="rTit8" class="noMargin"></h4>
+								<h5 class="stat"><span class="material-icons ico">person</span> <span id="rAut8"></span></h5>
+								<h5 class="stat"><span class="material-icons ico">remove_red_eye</span> <span id="rVie8"></span> views</h5>
+							</div></a>
+							<a id="rv9"><div class="smallVideo">
+								<img id="rTh9" class="relatedThumb">
+								<h4 id="rTit9" class="noMargin"></h4>
+								<h5 class="stat"><span class="material-icons ico">person</span> <span id="rAut9"></span></h5>
+								<h5 class="stat"><span class="material-icons ico">remove_red_eye</span> <span id="rVie9"></span> views</h5>
+							</div></a>
+						</div>
+						<div id="commentsContainer" style="margin-top:75%">
+							<div id="loadComments">
+								<h2><span class="material-icons ico">comment</span> 
+									<span id="loadedC" style="display:none;">Loaded <span id="loadedComm">[loading]</span> of <span id="commNum">[loading]</span> comments.</span>
+									<span id="loadinC">Loading the comments...</span>
+								<h2>
+							</div>
+							<div id="loadedComments">
+								<div class="comment" id="c01">
+									<img id="c01p" class="smallPfp"><h3 class="cAuthor" id="c01a"></h3>
+									<p id="c01c" class="cText"></p>
+									<p class="stat">
+										<span class="material-icons ico">comment</span> <span id="c01r">[loading]</span> replies • 
+										<span class="material-icons ico">thumb_up</span> <span id="c01l">[loading]</span> likes • 
+										<span onclick="translate('c01c')" style="cursor:pointer;"><span class="material-icons ico">translate</span> translate the comment</span> • 
+										<span>posted <span id="c01t"></span></span>
+									</p>
+								</div>
+								<div class="comment" id="c02">
+									<img id="c02p" class="smallPfp"><h3 class="cAuthor" id="c02a"></h3>
+									<p id="c02c" class="cText"></p>
+									<p class="stat">
+										<span class="material-icons ico">comment</span> <span id="c02r">[loading]</span> replies • 
+										<span class="material-icons ico">thumb_up</span> <span id="c02l">[loading]</span> likes • 
+										<span onclick="translate('c02c')" style="cursor:pointer;"><span class="material-icons ico">translate</span> translate the comment</span> • 
+										<span>posted <span id="c02t"></span></span>
+									</p>
+								</div>
+								<div class="comment" id="c03">
+									<img id="c03p" class="smallPfp"><h3 class="cAuthor" id="c03a"></h3>
+									<p id="c03c" class="cText"></p>
+									<p class="stat">
+										<span class="material-icons ico">comment</span> <span id="c03r">[loading]</span> replies • 
+										<span class="material-icons ico">thumb_up</span> <span id="c03l">[loading]</span> likes • 
+										<span onclick="translate('c03c')" style="cursor:pointer;"><span class="material-icons ico">translate</span> translate the comment</span> • 
+										<span>posted <span id="c03t"></span></span>
+									</p>
+								</div>
+								<div class="comment" id="c04">
+									<img id="c04p" class="smallPfp"><h3 class="cAuthor" id="c04a"></h3>
+									<p id="c04c" class="cText"></p>
+									<p class="stat">
+										<span class="material-icons ico">comment</span> <span id="c04r">[loading]</span> replies • 
+										<span class="material-icons ico">thumb_up</span> <span id="c04l">[loading]</span> likes • 
+										<span onclick="translate('c04c')" style="cursor:pointer;"><span class="material-icons ico">translate</span> translate the comment</span> • 
+										<span>posted <span id="c04t"></span></span>
+									</p>
+								</div>
+								<div class="comment" id="c05">
+									<img id="c05p" class="smallPfp"><h3 class="cAuthor" id="c05a"></h3>
+									<p id="c05c" class="cText"></p>
+									<p class="stat">
+										<span class="material-icons ico">comment</span> <span id="c05r">[loading]</span> replies • 
+										<span class="material-icons ico">thumb_up</span> <span id="c05l">[loading]</span> likes • 
+										<span onclick="translate('c05c')" style="cursor:pointer;"><span class="material-icons ico">translate</span> translate the comment</span> • 
+										<span>posted <span id="c05t"></span></span>
+									</p>
+								</div>
+								<div class="comment" id="c06">
+									<img id="c06p" class="smallPfp"><h3 class="cAuthor" id="c06a"></h3>
+									<p id="c06c" class="cText"></p>
+									<p class="stat">
+										<span class="material-icons ico">comment</span> <span id="c06r">[loading]</span> replies • 
+										<span class="material-icons ico">thumb_up</span> <span id="c06l">[loading]</span> likes • 
+										<span onclick="translate('c06c')" style="cursor:pointer;"><span class="material-icons ico">translate</span> translate the comment</span> • 
+										<span>posted <span id="c06t"></span></span>
+									</p>
+								</div>
+								<div class="comment" id="c07">
+									<img id="c07p" class="smallPfp"><h3 class="cAuthor" id="c07a"></h3>
+									<p id="c07c" class="cText"></p>
+									<p class="stat">
+										<span class="material-icons ico">comment</span> <span id="c07r">[loading]</span> replies • 
+										<span class="material-icons ico">thumb_up</span> <span id="c07l">[loading]</span> likes • 
+										<span onclick="translate('c07c')" style="cursor:pointer;"><span class="material-icons ico">translate</span> translate the comment</span> • 
+										<span>posted <span id="c07t"></span></span>
+									</p>
+								</div>
+								<div class="comment" id="c08">
+									<img id="c08p" class="smallPfp"><h3 class="cAuthor" id="c08a"></h3>
+									<p id="c08c" class="cText"></p>
+									<p class="stat">
+										<span class="material-icons ico">comment</span> <span id="c08r">[loading]</span> replies • 
+										<span class="material-icons ico">thumb_up</span> <span id="c08l">[loading]</span> likes • 
+										<span onclick="translate('c08c')" style="cursor:pointer;"><span class="material-icons ico">translate</span> translate the comment</span> • 
+										<span>posted <span id="c08t"></span></span>
+									</p>
+								</div>
+								<div class="comment" id="c09">
+									<img id="c09p" class="smallPfp"><h3 class="cAuthor" id="c09a"></h3>
+									<p id="c09c" class="cText"></p>
+									<p class="stat">
+										<span class="material-icons ico">comment</span> <span id="c09r">[loading]</span> replies • 
+										<span class="material-icons ico">thumb_up</span> <span id="c09l">[loading]</span> likes • 
+										<span onclick="translate('c09c')" style="cursor:pointer;"><span class="material-icons ico">translate</span> translate the comment</span> • 
+										<span>posted <span id="c09t"></span></span>
+									</p>
+								</div>
+								<div class="comment" id="c10">
+									<img id="c10p" class="smallPfp"><h3 class="cAuthor" id="c10a"></h3>
+									<p id="c10c" class="cText"></p>
+									<p class="stat">
+										<span class="material-icons ico">comment</span> <span id="c10r">[loading]</span> replies • 
+										<span class="material-icons ico">thumb_up</span> <span id="c10l">[loading]</span> likes • 
+										<span onclick="translate('c10c')" style="cursor:pointer;"><span class="material-icons ico">translate</span> translate the comment</span> • 
+										<span>posted <span id="c10t"></span></span>
+									</p>
+								</div>
+								<div class="comment" id="c11">
+									<img id="c11p" class="smallPfp"><h3 class="cAuthor" id="c11a"></h3>
+									<p id="c11c" class="cText"></p>
+									<p class="stat">
+										<span class="material-icons ico">comment</span> <span id="c11r">[loading]</span> replies • 
+										<span class="material-icons ico">thumb_up</span> <span id="c11l">[loading]</span> likes • 
+										<span onclick="translate('c11c')" style="cursor:pointer;"><span class="material-icons ico">translate</span> translate the comment</span> • 
+										<span>posted <span id="c11t"></span></span>
+									</p>
+								</div>
+								<div class="comment" id="c12">
+									<img id="c12p" class="smallPfp"><h3 class="cAuthor" id="c12a"></h3>
+									<p id="c12c" class="cText"></p>
+									<p class="stat">
+										<span class="material-icons ico">comment</span> <span id="c12r">[loading]</span> replies • 
+										<span class="material-icons ico">thumb_up</span> <span id="c12l">[loading]</span> likes • 
+										<span onclick="translate('c12c')" style="cursor:pointer;"><span class="material-icons ico">translate</span> translate the comment</span> • 
+										<span>posted <span id="c12t"></span></span>
+									</p>
+								</div>
+								<div class="comment" id="c13">
+									<img id="c13p" class="smallPfp"><h3 class="cAuthor" id="c13a"></h3>
+									<p id="c13c" class="cText"></p>
+									<p class="stat">
+										<span class="material-icons ico">comment</span> <span id="c13r">[loading]</span> replies • 
+										<span class="material-icons ico">thumb_up</span> <span id="c13l">[loading]</span> likes • 
+										<span onclick="translate('c13c')" style="cursor:pointer;"><span class="material-icons ico">translate</span> translate the comment</span> • 
+										<span>posted <span id="c13t"></span></span>
+									</p>
+								</div>
+								<div class="comment" id="c14">
+									<img id="c14p" class="smallPfp"><h3 class="cAuthor" id="c14a"></h3>
+									<p id="c14c" class="cText"></p>
+									<p class="stat">
+										<span class="material-icons ico">comment</span> <span id="c14r">[loading]</span> replies • 
+										<span class="material-icons ico">thumb_up</span> <span id="c14l">[loading]</span> likes • 
+										<span onclick="translate('c14c')" style="cursor:pointer;"><span class="material-icons ico">translate</span> translate the comment</span> • 
+										<span>posted <span id="c14t"></span></span>
+									</p>
+								</div>
+								<div class="comment" id="c15">
+									<img id="c15p" class="smallPfp"><h3 class="cAuthor" id="c15a"></h3>
+									<p id="c15c" class="cText"></p>
+									<p class="stat">
+										<span class="material-icons ico">comment</span> <span id="c15r">[loading]</span> replies • 
+										<span class="material-icons ico">thumb_up</span> <span id="c15l">[loading]</span> likes • 
+										<span onclick="translate('c15c')" style="cursor:pointer;"><span class="material-icons ico">translate</span> translate the comment</span> • 
+										<span>posted <span id="c15t"></span></span>
+									</p>
+								</div>
+								<div class="comment" id="c16">
+									<img id="c16p" class="smallPfp"><h3 class="cAuthor" id="c16a"></h3>
+									<p id="c16c" class="cText"></p>
+									<p class="stat">
+										<span class="material-icons ico">comment</span> <span id="c16r">[loading]</span> replies • 
+										<span class="material-icons ico">thumb_up</span> <span id="c16l">[loading]</span> likes • 
+										<span onclick="translate('c16c')" style="cursor:pointer;"><span class="material-icons ico">translate</span> translate the comment</span> • 
+										<span>posted <span id="c16t"></span></span>
+									</p>
+								</div>
+								<div class="comment" id="c17">
+									<img id="c17p" class="smallPfp"><h3 class="cAuthor" id="c17a"></h3>
+									<p id="c17c" class="cText"></p>
+									<p class="stat">
+										<span class="material-icons ico">comment</span> <span id="c17r">[loading]</span> replies • 
+										<span class="material-icons ico">thumb_up</span> <span id="c17l">[loading]</span> likes • 
+										<span onclick="translate('c17c')" style="cursor:pointer;"><span class="material-icons ico">translate</span> translate the comment</span> • 
+										<span>posted <span id="c17t"></span></span>
+									</p>
+								</div>
+								<div class="comment" id="c18">
+									<img id="c18p" class="smallPfp"><h3 class="cAuthor" id="c18a"></h3>
+									<p id="c18c" class="cText"></p>
+									<p class="stat">
+										<span class="material-icons ico">comment</span> <span id="c18r">[loading]</span> replies • 
+										<span class="material-icons ico">thumb_up</span> <span id="c18l">[loading]</span> likes • 
+										<span onclick="translate('c18c')" style="cursor:pointer;"><span class="material-icons ico">translate</span> translate the comment</span> • 
+										<span>posted <span id="c18t"></span></span>
+									</p>
+								</div>
+								<div class="comment" id="c19">
+									<img id="c19p" class="smallPfp"><h3 class="cAuthor" id="c19a"></h3>
+									<p id="c19c" class="cText"></p>
+									<p class="stat">
+										<span class="material-icons ico">comment</span> <span id="c19r">[loading]</span> replies • 
+										<span class="material-icons ico">thumb_up</span> <span id="c19l">[loading]</span> likes • 
+										<span onclick="translate('c19c')" style="cursor:pointer;"><span class="material-icons ico">translate</span> translate the comment</span> • 
+										<span>posted <span id="c19t"></span></span>
+									</p>
+								</div>
+								<div class="comment" id="c20">
+									<img id="c20p" class="smallPfp"><h3 class="cAuthor" id="c20a"></h3>
+									<p id="c20c" class="cText"></p>
+									<p class="stat">
+										<span class="material-icons ico">comment</span> <span id="c20r">[loading]</span> replies • 
+										<span class="material-icons ico">thumb_up</span> <span id="c20l">[loading]</span> likes • 
+										<span onclick="translate('c20c')" style="cursor:pointer;"><span class="material-icons ico">translate</span> translate the comment</span> • 
+										<span>posted <span id="c20t"></span></span>
+									</p>
+								</div>
+								<span style="display:none;" id="token"></span>
+								<button id="moreComments" onclick="loadComments(document.getElementById('token').innerHTML);">load more comments</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="searchPage" style="display:none;" class="centerMe">
+				<div id="seaLoader" class="loader centerMe"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+				<div id="resultsContainer" class="centerMe">
+					<a id="re01"><div class="resultVideo">
+						<img id="re01Th" class="smallThumb" style="float:left;margin-right:5px;">
+						<div style="float:left;max-width:54%">
+							<h2 id="re01Ti" class="stat"></h2>
+							<h3 class="stat"><span class="material-icons ico">person</span> <span id="re01Au"></span></h3>
+							<h3 class="stat"><span class="material-icons ico">remove_red_eye</span> <span id="re01Vi"></span> views</h3>
+						</div>
+					</div></a>
+					<a id="re02"><div class="resultVideo">
+						<img id="re02Th" class="smallThumb" style="float:left;margin-right:5px;">
+						<div style="float:left;max-width:54%">
+							<h2 id="re02Ti" class="stat"></h2>
+							<h3 class="stat"><span class="material-icons ico">person</span> <span id="re02Au"></span></h3>
+							<h3 class="stat"><span class="material-icons ico">remove_red_eye</span> <span id="re02Vi"></span> views</h3>
+						</div>
+					</div></a>
+					<a id="re03"><div class="resultVideo">
+						<img id="re03Th" class="smallThumb" style="float:left;margin-right:5px;">
+						<div style="float:left;max-width:54%">
+							<h2 id="re03Ti" class="stat"></h2>
+							<h3 class="stat"><span class="material-icons ico">person</span> <span id="re03Au"></span></h3>
+							<h3 class="stat"><span class="material-icons ico">remove_red_eye</span> <span id="re03Vi"></span> views</h3>
+						</div>
+					</div></a>
+					<a id="re04"><div class="resultVideo">
+						<img id="re04Th" class="smallThumb" style="float:left;margin-right:5px;">
+						<div style="float:left;max-width:54%">
+							<h2 id="re04Ti" class="stat"></h2>
+							<h3 class="stat"><span class="material-icons ico">person</span> <span id="re04Au"></span></h3>
+							<h3 class="stat"><span class="material-icons ico">remove_red_eye</span> <span id="re04Vi"></span> views</h3>
+						</div>
+					</div></a>
+					<a id="re05"><div class="resultVideo">
+						<img id="re05Th" class="smallThumb" style="float:left;margin-right:5px;">
+						<div style="float:left;max-width:54%">
+							<h2 id="re05Ti" class="stat"></h2>
+							<h3 class="stat"><span class="material-icons ico">person</span> <span id="re05Au"></span></h3>
+							<h3 class="stat"><span class="material-icons ico">remove_red_eye</span> <span id="re05Vi"></span> views</h3>
+						</div>
+					</div></a>
+					<a id="re06"><div class="resultVideo">
+						<img id="re06Th" class="smallThumb" style="float:left;margin-right:5px;">
+						<div style="float:left;max-width:54%">
+							<h2 id="re06Ti" class="stat"></h2>
+							<h3 class="stat"><span class="material-icons ico">person</span> <span id="re06Au"></span></h3>
+							<h3 class="stat"><span class="material-icons ico">remove_red_eye</span> <span id="re06Vi"></span> views</h3>
+						</div>
+					</div></a>
+					<a id="re07"><div class="resultVideo">
+						<img id="re07Th" class="smallThumb" style="float:left;margin-right:5px;">
+						<div style="float:left;max-width:54%">
+							<h2 id="re07Ti" class="stat"></h2>
+							<h3 class="stat"><span class="material-icons ico">person</span> <span id="re07Au"></span></h3>
+							<h3 class="stat"><span class="material-icons ico">remove_red_eye</span> <span id="re07Vi"></span> views</h3>
+						</div>
+					</div></a>
+					<a id="re08"><div class="resultVideo">
+						<img id="re08Th" class="smallThumb" style="float:left;margin-right:5px;">
+						<div style="float:left;max-width:54%">
+							<h2 id="re08Ti" class="stat"></h2>
+							<h3 class="stat"><span class="material-icons ico">person</span> <span id="re08Au"></span></h3>
+							<h3 class="stat"><span class="material-icons ico">remove_red_eye</span> <span id="re08Vi"></span> views</h3>
+						</div>
+					</div></a>
+					<a id="re09"><div class="resultVideo">
+						<img id="re09Th" class="smallThumb" style="float:left;margin-right:5px;">
+						<div style="float:left;max-width:54%">
+							<h2 id="re09Ti" class="stat"></h2>
+							<h3 class="stat"><span class="material-icons ico">person</span> <span id="re09Au"></span></h3>
+							<h3 class="stat"><span class="material-icons ico">remove_red_eye</span> <span id="re09Vi"></span> views</h3>
+						</div>
+					</div></a>
+					<a id="re10"><div class="resultVideo">
+						<img id="re10Th" class="smallThumb" style="float:left;margin-right:5px;">
+						<div style="float:left;max-width:54%">
+							<h2 id="re10Ti" class="stat"></h2>
+							<h3 class="stat"><span class="material-icons ico">person</span> <span id="re10Au"></span></h3>
+							<h3 class="stat"><span class="material-icons ico">remove_red_eye</span> <span id="re10Vi"></span> views</h3>
+						</div>
+					</div></a>
+				</div>
+			</div>
+			<div id="settingsPage" style="display:none;" class="noCenter">
+				<div title="SmartQuality syncs up the highest quality audio and video, rather than the highest quality video/audio itag. Only reccomended for those with a strong connection.">
+					<label>SmartQuality (BETA):</label>
+					<select id="sq">
+						<option value="y">enabled</option>
+						<option value="n">disabled</option>
+					</select><br>
+				</div>
+				<div title="Choose a theme to use for the site.">
+					<label>Website Theme:</label>
+					<select id="wTheme">
+						<option value="d">Dark (Default)</option>
+						<option value="w">White</option>
+					</select>
+				</div>
+				<div>
+					<label>Proxy the images from Invidious:</label>
+					<select id="pImg">
+						<option value="y">yes</option>
+						<option value="n">no</option>
+					</select>
+				</div>
+				<div style="width:1px; height:10px;"></div>
+				<button onclick="saveSettings()">Save Settings</button>
+			</div>
+			<div id="nsWarnPage" style="display:none; width:50%;" class="noCenter">
+				<h1 class="material-icons ico" style="font-size:72px; margin:0;">warning</h1>
+				<h2>warning!</h2>
+				<p>the following video has been marked as only being suitable for those over the age of 18. if you plan on continuing, brace yourself for potentially distrurbing or NSFW content. clicking either option will save your choice for future times when 18+ content comes up.</p>
+				<button onclick="showContent('y')">i accept the risk, i want to see this</button>
+				<button onclick="showContent('n')">i accept the risk, but don't save my choice</button>
+				<button onclick="home()">i don't accept the risk, take me home</button>
+			</div>
+		</div>
+		<div id="helpOut" style="display:none;">
+			<div style="width:100%; height:15px;"></div>
+			<div class="centerMe">
+				<p>help this project by <a href="https://paypal.me/n0rmancodes">donating</a> • <a href="https://discord.gg/Js6zhd5">discord support</a> • no videos are hosted on our servers</p>
+			</div>
+		</div>
+		<link id="theme" href="css/style.css" rel="stylesheet">
+		<link rel="apple-touch-icon" href="img/favicon.ico">
+		<link rel="icon" sizes="192x192" href="img/favicon.ico">
+		<script src="js/app.js"></script>
+	</body>
+</html>
