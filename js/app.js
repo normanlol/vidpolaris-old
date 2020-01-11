@@ -55,6 +55,13 @@ if (window.location.href.includes("#w#")) {
 	document.getElementById("vidPage").style.display = '';
 	document.getElementById("vidLoader").style.display = '';
 	openVideo();
+} else if (window.location.href.includes("#settings")) {
+	document.getElementById("player").pause();
+	document.getElementById("homePage").style.display = 'none';
+	document.getElementById("vidPage").style.display = 'none';
+	document.getElementById("searchPage").style.display = 'none';
+	document.getElementById("settingsPage").style.display = '';
+	document.getElementById("helpOut").style.display = '';
 }
 
 if (localStorage.getItem("autoplay") == 'y') {
@@ -71,6 +78,9 @@ document.addEventListener('keydown', function (event) {
     var key = event.key || event.keyCode;
 
 	if (document.activeElement.tagName == "INPUT") {
+		if (key == 'Enter' | key == 13) {
+			getSLink();
+		}
 		return;
 	} else {
 		if (key == 'j' || key == 74) {
@@ -98,18 +108,6 @@ document.addEventListener('keydown', function (event) {
 			} else {
 				document.exitFullscreen();
 				sessionStorage.setItem('fullscreen', 'n')
-			}
-		} else if (key == 'i' | key == 'ArrowUp' | key == 38 | key == 73) {
-			if (localStorage.getItem("smart") == 'y') {
-				document.getElementById("audioPlayer").volume = document.getElementById("audioPlayer").volume + .1
-			} else {
-				document.getElementById("player").volume = document.getElementById("player").volume + .1
-			}
-		} else if (key == 'm' | key == 'ArrowDown' | key == 40 | key == 77) {
-			if (localStorage.getItem("smart") == 'y') {
-				document.getElementById("audioPlayer").volume = document.getElementById("audioPlayer").volume + .1
-			} else {
-				document.getElementById("player").volume = document.getElementById("player").volume + .1
 			}
 		}
 	}
@@ -1046,7 +1044,7 @@ function refresh() {
 			document.getElementById("helpOut").style.display = 'none';
 		}
 	} else if (window.location.href.includes("#s#")) {
-		search()
+		search();
 	} else {
 		home();
 	}
