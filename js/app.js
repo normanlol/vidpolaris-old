@@ -1030,6 +1030,8 @@ function refresh() {
 			return;
 		}
 		openVideo();
+	} else if (window.location.href.includes("#s#")) {
+		search();
 	} else if (window.location.href.includes("#settings")) {
 		if (!document.getElementById("settingsPage").style.display == '') {
 			document.getElementById("player").pause();
@@ -1043,8 +1045,6 @@ function refresh() {
 			document.getElementById("settingsPage").style.display = 'none';
 			document.getElementById("helpOut").style.display = 'none';
 		}
-	} else if (window.location.href.includes("#s#")) {
-		search();
 	} else {
 		home();
 	}
@@ -1093,7 +1093,7 @@ function saveSettings() {
 		localStorage.removeItem("cUpdate")
 	}
 	home();
-	document.getElementById("settingsPage").style.display = 'none';
+	window.open("#", "_self")
 }
 
 function dismiss() {
