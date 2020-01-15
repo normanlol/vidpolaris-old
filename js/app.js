@@ -83,25 +83,25 @@ document.addEventListener('keydown', function (event) {
 		}
 		return;
 	} else {
-		if (key == 'j' || key == 74) {
+		if (key == 'j' || key == 'J' || key == 74) {
 			document.getElementById("player").currentTime = document.getElementById("audioPlayer").currentTime - 10;
 			if (localStorage.getItem('smart') == 'y') {
 				document.getElementById("audioPlayer").currentTime = document.getElementById("audioPlayer").currentTime - 10
 			}
-		} else if (key == 'k' || key == 75) {
+		} else if (key == 'k' || key == 'K' || key == 75) {
 			if (!document.getElementById("player").paused) {
 				document.getElementById('player').pause();
 			} else {
 				document.getElementById('player').play();
 			}
-		} else if (key == 'l' || key == 76) {
+		} else if (key == 'l' || key == 'L' || key == 76) {
 			document.getElementById("player").currentTime = document.getElementById("player").currentTime + 10;
 			if (localStorage.getItem('smart') == 'y') {
 				document.getElementById("audioPlayer").currentTime = document.getElementById("audioPlayer").currentTime + 10
 			}
-		} else if (key == 't' || key == 84) {
+		} else if (key == 't' || key == 'T' || key == 84) {
 			theatre();
-		} else if (key == 'f' || key == 70) {
+		} else if (key == 'f' || key == 'F' || key == 70) {
 			if (!sessionStorage.getItem("fullscreen") | sessionStorage.getItem("fullscreen") == 'n') {
 				document.getElementById("player").requestFullscreen();
 				sessionStorage.setItem('fullscreen', 'y')
