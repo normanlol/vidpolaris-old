@@ -62,6 +62,14 @@ if (window.location.href.includes("#w#")) {
 	document.getElementById("searchPage").style.display = 'none';
 	document.getElementById("settingsPage").style.display = '';
 	document.getElementById("helpOut").style.display = '';
+} else if (window.location.href.includes("#w#")) {
+	var q = getClickedId(window.location.href, "#s#");
+	if (!document.getElementById("q").value == q) {
+		document.getElementById("q").value = q;
+		search();
+	} else {
+		search();
+	}
 }
 
 if (localStorage.getItem("autoplay") == 'y') {
@@ -127,7 +135,9 @@ function resize() {
 		}
 		if (w < 1200) {
 			document.getElementById("theme").href = "css/mobile.css";
-			theatre();
+			if (localStorage.getItem("theater") == "n") {
+				theatre();
+			}
 		} else if (w < 1430) {
 			document.getElementById("theme").href = "css/smaller.css";
 		} else {
@@ -136,7 +146,9 @@ function resize() {
 	} else {
 		if (w < 1200) {
 			document.getElementById("theme").href = "css/white/mobile.css";
-			theatre();
+			if (localStorage.getItem("theater") == "n") {
+				theatre();
+			}
 		} else if (w < 1430) {
 			document.getElementById("theme").href = "css/white/smaller.css";
 		} else {
@@ -1031,7 +1043,13 @@ function refresh() {
 		}
 		openVideo();
 	} else if (window.location.href.includes("#s#")) {
-		search();
+		var q = getClickedId(window.location.href, "#s#");
+		if (!document.getElementById("q").value == q) {
+			document.getElementById("q").value = q;
+			search();
+		} else {
+			search();
+		}
 	} else if (window.location.href.includes("#settings")) {
 		if (!document.getElementById("settingsPage").style.display == '') {
 			document.getElementById("player").pause();

@@ -36,6 +36,10 @@ body {
 	transition: background-color .5s
 }
 
+.resultD {
+	max-width:53%;
+}
+
 .video:hover {
 	background-color:#888;
 }
@@ -57,7 +61,7 @@ body {
 }
 
 .resultVideo {
-	width:65%;
+	width:90%;
 	min-height:153px;
 	border-radius:10px;
 	background-color:#3c3c3c;
