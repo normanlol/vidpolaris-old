@@ -223,6 +223,7 @@
 								<h2><span class="material-icons ico">comment</span> 
 									<span id="loadedC" style="display:none;">Loaded <span id="loadedComm">[loading]</span> of <span id="commNum">[loading]</span> comments.</span>
 									<span id="loadinC">Loading the comments...</span>
+									<span id="errorC" style="display:none;">There was an error loading the comments.</span>
 								<h2>
 							</div>
 							<div id="loadedComments">
@@ -548,7 +549,7 @@
 				<h2>warning!</h2>
 				<p>the following video has been marked as only being suitable for those over the age of 18. if you plan on continuing, brace yourself for potentially distrurbing or NSFW content. clicking either option will save your choice for future times when 18+ content comes up.</p>
 				<button onclick="showContent('y')">i accept the risk, i want to see this</button>
-				<button onclick="showContent('n')">i accept the risk, but don't save my choice</button>
+				<button onclick="showContent('y_ns')">i accept the risk, but don't save my choice</button>
 				<button onclick="home()">i don't accept the risk, take me home</button>
 			</div>
 		</div>

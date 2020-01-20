@@ -120,7 +120,7 @@ document.addEventListener('keydown', function (event) {
 		}
 	}
 });
- 
+
 console.log("autoplay: " + localStorage.getItem('autoplay'))
 console.log("smartQual: " + localStorage.getItem('smart'))
 console.log("imgProxy: " + localStorage.getItem('pImg'))
@@ -889,6 +889,7 @@ function openVideo() {
 								document.getElementById("ldDiv").style.display = 'none';
 							} else {
 								document.getElementById("desc").innerHTML = desc;
+								document.getElementById("longDesc").innerHTML = desc;
 								document.getElementById("ldBtn").style.display = '';
 								document.getElementById("ldDiv").style.display = 'none';
 							}
@@ -899,19 +900,31 @@ function openVideo() {
 							document.getElementById("pubD").innerHTML = day;
 							http.open("GET", "https://cors-anywhere.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?md=1&url=" + fullUrl);
 							http.send();
+							http.timeout = 10000;
+							http.ontimeout = () => {
+								document.getElementById("viewNum").innerHTML = "[Error]";
+								document.getElementById("likeNum").innerHTML = "[Error]";
+								document.getElementById("dlikNum").innerHTML = "[Error]";
+								document.getElementById("commNum").innerHTML = "[Error]";
+							}
 							http.onreadystatechange=(e)=>{
 								var jsond = JSON.parse(http.responseText);
 								var view = jsond.meta.views.toLocaleString();
-								var dlik = jsond.meta.dislikeCount.toLocaleString();
-								var like = jsond.meta.likeCount.toLocaleString();
-								var comm = jsond.meta.commentCount.toLocaleString();
-								var aLink = "https://www.youtube.com/channel/" + jsond.meta.channelId;
-								document.getElementById("viewNum").innerHTML = view;
-								document.getElementById("likeNum").innerHTML = like;
-								document.getElementById("dlikNum").innerHTML = dlik;
-								document.getElementById("commNum").innerHTML = comm;
-								document.getElementById("authorL").href = aLink;
-							}
+								if (!jsond.meta.dislikeCount) {
+									var dlik = "0"
+								} else {
+									var dlik = jsond.meta.dislikeCount.toLocaleString();
+								}
+								if (!jsond.meta.likeCount) {
+									var like = "0"
+								} else {
+									var like = jsond.meta.likeCount.toLocaleString();
+								}
+								if (!jsond.meta.commentCount) {
+									var comm = "0"
+								} else {
+									var comm = jsond.meta.commentCount.toLocaleString();
+								}
 							document.getElementById("videoViewer").style.display = '';
 							console.log("It is done! Syncing will now start...");
 							sync();
@@ -954,12 +967,31 @@ function openVideo() {
 					document.getElementById("pubD").innerHTML = day;
 					http.open("GET", "https://cors-anywhere.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?md=1&url=" + fullUrl);
 					http.send();
+					http.timeout = 10000;
+					http.ontimeout = () => {
+						document.getElementById("viewNum").innerHTML = "[Error]";
+						document.getElementById("likeNum").innerHTML = "[Error]";
+						document.getElementById("dlikNum").innerHTML = "[Error]";
+						document.getElementById("commNum").innerHTML = "[Error]";
+					}
 					http.onreadystatechange=(e)=>{
 						var jsond = JSON.parse(http.responseText);
 						var view = jsond.meta.views.toLocaleString();
-						var dlik = jsond.meta.dislikeCount.toLocaleString();
-						var like = jsond.meta.likeCount.toLocaleString();
-						var comm = jsond.meta.commentCount.toLocaleString();
+						if (!jsond.meta.dislikeCount) {
+							var dlik = "0"
+						} else {
+							var dlik = jsond.meta.dislikeCount.toLocaleString();
+						}
+						if (!jsond.meta.likeCount) {
+							var like = "0"
+						} else {
+							var like = jsond.meta.likeCount.toLocaleString();
+						}
+						if (!jsond.meta.commentCount) {
+							var comm = "0"
+						} else {
+							var comm = jsond.meta.commentCount.toLocaleString();
+						}
 						var aLink = "https://www.youtube.com/channel/" + jsond.meta.channelId;
 						document.getElementById("viewNum").innerHTML = view;
 						document.getElementById("likeNum").innerHTML = like;
@@ -1129,6 +1161,11 @@ function loadComments(token) {
 		const http = new XMLHttpRequest();
 		http.open("GET", "https://cors-anywhere.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?comments=1&url=" + fullUrl);
 		http.send();
+		http.timeout = 10000;
+		http.ontimeout = () => {
+			document.getElementById("errorC").style.display = '';
+			document.getElementById("loadinC").style.display = 'none';
+		}
 		http.onreadystatechange=(e)=>{
 			var jsond = JSON.parse(http.responseText);
 			var commentsNum = jsond.comments.length;
@@ -1773,6 +1810,11 @@ function loadComments(token) {
 		const http = new XMLHttpRequest();
 		http.open("GET", "https://cors-anywhere.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?comments=1&token=" + token + "&url=" + fullUrl);
 		http.send();
+		http.timeout = 10000;
+		http.ontimeout = () => {
+			document.getElementById("errorC").style.display = '';
+			document.getElementById("loadinC").style.display = 'none';
+		}
 		http.onreadystatechange=(e)=>{
 			var jsond = JSON.parse(http.responseText);
 			var commentsNum = jsond.comments.length;
@@ -2504,18 +2546,26 @@ function theatre() {
 }
 
 function showWarning() {
-	document.getElementById("nsWarnPage").style.display = 'none';
-	document.getElementById("player").pause();
+	if (localStorage.getItem("ageR") == "n" | !localStorage.getItem("ageR")) {
+		document.getElementById("nsWarnPage").style.display = '';
+		document.getElementById("vidPage").style.display = 'none';
+		document.getElementById("player").pause();
+	} else {
+		return;
+	}
 }
 
 function showContent(choice) {
 	if (choice == 'y') {
-		document.getElementById("videoViewer").style.display = '';
+		document.getElementById("vidPage").style.display = '';
 		document.getElementById("nsWarnPage").style.display = 'none';
 		localStorage.setItem('ageR', 'y')
-	} else {
-		document.getElementById("videoViewer").style.display = '';
+	} else if (choice == 'y_ns') {
+		document.getElementById("vidPage").style.display = '';
 		document.getElementById("nsWarnPage").style.display = 'none';
+		localStorage.setItem('ageR', 'n')
+	} else {
+		window.open("#", "_self");
 		localStorage.setItem('ageR', 'n')
 	}
 }
