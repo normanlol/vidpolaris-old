@@ -889,7 +889,6 @@ function openVideo() {
 								document.getElementById("ldDiv").style.display = 'none';
 							} else {
 								document.getElementById("desc").innerHTML = desc;
-								document.getElementById("longDesc").innerHTML = desc;
 								document.getElementById("ldBtn").style.display = '';
 								document.getElementById("ldDiv").style.display = 'none';
 							}
@@ -910,21 +909,16 @@ function openVideo() {
 							http.onreadystatechange=(e)=>{
 								var jsond = JSON.parse(http.responseText);
 								var view = jsond.meta.views.toLocaleString();
-								if (!jsond.meta.dislikeCount) {
-									var dlik = "0"
-								} else {
-									var dlik = jsond.meta.dislikeCount.toLocaleString();
-								}
-								if (!jsond.meta.likeCount) {
-									var like = "0"
-								} else {
-									var like = jsond.meta.likeCount.toLocaleString();
-								}
-								if (!jsond.meta.commentCount) {
-									var comm = "0"
-								} else {
-									var comm = jsond.meta.commentCount.toLocaleString();
-								}
+								var dlik = jsond.meta.dislikeCount.toLocaleString();
+								var like = jsond.meta.likeCount.toLocaleString();
+								var comm = jsond.meta.commentCount.toLocaleString();
+								var aLink = "https://www.youtube.com/channel/" + jsond.meta.channelId;
+								document.getElementById("viewNum").innerHTML = view;
+								document.getElementById("likeNum").innerHTML = like;
+								document.getElementById("dlikNum").innerHTML = dlik;
+								document.getElementById("commNum").innerHTML = comm;
+								document.getElementById("authorL").href = aLink;
+							}
 							document.getElementById("videoViewer").style.display = '';
 							console.log("It is done! Syncing will now start...");
 							sync();
