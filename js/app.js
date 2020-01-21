@@ -1159,6 +1159,7 @@ function loadComments(token) {
 		http.ontimeout = () => {
 			document.getElementById("errorC").style.display = '';
 			document.getElementById("loadinC").style.display = 'none';
+			document.getElementById("errorC").style.display = 'none';
 		}
 		http.onreadystatechange=(e)=>{
 			var jsond = JSON.parse(http.responseText);
@@ -1808,6 +1809,7 @@ function loadComments(token) {
 		http.ontimeout = () => {
 			document.getElementById("errorC").style.display = '';
 			document.getElementById("loadinC").style.display = 'none';
+			document.getElementById("errorC").style.display = 'none';
 		}
 		http.onreadystatechange=(e)=>{
 			var jsond = JSON.parse(http.responseText);
