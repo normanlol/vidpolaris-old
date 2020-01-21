@@ -139,7 +139,7 @@ function getSLink() {
 function search() {
 	document.title = "vidpolaris";
 	var q = getClickedId(window.location.href, "#s#");
-	document.title = "search results for " + q + " | vidpolaris";
+	document.title = "search results for " + decodeURIComponent(q) + " | vidpolaris";
 	document.getElementById("searchPage").style.display = '';
 	document.getElementById("seaLoader").style.display = '';
 	document.getElementById("helpOut").style.display = '';
