@@ -1,6 +1,9 @@
 resize();
 getTrending();
 keepProg();
+refresh();
+
+// settings checkers
 
 if (sessionStorage.getItem("currentlyRunningT")) {
 	sessionStorage.removeItem("currentlyRunningT");
@@ -28,12 +31,6 @@ if (!localStorage.getItem("smart")) {
 	document.getElementById("sq").value = localStorage.getItem("smart");
 }
 
-if (!localStorage.getItem("pImg")) {
-	localStorage.setItem("pImg" , "y");
-} else {
-	document.getElementById("pImg").value = localStorage.getItem("pImg");
-}
-
 if (!localStorage.getItem("theatre")) {
 	localStorage.setItem("theatre" , "n");
 } else {
@@ -44,32 +41,8 @@ if (!localStorage.getItem("theatre")) {
 	}
 }
 
-
 if (localStorage.getItem("dissmissed") == "y") {
 	localStorage.removeItem("dismissed")
-}
-
-if (window.location.href.includes("#w#")) {
-	document.getElementById("homePage").style.display = 'none';
-	document.getElementById("searchContainer").style.display = 'none';
-	document.getElementById("vidPage").style.display = '';
-	document.getElementById("vidLoader").style.display = '';
-	openVideo();
-} else if (window.location.href.includes("#settings")) {
-	document.getElementById("player").pause();
-	document.getElementById("homePage").style.display = 'none';
-	document.getElementById("vidPage").style.display = 'none';
-	document.getElementById("searchPage").style.display = 'none';
-	document.getElementById("settingsPage").style.display = '';
-	document.getElementById("helpOut").style.display = '';
-} else if (window.location.href.includes("#w#")) {
-	var q = getClickedId(window.location.href, "#s#");
-	if (!document.getElementById("q").value == q) {
-		document.getElementById("q").value = q;
-		search();
-	} else {
-		search();
-	}
 }
 
 if (localStorage.getItem("autoplay") == 'y') {
@@ -77,6 +50,8 @@ if (localStorage.getItem("autoplay") == 'y') {
 } else {
 	document.getElementById('apSwitch').checked = false;
 }
+
+//listeners
 
 document.addEventListener('keydown', function (event) {
     if (event.defaultPrevented) {
@@ -823,7 +798,7 @@ function openVideo() {
 									opt5.innerHTML = jsond.video[5].qualityLabel;
 								}
 								document.getElementById("qOptions").appendChild(opt5);
-							} else if (length = 4) {
+							} else if (length == 4) {
 								var opt1 = document.createElement("option")
 								opt1.value = jsond.video[0].itag;
 								opt1.innerHTML = jsond.video[0].qualityLabel;
@@ -840,7 +815,7 @@ function openVideo() {
 								opt4.value = jsond.video[3].itag;
 								opt4.innerHTML = jsond.video[3].qualityLabel;
 								document.getElementById("qOptions").appendChild(opt4);
-							} else if (length = 3) {
+							} else if (length == 3) {
 								var opt1 = document.createElement("option")
 								opt1.value = jsond.video[0].itag;
 								opt1.innerHTML = jsond.video[0].qualityLabel;
@@ -852,7 +827,7 @@ function openVideo() {
 								var opt3 = document.createElement("option");
 								opt3.value = jsond.video[2].itag;
 								opt3.innerHTML = jsond.video[2].qualityLabel;
-							} else if (length = 2) {
+							} else if (length == 2) {
 								var opt1 = document.createElement("option")
 								opt1.value = jsond.video[0].itag;
 								opt1.innerHTML = jsond.video[0].qualityLabel;
