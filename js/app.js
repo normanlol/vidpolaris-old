@@ -772,11 +772,15 @@ function openVideo() {
 								openVideo();
 								return;
 							}
-
 							var audioUrl = jsond.audio[0].url;
 							document.getElementById("audioPlayer").src = audioUrl;
-							var videoUrl = jsond.video[0].url;
-							document.getElementById("itag").innerHTML = jsond.video[0].itag;
+							if (jsond.video[0].isHls == true | jsond.video[0].isLive == true | jsond.video[0].isDashMPD == true) {
+								var videoUrl =  jsond.video[1].url;
+								document.getElementById("itag").innerHTML = jsond.video[1].itag;
+							} else {
+								var videoUrl = jsond.video[0].url;
+								document.getElementById("itag").innerHTML = jsond.video[0].itag;
+							}
 							var length = jsond.video.length;
 							if (length >= 5) {
 								var opt1 = document.createElement("option")
