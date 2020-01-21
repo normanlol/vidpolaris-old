@@ -406,260 +406,211 @@ function getTrending() {
 			document.getElementById("t1").innerHTML = jsond[0].title;
 		}
 		document.getElementById("l1").href = "#w#" + jsond[0].videoId;
-		if (!localStorage.getItem("pImg") === 'n') {
-			document.getElementById("r1").src = "https://proxy.duckduckgo.com/iu/?u=" + jsond[0].videoThumbnails[0].url;
-		} else {
-			document.getElementById("r1").src = jsond[0].videoThumbnails[0].url;
-		}
+		document.getElementById("r1").src = jsond[0].videoThumbnails[0].url;
+		document.getElementById("a1").innerHTML = jsond[0].author;
+		document.getElementById("d1").innerHTML = jsond[0].publishedText;
 		if (jsond[1].title.length >= 75) {
 			document.getElementById("t2").innerHTML = jsond[1].title.substring(0,75) + "...";
 		} else {
 			document.getElementById("t2").innerHTML = jsond[1].title;
 		}
 		document.getElementById("l2").href = "#w#" + jsond[1].videoId;
-		if (!localStorage.getItem("pImg") === 'n') {
-			document.getElementById("r2").src = "https://proxy.duckduckgo.com/iu/?u=" + jsond[1].videoThumbnails[0].url;
-		} else {
-			document.getElementById("r2").src = jsond[1].videoThumbnails[0].url;
-		}
+		document.getElementById("r2").src = jsond[1].videoThumbnails[0].url;
+		document.getElementById("a2").innerHTML = jsond[1].author;
+		document.getElementById("d2").innerHTML = jsond[1].publishedText;
 		if (jsond[2].title.length >= 75) {
 			document.getElementById("t3").innerHTML = jsond[2].title.substring(0,75) + "...";
 		} else {
 			document.getElementById("t3").innerHTML = jsond[2].title;
 		}
 		document.getElementById("l3").href = "#w#" + jsond[2].videoId;
-		if (!localStorage.getItem("pImg") === 'n') {
-			document.getElementById("r3").src = "https://proxy.duckduckgo.com/iu/?u=" + jsond[2].videoThumbnails[0].url;
-		} else {
-			document.getElementById("r3").src = jsond[2].videoThumbnails[2].url;
-		}
+		document.getElementById("r3").src = jsond[2].videoThumbnails[0].url;
+		document.getElementById("a3").innerHTML = jsond[2].author;
+		document.getElementById("d3").innerHTML = jsond[2].publishedText;
 		if (jsond[3].title.length >= 75) {
 			document.getElementById("t4").innerHTML = jsond[3].title.substring(0,75) + "...";
 		} else {
 			document.getElementById("t4").innerHTML = jsond[3].title;
 		}
 		document.getElementById("l4").href = "#w#" + jsond[3].videoId;
-		if (!localStorage.getItem("pImg") === 'n') {
-			document.getElementById("r4").src = "https://proxy.duckduckgo.com/iu/?u=" + jsond[3].videoThumbnails[0].url;
-		} else {
-			document.getElementById("r4").src = jsond[3].videoThumbnails[0].url;
-		}
+		document.getElementById("r4").src = jsond[3].videoThumbnails[0].url;
+		document.getElementById("a4").innerHTML = jsond[3].author;
+		document.getElementById("d4").innerHTML = jsond[3].publishedText;
 		if (jsond[3].title.length >= 75) {
 			document.getElementById("t5").innerHTML = jsond[4].title.substring(0,75) + "...";
 		} else {
 			document.getElementById("t5").innerHTML = jsond[4].title;
 		}
 		document.getElementById("l5").href = "#w#" + jsond[4].videoId;
-		if (!localStorage.getItem("pImg") === 'n') {
-			document.getElementById("r5").src = "https://proxy.duckduckgo.com/iu/?u=" + jsond[4].videoThumbnails[0].url;
-		} else {
-			document.getElementById("r5").src = jsond[4].videoThumbnails[0].url;
-		}
+		document.getElementById("r5").src = jsond[4].videoThumbnails[0].url;
+		document.getElementById("a5").innerHTML = jsond[4].author;
+		document.getElementById("d5").innerHTML = jsond[4].publishedText;
 		if (jsond[5].title.length >= 75) {
 			document.getElementById("t6").innerHTML = jsond[5].title.substring(0,75) + "...";
 		} else {
 			document.getElementById("t6").innerHTML = jsond[5].title;
 		}
 		document.getElementById("l6").href = "#w#" + jsond[5].videoId;
-		if (!localStorage.getItem("pImg") === 'n') {
-			document.getElementById("r6").src = "https://proxy.duckduckgo.com/iu/?u=" + jsond[5].videoThumbnails[0].url;
-		} else {
-			document.getElementById("r6").src = jsond[5].videoThumbnails[0].url;
-		}
+		document.getElementById("r6").src = jsond[5].videoThumbnails[0].url;
+		document.getElementById("a6").innerHTML = jsond[5].author;
+		document.getElementById("d6").innerHTML = jsond[5].publishedText;
 		if (jsond[6].title.length >= 75) {
 			document.getElementById("t7").innerHTML = jsond[6].title.substring(0,75) + "...";
 		} else {
 			document.getElementById("t7").innerHTML = jsond[6].title;
 		}
 		document.getElementById("l7").href = "#w#" + jsond[6].videoId;
-		if (!localStorage.getItem("pImg") === 'n') {
-			document.getElementById("r7").src = "https://proxy.duckduckgo.com/iu/?u=" + jsond[6].videoThumbnails[0].url;
-		} else {
-			document.getElementById("r7").src = jsond[6].videoThumbnails[0].url;
-		}
+		document.getElementById("r7").src = jsond[6].videoThumbnails[0].url;
+		document.getElementById("a7").innerHTML = jsond[6].author;
+		document.getElementById("d7").innerHTML = jsond[6].publishedText;
 		if (jsond[7].title.length >= 75) {
 			document.getElementById("t8").innerHTML = jsond[7].title.substring(0,75) + "...";
 		} else {
 			document.getElementById("t8").innerHTML = jsond[7].title;
 		}
 		document.getElementById("l8").href = "#w#" + jsond[7].videoId;
-		if (!localStorage.getItem("pImg") === 'n') {
-			document.getElementById("r8").src = "https://proxy.duckduckgo.com/iu/?u=" + jsond[7].videoThumbnails[0].url;
-		} else {
-			document.getElementById("r8").src = jsond[7].videoThumbnails[0].url;
-		}
+		document.getElementById("r8").src = jsond[7].videoThumbnails[0].url;
+		document.getElementById("a8").innerHTML = jsond[7].author;
+		document.getElementById("d8").innerHTML = jsond[7].publishedText;
 		if (jsond[8].title.length >= 75) {
 			document.getElementById("t9").innerHTML = jsond[8].title.substring(0,75) + "...";
 		} else {
 			document.getElementById("t9").innerHTML = jsond[8].title;
 		}
 		document.getElementById("l9").href = "#w#" + jsond[8].videoId;
-		if (!localStorage.getItem("pImg") === 'n') {
-			document.getElementById("r9").src = "https://proxy.duckduckgo.com/iu/?u=" + jsond[8].videoThumbnails[0].url;
-		} else {
-			document.getElementById("r9").src = jsond[8].videoThumbnails[0].url;
-		}
+		document.getElementById("r9").src = jsond[8].videoThumbnails[0].url;
+		document.getElementById("a9").innerHTML = jsond[8].author;
+		document.getElementById("d9").innerHTML = jsond[8].publishedText;
 		if (jsond[9].title.length >= 75) {
 			document.getElementById("t10").innerHTML = jsond[9].title.substring(0,75) + "...";
 		} else {
 			document.getElementById("t10").innerHTML = jsond[9].title;
 		}
 		document.getElementById("l10").href = "#w#" + jsond[9].videoId;
-		if (!localStorage.getItem("pImg") === 'n') {
-			document.getElementById("r10").src = "https://proxy.duckduckgo.com/iu/?u=" + jsond[9].videoThumbnails[0].url;
-		} else {
-			document.getElementById("r10").src = jsond[9].videoThumbnails[0].url;
-		}
+		document.getElementById("r10").src = jsond[9].videoThumbnails[0].url;
+		document.getElementById("a10").innerHTML = jsond[9].author;
+		document.getElementById("d10").innerHTML = jsond[9].publishedText;
 		if (jsond[10].title.length >= 75) {
 			document.getElementById("t11").innerHTML = jsond[10].title.substring(0,75) + "...";
 		} else {
 			document.getElementById("t11").innerHTML = jsond[10].title;
 		}
 		document.getElementById("l11").href = "#w#" + jsond[10].videoId;
-		if (!localStorage.getItem("pImg") === 'n') {
-			document.getElementById("r11").src = "https://proxy.duckduckgo.com/iu/?u=" + jsond[10].videoThumbnails[0].url;
-		} else {
-			document.getElementById("r11").src = jsond[10].videoThumbnails[0].url;
-		}
+		document.getElementById("r11").src = jsond[10].videoThumbnails[0].url;
+		document.getElementById("a11").innerHTML = jsond[10].author;
+		document.getElementById("d11").innerHTML = jsond[10].publishedText;
 		if (jsond[11].title.length >= 75) {
 			document.getElementById("t12").innerHTML = jsond[11].title.substring(0,75) + "...";
 		} else {
 			document.getElementById("t12").innerHTML = jsond[11].title;
 		}
 		document.getElementById("l12").href = "#w#" + jsond[11].videoId;
-		if (!localStorage.getItem("pImg") === 'n') {
-			document.getElementById("r12").src = "https://proxy.duckduckgo.com/iu/?u=" + jsond[11].videoThumbnails[0].url;
-		} else {
-			document.getElementById("r12").src = jsond[11].videoThumbnails[0].url;
-		}
+		document.getElementById("r12").src = jsond[11].videoThumbnails[0].url;
+		document.getElementById("a12").innerHTML = jsond[11].author;
+		document.getElementById("d12").innerHTML = jsond[11].publishedText;
 		document.getElementById("l13").href = "#w#" + jsond[12].videoId;
 		if (jsond[12].title.length >= 75) {
 			document.getElementById("t13").innerHTML = jsond[12].title.substring(0,75) + "...";
 		} else {
 			document.getElementById("t13").innerHTML = jsond[12].title;
 		}
-		if (!localStorage.getItem("pImg") === 'n') {
-			document.getElementById("r13").src = "https://proxy.duckduckgo.com/iu/?u=" + jsond[12].videoThumbnails[0].url;
-		} else {
-			document.getElementById("r13").src = jsond[12].videoThumbnails[0].url;
-		}
+		document.getElementById("r13").src = jsond[12].videoThumbnails[0].url;
+		document.getElementById("a13").innerHTML = jsond[12].author;
+		document.getElementById("d13").innerHTML = jsond[12].publishedText;
 		document.getElementById("l14").href = "#w#" + jsond[13].videoId;
 		if (jsond[13].title.length >= 75) {
 			document.getElementById("t14").innerHTML = jsond[13].title.substring(0,75) + "...";
 		} else {
 			document.getElementById("t14").innerHTML = jsond[13].title;
 		}
-		if (!localStorage.getItem("pImg") === 'n') {
-			document.getElementById("r14").src = "https://proxy.duckduckgo.com/iu/?u=" + jsond[13].videoThumbnails[0].url;
-		} else {
-			document.getElementById("r14").src = jsond[13].videoThumbnails[0].url;
-		}
+		document.getElementById("r14").src = jsond[13].videoThumbnails[0].url;
+		document.getElementById("a14").innerHTML = jsond[13].author;
+		document.getElementById("d14").innerHTML = jsond[13].publishedText;
 		document.getElementById("l15").href = "#w#" + jsond[14].videoId;
 		if (jsond[14].title.length >= 75) {
 			document.getElementById("t15").innerHTML = jsond[14].title.substring(0,75) + "...";
 		} else {
 			document.getElementById("t15").innerHTML = jsond[14].title;
 		}
-		if (!localStorage.getItem("pImg") === 'n') {
-			document.getElementById("r15").src = "https://proxy.duckduckgo.com/iu/?u=" + jsond[14].videoThumbnails[0].url;
-		} else {
-			document.getElementById("r15").src = jsond[14].videoThumbnails[0].url;
-		}
+		document.getElementById("r15").src = jsond[14].videoThumbnails[0].url;
+		document.getElementById("a15").innerHTML = jsond[14].author;
+		document.getElementById("d15").innerHTML = jsond[14].publishedText;
 		document.getElementById("l16").href = "#w#" + jsond[15].videoId;
 		if (jsond[15].title.length >= 75) {
 			document.getElementById("t16").innerHTML = jsond[15].title.substring(0,75) + "...";
 		} else {
 			document.getElementById("t16").innerHTML = jsond[15].title;
 		}
-		if (!localStorage.getItem("pImg") === 'n') {
-			document.getElementById("r16").src = "https://proxy.duckduckgo.com/iu/?u=" + jsond[15].videoThumbnails[0].url;
-		} else {
-			document.getElementById("r16").src = jsond[15].videoThumbnails[0].url;
-		}
+		document.getElementById("r16").src = jsond[15].videoThumbnails[0].url;
+		document.getElementById("a16").innerHTML = jsond[15].author;
+		document.getElementById("d16").innerHTML = jsond[15].publishedText;
 		document.getElementById("l17").href = "#w#" + jsond[16].videoId;
 		if (jsond[16].title.length >= 75) {
 			document.getElementById("t17").innerHTML = jsond[16].title.substring(0,75) + "...";
 		} else {
 			document.getElementById("t17").innerHTML = jsond[16].title;
 		}
-		if (!localStorage.getItem("pImg") === 'n') {
-			document.getElementById("r17").src = "https://proxy.duckduckgo.com/iu/?u=" + jsond[16].videoThumbnails[0].url;
-		} else {
-			document.getElementById("r17").src = jsond[16].videoThumbnails[0].url;
-		}
+		document.getElementById("r17").src = jsond[16].videoThumbnails[0].url;
+		document.getElementById("a17").innerHTML = jsond[16].author;
+		document.getElementById("d17").innerHTML = jsond[16].publishedText;
 		document.getElementById("l18").href = "#w#" + jsond[17].videoId;
 		if (jsond[17].title.length >= 75) {
 			document.getElementById("t18").innerHTML = jsond[17].title.substring(0,75) + "...";
 		} else {
 			document.getElementById("t18").innerHTML = jsond[17].title;
 		}
-		if (!localStorage.getItem("pImg") === 'n') {
-			document.getElementById("r18").src = "https://proxy.duckduckgo.com/iu/?u=" + jsond[17].videoThumbnails[0].url;
-		} else {
-			document.getElementById("r18").src = jsond[17].videoThumbnails[0].url;
-		}
+		document.getElementById("r18").src = jsond[17].videoThumbnails[0].url;
+		document.getElementById("a18").innerHTML = jsond[17].author;
+		document.getElementById("d18").innerHTML = jsond[17].publishedText;
 		document.getElementById("l19").href = "#w#" + jsond[18].videoId;
 		if (jsond[18].title.length >= 75) {
 			document.getElementById("t19").innerHTML = jsond[18].title.substring(0,75) + "...";
 		} else {
 			document.getElementById("t19").innerHTML = jsond[18].title;
 		}
-		if (!localStorage.getItem("pImg") === 'n') {
-			document.getElementById("r19").src = "https://proxy.duckduckgo.com/iu/?u=" + jsond[18].videoThumbnails[0].url;
-		} else {
-			document.getElementById("r19").src = jsond[18].videoThumbnails[0].url;
-		}
+		document.getElementById("r19").src = jsond[18].videoThumbnails[0].url;
+		document.getElementById("a19").innerHTML = jsond[18].author;
+		document.getElementById("d19").innerHTML = jsond[18].publishedText;
 		document.getElementById("l20").href = "#w#" + jsond[19].videoId;
 		if (jsond[19].title.length >= 75) {
 			document.getElementById("t20").innerHTML = jsond[19].title.substring(0,75) + "...";
 		} else {
 			document.getElementById("t20").innerHTML = jsond[19].title;
 		}
-		if (!localStorage.getItem("pImg") === 'n') {
-			document.getElementById("r20").src = "https://proxy.duckduckgo.com/iu/?u=" + jsond[19].videoThumbnails[0].url;
-		} else {
-			document.getElementById("r20").src = jsond[19].videoThumbnails[0].url;
-		}
+		document.getElementById("r20").src = jsond[19].videoThumbnails[0].url;
+		document.getElementById("a20").innerHTML = jsond[19].author;
+		document.getElementById("d20").innerHTML = jsond[19].publishedText;
 		document.getElementById("l21").href = "#w#" + jsond[20].videoId;
 		if (jsond[20].title.length >= 75) {
 			document.getElementById("t21").innerHTML = jsond[20].title.substring(0,75) + "...";
 		} else {
 			document.getElementById("t21").innerHTML = jsond[20].title;
 		}
-		if (!localStorage.getItem("pImg") === 'n') {
-			document.getElementById("r21").src = "https://proxy.duckduckgo.com/iu/?u=" + jsond[20].videoThumbnails[0].url;
-		} else {
-			document.getElementById("r21").src = jsond[20].videoThumbnails[0].url;
-		}
+		document.getElementById("r21").src = jsond[20].videoThumbnails[0].url;
+		document.getElementById("a21").innerHTML = jsond[20].author;
+		document.getElementById("d21").innerHTML = jsond[20].publishedText;
 		document.getElementById("l22").href = "#w#" + jsond[21].videoId;
 		if (jsond[21].title.length >= 75) {
 			document.getElementById("t22").innerHTML = jsond[21].title.substring(0,75) + "...";
 		} else {
 			document.getElementById("t22").innerHTML = jsond[21].title;
 		}
-		if (!localStorage.getItem("pImg") === 'n') {
-			document.getElementById("r22").src = "https://proxy.duckduckgo.com/iu/?u=" + jsond[21].videoThumbnails[0].url;
-		} else {
-			document.getElementById("r22").src = jsond[21].videoThumbnails[0].url;
-		}
+		document.getElementById("r22").src = jsond[21].videoThumbnails[0].url;
+		document.getElementById("a22").innerHTML = jsond[20].author;
+		document.getElementById("d22").innerHTML = jsond[20].publishedText;
 		document.getElementById("l23").href = "#w#" + jsond[22].videoId;
-		document.getElementById("r23").src = "https://proxy.duckduckgo.com/iu/?u=" + jsond[22].videoThumbnails[0].url;
 		if (jsond[22].title.length >= 75) {
 			document.getElementById("t23").innerHTML = jsond[22].title.substring(0,75) + "...";
 		} else {
 			document.getElementById("t23").innerHTML = jsond[22].title;
 		}
-		if (!localStorage.getItem("pImg") === 'n') {
-			document.getElementById("r23").src = "https://proxy.duckduckgo.com/iu/?u=" + jsond[22].videoThumbnails[0].url;
-		} else {
-			document.getElementById("r23").src = jsond[22].videoThumbnails[0].url;
-		}
+		document.getElementById("r23").src = jsond[22].videoThumbnails[0].url;
+		document.getElementById("a23").innerHTML = jsond[22].author;
+		document.getElementById("d23").innerHTML = jsond[22].publishedText;
 		document.getElementById("l24").href = "#w#" + jsond[23].videoId;
-		if (!localStorage.getItem("pImg") === 'n') {
-			document.getElementById("r24").src = "https://proxy.duckduckgo.com/iu/?u=" + jsond[23].videoThumbnails[0].url;
-		} else {
-			document.getElementById("r24").src = jsond[23].videoThumbnails[0].url;
-		}
+		document.getElementById("r24").src = jsond[23].videoThumbnails[0].url;
+		document.getElementById("a24").innerHTML = jsond[23].author;
+		document.getElementById("d24").innerHTML = jsond[23].publishedText;
 		if (jsond[23].title.length >= 75) {
 			document.getElementById("t24").innerHTML = jsond[23].title.substring(0,75) + "...";
 		} else {
