@@ -173,7 +173,7 @@ function search() {
 	document.getElementById("settingsPage").style.display = 'none';
 	document.getElementById("player").pause();
 	const http = new XMLHttpRequest();
-	const dUrl = "https://cors-anywhere.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?search=" + encodeURIComponent(q);
+	const dUrl = "https://cors-anywhere.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?search=" + q;
 	http.open("GET", dUrl);
 	http.send();
 	http.onreadystatechange=(e)=>{
