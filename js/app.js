@@ -187,6 +187,10 @@ function search() {
 		var r01Th = jsond.searchResults.items[0].thumbnail;
 		var r01Au = jsond.searchResults.items[0].author.name;
 		var r01Ti = jsond.searchResults.items[0].title;
+		var r01Da = jsond.searchResults.items[0].uploaded_at;
+		var r01De = jsond.searchResults.items[0].description;
+		document.getElementById("re01Da").innerHTML = r01Da;
+		document.getElementById("re01De").innerHTML = r01De;
 		if (!jsond.searchResults.items[0].views | jsond.searchResults.items[0].views == null) {
 			var r01Vi = "[Not available]"
 		} else {
@@ -201,10 +205,13 @@ function search() {
 		var r02Th = jsond.searchResults.items[1].thumbnail;
 		var r02Au = jsond.searchResults.items[1].author.name;
 		var r02Ti = jsond.searchResults.items[1].title;
+		var r02Da = jsond.searchResults.items[1].uploaded_at;
+		var r02De = jsond.searchResults.items[1].description;
+		document.getElementById("re02Da").innerHTML = r02Da;
+		document.getElementById("re02De").innerHTML = r02De;
 		if (!jsond.searchResults.items[1].views | jsond.searchResults.items[1].views == null) {
 			var r02Vi = "[Not available]"
 		} else {
-			console.log(jsond.searchResults.items[1].views)
 			var r02Vi = jsond.searchResults.items[1].views.toLocaleString();
 		}
 		document.getElementById("re02").href = r02L;
@@ -216,6 +223,10 @@ function search() {
 		var r03Th = jsond.searchResults.items[2].thumbnail;
 		var r03Au = jsond.searchResults.items[2].author.name;
 		var r03Ti = jsond.searchResults.items[2].title;
+		var r03Da = jsond.searchResults.items[2].uploaded_at;
+		var r03De = jsond.searchResults.items[2].description;
+		document.getElementById("re03Da").innerHTML = r03Da;
+		document.getElementById("re03De").innerHTML = r03De;
 		if (!jsond.searchResults.items[2].views | jsond.searchResults.items[2].views == null) {
 			var r03Vi = "[Not available]"
 		} else {
@@ -230,6 +241,10 @@ function search() {
 		var r04Th = jsond.searchResults.items[3].thumbnail;
 		var r04Au = jsond.searchResults.items[3].author.name;
 		var r04Ti = jsond.searchResults.items[3].title;
+		var r04Da = jsond.searchResults.items[3].uploaded_at;
+		var r04De = jsond.searchResults.items[3].description;
+		document.getElementById("re04Da").innerHTML = r04Da;
+		document.getElementById("re04De").innerHTML = r04De;
 		if (!jsond.searchResults.items[3].views | jsond.searchResults.items[3].views == null) {
 			var r04Vi = "[Not available]"
 		} else {
@@ -244,13 +259,16 @@ function search() {
 		var r05Th = jsond.searchResults.items[4].thumbnail;
 		var r05Au = jsond.searchResults.items[4].author.name;
 		var r05Ti = jsond.searchResults.items[4].title;
+		var r05Da = jsond.searchResults.items[4].uploaded_at;
+		var r05De = jsond.searchResults.items[4].description;
+		document.getElementById("re05Da").innerHTML = r05Da;
+		document.getElementById("re05De").innerHTML = r05De;
 		if (!jsond.searchResults.items[4].views | jsond.searchResults.items[4].views == null) {
 			var r05Vi = "[Not available]"
 		} else {
 			var r05Vi = jsond.searchResults.items[4].views.toLocaleString();
 		}
 		document.getElementById("re05").href = r05L;
-		document.getElementById("re05").style.display = '';
 		document.getElementById("re05Ti").innerHTML = r05Ti;
 		document.getElementById("re05Th").src = r05Th;
 		document.getElementById("re05Au").innerHTML = r05Au;
@@ -259,6 +277,10 @@ function search() {
 		var r06Th = jsond.searchResults.items[5].thumbnail;
 		var r06Au = jsond.searchResults.items[5].author.name;
 		var r06Ti = jsond.searchResults.items[5].title;
+		var r06Da = jsond.searchResults.items[5].uploaded_at;
+		var r06De = jsond.searchResults.items[5].description;
+		document.getElementById("re06Da").innerHTML = r06Da;
+		document.getElementById("re06De").innerHTML = r06De;
 		if (!jsond.searchResults.items[5].views | jsond.searchResults.items[5].views == null) {
 			var r06Vi = "[Not available]"
 		} else {
@@ -273,6 +295,10 @@ function search() {
 		var r07Th = jsond.searchResults.items[6].thumbnail;
 		var r07Au = jsond.searchResults.items[6].author.name;
 		var r07Ti = jsond.searchResults.items[6].title;
+		var r07Da = jsond.searchResults.items[6].uploaded_at;
+		var r07De = jsond.searchResults.items[6].description;
+		document.getElementById("re07Da").innerHTML = r07Da;
+		document.getElementById("re07De").innerHTML = r07De;
 		if (!jsond.searchResults.items[6].views | jsond.searchResults.items[6].views == null) {
 			var r07Vi = "[Not available]"
 		} else {
@@ -288,6 +314,10 @@ function search() {
 		var r08Th = jsond.searchResults.items[7].thumbnail;
 		var r08Au = jsond.searchResults.items[7].author.name;
 		var r08Ti = jsond.searchResults.items[7].title;
+		var r08Da = jsond.searchResults.items[7].uploaded_at;
+		var r08De = jsond.searchResults.items[7].description;
+		document.getElementById("re08Da").innerHTML = r08Da;
+		document.getElementById("re08De").innerHTML = r08De;
 		if (!jsond.searchResults.items[7].views | jsond.searchResults.items[7].views == null) {
 			var r08Vi = "[Not available]"
 		} else {
@@ -302,6 +332,10 @@ function search() {
 		var r09Th = jsond.searchResults.items[8].thumbnail;
 		var r09Au = jsond.searchResults.items[8].author.name;
 		var r09Ti = jsond.searchResults.items[8].title;
+		var r09Da = jsond.searchResults.items[8].uploaded_at;
+		var r09De = jsond.searchResults.items[8].description;
+		document.getElementById("re09Da").innerHTML = r09Da;
+		document.getElementById("re09De").innerHTML = r09De;
 		if (!jsond.searchResults.items[8].views | jsond.searchResults.items[8].views == null) {
 			var r09Vi = "[Not available]"
 		} else {
@@ -316,6 +350,10 @@ function search() {
 		var r10Th = jsond.searchResults.items[9].thumbnail;
 		var r10Au = jsond.searchResults.items[9].author.name;
 		var r10Ti = jsond.searchResults.items[9].title;
+		var r10Da = jsond.searchResults.items[9].uploaded_at;
+		var r10De = jsond.searchResults.items[9].description;
+		document.getElementById("re10Da").innerHTML = r10Da;
+		document.getElementById("re10De").innerHTML = r10De;
 		if (!jsond.searchResults.items[9].views | jsond.searchResults.items[9].views == null) {
 			var r10Vi = "[Not available]"
 		} else {
@@ -668,7 +706,6 @@ function openVideo() {
 				var month = pDate.getMonth() + 1;
 				var day = pDate.getDate();
 				var year = pDate.getFullYear();
-				console.log(jsond.info.age_restricted);
 				if (jsond.info.age_restricted == true) {
 					showWarning();
 				}
