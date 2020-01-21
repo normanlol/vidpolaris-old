@@ -162,7 +162,7 @@ function getSLink() {
 }
 
 function search() {
-	var q = document.getElementById("q").value;
+	var q = getClickedId(window.location.href, "#s#");
 	document.getElementById("searchPage").style.display = '';
 	document.getElementById("seaLoader").style.display = '';
 	document.getElementById("helpOut").style.display = '';
