@@ -606,6 +606,7 @@ function openVideo() {
 		if (!window.location.href.includes("#w#")) {
 			return;
 		} else {
+			document.title = "[loading...] vidpolaris";
 			document.getElementById("homePage").style.display = 'none';
 			document.getElementById("searchContainer").style.display = 'none'
 			document.getElementById("searchPage").style.display = 'none'
