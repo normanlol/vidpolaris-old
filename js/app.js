@@ -992,6 +992,7 @@ function home() {
 	document.getElementById("searchContainer").style.display = '';
 	document.getElementById("settingsPage").style.display = 'none';
 	document.getElementById("helpOut").style.display = 'none';
+	document.title ="vidpolaris";
 }
 
 function longDesc() {
