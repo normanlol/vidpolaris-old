@@ -909,12 +909,17 @@ function openVideo() {
 							}
 							var aLink = "https://www.youtube.com/channel/" + jsond.meta.channelId;
 							var totl = jsond.meta.dislikeCount + jsond.meta.likeCount;
-							var untRatio = jsond.meta.likeCount / totl;
-							var percent = 100 * untRatio;
-							var ratio = percent.toPrecision(4);
+							if (!totl == 0){
+								var untRatio = jsond.meta.likeCount / totl;
+								var percent = 100 * untRatio;
+								var ratio = percent.toPrecision(4);
+							} else {
+								var ratio = 0;
+							}
 							document.getElementById("viewNum").innerHTML = view;
 							document.getElementById("likeNum").innerHTML = like;
 							document.getElementById("dlikNum").innerHTML = dlik;
+							document.getElementById("commNum").innerHTML = comm;
 							document.getElementById("ldRatio").innerHTML = ratio;
 							document.getElementById("authorL").href = aLink;
 							loadComments();
