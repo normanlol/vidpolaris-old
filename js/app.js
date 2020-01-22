@@ -638,6 +638,8 @@ function openVideo() {
 				if (jsond.info.age_restricted == true) {
 					showWarning();
 				}
+				var cat = jsond.info.media.category;
+				document.getElementById("cat").innerHTML = cat;
 				if (!jsond.info.related_videos[0] | !jsond.info.related_videos[1] | !jsond.info.related_videos[3] | !jsond.info.related_videos[4] | !jsond.info.related_videos[5] |  !jsond.info.related_videos[6] |  !jsond.info.related_videos[7]) {
 					document.getElementById("relatedVideos").style.display = 'none';
 					document.getElementById("autoPlayBlock").style.display = 'none';
