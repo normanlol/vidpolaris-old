@@ -638,6 +638,16 @@ function openVideo() {
 				if (jsond.info.age_restricted == true) {
 					showWarning();
 				}
+				if (!jsond.info.player_response.playabilityStatus.status == "OK") {
+					notPlayable();
+				}
+				if (!jsond.info.player_response.cards) {
+					document.getElementById("card").style.display = 'none';
+				} else {
+					document.getElementById("card").style.display = '';
+					document.getElementById("cardMessage").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.videoInfoCardContentRenderer.customMessage.simpleText;
+					document.getElementById("cardLink").href = "#w#" + jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.videoInfoCardContentRenderer.action.watchEndpoint.videoId;
+				}
 				var cat = jsond.info.media.category;
 				document.getElementById("cat").innerHTML = cat;
 				if (!jsond.info.related_videos[0] | !jsond.info.related_videos[1] | !jsond.info.related_videos[3] | !jsond.info.related_videos[4] | !jsond.info.related_videos[5] |  !jsond.info.related_videos[6] |  !jsond.info.related_videos[7]) {
@@ -2560,4 +2570,14 @@ function showContent(choice) {
 		window.open("#", "_self");
 		localStorage.setItem('ageR', 'n')
 	}
+}
+
+function notPlayable() {
+	document.getElementById("errorPage").style.display = '';
+	document.getElementById("errorTxt").innerHTML = "for one reason or another, this video cannot be played. try again or watch it on youtube itself."
+	document.getElementById("vidPage").style.display = 'none';
+	document.getElementById("nsWarnPage").style.display = 'none';
+	document.getElementById("settingsPage").style.display = 'none';
+	document.getElementById("searchPage").style.display = 'none';
+	document.getElementById("homePage").style.display = 'none';
 }

@@ -191,6 +191,7 @@
 							<h3 class="stat" id="qSelector"><span class="material-icons ico">hd</span> <select id="qOptions" onclick="changeQ()"></select></h3>
 							<h3 class="stat"><span class="material-icons ico">calendar_today</span> <span id="pubM">[Loading]</span>/<span id="pubD">[Loading]</span>/<span id="pubY">[Loading]</span></h3>
 							<h3 class="stat"><span class="material-icons ico">folder</span> <span id="cat"></span></h3>
+							<h3 class="stat" id="card" style="display:none;"><span class="material-icons ico">info</span> <a class="channelLink" id="cardLink"><span id="cardMessage"></span></a></h3>
 							<h3 class="stat" id="itag" style="display:none;"></h3>
 						</div>
 						<p id="desc"></p>
@@ -615,6 +616,12 @@
 				<button onclick="showContent('y')">i accept the risk, i want to see this</button>
 				<button onclick="showContent('y_ns')">i accept the risk, but don't save my choice</button>
 				<button onclick="home()">i don't accept the risk, take me home</button>
+			</div>
+			<div id="errorPage" style="display:none; width:50%;" class="noCenter">
+				<h1 class="material-icons ico" style="font-size:72px; margin:0;">error</h1>
+				<h2>error</h2>
+				<p id="errorTxt"></p>
+				<button onclick="home()">go home</button>
 			</div>
 		</div>
 		<div id="helpOut" style="display:none;">
