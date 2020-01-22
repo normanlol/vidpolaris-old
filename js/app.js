@@ -644,9 +644,11 @@ function openVideo() {
 				if (!jsond.info.player_response.cards) {
 					document.getElementById("card").style.display = 'none';
 				} else {
-					document.getElementById("card").style.display = '';
-					document.getElementById("cardMessage").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.videoInfoCardContentRenderer.customMessage.simpleText;
-					document.getElementById("cardLink").href = "#w#" + jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.videoInfoCardContentRenderer.action.watchEndpoint.videoId;
+					if (jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.videoInfoCardContentRenderer) {
+						document.getElementById("card").style.display = '';
+						document.getElementById("cardMessage").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.videoInfoCardContentRenderer.customMessage.simpleText;
+						document.getElementById("cardLink").href = "#w#" + jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.videoInfoCardContentRenderer.action.watchEndpoint.videoId;
+					}
 				}
 				var cat = jsond.info.media.category;
 				document.getElementById("cat").innerHTML = cat;
