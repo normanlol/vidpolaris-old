@@ -573,8 +573,8 @@ function getTrending() {
 			document.getElementById("t22").innerHTML = jsond[21].title;
 		}
 		document.getElementById("r22").src = jsond[21].videoThumbnails[0].url;
-		document.getElementById("a22").innerHTML = jsond[20].author;
-		document.getElementById("d22").innerHTML = jsond[20].publishedText;
+		document.getElementById("a22").innerHTML = jsond[21].author;
+		document.getElementById("d22").innerHTML = jsond[21].publishedText;
 		document.getElementById("l23").href = "#w#" + jsond[22].videoId;
 		if (jsond[22].title.length >= 75) {
 			document.getElementById("t23").innerHTML = jsond[22].title.substring(0,75) + "...";
