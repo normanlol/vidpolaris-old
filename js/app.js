@@ -1140,6 +1140,26 @@ function sync() {
 			}
 		}
 	});
+	setInterval(bufferCheckVideo, 50);
+}
+
+function bufferCheckVideo() {
+	if (document.getElementById("videoViewer").style.display == 'none') {
+		return;
+	} else {
+		var lastPosition = 0;
+		var currentPlayerTime = 0;
+		var bufferingDetected = false;
+		var currentPlayerTime = document.getElementById("player").currentTime;
+		var offset = (50 - 20) / 1000
+		if (!bufferingDetected && currentPlayerTime < (lastPosition + offset) && !document.getElementById("player").paused) {
+			console.log("audio paused due to buffering.")
+			document.getElementById("audioPlayer").pause();
+		} else if (!document.getElementById("player").paused) {
+			document.getElementById("audioPlayer").play();
+		}
+		lastPosition = currentPlayerTime
+	}
 }
 
 function saveSettings() {
