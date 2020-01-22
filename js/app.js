@@ -646,7 +646,11 @@ function openVideo() {
 				} else {
 					if (jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.videoInfoCardContentRenderer) {
 						document.getElementById("card").style.display = '';
-						document.getElementById("cardMessage").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.videoInfoCardContentRenderer.customMessage.simpleText;
+						if (!jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.videoInfoCardContentRenderer.customMessage) {
+							document.getElementById("cardMessage").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.videoInfoCardContentRenderer.videoTitle.simpleText || "[No message]";
+						} else {
+							document.getElementById("cardMessage").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.videoInfoCardContentRenderer.customMessage.simpleText;
+						}
 						document.getElementById("cardLink").href = "#w#" + jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.videoInfoCardContentRenderer.action.watchEndpoint.videoId;
 					}
 				}
@@ -1140,26 +1144,9 @@ function sync() {
 			}
 		}
 	});
-	setInterval(bufferCheckVideo, 50);
-}
-
-function bufferCheckVideo() {
-	if (document.getElementById("videoViewer").style.display == 'none') {
-		return;
-	} else {
-		var lastPosition = 0;
-		var currentPlayerTime = 0;
-		var bufferingDetected = false;
-		var currentPlayerTime = document.getElementById("player").currentTime;
-		var offset = (50 - 20) / 1000
-		if (!bufferingDetected && currentPlayerTime < (lastPosition + offset) && !document.getElementById("player").paused) {
-			console.log("audio paused due to buffering.")
-			document.getElementById("audioPlayer").pause();
-		} else if (!document.getElementById("player").paused) {
-			document.getElementById("audioPlayer").play();
-		}
-		lastPosition = currentPlayerTime
-	}
+	document.getElementById("player").onwaiting = function(){
+		document.getElementById("audioPlayer").pause();
+	};
 }
 
 function saveSettings() {
