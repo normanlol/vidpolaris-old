@@ -697,215 +697,233 @@ function openVideo() {
 					document.getElementById("rTh1").src = r1A;
 					document.getElementById("rAut1").innerHTML = r1Au;
 					document.getElementById("rVie1").innerHTML = r1V;
-						document.getElementById("rv2").href = r2L;
-						document.getElementById("rTit2").innerHTML = r2T;
-						document.getElementById("rTh2").src = r2A;
-						document.getElementById("rAut2").innerHTML = r2Au;
-						document.getElementById("rVie2").innerHTML = r2V;
-						document.getElementById("rv3").href = r3L;
-						document.getElementById("rTit3").innerHTML = r3T;
-						document.getElementById("rTh3").src = r3A;
-						document.getElementById("rAut3").innerHTML = r3Au;
-						document.getElementById("rVie3").innerHTML = r3V;
-						document.getElementById("rv4").href = r4L;
-						document.getElementById("rTit4").innerHTML = r4T;
-						document.getElementById("rTh4").src = r4A;
-						document.getElementById("rAut4").innerHTML = r4Au;
-						document.getElementById("rVie4").innerHTML = r4V;
-						document.getElementById("rv5").href = r5L;
-						document.getElementById("rTit5").innerHTML = r5T;
-						document.getElementById("rTh5").src = r5A;
-						document.getElementById("rAut5").innerHTML = r5Au;
-						document.getElementById("rVie5").innerHTML = r5V;
-						document.getElementById("rv6").href = r6L;
-						document.getElementById("rTit6").innerHTML = r6T;
-						document.getElementById("rTh6").src = r6A;
-						document.getElementById("rAut6").innerHTML = r6Au;
-						document.getElementById("rVie6").innerHTML = r6V;
-						document.getElementById("rv7").href = r7L;
-						document.getElementById("rTit7").innerHTML = r7T;
-						document.getElementById("rTh7").src = r7A;
-						document.getElementById("rAut7").innerHTML = r7Au;
-						document.getElementById("rVie7").innerHTML = r7V;
-						document.getElementById("rv8").href = r8L;
-						document.getElementById("rTit8").innerHTML = r8T;
-						document.getElementById("rTh8").src = r8A;
-						document.getElementById("rAut8").innerHTML = r8Au;
-						document.getElementById("rVie8").innerHTML = r8V;
-						document.getElementById("rTit9").innerHTML = r9T;
-						document.getElementById("rTh9").src = r9A;
-						document.getElementById("rAut9").innerHTML = r9Au;
-						document.getElementById("rVie9").innerHTML = r9V;
-						document.getElementById("rv9").href = r9L;
-					}
-					if (localStorage.getItem("smart") == "y") {
-						console.log("SmartQuality enabled.")
-						console.log("Getting audio...")
-						http.open("GET", "https://cors-anywhere.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?smart=1&url=" + fullUrl);
-						http.send();
-						http.onreadystatechange=(e)=>{
-							document.getElementById("qSelector").style.display = '';
-							var jsond = JSON.parse(http.responseText);
-							if (!jsond.audio) {
-								openVideo();
-								return;
-							}
-							var audioUrl = jsond.audio[0].url;
-							document.getElementById("audioPlayer").src = audioUrl;
-							if (jsond.video[0].isHls == true | jsond.video[0].isLive == true | jsond.video[0].isDashMPD == true) {
-								var videoUrl =  jsond.video[1].url;
-								document.getElementById("itag").innerHTML = jsond.video[1].itag;
-							} else {
-								var videoUrl = jsond.video[0].url;
-								document.getElementById("itag").innerHTML = jsond.video[0].itag;
-							}
-							var length = jsond.video.length;
-							if (length >= 5) {
-								var opt1 = document.createElement("option")
-								opt1.value = jsond.video[0].itag;
-								opt1.innerHTML = jsond.video[0].qualityLabel;
-								document.getElementById("qOptions").appendChild(opt1);
-								var opt2 = document.createElement("option");
-								if (!jsond.video[1].qualityLabel == jsond.video[0].qualityLabel) {
-									opt2.value = jsond.video[1].itag;
-									opt2.innerHTML = jsond.video[1].qualityLabel;
-								} else {
-									opt2.value = jsond.video[2].itag;
-									opt2.innerHTML = jsond.video[2].qualityLabel;
-								}
-								document.getElementById("qOptions").appendChild(opt2);
-								var opt3 = document.createElement("option");
-								if (!jsond.video[2].qualityLabel == jsond.video[1].qualityLabel) {
-									opt3.value = jsond.video[2].itag;
-									opt3.innerHTML = jsond.video[2].qualityLabel;
-								} else {
-									opt3.value = jsond.video[3].itag;
-									opt3.innerHTML = jsond.video[3].qualityLabel;
-								}
-								document.getElementById("qOptions").appendChild(opt3);
-								var opt4 = document.createElement("option");
-								if (!jsond.video[3].qualityLabel == jsond.video[2].qualityLabel) {
-									opt4.value = jsond.video[3].itag;
-									opt4.innerHTML = jsond.video[3].qualityLabel;
-								} else {
-									opt4.value = jsond.video[4].itag;
-									opt4.innerHTML = jsond.video[4].qualityLabel;
-								}
-								document.getElementById("qOptions").appendChild(opt4);
-								var opt5 = document.createElement("option");
-								if (!jsond.video[4].qualityLabel == jsond.video[3].qualityLabel) {
-									opt5.value = jsond.video[4].itag;
-									opt5.innerHTML = jsond.video[4].qualityLabel;
-								} else {
-									opt5.value = jsond.video[5].itag;
-									opt5.innerHTML = jsond.video[5].qualityLabel;
-								}
-								document.getElementById("qOptions").appendChild(opt5);
-							} else if (length == 4) {
-								var opt1 = document.createElement("option")
-								opt1.value = jsond.video[0].itag;
-								opt1.innerHTML = jsond.video[0].qualityLabel;
-								document.getElementById("qOptions").appendChild(opt1);
-								var opt2 = document.createElement("option");
+					document.getElementById("rv2").href = r2L;
+					document.getElementById("rTit2").innerHTML = r2T;
+					document.getElementById("rTh2").src = r2A;
+					document.getElementById("rAut2").innerHTML = r2Au;
+					document.getElementById("rVie2").innerHTML = r2V;
+					document.getElementById("rv3").href = r3L;
+					document.getElementById("rTit3").innerHTML = r3T;
+					document.getElementById("rTh3").src = r3A;
+					document.getElementById("rAut3").innerHTML = r3Au;
+					document.getElementById("rVie3").innerHTML = r3V;
+					document.getElementById("rv4").href = r4L;
+					document.getElementById("rTit4").innerHTML = r4T;
+					document.getElementById("rTh4").src = r4A;
+					document.getElementById("rAut4").innerHTML = r4Au;
+					document.getElementById("rVie4").innerHTML = r4V;
+					document.getElementById("rv5").href = r5L;
+					document.getElementById("rTit5").innerHTML = r5T;
+					document.getElementById("rTh5").src = r5A;
+					document.getElementById("rAut5").innerHTML = r5Au;
+					document.getElementById("rVie5").innerHTML = r5V;
+					document.getElementById("rv6").href = r6L;
+					document.getElementById("rTit6").innerHTML = r6T;
+					document.getElementById("rTh6").src = r6A;
+					document.getElementById("rAut6").innerHTML = r6Au;
+					document.getElementById("rVie6").innerHTML = r6V;
+					document.getElementById("rv7").href = r7L;
+					document.getElementById("rTit7").innerHTML = r7T;
+					document.getElementById("rTh7").src = r7A;
+					document.getElementById("rAut7").innerHTML = r7Au;
+					document.getElementById("rVie7").innerHTML = r7V;
+					document.getElementById("rv8").href = r8L;
+					document.getElementById("rTit8").innerHTML = r8T;
+					document.getElementById("rTh8").src = r8A;
+					document.getElementById("rAut8").innerHTML = r8Au;
+					document.getElementById("rVie8").innerHTML = r8V;
+					document.getElementById("rTit9").innerHTML = r9T;
+					document.getElementById("rTh9").src = r9A;
+					document.getElementById("rAut9").innerHTML = r9Au;
+					document.getElementById("rVie9").innerHTML = r9V;
+					document.getElementById("rv9").href = r9L;
+				}
+				if (localStorage.getItem("smart") == "y") {
+					console.log("SmartQuality enabled.")
+					console.log("Getting audio...")
+					http.open("GET", "https://cors-anywhere.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?smart=1&url=" + fullUrl);
+					http.send();
+					http.onreadystatechange=(e)=>{
+						document.getElementById("qSelector").style.display = '';
+						var jsond = JSON.parse(http.responseText);
+						if (!jsond.audio) {
+							openVideo();
+							return;
+						}
+						var audioUrl = jsond.audio[0].url;
+						document.getElementById("audioPlayer").src = audioUrl;
+						if (jsond.video[0].isHls == true | jsond.video[0].isLive == true | jsond.video[0].isDashMPD == true) {
+							var videoUrl =  jsond.video[1].url;
+							document.getElementById("itag").innerHTML = jsond.video[1].itag;
+						} else {
+							var videoUrl = jsond.video[0].url;
+							document.getElementById("itag").innerHTML = jsond.video[0].itag;
+						}
+						var length = jsond.video.length;
+						if (length >= 5) {
+							var opt1 = document.createElement("option")
+							opt1.value = jsond.video[0].itag;
+							opt1.innerHTML = jsond.video[0].qualityLabel;
+							document.getElementById("qOptions").appendChild(opt1);
+							var opt2 = document.createElement("option");
+							if (!jsond.video[1].qualityLabel == jsond.video[0].qualityLabel) {
 								opt2.value = jsond.video[1].itag;
 								opt2.innerHTML = jsond.video[1].qualityLabel;
-								document.getElementById("qOptions").appendChild(opt2);
-								var opt3 = document.createElement("option");
+							} else {
+								opt2.value = jsond.video[2].itag;
+								opt2.innerHTML = jsond.video[2].qualityLabel;
+							}
+							document.getElementById("qOptions").appendChild(opt2);
+							var opt3 = document.createElement("option");
+							if (!jsond.video[2].qualityLabel == jsond.video[1].qualityLabel) {
 								opt3.value = jsond.video[2].itag;
 								opt3.innerHTML = jsond.video[2].qualityLabel;
-								document.getElementById("qOptions").appendChild(opt3);
-								var opt4 = document.createElement("option");
+							} else {
+								opt3.value = jsond.video[3].itag;
+								opt3.innerHTML = jsond.video[3].qualityLabel;
+							}
+							document.getElementById("qOptions").appendChild(opt3);
+							var opt4 = document.createElement("option");
+							if (!jsond.video[3].qualityLabel == jsond.video[2].qualityLabel) {
 								opt4.value = jsond.video[3].itag;
 								opt4.innerHTML = jsond.video[3].qualityLabel;
-								document.getElementById("qOptions").appendChild(opt4);
-							} else if (length == 3) {
-								var opt1 = document.createElement("option")
-								opt1.value = jsond.video[0].itag;
-								opt1.innerHTML = jsond.video[0].qualityLabel;
-								document.getElementById("qOptions").appendChild(opt1);
-								var opt2 = document.createElement("option");
-								opt2.value = jsond.video[1].itag;
-								opt2.innerHTML = jsond.video[1].qualityLabel;
-								document.getElementById("qOptions").appendChild(opt2);
-								var opt3 = document.createElement("option");
-								opt3.value = jsond.video[2].itag;
-								opt3.innerHTML = jsond.video[2].qualityLabel;
-							} else if (length == 2) {
-								var opt1 = document.createElement("option")
-								opt1.value = jsond.video[0].itag;
-								opt1.innerHTML = jsond.video[0].qualityLabel;
-								document.getElementById("qOptions").appendChild(opt1);
-								var opt2 = document.createElement("option");
-								opt2.value = jsond.video[1].itag;
-								opt2.innerHTML = jsond.video[1].qualityLabel;
-								document.getElementById("qOptions").appendChild(opt2);
 							} else {
-								document.getElementById("qOptions").disabled = true;
-								var opt1 = document.createElement("option")
-								opt1.value = jsond.video[0].itag;
-								opt1.innerHTML = jsond.video[0].qualityLabel;
-								document.getElementById("qOptions").appendChild(opt1);
+								opt4.value = jsond.video[4].itag;
+								opt4.innerHTML = jsond.video[4].qualityLabel;
 							}
-							document.getElementById("player").src = videoUrl;
-							document.getElementById("qOptions").value = document.getElementById("itag").innerHTML;
-							document.getElementById("vidLoader").style.display = 'none';
-							document.getElementById("player").poster = thum;
-							document.getElementById("title").innerHTML = titl;
-							document.title = titl +  " | vidpolaris";
-							if (desc.length > 300) {
-								var shortDesc = desc.substring(0,300) + "..."
-								document.getElementById("desc").innerHTML = shortDesc;
-								document.getElementById("longDesc").innerHTML = desc;
-								document.getElementById("ldDiv").style.display = 'none';
+							document.getElementById("qOptions").appendChild(opt4);
+							var opt5 = document.createElement("option");
+							if (!jsond.video[4].qualityLabel == jsond.video[3].qualityLabel) {
+								opt5.value = jsond.video[4].itag;
+								opt5.innerHTML = jsond.video[4].qualityLabel;
 							} else {
-								document.getElementById("desc").innerHTML = desc;
-								document.getElementById("ldBtn").style.display = '';
-								document.getElementById("ldDiv").style.display = 'none';
+								opt5.value = jsond.video[5].itag;
+								opt5.innerHTML = jsond.video[5].qualityLabel;
 							}
-							document.getElementById("author").innerHTML = auth;
-							document.getElementById("searchContainer").style.display = '';
-							document.getElementById("pubM").innerHTML = month;
-							document.getElementById("pubY").innerHTML = year;
-							document.getElementById("pubD").innerHTML = day;
-							http.open("GET", "https://cors-anywhere.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?md=1&url=" + fullUrl);
-							http.send();
-							http.timeout = 10000;
-							http.ontimeout = () => {
-								document.getElementById("viewNum").innerHTML = "[Error]";
-								document.getElementById("likeNum").innerHTML = "[Error]";
-								document.getElementById("dlikNum").innerHTML = "[Error]";
-								document.getElementById("commNum").innerHTML = "[Error]";
-							}
-							http.onreadystatechange=(e)=>{
-								var jsond = JSON.parse(http.responseText);
-								var view = jsond.meta.views.toLocaleString();
+							document.getElementById("qOptions").appendChild(opt5);
+						} else if (length == 4) {
+							var opt1 = document.createElement("option")
+							opt1.value = jsond.video[0].itag;
+							opt1.innerHTML = jsond.video[0].qualityLabel;
+							document.getElementById("qOptions").appendChild(opt1);
+							var opt2 = document.createElement("option");
+							opt2.value = jsond.video[1].itag;
+							opt2.innerHTML = jsond.video[1].qualityLabel;
+							document.getElementById("qOptions").appendChild(opt2);
+							var opt3 = document.createElement("option");
+							opt3.value = jsond.video[2].itag;
+							opt3.innerHTML = jsond.video[2].qualityLabel;
+							document.getElementById("qOptions").appendChild(opt3);
+							var opt4 = document.createElement("option");
+							opt4.value = jsond.video[3].itag;
+							opt4.innerHTML = jsond.video[3].qualityLabel;
+							document.getElementById("qOptions").appendChild(opt4);
+						} else if (length == 3) {
+							var opt1 = document.createElement("option")
+							opt1.value = jsond.video[0].itag;
+							opt1.innerHTML = jsond.video[0].qualityLabel;
+							document.getElementById("qOptions").appendChild(opt1);
+							var opt2 = document.createElement("option");
+							opt2.value = jsond.video[1].itag;
+							opt2.innerHTML = jsond.video[1].qualityLabel;
+							document.getElementById("qOptions").appendChild(opt2);
+							var opt3 = document.createElement("option");
+							opt3.value = jsond.video[2].itag;
+							opt3.innerHTML = jsond.video[2].qualityLabel;
+						} else if (length == 2) {
+							var opt1 = document.createElement("option")
+							opt1.value = jsond.video[0].itag;
+							opt1.innerHTML = jsond.video[0].qualityLabel;
+							document.getElementById("qOptions").appendChild(opt1);
+							var opt2 = document.createElement("option");
+							opt2.value = jsond.video[1].itag;
+							opt2.innerHTML = jsond.video[1].qualityLabel;
+							document.getElementById("qOptions").appendChild(opt2);
+						} else {
+							document.getElementById("qOptions").disabled = true;
+							var opt1 = document.createElement("option")
+							opt1.value = jsond.video[0].itag;
+							opt1.innerHTML = jsond.video[0].qualityLabel;
+							document.getElementById("qOptions").appendChild(opt1);
+						}
+						document.getElementById("player").src = videoUrl;
+						document.getElementById("qOptions").value = document.getElementById("itag").innerHTML;
+						document.getElementById("vidLoader").style.display = 'none';
+						document.getElementById("player").poster = thum;
+						document.getElementById("title").innerHTML = titl;
+						document.title = titl +  " | vidpolaris";
+						if (desc.length > 300) {
+							var shortDesc = desc.substring(0,300) + "..."
+							document.getElementById("desc").innerHTML = shortDesc;
+							document.getElementById("longDesc").innerHTML = desc;
+							document.getElementById("ldBtn").style.display = '';
+							document.getElementById("ldDiv").style.display = 'none';
+						} else {
+							document.getElementById("desc").innerHTML = desc;
+							document.getElementById("ldBtn").style.display = 'none';
+							document.getElementById("ldDiv").style.display = 'none';
+						}
+						document.getElementById("author").innerHTML = auth;
+						document.getElementById("searchContainer").style.display = '';
+						document.getElementById("pubM").innerHTML = month;
+						document.getElementById("pubY").innerHTML = year;
+						document.getElementById("pubD").innerHTML = day;
+						http.open("GET", "https://cors-anywhere.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?md=1&url=" + fullUrl);
+						http.send();
+						http.timeout = 10000;
+						http.ontimeout = () => {
+							document.getElementById("viewNum").innerHTML = "[Error]";
+							document.getElementById("likeNum").innerHTML = "[Error]";
+							document.getElementById("dlikNum").innerHTML = "[Error]";
+							document.getElementById("commNum").innerHTML = "[Error]";
+						}
+						http.onreadystatechange=(e)=>{
+							var jsond = JSON.parse(http.responseText);
+							var view = jsond.meta.views.toLocaleString();
+							if (!jsond.meta.dislikeCount) {
+								var dlik = 0;
+							} else {
 								var dlik = jsond.meta.dislikeCount.toLocaleString();
-								var like = jsond.meta.likeCount.toLocaleString();
-								var comm = jsond.meta.commentCount.toLocaleString();
-								var aLink = "https://www.youtube.com/channel/" + jsond.meta.channelId;
-								document.getElementById("viewNum").innerHTML = view;
-								document.getElementById("likeNum").innerHTML = like;
-								document.getElementById("dlikNum").innerHTML = dlik;
-								document.getElementById("commNum").innerHTML = comm;
-								document.getElementById("authorL").href = aLink;
 							}
-							document.getElementById("videoViewer").style.display = '';
-							console.log("It is done! Syncing will now start...");
-							sync();
-							document.getElementById("player").load();
-							document.getElementById("audioPlayer").load();
-							loadComments();
-							document.getElementById("player").play();
-							if (sessionStorage.getItem("id") == id) {
-								document.getElementById("player").currentTime = sessionStorage.getItem("time");
-								document.getElementById("audioPlayer").currentTime = sessionStorage.getItem("time");
+							if (!jsond.meta.likeCount) {
+								var like = 0;
 							} else {
-								sessionStorage.setItem("id", id);
-								sessionStorage.setItem("time", document.getElementById("player").currentTime);
+								var like = jsond.meta.likeCount.toLocaleString();
 							}
+							if (!jsond.meta.commentCount) {
+								var comm = 0;
+							} else {
+								var comm = jsond.meta.commentCount.toLocaleString();
+							}
+							var aLink = "https://www.youtube.com/channel/" + jsond.meta.channelId;
+							var totl = jsond.meta.dislikeCount + jsond.meta.likeCount;
+							var untRatio = jsond.meta.likeCount / totl;
+							var percent = 100 * untRatio;
+							var ratio = percent.toPrecision(4);
+							document.getElementById("viewNum").innerHTML = view;
+							document.getElementById("likeNum").innerHTML = like;
+							document.getElementById("dlikNum").innerHTML = dlik;
+							document.getElementById("ldRatio").innerHTML = ratio;
+							document.getElementById("authorL").href = aLink;
+							loadComments();
+						}
+						document.getElementById("videoViewer").style.display = '';
+						console.log("It is done! Syncing will now start...");
+						sync();
+						document.getElementById("player").load();
+						document.getElementById("audioPlayer").load();
+						loadComments();
+						document.getElementById("player").play();
+						if (sessionStorage.getItem("id") == id) {
+							document.getElementById("player").currentTime = sessionStorage.getItem("time");
+							document.getElementById("audioPlayer").currentTime = sessionStorage.getItem("time");
+						} else {
+							sessionStorage.setItem("id", id);
+							sessionStorage.setItem("time", document.getElementById("player").currentTime);
 						}
 						return;
 					}
+				} else {
 					document.getElementById("qSelector").style.display = 'none';
 					document.getElementById("videoViewer").style.display = '';
 					document.getElementById("vidLoader").style.display = 'none';
@@ -942,25 +960,29 @@ function openVideo() {
 						var jsond = JSON.parse(http.responseText);
 						var view = jsond.meta.views.toLocaleString();
 						if (!jsond.meta.dislikeCount) {
-							var dlik = "0"
+							var dlik = 0;
 						} else {
 							var dlik = jsond.meta.dislikeCount.toLocaleString();
 						}
 						if (!jsond.meta.likeCount) {
-							var like = "0"
+							var like = 0;
 						} else {
 							var like = jsond.meta.likeCount.toLocaleString();
 						}
 						if (!jsond.meta.commentCount) {
-							var comm = "0"
+							var comm = 0;
 						} else {
 							var comm = jsond.meta.commentCount.toLocaleString();
 						}
 						var aLink = "https://www.youtube.com/channel/" + jsond.meta.channelId;
+						var totl = jsond.meta.dislikeCount + jsond.meta.likeCount;
+						var untRatio = jsond.meta.likeCount / totl;
+						var percent = 100 * untRatio;
+						var ratio = percent.toPrecision(4);
 						document.getElementById("viewNum").innerHTML = view;
 						document.getElementById("likeNum").innerHTML = like;
 						document.getElementById("dlikNum").innerHTML = dlik;
-						document.getElementById("commNum").innerHTML = comm;
+						document.getElementById("ldRatio").innerHTML = ratio;
 						document.getElementById("authorL").href = aLink;
 						loadComments();
 						if (!document.getElementById("videoViewer").style.display == 'none') {
@@ -975,10 +997,11 @@ function openVideo() {
 						}
 					}
 				}
-				http.onerror = function (error) {
-					openVideo()
-				}
 			}
+			http.onerror = function (error) {
+				openVideo()
+			}
+		}
 	}, 10)
 }
 
