@@ -1060,7 +1060,7 @@ function share() {
 	document.getElementById("sharBox").style.display = '';
 	const http = new XMLHttpRequest();
 	var id = getClickedId(window.location.href, "#w#");
-	var fullUrl = "https://n0rmancodes.github.io/Vidpolaris/#w#" + id;
+	var fullUrl = "https://n0rmancodes.github.io/vidpolaris/#w#" + id;
 	document.getElementById("fUrlShar").value = fullUrl;
 	document.getElementById("sUrlShar").value = "[Loading...]";
 	http.open("POST", "https://rel.ink/api/links/");
