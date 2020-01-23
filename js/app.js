@@ -136,7 +136,7 @@ function getSLink() {
 	window.open("#s#" + encodeURIComponent(document.getElementById("q").value), "_self")
 }
 
-function search() {
+function search(opt) {
 	document.title = "vidpolaris";
 	var q = getClickedId(window.location.href, "#s#");
 	document.title = "search results for " + decodeURIComponent(q) + " | vidpolaris";
@@ -150,8 +150,12 @@ function search() {
 	document.getElementById("settingsPage").style.display = 'none';
 	document.getElementById("player").pause();
 	const http = new XMLHttpRequest();
-	const dUrl = "https://cors-anywhere.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?search=" + q;
-	http.open("GET", dUrl);
+	if (!opt) {
+		var url = "https://cors-anywhere.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?search=" + q;
+	} else {
+		var url = "https://vidpolaris.herokuapp.com/?search=" + q;
+	}
+	http.open("GET", url);
 	http.send();
 	http.onreadystatechange=(e)=>{
 		var jsond = JSON.parse(http.responseText);
@@ -372,7 +376,7 @@ function feelingLucky() {
 
 function getTrending() {
 	const http = new XMLHttpRequest();
-	const url = "https://coorsanywhere.herokuapp.com/https://invidio.us/api/v1/trending"
+	var url = "https://coorsanywhere.herokuapp.com/https://invidio.us/api/v1/trending"
 	http.open("GET", url);
 	http.send();
 	http.onreadystatechange=(e)=>{
@@ -601,7 +605,7 @@ function getTrending() {
 	}
 }
 
-function openVideo() {
+function openVideo(opt) {
 	setTimeout(function () {
 		if (!window.location.href.includes("#w#")) {
 			return;
@@ -620,7 +624,11 @@ function openVideo() {
 			var id = getClickedId(window.location.href, '#w#');
 			var fullUrl = "https://youtube.com/watch?v=" + id;
 			const http = new XMLHttpRequest();
-			const url = "https://cors-anywhere.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?info=1&url=" + fullUrl
+			if (!opt){
+				var url = "https://cors-anywhere.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?info=1&url=" + fullUrl
+			} else {
+				var url = "https://vidpolaris.herokuapp.com/?info=1&url=" + fullUrl
+			}
 			http.open("GET", url);
 			http.send();
 			http.onreadystatechange=(e)=>{
@@ -759,7 +767,12 @@ function openVideo() {
 				if (localStorage.getItem("smart") == "y") {
 					console.log("SmartQuality enabled.")
 					console.log("Getting audio...")
-					http.open("GET", "https://cors-anywhere.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?smart=1&url=" + fullUrl);
+					if (!opt){
+						var url = "https://cors-anywhere.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?smart=1&url=" + fullUrl
+					} else {
+						var url = "https://vidpolaris.herokuapp.com/?smart=1&url=" + fullUrl
+					}
+					http.open("GET", url);
 					http.send();
 					http.onreadystatechange=(e)=>{
 						document.getElementById("qSelector").style.display = '';
@@ -886,7 +899,12 @@ function openVideo() {
 						document.getElementById("pubM").innerHTML = month;
 						document.getElementById("pubY").innerHTML = year;
 						document.getElementById("pubD").innerHTML = day;
-						http.open("GET", "https://cors-anywhere.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?md=1&url=" + fullUrl);
+						if (!opt){
+							var url =	"https://cors-anywhere.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?md=1&url=" + fullUrl
+						} else {
+							var url = "https://vidpolaris.herokuapp.com/?md=1&url=" + fullUrl
+						}
+						http.open("GET", url);
 						http.send();
 						http.timeout = 10000;
 						http.ontimeout = () => {
@@ -928,14 +946,22 @@ function openVideo() {
 							document.getElementById("commNum").innerHTML = comm;
 							document.getElementById("ldRatio").innerHTML = ratio;
 							document.getElementById("authorL").href = aLink;
-							loadComments();
+							if (!opt) {
+								loadComments();
+							} else {
+								loadComments("none", "alt");
+							}
 						}
 						document.getElementById("videoViewer").style.display = '';
 						console.log("It is done! Syncing will now start...");
 						sync();
 						document.getElementById("player").load();
 						document.getElementById("audioPlayer").load();
-						loadComments();
+						if (!opt) {
+							loadComments();
+						} else {
+							loadComments("alt")
+						}
 						document.getElementById("player").play();
 						if (sessionStorage.getItem("id") == id) {
 							document.getElementById("player").currentTime = sessionStorage.getItem("time");
@@ -970,7 +996,12 @@ function openVideo() {
 					document.getElementById("pubM").innerHTML = month;
 					document.getElementById("pubY").innerHTML = year;
 					document.getElementById("pubD").innerHTML = day;
-					http.open("GET", "https://cors-anywhere.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?md=1&url=" + fullUrl);
+					if (!opt) {
+						var url = "https://cors-anywhere.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?md=1&url=" + fullUrl;
+					} else {
+						var url = "https://vidpolaris.herokuapp.com/?md=1&url=" + fullUrl;
+					}
+					http.open("GET", url);
 					http.send();
 					http.timeout = 10000;
 					http.ontimeout = () => {
@@ -1007,6 +1038,11 @@ function openVideo() {
 						document.getElementById("dlikNum").innerHTML = dlik;
 						document.getElementById("ldRatio").innerHTML = ratio;
 						document.getElementById("authorL").href = aLink;
+						if (!opt) {
+							loadComments();
+						} else {
+							loadComments("none", "alt");
+						}
 						loadComments();
 						if (!document.getElementById("videoViewer").style.display == 'none') {
 							document.getElementById("player").play()
@@ -1022,7 +1058,7 @@ function openVideo() {
 				}
 			}
 			http.onerror = function (error) {
-				openVideo()
+				openVideo("alt")
 			}
 		}
 	}, 10)
@@ -1165,15 +1201,20 @@ function dismiss() {
 	document.getElementById("lasaga").style.display = 'none';
 }
 
-function loadComments(token) {
-	if (!token) {
+function loadComments(token, opt) {
+	if (!token | token == "none") {
 		document.getElementById("loadedComments").style.display = 'none';
 		document.getElementById("loadedC").style.display = 'none';
 		document.getElementById("loadinC").style.display = '';
 		var id = getClickedId(window.location.href, '#w#');
 		var fullUrl = "https://youtube.com/watch?v=" + id;
 		const http = new XMLHttpRequest();
-		http.open("GET", "https://cors-anywhere.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?comments=1&url=" + fullUrl);
+		if (!opt){
+			var url = "https://cors-anywhere.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?comments=1&url=" + fullUrl
+		} else {
+			var url = "https://vidpolaris.herokuapp.com/?comments=1&url=" + fullUrl
+		}
+		http.open("GET", url);
 		http.send();
 		http.timeout = 10000;
 		http.ontimeout = () => {
@@ -1830,6 +1871,7 @@ function loadComments(token) {
 			document.getElementById("errorC").style.display = '';
 			document.getElementById("loadinC").style.display = 'none';
 			document.getElementById("loadedC").style.display = 'none';
+			
 		}
 		http.onreadystatechange=(e)=>{
 			var jsond = JSON.parse(http.responseText);
