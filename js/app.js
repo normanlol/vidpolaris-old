@@ -814,11 +814,11 @@ function openVideo() {
 							if (!jsond.video[4].qualityLabel == jsond.video[3].qualityLabel) {
 								opt5.value = jsond.video[4].itag;
 								opt5.innerHTML = jsond.video[4].qualityLabel;
+								document.getElementById("qOptions").appendChild(opt5);
 							} else {
-								opt5.value = jsond.video[5].itag;
-								opt5.innerHTML = jsond.video[5].qualityLabel;
+								// do nothing
 							}
-							document.getElementById("qOptions").appendChild(opt5);
+							
 						} else if (length == 4) {
 							var opt1 = document.createElement("option")
 							opt1.value = jsond.video[0].itag;
