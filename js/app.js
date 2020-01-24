@@ -664,7 +664,7 @@ function openVideo(opt) {
 				}
 				var cat = jsond.info.media.category;
 				document.getElementById("cat").innerHTML = cat;
-				if (!jsond.info.related_videos[0] | !jsond.info.related_videos[1] | !jsond.info.related_videos[3] | !jsond.info.related_videos[4] | !jsond.info.related_videos[5] |  !jsond.info.related_videos[6] |  !jsond.info.related_videos[7] | !jsond.info.related_videos[8] | !jsond.info.related_videos[9]) {
+				if (!jsond.info.related_videos[0]) {
 					document.getElementById("relatedVideos").style.display = 'none';
 					document.getElementById("autoPlayBlock").style.display = 'none';
 					document.getElementById("commentsContainer").style = "margin-top:0px";
@@ -678,91 +678,151 @@ function openVideo(opt) {
 					var r1A = jsond.info.related_videos[0].video_thumbnail;
 					var r1Au = jsond.info.related_videos[0].author;
 					var r1V = jsond.info.related_videos[0].short_view_count_text;
-					var r2L = "#w#" + jsond.info.related_videos[1].id;
-					var r2T = jsond.info.related_videos[1].title;
-					var r2A = jsond.info.related_videos[1].video_thumbnail;
-					var r2Au = jsond.info.related_videos[1].author;
-					var r2V = jsond.info.related_videos[1].short_view_count_text;
-					var r3L = "#w#" + jsond.info.related_videos[2].id;
-					var r3T = jsond.info.related_videos[2].title;
-					var r3A = jsond.info.related_videos[2].video_thumbnail;
-					var r3Au = jsond.info.related_videos[2].author;
-					var r3V = jsond.info.related_videos[2].short_view_count_text;
-					var r4L = "#w#" + jsond.info.related_videos[3].id;
-					var r4T = jsond.info.related_videos[3].title;
-					var r4A = jsond.info.related_videos[3].video_thumbnail;
-					var r4Au = jsond.info.related_videos[3].author;
-					var r4V = jsond.info.related_videos[3].short_view_count_text;
-					var r5L = "#w#" + jsond.info.related_videos[4].id;
-					var r5T = jsond.info.related_videos[4].title;
-					var r5A = jsond.info.related_videos[4].video_thumbnail;
-					var r5Au = jsond.info.related_videos[4].author;
-					var r5V = jsond.info.related_videos[4].short_view_count_text;
-					var r6L = "#w#" + jsond.info.related_videos[5].id;
-					var r6T = jsond.info.related_videos[5].title;
-					var r6A = jsond.info.related_videos[5].video_thumbnail;
-					var r6Au = jsond.info.related_videos[5].author;
-					var r6V = jsond.info.related_videos[5].short_view_count_text;
-					var r7L = "#w#" + jsond.info.related_videos[6].id;
-					var r7T = jsond.info.related_videos[6].title;
-					var r7A = jsond.info.related_videos[6].video_thumbnail;
-					var r7Au = jsond.info.related_videos[6].author;
-					var r7V = jsond.info.related_videos[6].short_view_count_text;
-					var r8L = "#w#" + jsond.info.related_videos[7].id;
-					var r8T = jsond.info.related_videos[7].title;
-					var r8A = jsond.info.related_videos[7].video_thumbnail;
-					var r8Au = jsond.info.related_videos[7].author;
-					var r8V = jsond.info.related_videos[7].short_view_count_text;
-					var r9T = jsond.info.related_videos[8].title;
-					var r9A = jsond.info.related_videos[8].video_thumbnail;
-					var r9Au = jsond.info.related_videos[8].author;
-					var r9V = jsond.info.related_videos[8].short_view_count_text;
-					var r9L = "#w#" + jsond.info.related_videos[8].id;
 					document.getElementById("rv1").href = r1L;
 					document.getElementById("rTit1").innerHTML = r1T;
 					document.getElementById("rTh1").src = r1A;
 					document.getElementById("rAut1").innerHTML = r1Au;
 					document.getElementById("rVie1").innerHTML = r1V;
-					document.getElementById("rv2").href = r2L;
-					document.getElementById("rTit2").innerHTML = r2T;
-					document.getElementById("rTh2").src = r2A;
-					document.getElementById("rAut2").innerHTML = r2Au;
-					document.getElementById("rVie2").innerHTML = r2V;
-					document.getElementById("rv3").href = r3L;
-					document.getElementById("rTit3").innerHTML = r3T;
-					document.getElementById("rTh3").src = r3A;
-					document.getElementById("rAut3").innerHTML = r3Au;
-					document.getElementById("rVie3").innerHTML = r3V;
-					document.getElementById("rv4").href = r4L;
-					document.getElementById("rTit4").innerHTML = r4T;
-					document.getElementById("rTh4").src = r4A;
-					document.getElementById("rAut4").innerHTML = r4Au;
-					document.getElementById("rVie4").innerHTML = r4V;
-					document.getElementById("rv5").href = r5L;
-					document.getElementById("rTit5").innerHTML = r5T;
-					document.getElementById("rTh5").src = r5A;
-					document.getElementById("rAut5").innerHTML = r5Au;
-					document.getElementById("rVie5").innerHTML = r5V;
-					document.getElementById("rv6").href = r6L;
-					document.getElementById("rTit6").innerHTML = r6T;
-					document.getElementById("rTh6").src = r6A;
-					document.getElementById("rAut6").innerHTML = r6Au;
-					document.getElementById("rVie6").innerHTML = r6V;
-					document.getElementById("rv7").href = r7L;
-					document.getElementById("rTit7").innerHTML = r7T;
-					document.getElementById("rTh7").src = r7A;
-					document.getElementById("rAut7").innerHTML = r7Au;
-					document.getElementById("rVie7").innerHTML = r7V;
-					document.getElementById("rv8").href = r8L;
-					document.getElementById("rTit8").innerHTML = r8T;
-					document.getElementById("rTh8").src = r8A;
-					document.getElementById("rAut8").innerHTML = r8Au;
-					document.getElementById("rVie8").innerHTML = r8V;
-					document.getElementById("rTit9").innerHTML = r9T;
-					document.getElementById("rTh9").src = r9A;
-					document.getElementById("rAut9").innerHTML = r9Au;
-					document.getElementById("rVie9").innerHTML = r9V;
-					document.getElementById("rv9").href = r9L;
+					if (jsond.info.related_videos[1]) {
+						var r2L = "#w#" + jsond.info.related_videos[1].id;
+						var r2T = jsond.info.related_videos[1].title;
+						var r2A = jsond.info.related_videos[1].video_thumbnail;
+						var r2Au = jsond.info.related_videos[1].author;
+						var r2V = jsond.info.related_videos[1].short_view_count_text;
+						document.getElementById("rv2").href = r2L;
+						document.getElementById("rTit2").innerHTML = r2T;
+						document.getElementById("rTh2").src = r2A;
+						document.getElementById("rAut2").innerHTML = r2Au;
+						document.getElementById("rVie2").innerHTML = r2V;
+						if (jsond.info.related_videos[2]) {
+							var r3L = "#w#" + jsond.info.related_videos[2].id;
+							var r3T = jsond.info.related_videos[2].title;
+							var r3A = jsond.info.related_videos[2].video_thumbnail;
+							var r3Au = jsond.info.related_videos[2].author;
+							var r3V = jsond.info.related_videos[2].short_view_count_text;
+							document.getElementById("rv3").href = r3L;
+							document.getElementById("rTit3").innerHTML = r3T;
+							document.getElementById("rTh3").src = r3A;
+							document.getElementById("rAut3").innerHTML = r3Au;
+							document.getElementById("rVie3").innerHTML = r3V;
+							if (jsond.info.related_videos[3]) {
+								var r4L = "#w#" + jsond.info.related_videos[3].id;
+								var r4T = jsond.info.related_videos[3].title;
+								var r4A = jsond.info.related_videos[3].video_thumbnail;
+								var r4Au = jsond.info.related_videos[3].author;
+								var r4V = jsond.info.related_videos[3].short_view_count_text;
+								document.getElementById("rv4").href = r4L;
+								document.getElementById("rTit4").innerHTML = r4T;
+								document.getElementById("rTh4").src = r4A;
+								document.getElementById("rAut4").innerHTML = r4Au;
+								document.getElementById("rVie4").innerHTML = r4V;
+								if (jsond.info.related_videos[4]) {
+									var r5L = "#w#" + jsond.info.related_videos[4].id;
+									var r5T = jsond.info.related_videos[4].title;
+									var r5A = jsond.info.related_videos[4].video_thumbnail;
+									var r5Au = jsond.info.related_videos[4].author;
+									var r5V = jsond.info.related_videos[4].short_view_count_text;
+									document.getElementById("rv5").href = r5L;
+									document.getElementById("rTit5").innerHTML = r5T;
+									document.getElementById("rTh5").src = r5A;
+									document.getElementById("rAut5").innerHTML = r5Au;
+									document.getElementById("rVie5").innerHTML = r5V;
+									if (jsond.info.related_videos[5]) {
+										var r6L = "#w#" + jsond.info.related_videos[5].id;
+										var r6T = jsond.info.related_videos[5].title;
+										var r6A = jsond.info.related_videos[5].video_thumbnail;
+										var r6Au = jsond.info.related_videos[5].author;
+										var r6V = jsond.info.related_videos[5].short_view_count_text;
+										document.getElementById("rv6").href = r6L;
+										document.getElementById("rTit6").innerHTML = r6T;
+										document.getElementById("rTh6").src = r6A;
+										document.getElementById("rAut6").innerHTML = r6Au;
+										document.getElementById("rVie6").innerHTML = r6V;
+										if  (jsond.info.related_videos[6]) {
+											var r7L = "#w#" + jsond.info.related_videos[6].id;
+											var r7T = jsond.info.related_videos[6].title;
+											var r7A = jsond.info.related_videos[6].video_thumbnail;
+											var r7Au = jsond.info.related_videos[6].author;
+											var r7V = jsond.info.related_videos[6].short_view_count_text;
+											document.getElementById("rv7").href = r7L;
+											document.getElementById("rTit7").innerHTML = r7T;
+											document.getElementById("rTh7").src = r7A;
+											document.getElementById("rAut7").innerHTML = r7Au;
+											document.getElementById("rVie7").innerHTML = r7V;
+											if (jsond.info.related_videos[7]) {
+												var r8L = "#w#" + jsond.info.related_videos[7].id;
+												var r8T = jsond.info.related_videos[7].title;
+												var r8A = jsond.info.related_videos[7].video_thumbnail;
+												var r8Au = jsond.info.related_videos[7].author;
+												var r8V = jsond.info.related_videos[7].short_view_count_text;
+												document.getElementById("rv8").href = r8L;
+												document.getElementById("rTit8").innerHTML = r8T;
+												document.getElementById("rTh8").src = r8A;
+												document.getElementById("rAut8").innerHTML = r8Au;
+												document.getElementById("rVie8").innerHTML = r8V;
+												if (jsond.info.related_videos[8]) {
+													var r9T = jsond.info.related_videos[8].title;
+													var r9A = jsond.info.related_videos[8].video_thumbnail;
+													var r9Au = jsond.info.related_videos[8].author;
+													var r9V = jsond.info.related_videos[8].short_view_count_text;
+													var r9L = "#w#" + jsond.info.related_videos[8].id;
+													document.getElementById("rTit9").innerHTML = r9T;
+													document.getElementById("rTh9").src = r9A;
+													document.getElementById("rAut9").innerHTML = r9Au;
+													document.getElementById("rVie9").innerHTML = r9V;
+													document.getElementById("rv9").href = r9L;
+												} else {
+													document.getElementById("rv9").style.display = 'none';
+												}
+											} else {
+												document.getElementById("rv8").style.display = 'none';
+												document.getElementById("rv9").style.display = 'none';
+											}
+										} else {
+											document.getElementById("rv7").style.display = 'none';
+											document.getElementById("rv8").style.display = 'none';
+											document.getElementById("rv9").style.display = 'none';
+										}
+									} else {
+										document.getElementById("rv6").style.display = 'none';
+										document.getElementById("rv7").style.display = 'none';
+										document.getElementById("rv8").style.display = 'none';
+										document.getElementById("rv9").style.display = 'none';
+									}
+								} else {
+									document.getElementById("rv5").style.display = 'none';
+									document.getElementById("rv6").style.display = 'none';
+									document.getElementById("rv7").style.display = 'none';
+									document.getElementById("rv8").style.display = 'none';
+									document.getElementById("rv9").style.display = 'none';
+								}
+							} else {
+								document.getElementById("rv4").style.display = 'none'
+								document.getElementById("rv5").style.display = 'none';
+								document.getElementById("rv6").style.display = 'none';
+								document.getElementById("rv7").style.display = 'none';
+								document.getElementById("rv8").style.display = 'none';
+								document.getElementById("rv9").style.display = 'none';
+							}
+						} else {
+							document.getElementById("rv3").style.display = 'none';
+							document.getElementById("rv4").style.display = 'none';
+							document.getElementById("rv5").style.display = 'none';
+							document.getElementById("rv6").style.display = 'none';
+							document.getElementById("rv7").style.display = 'none';
+							document.getElementById("rv8").style.display = 'none';
+							document.getElementById("rv9").style.display = 'none';
+						}
+					} else {
+						document.getElementById("rv2").style.display = 'none';
+						document.getElementById("rv3").style.display = 'none';
+						document.getElementById("rv4").style.display = 'none';
+						document.getElementById("rv5").style.display = 'none';
+						document.getElementById("rv6").style.display = 'none';
+						document.getElementById("rv7").style.display = 'none';
+						document.getElementById("rv8").style.display = 'none';
+						document.getElementById("rv9").style.display = 'none';
+					}
 				}
 				if (localStorage.getItem("smart") == "y") {
 					console.log("SmartQuality enabled.")
