@@ -1205,6 +1205,7 @@ function loadComments(token, opt) {
 	if (!token | token == "none") {
 		document.getElementById("loadedComments").style.display = 'none';
 		document.getElementById("loadedC").style.display = 'none';
+		document.getElementById("errorC").style.display = 'none';
 		document.getElementById("loadinC").style.display = '';
 		var id = getClickedId(window.location.href, '#w#');
 		var fullUrl = "https://youtube.com/watch?v=" + id;
