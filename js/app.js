@@ -151,7 +151,7 @@ function search(opt) {
 	document.getElementById("player").pause();
 	const http = new XMLHttpRequest();
 	if (!opt) {
-		var url = "https://cors-anywhere.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?search=" + q;
+		var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?search=" + q;
 	} else {
 		var url = "https://vidpolaris.herokuapp.com/?search=" + q;
 	}
@@ -358,7 +358,7 @@ function feelingLucky() {
 	document.getElementById("vidLoader").style.display = '';
 	var q = document.getElementById("q").value;
 	const http = new XMLHttpRequest();
-	const sUrl = "https://cors-anywhere.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?search=" + encodeURIComponent(q);
+	const sUrl = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?search=" + encodeURIComponent(q);
 	http.open("GET", sUrl);
 	http.send();
 	http.onreadystatechange=(e)=>{
@@ -376,7 +376,7 @@ function feelingLucky() {
 
 function getTrending() {
 	const http = new XMLHttpRequest();
-	var url = "https://coorsanywhere.herokuapp.com/https://invidio.us/api/v1/trending"
+	var url = "https://coorsproxyunlimited.herokuapp.com/https://invidio.us/api/v1/trending"
 	http.open("GET", url);
 	http.send();
 	http.onreadystatechange=(e)=>{
@@ -625,7 +625,7 @@ function openVideo(opt) {
 			var fullUrl = "https://youtube.com/watch?v=" + id;
 			const http = new XMLHttpRequest();
 			if (!opt){
-				var url = "https://cors-anywhere.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?info=1&url=" + fullUrl
+				var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?info=1&url=" + fullUrl
 			} else {
 				var url = "https://vidpolaris.herokuapp.com/?info=1&url=" + fullUrl
 			}
@@ -828,7 +828,7 @@ function openVideo(opt) {
 					console.log("SmartQuality enabled.")
 					console.log("Getting audio...")
 					if (!opt){
-						var url = "https://cors-anywhere.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?smart=1&url=" + fullUrl
+						var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?smart=1&url=" + fullUrl
 					} else {
 						var url = "https://vidpolaris.herokuapp.com/?smart=1&url=" + fullUrl
 					}
@@ -960,7 +960,7 @@ function openVideo(opt) {
 						document.getElementById("pubY").innerHTML = year;
 						document.getElementById("pubD").innerHTML = day;
 						if (!opt){
-							var url =	"https://cors-anywhere.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?md=1&url=" + fullUrl
+							var url =	"https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?md=1&url=" + fullUrl
 						} else {
 							var url = "https://vidpolaris.herokuapp.com/?md=1&url=" + fullUrl
 						}
@@ -1057,7 +1057,7 @@ function openVideo(opt) {
 					document.getElementById("pubY").innerHTML = year;
 					document.getElementById("pubD").innerHTML = day;
 					if (!opt) {
-						var url = "https://cors-anywhere.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?md=1&url=" + fullUrl;
+						var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?md=1&url=" + fullUrl;
 					} else {
 						var url = "https://vidpolaris.herokuapp.com/?md=1&url=" + fullUrl;
 					}
@@ -1271,7 +1271,7 @@ function loadComments(token, opt) {
 		var fullUrl = "https://youtube.com/watch?v=" + id;
 		const http = new XMLHttpRequest();
 		if (!opt){
-			var url = "https://cors-anywhere.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?comments=1&url=" + fullUrl
+			var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?comments=1&url=" + fullUrl
 		} else {
 			var url = "https://vidpolaris.herokuapp.com/?comments=1&url=" + fullUrl
 		}
@@ -1925,7 +1925,7 @@ function loadComments(token, opt) {
 		var id = getClickedId(window.location.href, '#w#');
 		var fullUrl = "https://youtube.com/watch?v=" + id;
 		const http = new XMLHttpRequest();
-		http.open("GET", "https://cors-anywhere.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?comments=1&token=" + token + "&url=" + fullUrl);
+		http.open("GET", "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?comments=1&token=" + token + "&url=" + fullUrl);
 		http.send();
 		http.timeout = 10000;
 		http.ontimeout = () => {
@@ -2596,7 +2596,7 @@ function changeQ() {
 		const http = new XMLHttpRequest();
 		var id = getClickedId(window.location.href, '#w#');
 		var fullUrl = "https://youtube.com/watch?v=" + id;
-		http.open("GET", "https://cors-anywhere.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?itag=" + document.getElementById("qOptions").value + "&url=" + fullUrl);
+		http.open("GET", "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?itag=" + document.getElementById("qOptions").value + "&url=" + fullUrl);
 		http.send();
 		http.onreadystatechange=(e)=>{
 			var jsond = JSON.parse(http.responseText);
@@ -2619,7 +2619,7 @@ function translate(elem) {
 		if (!sessionStorage.getItem("currentlyRunningT") | sessionStorage.getItem("currentlyRunningT") == "n") {
 			sessionStorage.setItem("currentlyRunningT", "y");
 			const http = new XMLHttpRequest();
-			http.open("GET", "https://cors-anywhere.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?to=en&translate=" + encodeURIComponent(tex));
+			http.open("GET", "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?to=en&translate=" + encodeURIComponent(tex));
 			http.send();
 			http.onreadystatechange=(e)=>{
 				var jsond = JSON.parse(http.responseText);
