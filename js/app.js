@@ -1197,19 +1197,14 @@ function refresh() {
 			search();
 		}
 	} else if (window.location.href.includes("#settings")) {
-		if (!document.getElementById("settingsPage").style.display == '') {
-			document.getElementById("player").pause();
-			document.getElementById("homePage").style.display = 'none';
-			document.getElementById("vidPage").style.display = 'none';
-			document.getElementById("channelPage").style.display = 'none';
-			document.getElementById("searchPage").style.display = 'none';
-			document.getElementById("settingsPage").style.display = '';
-			document.getElementById("helpOut").style.display = '';
-		} else {
-			document.getElementById("homePage").style.display = '';
-			document.getElementById("settingsPage").style.display = 'none';
-			document.getElementById("helpOut").style.display = 'none';
-		}
+		document.getElementById("player").pause();
+		document.getElementById("homePage").style.display = 'none';
+		document.getElementById("vidPage").style.display = 'none';
+		document.getElementById("channelPage").style.display = 'none';
+		document.getElementById("searchPage").style.display = 'none';
+		document.getElementById("settingsPage").style.display = '';
+		document.getElementById("helpOut").style.display = '';
+		document.title = "settings | vidpolaris";
 	} else if (window.location.href.includes("#c#")){
 		openChannel();
 	} else {
