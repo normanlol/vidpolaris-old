@@ -149,7 +149,7 @@ function search(opt) {
 	document.getElementById("homePage").style.display = 'none';
 	document.getElementById("settingsPage").style.display = 'none';
 	document.getElementById("player").pause();
-	document.getElementById("pfpBannerContainer").style.display = 'none';
+	document.getElementById("bannerPfpContainer").style.display = 'none';
 	const http = new XMLHttpRequest();
 	if (!opt) {
 		var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?search=" + q;
@@ -1139,7 +1139,7 @@ function home() {
 	document.getElementById("searchContainer").style.display = '';
 	document.getElementById("settingsPage").style.display = 'none';
 	document.getElementById("helpOut").style.display = 'none';
-	document.getElementById("pfpBannerContainer").style.display = 'none';
+	document.getElementById("bannerPfpContainer").style.display = 'none';
 	document.title = "vidpolaris";
 }
 
@@ -2702,7 +2702,7 @@ function notPlayable() {
 	document.getElementById("settingsPage").style.display = 'none';
 	document.getElementById("searchPage").style.display = 'none';
 	document.getElementById("homePage").style.display = 'none';
-	document.getElementById("pfpBannerContainer").style.display = 'none';
+	document.getElementById("bannerPfpContainer").style.display = 'none';
 }
 
 function openChannel() {
@@ -2717,7 +2717,7 @@ function openChannel() {
 	document.getElementById("channelPage").style.display = '';
 	document.getElementById("chanLoader").style.display = '';
 	document.getElementById("chanViewer").style.display = 'none';
-	document.getElementById("pfpBannerContainer").style.display = 'none';
+	document.getElementById("bannerPfpContainer").style.display = 'none';
 	const http = new XMLHttpRequest();
 	var id = getClickedId(window.location.href, '#c#');
 	http.open("GET", "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?channelId=" + id);
@@ -2733,7 +2733,7 @@ function openChannel() {
 			document.getElementById("settingsPage").style.display = 'none';
 			document.getElementById("searchPage").style.display = 'none';
 			document.getElementById("homePage").style.display = 'none';
-			document.getElementById("pfpBannerContainer").style.display = 'none';
+			document.getElementById("bannerPfpContainer").style.display = 'none';
 			document.getElementById("searchContainer").style.display = '';
 		} else {
 			document.getElementById("banner").src = jsond.authorBanners[0].url;
