@@ -356,3 +356,26 @@ input:checked + .slider:before {
 	margin-right:2%;
 	text-align:right;
 }
+
+#banner {
+	width:100%;
+	height:350px;
+	object-fit: cover;
+}
+
+#profilePic {
+	width:150px;
+	height:150px;
+	object-fit: cover;
+	text-align:left;
+	display:inline-block;
+	position: absolute;
+	top: 10px;
+	left: 10px;
+}
+
+#bannerPfpContainer {
+	position: relative;
+	width:100%;
+	height:350px;
+}

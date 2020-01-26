@@ -614,6 +614,7 @@ function openVideo(opt) {
 			document.getElementById("homePage").style.display = 'none';
 			document.getElementById("searchContainer").style.display = 'none'
 			document.getElementById("searchPage").style.display = 'none'
+			document.getElementById("channelPage").style.display = 'none'
 			document.getElementById("player").pause();
 			document.getElementById("vidPage").style.display = '';
 			document.getElementById("helpOut").style.display = '';
@@ -991,7 +992,7 @@ function openVideo(opt) {
 							} else {
 								var comm = jsond.meta.commentCount.toLocaleString();
 							}
-							var aLink = "https://www.youtube.com/channel/" + jsond.meta.channelId;
+							var aLink = "#c#" + jsond.meta.channelId;
 							var totl = jsond.meta.dislikeCount + jsond.meta.likeCount;
 							if (!totl == 0){
 								var untRatio = jsond.meta.likeCount / totl;
@@ -1088,7 +1089,7 @@ function openVideo(opt) {
 						} else {
 							var comm = jsond.meta.commentCount.toLocaleString();
 						}
-						var aLink = "https://www.youtube.com/channel/" + jsond.meta.channelId;
+						var aLink = "#c#" + jsond.meta.channelId;
 						var totl = jsond.meta.dislikeCount + jsond.meta.likeCount;
 						var untRatio = jsond.meta.likeCount / totl;
 						var percent = 100 * untRatio;
@@ -1202,6 +1203,8 @@ function refresh() {
 			document.getElementById("settingsPage").style.display = 'none';
 			document.getElementById("helpOut").style.display = 'none';
 		}
+	} else if (window.location.href.includes("#c#")){
+		openChannel();
 	} else {
 		home();
 	}
@@ -2697,4 +2700,146 @@ function notPlayable() {
 	document.getElementById("settingsPage").style.display = 'none';
 	document.getElementById("searchPage").style.display = 'none';
 	document.getElementById("homePage").style.display = 'none';
+}
+
+function openChannel() {
+	document.getElementById("player").pause();
+	document.getElementById("resultsContainer").style.display = 'none';
+	document.getElementById("helpOut").style.display = 'none';
+	document.getElementById("vidPage").style.display = 'none';
+	document.getElementById("searchContainer").style.display = 'none';
+	document.getElementById("homePage").style.display = 'none';
+	document.getElementById("settingsPage").style.display = 'none';
+	document.getElementById("channelPage").style.display = '';
+	document.getElementById("chanLoader").style.display = '';
+	document.getElementById("chanViewer").style.display = 'none';
+	const http = new XMLHttpRequest();
+	var id = getClickedId(window.location.href, '#c#');
+	http.open("GET", "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?channelId=" + id);
+	http.send();
+	http.onreadystatechange=(e)=>{
+		var jsond = JSON.parse(http.responseText);
+		if (jsond.error) {
+			document.getElementById("errorPage").style.display = '';
+			document.getElementById("errorTxt").innerHTML = "for one reason or another, this channel could not be opened. try again or watch it on youtube itself."
+			document.getElementById("vidPage").style.display = 'none';
+			document.getElementById("channelPage").style.display = 'none';
+			document.getElementById("nsWarnPage").style.display = 'none';
+			document.getElementById("settingsPage").style.display = 'none';
+			document.getElementById("searchPage").style.display = 'none';
+			document.getElementById("homePage").style.display = 'none';
+			document.getElementById("searchContainer").style.display = '';
+		} else {
+			document.getElementById("banner").src = jsond.authorBanners[0].url;
+			document.getElementById("profilePic").src = jsond.authorThumbnails[0].url;
+			document.getElementById("subCount").innerHTML = jsond.subCount.toLocaleString();
+			document.getElementById("viewCount").innerHTML = jsond.totalViews.toLocaleString();
+			document.getElementById("chanName").innerHTML = jsond.author;
+			document.getElementById("channelDesc").innerHTML = jsond.description;
+			if (jsond.latestVideos[0]) {
+				document.getElementById("up1Th").src = jsond.latestVideos[0].videoThumbnails[0].url;
+				document.getElementById("up1Ti").innerHTML = jsond.latestVideos[0].title;
+				document.getElementById("up1Da").innerHTML = jsond.latestVideos[0].publishedText;
+				document.getElementById("up1Vi").innerHTML = jsond.latestVideos[0].viewCount.toLocaleString();
+				document.getElementById("up1").href = "#w#" + jsond.latestVideos[0].videoId;
+				if (jsond.latestVideos[1]) {
+					document.getElementById("up2Th").src = jsond.latestVideos[1].videoThumbnails[0].url;
+					document.getElementById("up2Ti").innerHTML = jsond.latestVideos[1].title;
+					document.getElementById("up2Da").innerHTML = jsond.latestVideos[1].publishedText;
+					document.getElementById("up2Vi").innerHTML = jsond.latestVideos[1].viewCount.toLocaleString();
+					document.getElementById("up2").href = "#w#" + jsond.latestVideos[1].videoId;
+					if (jsond.latestVideos[2]) {
+						document.getElementById("up3Th").src = jsond.latestVideos[2].videoThumbnails[0].url;
+						document.getElementById("up3Ti").innerHTML = jsond.latestVideos[2].title;
+						document.getElementById("up3Da").innerHTML = jsond.latestVideos[2].publishedText;
+						document.getElementById("up3Vi").innerHTML = jsond.latestVideos[2].viewCount.toLocaleString();
+						document.getElementById("up3").href = "#w#" + jsond.latestVideos[2].videoId;
+						if (jsond.latestVideos[3]) {
+							document.getElementById("up4Th").src = jsond.latestVideos[3].videoThumbnails[0].url;
+							document.getElementById("up4Ti").innerHTML = jsond.latestVideos[3].title;
+							document.getElementById("up4Da").innerHTML = jsond.latestVideos[3].publishedText;
+							document.getElementById("up4Vi").innerHTML = jsond.latestVideos[3].viewCount.toLocaleString();
+							document.getElementById("up4").href = "#w#" + jsond.latestVideos[3].videoId;
+							if (jsond.latestVideos[4]) {
+								document.getElementById("up5Th").src = jsond.latestVideos[4].videoThumbnails[0].url;
+								document.getElementById("up5Ti").innerHTML = jsond.latestVideos[4].title;
+								document.getElementById("up5Da").innerHTML = jsond.latestVideos[4].publishedText;
+								document.getElementById("up5Vi").innerHTML = jsond.latestVideos[4].viewCount.toLocaleString();
+								document.getElementById("up5").href = "#w#" + jsond.latestVideos[4].videoId;
+								if (jsond.latestVideos[5]) {
+									document.getElementById("up6Th").src = jsond.latestVideos[5].videoThumbnails[0].url;
+									document.getElementById("up6Ti").innerHTML = jsond.latestVideos[5].title;
+									document.getElementById("up6Da").innerHTML = jsond.latestVideos[5].publishedText;
+									document.getElementById("up6Vi").innerHTML = jsond.latestVideos[5].viewCount.toLocaleString();
+									document.getElementById("up6").href = "#w#" + jsond.latestVideos[5].videoId;
+									if (jsond.latestVideos[6]) {
+										document.getElementById("up7Th").src = jsond.latestVideos[6].videoThumbnails[0].url;
+										document.getElementById("up7Ti").innerHTML = jsond.latestVideos[6].title;
+										document.getElementById("up7Da").innerHTML = jsond.latestVideos[6].publishedText;
+										document.getElementById("up7Vi").innerHTML = jsond.latestVideos[6].viewCount.toLocaleString();
+										document.getElementById("up7").href = "#w#" + jsond.latestVideos[6].videoId;
+										if (jsond.latestVideos[7]) {
+											document.getElementById("up8Th").src = jsond.latestVideos[7].videoThumbnails[0].url;
+											document.getElementById("up8Ti").innerHTML = jsond.latestVideos[7].title;
+											document.getElementById("up8Da").innerHTML = jsond.latestVideos[7].publishedText;
+											document.getElementById("up8Vi").innerHTML = jsond.latestVideos[7].viewCount.toLocaleString();
+											document.getElementById("up8").href = "#w#" + jsond.latestVideos[7].videoId;
+										} else {
+											document.getElementById("up8").style.display = 'none';
+										}
+									} else {
+										document.getElementById("up7").style.display = 'none';
+										document.getElementById("up8").style.display = 'none';
+									}
+								} else {
+									document.getElementById("up6").style.display = 'none';
+									document.getElementById("up7").style.display = 'none';
+									document.getElementById("up8").style.display = 'none';
+								}
+							} else {
+								document.getElementById("up5").style.display = 'none';
+								document.getElementById("up6").style.display = 'none';
+								document.getElementById("up7").style.display = 'none';
+								document.getElementById("up8").style.display = 'none';
+							}
+						} else {
+							document.getElementById("up4").style.display = 'none';
+							document.getElementById("up5").style.display = 'none';
+							document.getElementById("up6").style.display = 'none';
+							document.getElementById("up7").style.display = 'none';
+							document.getElementById("up8").style.display = 'none';
+						}
+					} else {
+						document.getElementById("up3").style.display = 'none';
+						document.getElementById("up4").style.display = 'none';
+						document.getElementById("up5").style.display = 'none';
+						document.getElementById("up6").style.display = 'none';
+						document.getElementById("up7").style.display = 'none';
+						document.getElementById("up8").style.display = 'none';
+					}
+				} else {
+					document.getElementById("up2").style.display = 'none';
+					document.getElementById("up3").style.display = 'none';
+					document.getElementById("up4").style.display = 'none';
+					document.getElementById("up5").style.display = 'none';
+					document.getElementById("up6").style.display = 'none';
+					document.getElementById("up7").style.display = 'none';
+					document.getElementById("up8").style.display = 'none';
+				}
+			} else {
+				document.getElementById("noUploads").style.display = '';
+				document.getElementById("up1").style.display = 'none';
+				document.getElementById("up2").style.display = 'none';
+				document.getElementById("up3").style.display = 'none';
+				document.getElementById("up4").style.display = 'none';
+				document.getElementById("up5").style.display = 'none';
+				document.getElementById("up6").style.display = 'none';
+				document.getElementById("up7").style.display = 'none';
+				document.getElementById("up8").style.display = 'none';
+			}
+			document.getElementById("chanLoader").style.display = 'none';
+			document.getElementById("chanViewer").style.display = '';
+			document.getElementById("searchContainer").style.display = '';
+		}
+	}
 }

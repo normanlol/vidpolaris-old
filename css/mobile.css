@@ -358,3 +358,42 @@ input:checked + .slider:before {
 	margin-right:3.5%;
 	text-align:right;
 }
+
+#banner {
+	width:100%;
+	height:350px;
+	object-fit: cover;
+}
+
+#profilePic {
+	width:150px;
+	height:150px;
+	object-fit: cover;
+	text-align:left;
+	display:inline-block;
+	position: absolute;
+	top: 10px;
+	left: 10px;
+}
+
+#bannerPfpContainer {
+	position: relative;
+	width:100%;
+	height:350px;
+}
+
+.smallVideo {
+	width:94%;
+	height:245px;
+	border-radius:10px;
+	background-color:#3c3c3c;
+	padding:5px;
+	margin:5px;
+	float:left;
+	display: inline-block;
+	transition: background-color .5s
+}
+
+.smallVideo:hover {
+	background-color:#888;
+}
