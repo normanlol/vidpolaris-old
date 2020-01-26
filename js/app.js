@@ -2734,8 +2734,9 @@ function openChannel() {
 			document.getElementById("profilePic").src = jsond.authorThumbnails[0].url;
 			document.getElementById("subCount").innerHTML = jsond.subCount.toLocaleString();
 			document.getElementById("viewCount").innerHTML = jsond.totalViews.toLocaleString();
-			document.getElementById("chanName").innerHTML = jsond.author;
+			document.getElementById("chanName").innerHTML = ;
 			document.getElementById("channelDesc").innerHTML = jsond.description;
+			document.title = jsond.author + " | vidpolaris"
 			if (jsond.latestVideos[0]) {
 				document.getElementById("up1Th").src = jsond.latestVideos[0].videoThumbnails[0].url;
 				document.getElementById("up1Ti").innerHTML = jsond.latestVideos[0].title;
