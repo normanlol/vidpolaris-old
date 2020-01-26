@@ -639,6 +639,8 @@ function openVideo(opt) {
 				var wUrl = jsond.info.formats[0].url;
 				var titl = jsond.info.player_response.videoDetails.title;
 				var auth = jsond.info.player_response.videoDetails.author;
+				var aLink = "#c#" + jsond.info.author.id;
+				document.getElementById("authorL").href = aLink;
 				var t = jsond.info.player_response.videoDetails.thumbnail.thumbnails;
 				var thum = jsond.info.player_response.videoDetails.thumbnail.thumbnails[t.length - 1].url;
 				var desc = jsond.info.player_response.videoDetails.shortDescription.replace(/\n/g, "<br>")
@@ -942,8 +944,6 @@ function openVideo(opt) {
 						}
 						document.getElementById("player").src = videoUrl;
 						document.getElementById("qOptions").value = document.getElementById("itag").innerHTML;
-						var aLink = "#c#" + jsond.info.author.id;
-						document.getElementById("authorL").href = aLink;
 						document.getElementById("vidLoader").style.display = 'none';
 						document.getElementById("player").poster = thum;
 						document.getElementById("title").innerHTML = titl;
