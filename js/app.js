@@ -2703,7 +2703,7 @@ function notPlayable() {
 }
 
 function openChannel() {
-	document.title = "[loading] vidpolaris"
+	document.title = "[loading] vidpolaris";
 	document.getElementById("player").pause();
 	document.getElementById("resultsContainer").style.display = 'none';
 	document.getElementById("helpOut").style.display = 'none';
@@ -2735,9 +2735,9 @@ function openChannel() {
 			document.getElementById("profilePic").src = jsond.authorThumbnails[0].url;
 			document.getElementById("subCount").innerHTML = jsond.subCount.toLocaleString();
 			document.getElementById("viewCount").innerHTML = jsond.totalViews.toLocaleString();
-			document.getElementById("chanName").innerHTML = ;
+			document.getElementById("chanName").innerHTML = jsond.author;
 			document.getElementById("channelDesc").innerHTML = jsond.description;
-			document.title = jsond.author + " | vidpolaris"
+			document.title = jsond.author + " | vidpolaris";
 			if (jsond.latestVideos[0]) {
 				document.getElementById("up1Th").src = jsond.latestVideos[0].videoThumbnails[0].url;
 				document.getElementById("up1Ti").innerHTML = jsond.latestVideos[0].title;
