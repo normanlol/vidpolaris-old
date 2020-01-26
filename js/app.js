@@ -51,7 +51,7 @@ if (localStorage.getItem("autoplay") == 'y') {
 	document.getElementById('apSwitch').checked = false;
 }
 
-//listeners
+// listeners
 
 document.addEventListener('keydown', function (event) {
     if (event.defaultPrevented) {
@@ -67,7 +67,7 @@ document.addEventListener('keydown', function (event) {
 		return;
 	} else {
 		if (key == 'j' || key == 'J' || key == 74) {
-			document.getElementById("player").currentTime = document.getElementById("audioPlayer").currentTime - 10;
+			document.getElementById("player").currentTime = document.getElementById("player").currentTime - 10;
 			if (localStorage.getItem('smart') == 'y') {
 				document.getElementById("audioPlayer").currentTime = document.getElementById("audioPlayer").currentTime - 10
 			}
