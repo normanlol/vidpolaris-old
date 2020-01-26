@@ -1135,6 +1135,7 @@ function home() {
 	document.getElementById("videoViewer").style.display = 'none';
 	document.getElementById("vidPage").style.display = 'none';
 	document.getElementById("searchPage").style.display = 'none';
+	document.getElementById("channelPage").style.display = 'none';
 	document.getElementById("homePage").style.display = '';
 	document.getElementById("searchContainer").style.display = '';
 	document.getElementById("settingsPage").style.display = 'none';
