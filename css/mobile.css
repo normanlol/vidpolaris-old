@@ -60,7 +60,7 @@ body {
 	background-color:#888;
 }
 
-.altSsmallVideo {
+.altSmallVideo {
 	width:94%;
 	height:245px;
 	border-radius:10px;
@@ -412,4 +412,8 @@ input:checked + .slider:before {
 
 .smallVideo:hover {
 	background-color:#888;
+}
+
+#channelInfo {
+	min-height:125px;
 }
