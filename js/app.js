@@ -145,6 +145,7 @@ function search(opt) {
 	document.getElementById("helpOut").style.display = '';
 	document.getElementById("resultsContainer").style.display = 'none';
 	document.getElementById("vidPage").style.display = 'none';
+	document.getElementById("channelPage").style.display = 'none';
 	document.getElementById("searchContainer").style.display = 'none';
 	document.getElementById("homePage").style.display = 'none';
 	document.getElementById("settingsPage").style.display = 'none';
@@ -1198,6 +1199,7 @@ function refresh() {
 			document.getElementById("player").pause();
 			document.getElementById("homePage").style.display = 'none';
 			document.getElementById("vidPage").style.display = 'none';
+			document.getElementById("channelPage").style.display = 'none';
 			document.getElementById("searchPage").style.display = 'none';
 			document.getElementById("settingsPage").style.display = '';
 			document.getElementById("helpOut").style.display = '';
