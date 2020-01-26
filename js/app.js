@@ -942,6 +942,8 @@ function openVideo(opt) {
 						}
 						document.getElementById("player").src = videoUrl;
 						document.getElementById("qOptions").value = document.getElementById("itag").innerHTML;
+						var aLink = "#c#" + jsond.info.author.id;
+						document.getElementById("authorL").href = aLink;
 						document.getElementById("vidLoader").style.display = 'none';
 						document.getElementById("player").poster = thum;
 						document.getElementById("title").innerHTML = titl;
@@ -994,7 +996,6 @@ function openVideo(opt) {
 							} else {
 								var comm = jsond.meta.commentCount.toLocaleString();
 							}
-							var aLink = "#c#" + jsond.meta.channelId;
 							var totl = jsond.meta.dislikeCount + jsond.meta.likeCount;
 							if (!totl == 0){
 								var untRatio = jsond.meta.likeCount / totl;
@@ -1008,7 +1009,6 @@ function openVideo(opt) {
 							document.getElementById("dlikNum").innerHTML = dlik;
 							document.getElementById("commNum").innerHTML = comm;
 							document.getElementById("ldRatio").innerHTML = ratio;
-							document.getElementById("authorL").href = aLink;
 							if (!opt) {
 								loadComments();
 							} else {
@@ -1091,16 +1091,18 @@ function openVideo(opt) {
 						} else {
 							var comm = jsond.meta.commentCount.toLocaleString();
 						}
-						var aLink = "#c#" + jsond.meta.channelId;
 						var totl = jsond.meta.dislikeCount + jsond.meta.likeCount;
-						var untRatio = jsond.meta.likeCount / totl;
-						var percent = 100 * untRatio;
-						var ratio = percent.toPrecision(4);
+						if (!totl == 0){
+							var untRatio = jsond.meta.likeCount / totl;
+							var percent = 100 * untRatio;
+							var ratio = percent.toPrecision(4);
+						} else {
+							var ratio = 0;
+						}
 						document.getElementById("viewNum").innerHTML = view;
 						document.getElementById("likeNum").innerHTML = like;
 						document.getElementById("dlikNum").innerHTML = dlik;
 						document.getElementById("ldRatio").innerHTML = ratio;
-						document.getElementById("authorL").href = aLink;
 						if (!opt) {
 							loadComments();
 						} else {
