@@ -60,6 +60,22 @@ body {
 	background-color:#888;
 }
 
+.altSsmallVideo {
+	width:94%;
+	height:245px;
+	border-radius:10px;
+	background-color:#3c3c3c;
+	padding:5px;
+	margin:5px;
+	float:left;
+	display: inline-block;
+	transition: background-color .5s
+}
+
+.altSmallVideo:hover {
+	background-color:#888;
+}
+
 .resultVideo {
 	width:90%;
 	min-height:153px;
