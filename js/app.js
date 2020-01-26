@@ -2736,7 +2736,11 @@ function openChannel() {
 			document.getElementById("bannerPfpContainer").style.display = 'none';
 			document.getElementById("searchContainer").style.display = '';
 		} else {
-			document.getElementById("banner").src = jsond.authorBanners[0].url;
+			if (jsond.authorBanners[0]) {
+				document.getElementById("banner").src = jsond.authorBanners[0].url;
+			} else {
+				document.getElementById("banner").src = "img/banner.jpg";
+			}
 			document.getElementById("profilePic").src = jsond.authorThumbnails[0].url;
 			document.getElementById("subCount").innerHTML = jsond.subCount.toLocaleString();
 			document.getElementById("viewCount").innerHTML = jsond.totalViews.toLocaleString();
