@@ -2847,6 +2847,7 @@ function openChannel() {
 			document.getElementById("chanLoader").style.display = 'none';
 			document.getElementById("chanViewer").style.display = '';
 			document.getElementById("searchContainer").style.display = '';
+			document.getElementById("bannerPfpContainer").style.display = '';
 		}
 	}
 }
