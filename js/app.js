@@ -624,6 +624,9 @@ function openVideo(opt) {
 			document.getElementById("vidLoader").style.display = '';
 			document.getElementById("sharBox").style.display = 'none';
 			document.getElementById("qOptions").innerHTML = "";
+			if (document.getElementById("ldBtn").innerHTML == "see less") {
+				document.getElementById("ldBtn").click();
+			}
 			var id = getClickedId(window.location.href, '#w#');
 			var fullUrl = "https://youtube.com/watch?v=" + id;
 			const http = new XMLHttpRequest();
@@ -636,165 +639,176 @@ function openVideo(opt) {
 			http.send();
 			http.onreadystatechange=(e)=>{
 				var jsond = JSON.parse(http.responseText);
-				var wUrl = jsond.info.formats[0].url;
-				var titl = jsond.info.player_response.videoDetails.title;
-				var auth = jsond.info.player_response.videoDetails.author;
-				var aLink = "#c#" + jsond.info.author.id;
-				document.getElementById("authorL").href = aLink;
-				var t = jsond.info.player_response.videoDetails.thumbnail.thumbnails;
-				var thum = jsond.info.player_response.videoDetails.thumbnail.thumbnails[t.length - 1].url;
-				var desc = jsond.info.player_response.videoDetails.shortDescription.replace(/\n/g, "<br>")
-				var pDate = new Date(jsond.info.published);
-				var month = pDate.getMonth() + 1;
-				var day = pDate.getDate();
-				var year = pDate.getFullYear();
-				if (jsond.info.age_restricted == true) {
-					showWarning();
-				}
-				if (!jsond.info.player_response.playabilityStatus.status == "OK") {
+				if (jsond.err) {
 					notPlayable();
-				}
-				if (!jsond.info.player_response.cards) {
-					document.getElementById("card").style.display = 'none';
 				} else {
-					if (jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.videoInfoCardContentRenderer) {
-						document.getElementById("card").style.display = '';
-						if (!jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.videoInfoCardContentRenderer.customMessage) {
-							document.getElementById("cardMessage").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.videoInfoCardContentRenderer.videoTitle.simpleText || "[No message]";
-						} else {
-							document.getElementById("cardMessage").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.videoInfoCardContentRenderer.customMessage.simpleText;
-						}
-						document.getElementById("cardLink").href = "#w#" + jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.videoInfoCardContentRenderer.action.watchEndpoint.videoId;
+					var wUrl = jsond.info.formats[0].url;
+					var titl = jsond.info.player_response.videoDetails.title;
+					var auth = jsond.info.player_response.videoDetails.author;
+					var aLink = "#c#" + jsond.info.author.id;
+					document.getElementById("authorL").href = aLink;
+					var t = jsond.info.player_response.videoDetails.thumbnail.thumbnails;
+					var thum = jsond.info.player_response.videoDetails.thumbnail.thumbnails[t.length - 1].url;
+					var desc = jsond.info.player_response.videoDetails.shortDescription.replace(/\n/g, "<br>")
+					var pDate = new Date(jsond.info.published);
+					var month = pDate.getMonth() + 1;
+					var day = pDate.getDate();
+					var year = pDate.getFullYear();
+					if (jsond.info.age_restricted == true) {
+						showWarning();
 					}
-				}
-				var cat = jsond.info.media.category;
-				document.getElementById("cat").innerHTML = cat;
-				if (!jsond.info.related_videos[0]) {
-					document.getElementById("relatedVideos").style.display = 'none';
-					document.getElementById("autoPlayBlock").style.display = 'none';
-					document.getElementById("commentsContainer").style = "margin-top:0px";
-				} else {
-					document.getElementById("commentsContainer").style = "margin-top:75%";
-					document.getElementById("commentsContainer").style = "margin-top:75%";
-					document.getElementById("relatedVideos").style.display = '';
-					document.getElementById("autoPlayBlock").style.display = '';
-					var r1L = "#w#" + jsond.info.related_videos[0].id;
-					var r1T = jsond.info.related_videos[0].title;
-					var r1A = jsond.info.related_videos[0].video_thumbnail;
-					var r1Au = jsond.info.related_videos[0].author;
-					var r1V = jsond.info.related_videos[0].short_view_count_text;
-					document.getElementById("rv1").href = r1L;
-					document.getElementById("rTit1").innerHTML = r1T;
-					document.getElementById("rTh1").src = r1A;
-					document.getElementById("rAut1").innerHTML = r1Au;
-					document.getElementById("rVie1").innerHTML = r1V;
-					if (jsond.info.related_videos[1]) {
-						var r2L = "#w#" + jsond.info.related_videos[1].id;
-						var r2T = jsond.info.related_videos[1].title;
-						var r2A = jsond.info.related_videos[1].video_thumbnail;
-						var r2Au = jsond.info.related_videos[1].author;
-						var r2V = jsond.info.related_videos[1].short_view_count_text;
-						document.getElementById("rv2").href = r2L;
-						document.getElementById("rTit2").innerHTML = r2T;
-						document.getElementById("rTh2").src = r2A;
-						document.getElementById("rAut2").innerHTML = r2Au;
-						document.getElementById("rVie2").innerHTML = r2V;
-						if (jsond.info.related_videos[2]) {
-							var r3L = "#w#" + jsond.info.related_videos[2].id;
-							var r3T = jsond.info.related_videos[2].title;
-							var r3A = jsond.info.related_videos[2].video_thumbnail;
-							var r3Au = jsond.info.related_videos[2].author;
-							var r3V = jsond.info.related_videos[2].short_view_count_text;
-							document.getElementById("rv3").href = r3L;
-							document.getElementById("rTit3").innerHTML = r3T;
-							document.getElementById("rTh3").src = r3A;
-							document.getElementById("rAut3").innerHTML = r3Au;
-							document.getElementById("rVie3").innerHTML = r3V;
-							if (jsond.info.related_videos[3]) {
-								var r4L = "#w#" + jsond.info.related_videos[3].id;
-								var r4T = jsond.info.related_videos[3].title;
-								var r4A = jsond.info.related_videos[3].video_thumbnail;
-								var r4Au = jsond.info.related_videos[3].author;
-								var r4V = jsond.info.related_videos[3].short_view_count_text;
-								document.getElementById("rv4").href = r4L;
-								document.getElementById("rTit4").innerHTML = r4T;
-								document.getElementById("rTh4").src = r4A;
-								document.getElementById("rAut4").innerHTML = r4Au;
-								document.getElementById("rVie4").innerHTML = r4V;
-								if (jsond.info.related_videos[4]) {
-									var r5L = "#w#" + jsond.info.related_videos[4].id;
-									var r5T = jsond.info.related_videos[4].title;
-									var r5A = jsond.info.related_videos[4].video_thumbnail;
-									var r5Au = jsond.info.related_videos[4].author;
-									var r5V = jsond.info.related_videos[4].short_view_count_text;
-									document.getElementById("rv5").href = r5L;
-									document.getElementById("rTit5").innerHTML = r5T;
-									document.getElementById("rTh5").src = r5A;
-									document.getElementById("rAut5").innerHTML = r5Au;
-									document.getElementById("rVie5").innerHTML = r5V;
-									if (jsond.info.related_videos[5]) {
-										var r6L = "#w#" + jsond.info.related_videos[5].id;
-										var r6T = jsond.info.related_videos[5].title;
-										var r6A = jsond.info.related_videos[5].video_thumbnail;
-										var r6Au = jsond.info.related_videos[5].author;
-										var r6V = jsond.info.related_videos[5].short_view_count_text;
-										document.getElementById("rv6").href = r6L;
-										document.getElementById("rTit6").innerHTML = r6T;
-										document.getElementById("rTh6").src = r6A;
-										document.getElementById("rAut6").innerHTML = r6Au;
-										document.getElementById("rVie6").innerHTML = r6V;
-										if  (jsond.info.related_videos[6]) {
-											var r7L = "#w#" + jsond.info.related_videos[6].id;
-											var r7T = jsond.info.related_videos[6].title;
-											var r7A = jsond.info.related_videos[6].video_thumbnail;
-											var r7Au = jsond.info.related_videos[6].author;
-											var r7V = jsond.info.related_videos[6].short_view_count_text;
-											document.getElementById("rv7").href = r7L;
-											document.getElementById("rTit7").innerHTML = r7T;
-											document.getElementById("rTh7").src = r7A;
-											document.getElementById("rAut7").innerHTML = r7Au;
-											document.getElementById("rVie7").innerHTML = r7V;
-											if (jsond.info.related_videos[7]) {
-												var r8L = "#w#" + jsond.info.related_videos[7].id;
-												var r8T = jsond.info.related_videos[7].title;
-												var r8A = jsond.info.related_videos[7].video_thumbnail;
-												var r8Au = jsond.info.related_videos[7].author;
-												var r8V = jsond.info.related_videos[7].short_view_count_text;
-												document.getElementById("rv8").href = r8L;
-												document.getElementById("rTit8").innerHTML = r8T;
-												document.getElementById("rTh8").src = r8A;
-												document.getElementById("rAut8").innerHTML = r8Au;
-												document.getElementById("rVie8").innerHTML = r8V;
-												if (jsond.info.related_videos[8]) {
-													var r9T = jsond.info.related_videos[8].title;
-													var r9A = jsond.info.related_videos[8].video_thumbnail;
-													var r9Au = jsond.info.related_videos[8].author;
-													var r9V = jsond.info.related_videos[8].short_view_count_text;
-													var r9L = "#w#" + jsond.info.related_videos[8].id;
-													document.getElementById("rTit9").innerHTML = r9T;
-													document.getElementById("rTh9").src = r9A;
-													document.getElementById("rAut9").innerHTML = r9Au;
-													document.getElementById("rVie9").innerHTML = r9V;
-													document.getElementById("rv9").href = r9L;
+					if (!jsond.info.player_response.playabilityStatus.status == "OK") {
+						notPlayable();
+					}
+					if (!jsond.info.player_response.cards) {
+						document.getElementById("card").style.display = 'none';
+					} else {
+						if (jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.videoInfoCardContentRenderer) {
+							document.getElementById("card").style.display = '';
+							if (!jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.videoInfoCardContentRenderer.customMessage) {
+								document.getElementById("cardMessage").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.videoInfoCardContentRenderer.videoTitle.simpleText || "[No message]";
+							} else {
+								document.getElementById("cardMessage").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.videoInfoCardContentRenderer.customMessage.simpleText;
+							}
+							document.getElementById("cardLink").href = "#w#" + jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.videoInfoCardContentRenderer.action.watchEndpoint.videoId;
+						}
+					}
+					var cat = jsond.info.media.category;
+					document.getElementById("cat").innerHTML = cat;
+					if (!jsond.info.related_videos[0]) {
+						document.getElementById("relatedVideos").style.display = 'none';
+						document.getElementById("autoPlayBlock").style.display = 'none';
+						document.getElementById("commentsContainer").style = "margin-top:0px";
+					} else {
+						document.getElementById("commentsContainer").style = "margin-top:75%";
+						document.getElementById("commentsContainer").style = "margin-top:75%";
+						document.getElementById("relatedVideos").style.display = '';
+						document.getElementById("autoPlayBlock").style.display = '';
+						var r1L = "#w#" + jsond.info.related_videos[0].id;
+						var r1T = jsond.info.related_videos[0].title;
+						var r1A = jsond.info.related_videos[0].video_thumbnail;
+						var r1Au = jsond.info.related_videos[0].author;
+						var r1V = jsond.info.related_videos[0].short_view_count_text;
+						document.getElementById("rv1").href = r1L;
+						document.getElementById("rTit1").innerHTML = r1T;
+						document.getElementById("rTh1").src = r1A;
+						document.getElementById("rAut1").innerHTML = r1Au;
+						document.getElementById("rVie1").innerHTML = r1V;
+						if (jsond.info.related_videos[1]) {
+							var r2L = "#w#" + jsond.info.related_videos[1].id;
+							var r2T = jsond.info.related_videos[1].title;
+							var r2A = jsond.info.related_videos[1].video_thumbnail;
+							var r2Au = jsond.info.related_videos[1].author;
+							var r2V = jsond.info.related_videos[1].short_view_count_text;
+							document.getElementById("rv2").href = r2L;
+							document.getElementById("rTit2").innerHTML = r2T;
+							document.getElementById("rTh2").src = r2A;
+							document.getElementById("rAut2").innerHTML = r2Au;
+							document.getElementById("rVie2").innerHTML = r2V;
+							if (jsond.info.related_videos[2]) {
+								var r3L = "#w#" + jsond.info.related_videos[2].id;
+								var r3T = jsond.info.related_videos[2].title;
+								var r3A = jsond.info.related_videos[2].video_thumbnail;
+								var r3Au = jsond.info.related_videos[2].author;
+								var r3V = jsond.info.related_videos[2].short_view_count_text;
+								document.getElementById("rv3").href = r3L;
+								document.getElementById("rTit3").innerHTML = r3T;
+								document.getElementById("rTh3").src = r3A;
+								document.getElementById("rAut3").innerHTML = r3Au;
+								document.getElementById("rVie3").innerHTML = r3V;
+								if (jsond.info.related_videos[3]) {
+									var r4L = "#w#" + jsond.info.related_videos[3].id;
+									var r4T = jsond.info.related_videos[3].title;
+									var r4A = jsond.info.related_videos[3].video_thumbnail;
+									var r4Au = jsond.info.related_videos[3].author;
+									var r4V = jsond.info.related_videos[3].short_view_count_text;
+									document.getElementById("rv4").href = r4L;
+									document.getElementById("rTit4").innerHTML = r4T;
+									document.getElementById("rTh4").src = r4A;
+									document.getElementById("rAut4").innerHTML = r4Au;
+									document.getElementById("rVie4").innerHTML = r4V;
+									if (jsond.info.related_videos[4]) {
+										var r5L = "#w#" + jsond.info.related_videos[4].id;
+										var r5T = jsond.info.related_videos[4].title;
+										var r5A = jsond.info.related_videos[4].video_thumbnail;
+										var r5Au = jsond.info.related_videos[4].author;
+										var r5V = jsond.info.related_videos[4].short_view_count_text;
+										document.getElementById("rv5").href = r5L;
+										document.getElementById("rTit5").innerHTML = r5T;
+										document.getElementById("rTh5").src = r5A;
+										document.getElementById("rAut5").innerHTML = r5Au;
+										document.getElementById("rVie5").innerHTML = r5V;
+										if (jsond.info.related_videos[5]) {
+											var r6L = "#w#" + jsond.info.related_videos[5].id;
+											var r6T = jsond.info.related_videos[5].title;
+											var r6A = jsond.info.related_videos[5].video_thumbnail;
+											var r6Au = jsond.info.related_videos[5].author;
+											var r6V = jsond.info.related_videos[5].short_view_count_text;
+											document.getElementById("rv6").href = r6L;
+											document.getElementById("rTit6").innerHTML = r6T;
+											document.getElementById("rTh6").src = r6A;
+											document.getElementById("rAut6").innerHTML = r6Au;
+											document.getElementById("rVie6").innerHTML = r6V;
+											if  (jsond.info.related_videos[6]) {
+												var r7L = "#w#" + jsond.info.related_videos[6].id;
+												var r7T = jsond.info.related_videos[6].title;
+												var r7A = jsond.info.related_videos[6].video_thumbnail;
+												var r7Au = jsond.info.related_videos[6].author;
+												var r7V = jsond.info.related_videos[6].short_view_count_text;
+												document.getElementById("rv7").href = r7L;
+												document.getElementById("rTit7").innerHTML = r7T;
+												document.getElementById("rTh7").src = r7A;
+												document.getElementById("rAut7").innerHTML = r7Au;
+												document.getElementById("rVie7").innerHTML = r7V;
+												if (jsond.info.related_videos[7]) {
+													var r8L = "#w#" + jsond.info.related_videos[7].id;
+													var r8T = jsond.info.related_videos[7].title;
+													var r8A = jsond.info.related_videos[7].video_thumbnail;
+													var r8Au = jsond.info.related_videos[7].author;
+													var r8V = jsond.info.related_videos[7].short_view_count_text;
+													document.getElementById("rv8").href = r8L;
+													document.getElementById("rTit8").innerHTML = r8T;
+													document.getElementById("rTh8").src = r8A;
+													document.getElementById("rAut8").innerHTML = r8Au;
+													document.getElementById("rVie8").innerHTML = r8V;
+													if (jsond.info.related_videos[8]) {
+														var r9T = jsond.info.related_videos[8].title;
+														var r9A = jsond.info.related_videos[8].video_thumbnail;
+														var r9Au = jsond.info.related_videos[8].author;
+														var r9V = jsond.info.related_videos[8].short_view_count_text;
+														var r9L = "#w#" + jsond.info.related_videos[8].id;
+														document.getElementById("rTit9").innerHTML = r9T;
+														document.getElementById("rTh9").src = r9A;
+														document.getElementById("rAut9").innerHTML = r9Au;
+														document.getElementById("rVie9").innerHTML = r9V;
+														document.getElementById("rv9").href = r9L;
+													} else {
+														document.getElementById("rv9").style.display = 'none';
+													}
 												} else {
+													document.getElementById("rv8").style.display = 'none';
 													document.getElementById("rv9").style.display = 'none';
 												}
 											} else {
+												document.getElementById("rv7").style.display = 'none';
 												document.getElementById("rv8").style.display = 'none';
 												document.getElementById("rv9").style.display = 'none';
 											}
 										} else {
+											document.getElementById("rv6").style.display = 'none';
 											document.getElementById("rv7").style.display = 'none';
 											document.getElementById("rv8").style.display = 'none';
 											document.getElementById("rv9").style.display = 'none';
 										}
 									} else {
+										document.getElementById("rv5").style.display = 'none';
 										document.getElementById("rv6").style.display = 'none';
 										document.getElementById("rv7").style.display = 'none';
 										document.getElementById("rv8").style.display = 'none';
 										document.getElementById("rv9").style.display = 'none';
 									}
 								} else {
+									document.getElementById("rv4").style.display = 'none'
 									document.getElementById("rv5").style.display = 'none';
 									document.getElementById("rv6").style.display = 'none';
 									document.getElementById("rv7").style.display = 'none';
@@ -802,7 +816,8 @@ function openVideo(opt) {
 									document.getElementById("rv9").style.display = 'none';
 								}
 							} else {
-								document.getElementById("rv4").style.display = 'none'
+								document.getElementById("rv3").style.display = 'none';
+								document.getElementById("rv4").style.display = 'none';
 								document.getElementById("rv5").style.display = 'none';
 								document.getElementById("rv6").style.display = 'none';
 								document.getElementById("rv7").style.display = 'none';
@@ -810,6 +825,7 @@ function openVideo(opt) {
 								document.getElementById("rv9").style.display = 'none';
 							}
 						} else {
+							document.getElementById("rv2").style.display = 'none';
 							document.getElementById("rv3").style.display = 'none';
 							document.getElementById("rv4").style.display = 'none';
 							document.getElementById("rv5").style.display = 'none';
@@ -818,133 +834,218 @@ function openVideo(opt) {
 							document.getElementById("rv8").style.display = 'none';
 							document.getElementById("rv9").style.display = 'none';
 						}
-					} else {
-						document.getElementById("rv2").style.display = 'none';
-						document.getElementById("rv3").style.display = 'none';
-						document.getElementById("rv4").style.display = 'none';
-						document.getElementById("rv5").style.display = 'none';
-						document.getElementById("rv6").style.display = 'none';
-						document.getElementById("rv7").style.display = 'none';
-						document.getElementById("rv8").style.display = 'none';
-						document.getElementById("rv9").style.display = 'none';
 					}
-				}
-				if (localStorage.getItem("smart") == "y") {
-					console.log("SmartQuality enabled.")
-					console.log("Getting audio...")
-					if (!opt){
-						var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?smart=1&url=" + fullUrl
-					} else {
-						var url = "https://vidpolaris.herokuapp.com/?smart=1&url=" + fullUrl
-					}
-					http.open("GET", url);
-					http.send();
-					http.onreadystatechange=(e)=>{
-						document.getElementById("qSelector").style.display = '';
-						var jsond = JSON.parse(http.responseText);
-						if (!jsond.audio) {
-							openVideo();
-							return;
-						}
-						var audioUrl = jsond.audio[0].url;
-						document.getElementById("audioPlayer").src = audioUrl;
-						if (jsond.video[0].isHls == true | jsond.video[0].isLive == true | jsond.video[0].isDashMPD == true) {
-							var videoUrl =  jsond.video[1].url;
-							document.getElementById("itag").innerHTML = jsond.video[1].itag;
+					if (localStorage.getItem("smart") == "y") {
+						console.log("SmartQuality enabled.")
+						console.log("Getting audio...")
+						if (!opt){
+							var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?smart=1&url=" + fullUrl
 						} else {
-							var videoUrl = jsond.video[0].url;
-							document.getElementById("itag").innerHTML = jsond.video[0].itag;
+							var url = "https://vidpolaris.herokuapp.com/?smart=1&url=" + fullUrl
 						}
-						var length = jsond.video.length;
-						if (length >= 5) {
-							var opt1 = document.createElement("option")
-							opt1.value = jsond.video[0].itag;
-							opt1.innerHTML = jsond.video[0].qualityLabel;
-							document.getElementById("qOptions").appendChild(opt1);
-							var opt2 = document.createElement("option");
-							if (!jsond.video[1].qualityLabel == jsond.video[0].qualityLabel) {
+						http.open("GET", url);
+						http.send();
+						http.onreadystatechange=(e)=>{
+							document.getElementById("qSelector").style.display = '';
+							var jsond = JSON.parse(http.responseText);
+							if (!jsond.audio) {
+								openVideo();
+								return;
+							}
+							var audioUrl = jsond.audio[0].url;
+							document.getElementById("audioPlayer").src = audioUrl;
+							if (jsond.video[0].isHls == true | jsond.video[0].isLive == true | jsond.video[0].isDashMPD == true) {
+								var videoUrl =  jsond.video[1].url;
+								document.getElementById("itag").innerHTML = jsond.video[1].itag;
+							} else {
+								var videoUrl = jsond.video[0].url;
+								document.getElementById("itag").innerHTML = jsond.video[0].itag;
+							}
+							var length = jsond.video.length;
+							if (length >= 5) {
+								var opt1 = document.createElement("option")
+								opt1.value = jsond.video[0].itag;
+								opt1.innerHTML = jsond.video[0].qualityLabel;
+								document.getElementById("qOptions").appendChild(opt1);
+								var opt2 = document.createElement("option");
+								if (!jsond.video[1].qualityLabel == jsond.video[0].qualityLabel) {
+									opt2.value = jsond.video[1].itag;
+									opt2.innerHTML = jsond.video[1].qualityLabel;
+								} else {
+									opt2.value = jsond.video[2].itag;
+									opt2.innerHTML = jsond.video[2].qualityLabel;
+								}
+								document.getElementById("qOptions").appendChild(opt2);
+								var opt3 = document.createElement("option");
+								if (!jsond.video[2].qualityLabel == jsond.video[1].qualityLabel) {
+									opt3.value = jsond.video[2].itag;
+									opt3.innerHTML = jsond.video[2].qualityLabel;
+								} else {
+									opt3.value = jsond.video[3].itag;
+									opt3.innerHTML = jsond.video[3].qualityLabel;
+								}
+								document.getElementById("qOptions").appendChild(opt3);
+								var opt4 = document.createElement("option");
+								if (!jsond.video[3].qualityLabel == jsond.video[2].qualityLabel) {
+									opt4.value = jsond.video[3].itag;
+									opt4.innerHTML = jsond.video[3].qualityLabel;
+								} else {
+									opt4.value = jsond.video[4].itag;
+									opt4.innerHTML = jsond.video[4].qualityLabel;
+								}
+								document.getElementById("qOptions").appendChild(opt4);
+								var opt5 = document.createElement("option");
+								if (!jsond.video[4].qualityLabel == jsond.video[3].qualityLabel) {
+									opt5.value = jsond.video[4].itag;
+									opt5.innerHTML = jsond.video[4].qualityLabel;
+									document.getElementById("qOptions").appendChild(opt5);
+								} else {
+									// do nothing
+								}
+								
+							} else if (length == 4) {
+								var opt1 = document.createElement("option")
+								opt1.value = jsond.video[0].itag;
+								opt1.innerHTML = jsond.video[0].qualityLabel;
+								document.getElementById("qOptions").appendChild(opt1);
+								var opt2 = document.createElement("option");
 								opt2.value = jsond.video[1].itag;
 								opt2.innerHTML = jsond.video[1].qualityLabel;
-							} else {
-								opt2.value = jsond.video[2].itag;
-								opt2.innerHTML = jsond.video[2].qualityLabel;
-							}
-							document.getElementById("qOptions").appendChild(opt2);
-							var opt3 = document.createElement("option");
-							if (!jsond.video[2].qualityLabel == jsond.video[1].qualityLabel) {
+								document.getElementById("qOptions").appendChild(opt2);
+								var opt3 = document.createElement("option");
 								opt3.value = jsond.video[2].itag;
 								opt3.innerHTML = jsond.video[2].qualityLabel;
-							} else {
-								opt3.value = jsond.video[3].itag;
-								opt3.innerHTML = jsond.video[3].qualityLabel;
-							}
-							document.getElementById("qOptions").appendChild(opt3);
-							var opt4 = document.createElement("option");
-							if (!jsond.video[3].qualityLabel == jsond.video[2].qualityLabel) {
+								document.getElementById("qOptions").appendChild(opt3);
+								var opt4 = document.createElement("option");
 								opt4.value = jsond.video[3].itag;
 								opt4.innerHTML = jsond.video[3].qualityLabel;
+								document.getElementById("qOptions").appendChild(opt4);
+							} else if (length == 3) {
+								var opt1 = document.createElement("option")
+								opt1.value = jsond.video[0].itag;
+								opt1.innerHTML = jsond.video[0].qualityLabel;
+								document.getElementById("qOptions").appendChild(opt1);
+								var opt2 = document.createElement("option");
+								opt2.value = jsond.video[1].itag;
+								opt2.innerHTML = jsond.video[1].qualityLabel;
+								document.getElementById("qOptions").appendChild(opt2);
+								var opt3 = document.createElement("option");
+								opt3.value = jsond.video[2].itag;
+								opt3.innerHTML = jsond.video[2].qualityLabel;
+							} else if (length == 2) {
+								var opt1 = document.createElement("option")
+								opt1.value = jsond.video[0].itag;
+								opt1.innerHTML = jsond.video[0].qualityLabel;
+								document.getElementById("qOptions").appendChild(opt1);
+								var opt2 = document.createElement("option");
+								opt2.value = jsond.video[1].itag;
+								opt2.innerHTML = jsond.video[1].qualityLabel;
+								document.getElementById("qOptions").appendChild(opt2);
 							} else {
-								opt4.value = jsond.video[4].itag;
-								opt4.innerHTML = jsond.video[4].qualityLabel;
+								document.getElementById("qOptions").disabled = true;
+								var opt1 = document.createElement("option")
+								opt1.value = jsond.video[0].itag;
+								opt1.innerHTML = jsond.video[0].qualityLabel;
+								document.getElementById("qOptions").appendChild(opt1);
 							}
-							document.getElementById("qOptions").appendChild(opt4);
-							var opt5 = document.createElement("option");
-							if (!jsond.video[4].qualityLabel == jsond.video[3].qualityLabel) {
-								opt5.value = jsond.video[4].itag;
-								opt5.innerHTML = jsond.video[4].qualityLabel;
-								document.getElementById("qOptions").appendChild(opt5);
+							document.getElementById("player").src = videoUrl;
+							document.getElementById("qOptions").value = document.getElementById("itag").innerHTML;
+							document.getElementById("vidLoader").style.display = 'none';
+							document.getElementById("player").poster = thum;
+							document.getElementById("title").innerHTML = titl;
+							document.title = titl +  " | vidpolaris";
+							if (desc.length > 300) {
+								var shortDesc = desc.substring(0,300) + "..."
+								document.getElementById("desc").innerHTML = shortDesc;
+								document.getElementById("longDesc").innerHTML = desc;
+								document.getElementById("ldBtn").style.display = '';
+								document.getElementById("ldDiv").style.display = 'none';
 							} else {
-								// do nothing
+								document.getElementById("desc").innerHTML = desc;
+								document.getElementById("ldBtn").style.display = 'none';
+								document.getElementById("ldDiv").style.display = 'none';
 							}
-							
-						} else if (length == 4) {
-							var opt1 = document.createElement("option")
-							opt1.value = jsond.video[0].itag;
-							opt1.innerHTML = jsond.video[0].qualityLabel;
-							document.getElementById("qOptions").appendChild(opt1);
-							var opt2 = document.createElement("option");
-							opt2.value = jsond.video[1].itag;
-							opt2.innerHTML = jsond.video[1].qualityLabel;
-							document.getElementById("qOptions").appendChild(opt2);
-							var opt3 = document.createElement("option");
-							opt3.value = jsond.video[2].itag;
-							opt3.innerHTML = jsond.video[2].qualityLabel;
-							document.getElementById("qOptions").appendChild(opt3);
-							var opt4 = document.createElement("option");
-							opt4.value = jsond.video[3].itag;
-							opt4.innerHTML = jsond.video[3].qualityLabel;
-							document.getElementById("qOptions").appendChild(opt4);
-						} else if (length == 3) {
-							var opt1 = document.createElement("option")
-							opt1.value = jsond.video[0].itag;
-							opt1.innerHTML = jsond.video[0].qualityLabel;
-							document.getElementById("qOptions").appendChild(opt1);
-							var opt2 = document.createElement("option");
-							opt2.value = jsond.video[1].itag;
-							opt2.innerHTML = jsond.video[1].qualityLabel;
-							document.getElementById("qOptions").appendChild(opt2);
-							var opt3 = document.createElement("option");
-							opt3.value = jsond.video[2].itag;
-							opt3.innerHTML = jsond.video[2].qualityLabel;
-						} else if (length == 2) {
-							var opt1 = document.createElement("option")
-							opt1.value = jsond.video[0].itag;
-							opt1.innerHTML = jsond.video[0].qualityLabel;
-							document.getElementById("qOptions").appendChild(opt1);
-							var opt2 = document.createElement("option");
-							opt2.value = jsond.video[1].itag;
-							opt2.innerHTML = jsond.video[1].qualityLabel;
-							document.getElementById("qOptions").appendChild(opt2);
-						} else {
-							document.getElementById("qOptions").disabled = true;
-							var opt1 = document.createElement("option")
-							opt1.value = jsond.video[0].itag;
-							opt1.innerHTML = jsond.video[0].qualityLabel;
-							document.getElementById("qOptions").appendChild(opt1);
+							document.getElementById("author").innerHTML = auth;
+							document.getElementById("searchContainer").style.display = '';
+							document.getElementById("pubM").innerHTML = month;
+							document.getElementById("pubY").innerHTML = year;
+							document.getElementById("pubD").innerHTML = day;
+							if (!opt){
+								var url =	"https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?md=1&url=" + fullUrl
+							} else {
+								var url = "https://vidpolaris.herokuapp.com/?md=1&url=" + fullUrl
+							}
+							http.open("GET", url);
+							http.send();
+							http.timeout = 10000;
+							http.ontimeout = () => {
+								document.getElementById("viewNum").innerHTML = "[Error]";
+								document.getElementById("likeNum").innerHTML = "[Error]";
+								document.getElementById("dlikNum").innerHTML = "[Error]";
+								document.getElementById("commNum").innerHTML = "[Error]";
+							}
+							http.onreadystatechange=(e)=>{
+								var jsond = JSON.parse(http.responseText);
+								var view = jsond.meta.views.toLocaleString();
+								if (!jsond.meta.dislikeCount) {
+									var dlik = 0;
+								} else {
+									var dlik = jsond.meta.dislikeCount.toLocaleString();
+								}
+								if (!jsond.meta.likeCount) {
+									var like = 0;
+								} else {
+									var like = jsond.meta.likeCount.toLocaleString();
+								}
+								if (!jsond.meta.commentCount) {
+									var comm = 0;
+								} else {
+									var comm = jsond.meta.commentCount.toLocaleString();
+								}
+								var totl = jsond.meta.dislikeCount + jsond.meta.likeCount;
+								if (!totl == 0){
+									var untRatio = jsond.meta.likeCount / totl;
+									var percent = 100 * untRatio;
+									var ratio = percent.toPrecision(4);
+								} else {
+									var ratio = 0;
+								}
+								document.getElementById("viewNum").innerHTML = view;
+								document.getElementById("likeNum").innerHTML = like;
+								document.getElementById("dlikNum").innerHTML = dlik;
+								document.getElementById("commNum").innerHTML = comm;
+								document.getElementById("ldRatio").innerHTML = ratio;
+								if (!opt) {
+									loadComments();
+								} else {
+									loadComments("none", "alt");
+								}
+							}
+							document.getElementById("videoViewer").style.display = '';
+							console.log("It is done! Syncing will now start...");
+							sync();
+							document.getElementById("player").load();
+							document.getElementById("audioPlayer").load();
+							if (!opt) {
+								loadComments();
+							} else {
+								loadComments("alt")
+							}
+							document.getElementById("player").play();
+							if (sessionStorage.getItem("id") == id) {
+								document.getElementById("player").currentTime = sessionStorage.getItem("time");
+								document.getElementById("audioPlayer").currentTime = sessionStorage.getItem("time");
+							} else {
+								sessionStorage.setItem("id", id);
+								sessionStorage.setItem("time", document.getElementById("player").currentTime);
+							}
+							return;
 						}
-						document.getElementById("player").src = videoUrl;
-						document.getElementById("qOptions").value = document.getElementById("itag").innerHTML;
+					} else {
+						document.getElementById("qSelector").style.display = 'none';
+						document.getElementById("videoViewer").style.display = '';
 						document.getElementById("vidLoader").style.display = 'none';
+						document.getElementById("player").src = wUrl;
 						document.getElementById("player").poster = thum;
 						document.getElementById("title").innerHTML = titl;
 						document.title = titl +  " | vidpolaris";
@@ -964,10 +1065,10 @@ function openVideo(opt) {
 						document.getElementById("pubM").innerHTML = month;
 						document.getElementById("pubY").innerHTML = year;
 						document.getElementById("pubD").innerHTML = day;
-						if (!opt){
-							var url =	"https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?md=1&url=" + fullUrl
+						if (!opt) {
+							var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?md=1&url=" + fullUrl;
 						} else {
-							var url = "https://vidpolaris.herokuapp.com/?md=1&url=" + fullUrl
+							var url = "https://vidpolaris.herokuapp.com/?md=1&url=" + fullUrl;
 						}
 						http.open("GET", url);
 						http.send();
@@ -1007,117 +1108,23 @@ function openVideo(opt) {
 							document.getElementById("viewNum").innerHTML = view;
 							document.getElementById("likeNum").innerHTML = like;
 							document.getElementById("dlikNum").innerHTML = dlik;
-							document.getElementById("commNum").innerHTML = comm;
 							document.getElementById("ldRatio").innerHTML = ratio;
 							if (!opt) {
 								loadComments();
 							} else {
 								loadComments("none", "alt");
 							}
-						}
-						document.getElementById("videoViewer").style.display = '';
-						console.log("It is done! Syncing will now start...");
-						sync();
-						document.getElementById("player").load();
-						document.getElementById("audioPlayer").load();
-						if (!opt) {
 							loadComments();
-						} else {
-							loadComments("alt")
-						}
-						document.getElementById("player").play();
-						if (sessionStorage.getItem("id") == id) {
-							document.getElementById("player").currentTime = sessionStorage.getItem("time");
-							document.getElementById("audioPlayer").currentTime = sessionStorage.getItem("time");
-						} else {
-							sessionStorage.setItem("id", id);
-							sessionStorage.setItem("time", document.getElementById("player").currentTime);
-						}
-						return;
-					}
-				} else {
-					document.getElementById("qSelector").style.display = 'none';
-					document.getElementById("videoViewer").style.display = '';
-					document.getElementById("vidLoader").style.display = 'none';
-					document.getElementById("player").src = wUrl;
-					document.getElementById("player").poster = thum;
-					document.getElementById("title").innerHTML = titl;
-					document.title = titl +  " | vidpolaris";
-					if (desc.length > 300) {
-						var shortDesc = desc.substring(0,300) + "..."
-						document.getElementById("desc").innerHTML = shortDesc;
-						document.getElementById("longDesc").innerHTML = desc;
-						document.getElementById("ldBtn").style.display = '';
-						document.getElementById("ldDiv").style.display = 'none';
-					} else {
-						document.getElementById("desc").innerHTML = desc;
-						document.getElementById("ldBtn").style.display = 'none';
-						document.getElementById("ldDiv").style.display = 'none';
-					}
-					document.getElementById("author").innerHTML = auth;
-					document.getElementById("searchContainer").style.display = '';
-					document.getElementById("pubM").innerHTML = month;
-					document.getElementById("pubY").innerHTML = year;
-					document.getElementById("pubD").innerHTML = day;
-					if (!opt) {
-						var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?md=1&url=" + fullUrl;
-					} else {
-						var url = "https://vidpolaris.herokuapp.com/?md=1&url=" + fullUrl;
-					}
-					http.open("GET", url);
-					http.send();
-					http.timeout = 10000;
-					http.ontimeout = () => {
-						document.getElementById("viewNum").innerHTML = "[Error]";
-						document.getElementById("likeNum").innerHTML = "[Error]";
-						document.getElementById("dlikNum").innerHTML = "[Error]";
-						document.getElementById("commNum").innerHTML = "[Error]";
-					}
-					http.onreadystatechange=(e)=>{
-						var jsond = JSON.parse(http.responseText);
-						var view = jsond.meta.views.toLocaleString();
-						if (!jsond.meta.dislikeCount) {
-							var dlik = 0;
-						} else {
-							var dlik = jsond.meta.dislikeCount.toLocaleString();
-						}
-						if (!jsond.meta.likeCount) {
-							var like = 0;
-						} else {
-							var like = jsond.meta.likeCount.toLocaleString();
-						}
-						if (!jsond.meta.commentCount) {
-							var comm = 0;
-						} else {
-							var comm = jsond.meta.commentCount.toLocaleString();
-						}
-						var totl = jsond.meta.dislikeCount + jsond.meta.likeCount;
-						if (!totl == 0){
-							var untRatio = jsond.meta.likeCount / totl;
-							var percent = 100 * untRatio;
-							var ratio = percent.toPrecision(4);
-						} else {
-							var ratio = 0;
-						}
-						document.getElementById("viewNum").innerHTML = view;
-						document.getElementById("likeNum").innerHTML = like;
-						document.getElementById("dlikNum").innerHTML = dlik;
-						document.getElementById("ldRatio").innerHTML = ratio;
-						if (!opt) {
-							loadComments();
-						} else {
-							loadComments("none", "alt");
-						}
-						loadComments();
-						if (!document.getElementById("videoViewer").style.display == 'none') {
-							document.getElementById("player").play()
-						}
-						if (sessionStorage.getItem("id") == id) {
-							document.getElementById("player").currentTime = sessionStorage.getItem("time");
-							document.getElementById("audioPlayer").currentTime = sessionStorage.getItem("time");
-						} else {
-							sessionStorage.setItem("id", id);
-							sessionStorage.setItem("time", document.getElementById("player").currentTime);
+							if (!document.getElementById("videoViewer").style.display == 'none') {
+								document.getElementById("player").play()
+							}
+							if (sessionStorage.getItem("id") == id) {
+								document.getElementById("player").currentTime = sessionStorage.getItem("time");
+								document.getElementById("audioPlayer").currentTime = sessionStorage.getItem("time");
+							} else {
+								sessionStorage.setItem("id", id);
+								sessionStorage.setItem("time", document.getElementById("player").currentTime);
+							}
 						}
 					}
 				}
