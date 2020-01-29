@@ -2833,7 +2833,7 @@ function notPlayable() {
 }
 
 function openChannel() {
-	document.title = "[loading] vidpolaris";
+	document.title = "[loading...] vidpolaris";
 	document.getElementById("player").pause();
 	document.getElementById("resultsContainer").style.display = 'none';
 	document.getElementById("helpOut").style.display = 'none';
