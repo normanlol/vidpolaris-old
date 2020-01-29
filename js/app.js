@@ -172,6 +172,8 @@ function search(opt) {
 		var r01Ti = jsond.searchResults.items[0].title;
 		var r01Da = jsond.searchResults.items[0].uploaded_at;
 		var r01De = jsond.searchResults.items[0].description;
+		var r01Du = jsond.searchResults.items[0].duration;
+		document.getElementById("re01Du").innerHTML = r01Du;
 		document.getElementById("re01Da").innerHTML = r01Da;
 		document.getElementById("re01De").innerHTML = r01De;
 		if (!jsond.searchResults.items[0].views | jsond.searchResults.items[0].views == null) {
@@ -190,6 +192,8 @@ function search(opt) {
 		var r02Ti = jsond.searchResults.items[1].title;
 		var r02Da = jsond.searchResults.items[1].uploaded_at;
 		var r02De = jsond.searchResults.items[1].description;
+		var r02Du = jsond.searchResults.items[1].duration;
+		document.getElementById("re02Du").innerHTML = r02Du;
 		document.getElementById("re02Da").innerHTML = r02Da;
 		document.getElementById("re02De").innerHTML = r02De;
 		if (!jsond.searchResults.items[1].views | jsond.searchResults.items[1].views == null) {
@@ -208,6 +212,8 @@ function search(opt) {
 		var r03Ti = jsond.searchResults.items[2].title;
 		var r03Da = jsond.searchResults.items[2].uploaded_at;
 		var r03De = jsond.searchResults.items[2].description;
+		var r03Du = jsond.searchResults.items[2].duration;
+		document.getElementById("re03Du").innerHTML = r03Du;
 		document.getElementById("re03Da").innerHTML = r03Da;
 		document.getElementById("re03De").innerHTML = r03De;
 		if (!jsond.searchResults.items[2].views | jsond.searchResults.items[2].views == null) {
@@ -226,6 +232,8 @@ function search(opt) {
 		var r04Ti = jsond.searchResults.items[3].title;
 		var r04Da = jsond.searchResults.items[3].uploaded_at;
 		var r04De = jsond.searchResults.items[3].description;
+		var r04Du = jsond.searchResults.items[3].duration;
+		document.getElementById("re04Du").innerHTML = r04Du;
 		document.getElementById("re04Da").innerHTML = r04Da;
 		document.getElementById("re04De").innerHTML = r04De;
 		if (!jsond.searchResults.items[3].views | jsond.searchResults.items[3].views == null) {
@@ -244,6 +252,8 @@ function search(opt) {
 		var r05Ti = jsond.searchResults.items[4].title;
 		var r05Da = jsond.searchResults.items[4].uploaded_at;
 		var r05De = jsond.searchResults.items[4].description;
+		var r05Du = jsond.searchResults.items[4].duration;
+		document.getElementById("re05Du").innerHTML = r05Du;
 		document.getElementById("re05Da").innerHTML = r05Da;
 		document.getElementById("re05De").innerHTML = r05De;
 		if (!jsond.searchResults.items[4].views | jsond.searchResults.items[4].views == null) {
@@ -262,6 +272,8 @@ function search(opt) {
 		var r06Ti = jsond.searchResults.items[5].title;
 		var r06Da = jsond.searchResults.items[5].uploaded_at;
 		var r06De = jsond.searchResults.items[5].description;
+		var r06Du = jsond.searchResults.items[5].duration;
+		document.getElementById("re06Du").innerHTML = r06Du;
 		document.getElementById("re06Da").innerHTML = r06Da;
 		document.getElementById("re06De").innerHTML = r06De;
 		if (!jsond.searchResults.items[5].views | jsond.searchResults.items[5].views == null) {
@@ -280,6 +292,8 @@ function search(opt) {
 		var r07Ti = jsond.searchResults.items[6].title;
 		var r07Da = jsond.searchResults.items[6].uploaded_at;
 		var r07De = jsond.searchResults.items[6].description;
+		var r07Du = jsond.searchResults.items[6].duration;
+		document.getElementById("re07Du").innerHTML = r07Du;
 		document.getElementById("re07Da").innerHTML = r07Da;
 		document.getElementById("re07De").innerHTML = r07De;
 		if (!jsond.searchResults.items[6].views | jsond.searchResults.items[6].views == null) {
@@ -299,6 +313,8 @@ function search(opt) {
 		var r08Ti = jsond.searchResults.items[7].title;
 		var r08Da = jsond.searchResults.items[7].uploaded_at;
 		var r08De = jsond.searchResults.items[7].description;
+		var r08Du = jsond.searchResults.items[7].duration;
+		document.getElementById("re08Du").innerHTML = r08Du;
 		document.getElementById("re08Da").innerHTML = r08Da;
 		document.getElementById("re08De").innerHTML = r08De;
 		if (!jsond.searchResults.items[7].views | jsond.searchResults.items[7].views == null) {
@@ -317,6 +333,8 @@ function search(opt) {
 		var r09Ti = jsond.searchResults.items[8].title;
 		var r09Da = jsond.searchResults.items[8].uploaded_at;
 		var r09De = jsond.searchResults.items[8].description;
+		var r09Du = jsond.searchResults.items[8].duration;
+		document.getElementById("re09Du").innerHTML = r09Du;
 		document.getElementById("re09Da").innerHTML = r09Da;
 		document.getElementById("re09De").innerHTML = r09De;
 		if (!jsond.searchResults.items[8].views | jsond.searchResults.items[8].views == null) {
@@ -335,6 +353,8 @@ function search(opt) {
 		var r10Ti = jsond.searchResults.items[9].title;
 		var r10Da = jsond.searchResults.items[9].uploaded_at;
 		var r10De = jsond.searchResults.items[9].description;
+		var r10Du = jsond.searchResults.items[9].duration;
+		document.getElementById("re10Du").innerHTML = r10Du;
 		document.getElementById("re10Da").innerHTML = r10Da;
 		document.getElementById("re10De").innerHTML = r10De;
 		if (!jsond.searchResults.items[9].views | jsond.searchResults.items[9].views == null) {
@@ -2810,14 +2830,14 @@ function showContent(choice) {
 	if (choice == 'y') {
 		document.getElementById("vidPage").style.display = '';
 		document.getElementById("nsWarnPage").style.display = 'none';
-		localStorage.setItem('ageR', 'y')
+		localStorage.setItem('ageR', 'y');
 	} else if (choice == 'y_ns') {
 		document.getElementById("vidPage").style.display = '';
 		document.getElementById("nsWarnPage").style.display = 'none';
-		localStorage.setItem('ageR', 'n')
+		localStorage.setItem('ageR', 'n');
 	} else {
 		window.open("#", "_self");
-		localStorage.setItem('ageR', 'n')
+		localStorage.setItem('ageR', 'n');
 	}
 }
 
