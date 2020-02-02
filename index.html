@@ -179,8 +179,16 @@
 			<div id="vidPage" style="display:none;">
 				<div id="vidLoader" class="loader centerMe"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 				<div id="videoViewer" style="display:none;" class="centerMe">
-					<video id="player" oncontextmenu="return false;" controls></video>
-					<audio id="audioPlayer"></audio>
+					<div id="playerContainer">
+						<video id="player" oncontextmenu="return false;" controls></video>
+						<audio id="audioPlayer"></audio>
+					</div>
+					<div id="loadErr" style="display:none;">
+						<p>it seems that your video cannot be loaded due to an error. would you like to load the youtube player?</p>
+						<button onclick="watchOnYoutube()">watch on youtube</button>
+						<button onclick="watchOnInvidious()">watch on invidious</button>
+						<div style="width:100%;height:15px;"></div>
+					</div>
 					<div class="details">
 						<div class="maindetails">
 							<h2 class="stat" id="title"></h2>

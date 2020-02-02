@@ -97,7 +97,13 @@ document.addEventListener('keydown', function (event) {
 });
 
 document.getElementById("player").onerror = function(e){
-	document.getElementById("forbiddenErr").style.display = 'none';
+	document.getElementById("playerContainer").style.display = 'none';
+	document.getElementById("loadErr").style.display = '';
+};
+
+document.getElementById("audioPlayer").onerror = function(e){
+	document.getElementById("playerContainer").style.display = 'none';
+	document.getElementById("loadErr").style.display = '';
 };
 
 console.log("autoplay: " + localStorage.getItem('autoplay'))
@@ -736,9 +742,11 @@ function openVideo(opt) {
 		} else {
 			document.title = "[loading...] vidpolaris";
 			document.getElementById("homePage").style.display = 'none';
-			document.getElementById("searchContainer").style.display = 'none'
-			document.getElementById("searchPage").style.display = 'none'
-			document.getElementById("channelPage").style.display = 'none'
+			document.getElementById("searchContainer").style.display = 'none';
+			document.getElementById("searchPage").style.display = 'none';
+			document.getElementById("settingsPage").style.display = 'none';
+			document.getElementById("channelPage").style.display = 'none';
+			document.getElementById("loadErr").style.display = 'none';
 			document.getElementById("player").pause();
 			document.getElementById("vidPage").style.display = '';
 			document.getElementById("helpOut").style.display = '';
@@ -3141,4 +3149,15 @@ function openChannel() {
 			document.getElementById("bannerPfpContainer").style.display = '';
 		}
 	}
+}
+
+
+function watchOnYoutube() {
+	var id = getClickedId(window.location.href, "#w#");
+	window.open("https://youtube.com/watch?v=" + id, "_self")
+}
+
+function watchOnInvidious() {
+	var id = getClickedId(window.location.href, "#w#");
+	window.open("https://invidio.us/watch?v=" + id, "_self")
 }
