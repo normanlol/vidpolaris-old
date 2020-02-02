@@ -99,11 +99,17 @@ document.addEventListener('keydown', function (event) {
 document.getElementById("player").onerror = function(e){
 	document.getElementById("playerContainer").style.display = 'none';
 	document.getElementById("loadErr").style.display = '';
+	if (sessionStorage.getItem('proxyattempt')) {
+		document.getElementById("pBtn").style.display = 'none';
+	}
 };
 
 document.getElementById("audioPlayer").onerror = function(e){
 	document.getElementById("playerContainer").style.display = 'none';
 	document.getElementById("loadErr").style.display = '';
+	if (sessionStorage.getItem('proxyattempt')) {
+		document.getElementById("pBtn").style.display = 'none';
+	}
 };
 
 console.log("autoplay: " + localStorage.getItem('autoplay'))
@@ -3152,7 +3158,6 @@ function openChannel() {
 	}
 }
 
-
 function watchOnYoutube() {
 	var id = getClickedId(window.location.href, "#w#");
 	window.open("https://youtube.com/watch?v=" + id, "_self")
@@ -3166,4 +3171,16 @@ function watchOnNCYoutube() {
 function watchOnInvidious() {
 	var id = getClickedId(window.location.href, "#w#");
 	window.open("https://invidio.us/watch?v=" + id, "_self")
+}
+
+function proxySrc() {
+	var ogSrc1 = document.getElementById("player").src;
+	document.getElementById("player").src = "https://coorsproxyunlimited.herokuapp.com/" + ogSrc1;
+	if (localStorage.getItem("smart") == 'y') {
+		var ogSrc2 = document.getElementById("audioPlayer").src;
+		document.getElementById("audioPlayer").src = "https://coorsproxyunlimited.herokuapp.com/" + ogSrc1;
+	}
+	document.getElementById("playerContainer").style.display = '';
+	document.getElementById("loadErr").style.display = 'none';
+	sessionStorage.setItem('proxyattempt', 'y')
 }
