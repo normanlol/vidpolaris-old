@@ -3160,7 +3160,7 @@ function watchOnYoutube() {
 
 function watchOnNCYoutube() {
 	var id = getClickedId(window.location.href, "#w#");
-	window.open("https://youtube-nocookie.com/embed/" + id + "?autoplay=true", "_self")
+	window.open("https://www.youtube-nocookie.com/embed/" + id + "?autoplay=true", "_self")
 }
 
 function watchOnInvidious() {
