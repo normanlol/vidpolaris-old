@@ -3157,6 +3157,11 @@ function watchOnYoutube() {
 	window.open("https://youtube.com/watch?v=" + id, "_self")
 }
 
+function watchOnNCYoutube() {
+	var id = getClickedId(window.location.href, "#w#");
+	window.open("https://youtube-nocookie.com/embed/" + id + "?autoplay=true", "_self")
+}
+
 function watchOnInvidious() {
 	var id = getClickedId(window.location.href, "#w#");
 	window.open("https://invidio.us/watch?v=" + id, "_self")
