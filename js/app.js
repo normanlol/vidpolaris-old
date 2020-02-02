@@ -752,6 +752,7 @@ function openVideo(opt) {
 			document.getElementById("helpOut").style.display = '';
 			document.getElementById("videoViewer").style.display = 'none';
 			document.getElementById("vidLoader").style.display = '';
+			document.getElementById("playerContainer").style.display = '';
 			document.getElementById("sharBox").style.display = 'none';
 			document.getElementById("qOptions").innerHTML = "";
 			if (document.getElementById("ldBtn").innerHTML == "see less") {
