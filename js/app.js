@@ -99,21 +99,11 @@ document.addEventListener('keydown', function (event) {
 document.getElementById("player").onerror = function(e){
 	document.getElementById("playerContainer").style.display = 'none';
 	document.getElementById("loadErr").style.display = '';
-	if (localStorage.getItem("smart") == "y") {
-		document.getElementById("rBtn").style.display = '';
-	} else {
-		document.getElementById("rBtn").style.display = 'none';
-	}
 };
 
 document.getElementById("audioPlayer").onerror = function(e){
 	document.getElementById("playerContainer").style.display = 'none';
 	document.getElementById("loadErr").style.display = '';
-	if (localStorage.getItem("smart") == "y") {
-		document.getElementById("rBtn").style.display = '';
-	} else {
-		document.getElementById("rBtn").style.display = 'none';
-	}
 };
 
 console.log("autoplay: " + localStorage.getItem('autoplay'))
