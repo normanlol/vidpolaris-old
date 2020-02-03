@@ -500,7 +500,6 @@ function feelingLucky() {
 		var wLink = jsond.searchResults.items[0].link;
 		var link2 = wLink.substring(32);
 		window.open("#w#" + link2, "_self");
-		openVideo();
 	}
 }
 
@@ -741,17 +740,6 @@ function openVideo(opt) {
 			return;
 		} else {
 			document.title = "[loading...] vidpolaris";
-			if (sessionStorage.getItem("cb") == "y") {
-				if (localStorage.getItem("smart") == "y") {
-					localStorage.setItem("smart", "n");
-					sessionStorage.removeItem("cb");
-				} else {
-					localStorage.setItem("smart", "y");
-					sessionStorage.removeItem("cb");
-				}
-			} else {
-				// do nothing
-			}
 			document.getElementById("homePage").style.display = 'none';
 			document.getElementById("searchContainer").style.display = 'none';
 			document.getElementById("searchPage").style.display = 'none';
@@ -1108,10 +1096,6 @@ function openVideo(opt) {
 						http.onreadystatechange=(e)=>{
 							document.getElementById("qSelector").style.display = '';
 							var jsond = JSON.parse(http.responseText);
-							if (!jsond.audio) {
-								openVideo();
-								return;
-							}
 							var audioUrl = jsond.audio[0].url;
 							document.getElementById("audioPlayer").src = audioUrl;
 							if (jsond.video[0].isHls == true | jsond.video[0].isLive == true | jsond.video[0].isDashMPD == true) {
