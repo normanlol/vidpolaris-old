@@ -741,6 +741,17 @@ function openVideo(opt) {
 			return;
 		} else {
 			document.title = "[loading...] vidpolaris";
+			if (sessionStorage.getItem("cb") == "y") {
+				if (localStorage.getItem("smart") == "y") {
+					localStorage.setItem("smart", "n");
+					sessionStorage.removeItem("cb");
+				} else {
+					localStorage.setItem("smart", "y");
+					sessionStorage.removeItem("cb");
+				}
+			} else {
+				// do nothing
+			}
 			document.getElementById("homePage").style.display = 'none';
 			document.getElementById("searchContainer").style.display = 'none';
 			document.getElementById("searchPage").style.display = 'none';
@@ -3180,8 +3191,10 @@ function retry() {
 	if (localStorage.getItem("smart") === "y") {
 		localStorage.setItem("smart", "n");
 		openVideo();
+		sessionStorage.setItem("cb", "y");
 	} else {
 		localStorage.setItem("smart", "y");
 		openVideo();
+		sessionStorage.setItem("cb", "y");
 	}
 }
