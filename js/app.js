@@ -99,16 +99,20 @@ document.addEventListener('keydown', function (event) {
 document.getElementById("player").onerror = function(e){
 	document.getElementById("playerContainer").style.display = 'none';
 	document.getElementById("loadErr").style.display = '';
-	if (sessionStorage.getItem('proxyattempt')) {
-		document.getElementById("pBtn").style.display = 'none';
+	if (localStorage.getItem("smart") == "y") {
+		document.getElementById("rBtn").style.display = '';
+	} else {
+		document.getElementById("rBtn").style.display = 'none';
 	}
 };
 
 document.getElementById("audioPlayer").onerror = function(e){
 	document.getElementById("playerContainer").style.display = 'none';
 	document.getElementById("loadErr").style.display = '';
-	if (sessionStorage.getItem('proxyattempt')) {
-		document.getElementById("pBtn").style.display = 'none';
+	if (localStorage.getItem("smart") == "y") {
+		document.getElementById("rBtn").style.display = '';
+	} else {
+		document.getElementById("rBtn").style.display = 'none';
 	}
 };
 
@@ -3097,6 +3101,15 @@ function openChannel() {
 											document.getElementById("up8Da").innerHTML = jsond.latestVideos[7].publishedText;
 											document.getElementById("up8Vi").innerHTML = jsond.latestVideos[7].viewCount.toLocaleString();
 											document.getElementById("up8").href = "#w#" + jsond.latestVideos[7].videoId;
+											document.getElementById("noUploads").style.display = 'none';
+											document.getElementById("up1").style.display = '';
+											document.getElementById("up2").style.display = '';
+											document.getElementById("up3").style.display = '';
+											document.getElementById("up4").style.display = '';
+											document.getElementById("up5").style.display = '';
+											document.getElementById("up6").style.display = '';
+											document.getElementById("up7").style.display = '';
+											document.getElementById("up8").style.display = '';
 										} else {
 											document.getElementById("up8").style.display = 'none';
 										}
@@ -3173,14 +3186,12 @@ function watchOnInvidious() {
 	window.open("https://invidio.us/watch?v=" + id, "_self")
 }
 
-function proxySrc() {
-	var ogSrc1 = document.getElementById("player").src;
-	document.getElementById("player").src = "https://coorsproxyunlimited.herokuapp.com/" + ogSrc1;
-	if (localStorage.getItem("smart") == 'y') {
-		var ogSrc2 = document.getElementById("audioPlayer").src;
-		document.getElementById("audioPlayer").src = "https://coorsproxyunlimited.herokuapp.com/" + ogSrc1;
+function retry() {
+	if (localStorage.getItem("smart") === "y") {
+		localStorage.setItem("smart", "n");
+		openVideo();
+	} else {
+		localStorage.setItem("smart", "y");
+		openVideo();
 	}
-	document.getElementById("playerContainer").style.display = '';
-	document.getElementById("loadErr").style.display = 'none';
-	sessionStorage.setItem('proxyattempt', 'y')
 }
