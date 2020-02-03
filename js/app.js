@@ -1400,10 +1400,10 @@ function home() {
 	document.getElementById("vidPage").style.display = 'none';
 	document.getElementById("searchPage").style.display = 'none';
 	document.getElementById("channelPage").style.display = 'none';
-	document.getElementById("nsWarnPage").style.display = '';
-	document.getElementById("errorPage").style.display = '';
+	document.getElementById("nsWarnPage").style.display = 'none';
+	document.getElementById("errorPage").style.display = 'none';
 	document.getElementById("homePage").style.display = '';
-	document.getElementById("channelPage").style.display = '';
+	document.getElementById("channelPage").style.display = 'none';
 	document.getElementById("searchContainer").style.display = '';
 	document.getElementById("settingsPage").style.display = 'none';
 	document.getElementById("helpOut").style.display = 'none';
