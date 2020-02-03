@@ -1093,8 +1093,6 @@ function openVideo(opt) {
 						}
 					}
 					if (localStorage.getItem("smart") == "y") {
-						console.log("SmartQuality enabled.")
-						console.log("Getting audio...")
 						if (!opt){
 							var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?smart=1&url=" + fullUrl
 						} else {
@@ -1279,7 +1277,6 @@ function openVideo(opt) {
 								}
 							}
 							document.getElementById("videoViewer").style.display = '';
-							console.log("It is done! Syncing will now start...");
 							sync();
 							document.getElementById("player").load();
 							document.getElementById("audioPlayer").load();
@@ -1403,7 +1400,10 @@ function home() {
 	document.getElementById("vidPage").style.display = 'none';
 	document.getElementById("searchPage").style.display = 'none';
 	document.getElementById("channelPage").style.display = 'none';
+	document.getElementById("nsWarnPage").style.display = '';
+	document.getElementById("errorPage").style.display = '';
 	document.getElementById("homePage").style.display = '';
+	document.getElementById("channelPage").style.display = '';
 	document.getElementById("searchContainer").style.display = '';
 	document.getElementById("settingsPage").style.display = 'none';
 	document.getElementById("helpOut").style.display = 'none';
