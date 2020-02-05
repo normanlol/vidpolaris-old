@@ -3072,7 +3072,7 @@ function openChannel(opt) {
 	const http = new XMLHttpRequest();
 	var id = getClickedId(window.location.href, '#c#');
 	if (opt == "a" | !opt) {
-		var url = "https://coorsproxyunlimited.herokuapp.com/?channelId=" + id;
+		var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?channelId=" + id;
 	} else if (opt == "b"){
 		var url = "https://vidpolaris.herokuapp.com/?channelId=" + id;
 	} else if (opt == "c") {
