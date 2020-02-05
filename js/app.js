@@ -3256,6 +3256,16 @@ function openChannel(opt) {
 			document.getElementById("bannerPfpContainer").style.display = '';
 		}
 	}
+	http.timeout = 7000;
+	http.ontimeout = () => {
+		if (opt == "a" | !opt) {
+			openVideo("b");
+		} else if (opt == "b"){
+			openVideo("c");
+		} else if (opt == "c") {
+			openVideo("a");
+		}
+	}
 }
 
 function watchOnYoutube() {
