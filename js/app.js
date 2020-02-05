@@ -1371,12 +1371,7 @@ function openVideo(opt) {
 							document.getElementById("likeNum").innerHTML = like;
 							document.getElementById("dlikNum").innerHTML = dlik;
 							document.getElementById("ldRatio").innerHTML = ratio;
-							if (!opt) {
-								loadComments();
-							} else {
-								loadComments("none", "alt");
-							}
-							loadComments();
+							loadComments("none", localStorage.getItem("sLoc"));
 							if (!document.getElementById("videoViewer").style.display == 'none') {
 								document.getElementById("player").play()
 							}
