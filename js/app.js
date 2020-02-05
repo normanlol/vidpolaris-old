@@ -107,7 +107,6 @@ document.getElementById("audioPlayer").onerror = function(e){
 
 console.log("autoplay: " + localStorage.getItem('autoplay'))
 console.log("smartQual: " + localStorage.getItem('smart'))
-console.log("imgProxy: " + localStorage.getItem('pImg'))
 console.log("server: " + localStorage.getItem('sLoc'))
 
 // end onload functions
@@ -1390,6 +1389,16 @@ function openVideo(opt) {
 							}
 						}
 					}
+				}
+			}
+			http.timeout = 7000;
+			http.ontimeout = () => {
+				if (opt == "a" | !opt) {
+					openVideo("b");
+				} else if (opt == "b"){
+					openVideo("c");
+				} else if (opt == "c") {
+					openVideo("a");
 				}
 			}
 			http.onerror = function (error) {
