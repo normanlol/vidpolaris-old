@@ -1221,7 +1221,7 @@ function openVideo(opt) {
 							}
 							http.open("GET", url);
 							http.send();
-							http.timeout = 10000;
+							http.timeout = 5000;
 							http.ontimeout = () => {
 								document.getElementById("viewNum").innerHTML = "[Error]";
 								document.getElementById("likeNum").innerHTML = "[Error]";
@@ -1315,7 +1315,7 @@ function openVideo(opt) {
 						}
 						http.open("GET", url);
 						http.send();
-						http.timeout = 10000;
+						http.timeout = 5000;
 						http.ontimeout = () => {
 							document.getElementById("viewNum").innerHTML = "[Error]";
 							document.getElementById("likeNum").innerHTML = "[Error]";
@@ -1535,7 +1535,7 @@ function loadComments(token, opt) {
 		}
 		http.open("GET", url);
 		http.send();
-		http.timeout = 10000;
+		http.timeout = 5000;
 		http.ontimeout = () => {
 			document.getElementById("errorC").style.display = '';
 			document.getElementById("loadinC").style.display = 'none';
@@ -2204,7 +2204,7 @@ function loadComments(token, opt) {
 		const http = new XMLHttpRequest();
 		http.open("GET", "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?comments=1&token=" + token + "&url=" + fullUrl);
 		http.send();
-		http.timeout = 10000;
+		http.timeout = 5000;
 		http.ontimeout = () => {
 			document.getElementById("errorC").style.display = '';
 			document.getElementById("loadinC").style.display = 'none';
