@@ -12,6 +12,8 @@ body {
 	background:rgb(45, 45, 45);
 	color:white;
 	font-family: 'Lato', sans-serif;
+	overflow-x: hidden;
+	max-width:100%;
 }
 
 #trending {
