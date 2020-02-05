@@ -927,7 +927,11 @@ function openVideo(opt) {
 						}
 					}
 					var cat = jsond.info.media.category;
-					document.getElementById("cat").innerHTML = cat;
+					if (!cat == undefined) {
+						document.getElementById("cat").innerHTML = cat;
+					} else {
+						document.getElementById("catCont").style.display = "none";
+					}
 					if (!jsond.info.related_videos[0]) {
 						document.getElementById("relatedVideos").style.display = 'none';
 						document.getElementById("autoPlayBlock").style.display = 'none';
@@ -2917,14 +2921,11 @@ function toggleAuto() {
 }
 
 
-function changeQ() {
+function changeQ(opt) {
 	if (document.getElementById("itag").innerHTML == document.getElementById("qOptions").value) {
 		return;
 	} else {
-		document.getElementById("videoViewer").style.display = 'none';
-		document.getElementById("vidLoader").style.display = '';
-		document.getElementById("audioPlayer").pause();
-		document.getElementById("player").pause();
+		document.getElementById("qOptions").disabled = true;
 		const http = new XMLHttpRequest();
 		var id = getClickedId(window.location.href, '#w#');
 		var fullUrl = "https://youtube.com/watch?v=" + id;
@@ -2939,12 +2940,23 @@ function changeQ() {
 		http.send();
 		http.onreadystatechange=(e)=>{
 			var jsond = JSON.parse(http.responseText);
-			var currentTime = document.getElementById("audioPlayer").currentTime;
+			var currentTime = document.getElementById("player").currentTime;
 			document.getElementById("itag").innerHTML = jsond.datainfo.itag;
 			document.getElementById("player").src = jsond.datainfo.url;
 			document.getElementById("player").currentTime = currentTime;
-			document.getElementById("videoViewer").style.display = '';
-			document.getElementById("vidLoader").style.display = 'none';
+			document.getElementById("player").pause();
+			document.getElementById("player").play();
+			document.getElementById("qOptions").disabled = false;
+		}
+		http.timeout = 5000;
+		http.ontimeout = () => {
+			if (opt == "a" | !opt) {
+				changeQ("b");
+			} else if (opt == "b"){
+				changeQ("c");
+			} else if (opt == "c") {
+				changeQ("a");
+			}
 		}
 	}
 }
@@ -3254,11 +3266,11 @@ function openChannel(opt) {
 	http.timeout = 7000;
 	http.ontimeout = () => {
 		if (opt == "a" | !opt) {
-			openVideo("b");
+			openChannel("b");
 		} else if (opt == "b"){
-			openVideo("c");
+			openChannel("c");
 		} else if (opt == "c") {
-			openVideo("a");
+			openChannel("a");
 		}
 	}
 }
