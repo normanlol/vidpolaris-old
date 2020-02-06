@@ -178,7 +178,7 @@
 			</div>
 			<div id="vidPage" style="display:none;">
 				<div id="vidLoader" class="loader centerMe"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-				<div id="videoViewer" style="display:none;" class="centerMe">
+				<div id="vidViewer" style="display:none;" class="centerMe">
 					<div id="playerContainer">
 						<video id="player" oncontextmenu="return false;" controls></video>
 						<audio id="audioPlayer"></audio>
@@ -191,6 +191,7 @@
 						<button id="rBtn" onclick="retry()">try again</button>
 						<div style="width:100%;height:15px;"></div>
 					</div>
+					<span id="loadedId" style="display:none;"></span>
 					<div class="details">
 						<div class="maindetails">
 							<h2 class="stat" id="title"></h2>
@@ -513,6 +514,7 @@
 				<div id="seaLoader" class="loader centerMe"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 				<div id="resultsContainer" class="centerMe">
 					<a id="re01"><div class="resultVideo">
+					<span id="sTerm" style="display:none;"></span>
 						<img id="re01Th" class="smallThumb" style="float:left;margin-right:5px;">
 						<div class="resultD" style="float:left;max-width:54%">
 							<h2 id="re01Ti" class="stat"></h2>

@@ -258,6 +258,7 @@ function search(opt) {
 			return;
 		}
 		if (jsond.searchResults.items[0]) {
+			document.getElementById("sTerm").innerHTML = getClickedId(window.location.href, "#s#");
 			document.getElementById("re01").style.display = '';
 			var r01L = "#w#" + jsond.searchResults.items[0].link.substring(32);
 			var r01Th = jsond.searchResults.items[0].thumbnail;
@@ -824,7 +825,7 @@ function openVideo(opt) {
 			document.getElementById("player").pause();
 			document.getElementById("vidPage").style.display = '';
 			document.getElementById("helpOut").style.display = '';
-			document.getElementById("videoViewer").style.display = 'none';
+			document.getElementById("vidViewer").style.display = 'none';
 			document.getElementById("vidLoader").style.display = '';
 			document.getElementById("playerContainer").style.display = '';
 			document.getElementById("sharBox").style.display = 'none';
@@ -1353,7 +1354,7 @@ function openVideo(opt) {
 									loadComments("none", "c");
 								}
 							}
-							document.getElementById("videoViewer").style.display = '';
+							document.getElementById("vidViewer").style.display = '';
 							sync();
 							document.getElementById("player").load();
 							document.getElementById("audioPlayer").load();
@@ -1377,7 +1378,7 @@ function openVideo(opt) {
 						}
 					} else {
 						document.getElementById("qSelector").style.display = 'none';
-						document.getElementById("videoViewer").style.display = '';
+						document.getElementById("vidViewer").style.display = '';
 						document.getElementById("vidLoader").style.display = 'none';
 						document.getElementById("player").src = wUrl;
 						document.getElementById("player").poster = thum;
@@ -1452,7 +1453,7 @@ function openVideo(opt) {
 							document.getElementById("ldRatio").innerHTML = ratio;
 							loadComments("none", localStorage.getItem("sLoc"));
 							setSpeed();
-							if (!document.getElementById("videoViewer").style.display == 'none') {
+							if (!document.getElementById("vidViewer").style.display == 'none') {
 								document.getElementById("player").play()
 							}
 							if (sessionStorage.getItem("id") == id) {
@@ -1495,7 +1496,7 @@ function getClickedId(parentString, substring) {
 
 function home() {
 	document.getElementById("player").pause();
-	document.getElementById("videoViewer").style.display = 'none';
+	document.getElementById("vidViewer").style.display = 'none';
 	document.getElementById("vidPage").style.display = 'none';
 	document.getElementById("searchPage").style.display = 'none';
 	document.getElementById("channelPage").style.display = 'none';
