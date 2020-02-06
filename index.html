@@ -197,9 +197,19 @@
 							<h3 class="stat"><span class="material-icons ico">person</span> <a id="authorL" class="channelLink"><span id="author"></span></a></h3>
 							<h3 class="stat"><span class="material-icons ico">remove_red_eye</span> <span id="viewNum">[Loading]</span> views</h3>
 							<h3 class="stat"><span class="material-icons ico">thumb_up</span> <span id="likeNum">[Loading]</span> likes / <span class="material-icons ico">thumb_down</span> <span id="dlikNum">[Loading]</span> dislikes / <span class="material-icons ico">thumbs_up_down</span> <span id="ldRatio">[Loading]</span>% ratio</h3>
-							<h3 class="stat" id="qSelector"><span class="material-icons ico">hd</span> <select id="qOptions" onclick="changeQ(localStorage.getItem('sLoc'))"></select></h3>
+							<h3 class="stat" id="qSelector"><span class="material-icons ico">hd</span> <select id="qOptions" oninput="changeQ(localStorage.getItem('sLoc'))"></select></h3>
 							<h3 class="stat"><span class="material-icons ico">calendar_today</span> <span id="pubM">[Loading]</span>/<span id="pubD">[Loading]</span>/<span id="pubY">[Loading]</span></h3>
 							<h3 id="catCont" class="stat"><span class="material-icons ico">folder</span> <span id="cat"></span></h3>
+							<h3 id="catCont" class="stat"><span class="material-icons ico">speed</span> <select id="speed" oninput="setSpeed()">
+								<option value="25x">0.25x</option>
+								<option value="5x">0.5x</option>
+								<option value="75x">0.75x</option>
+								<option value="1x">1x</option>
+								<option value="125x">1.25x</option>
+								<option value="15x">1.5x</option>
+								<option value="175x">1.75x</option>
+								<option value="2x">2x</option>
+							</select></h3>
 							<h3 class="stat" id="card1" style="display:none;"><span class="material-icons ico">info</span> <a class="channelLink" id="cardLink1"><span id="cardMessage1"></span></a></h3>
 							<h3 class="stat" id="card2" style="display:none;"><span class="material-icons ico">info</span> <a class="channelLink" id="cardLink2"><span id="cardMessage2"></span></a></h3>
 							<h3 class="stat" id="card3" style="display:none;"><span class="material-icons ico">info</span> <a class="channelLink" id="cardLink3"><span id="cardMessage3"></span></a></h3>

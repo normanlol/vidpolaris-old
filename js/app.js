@@ -20,6 +20,14 @@ if (!localStorage.getItem("autoplay")) {
 	}
 }
 
+if (!localStorage.getItem("pbSpeed")) {
+	localStorage.setItem("pbSpeed" , "1x");
+	document.getElementById("speed").value = "1x";
+} else {
+	document.getElementById("speed").value = localStorage.getItem("pbSpeed");
+	setSpeed();
+}
+
 if (!localStorage.getItem("theme")) {
 	localStorage.setItem("theme" , "d");
 	document.getElementById("wTheme").value = "d";
@@ -1290,6 +1298,7 @@ function openVideo(opt) {
 							} else if (opt == "c") {
 								loadComments("none", "c");
 							}
+							setSpeed();
 							document.getElementById("player").play();
 							if (sessionStorage.getItem("id") == id) {
 								document.getElementById("player").currentTime = sessionStorage.getItem("time");
@@ -1376,6 +1385,7 @@ function openVideo(opt) {
 							document.getElementById("dlikNum").innerHTML = dlik;
 							document.getElementById("ldRatio").innerHTML = ratio;
 							loadComments("none", localStorage.getItem("sLoc"));
+							setSpeed();
 							if (!document.getElementById("videoViewer").style.display == 'none') {
 								document.getElementById("player").play()
 							}
@@ -3300,4 +3310,57 @@ function retry() {
 		openVideo(localStorage.getItem("sLoc"));
 		sessionStorage.setItem("cb", "y");
 	}
+}
+
+function setSpeed() {
+	var speed = document.getElementById("speed").value;
+	document.getElementById("player").pause();
+	if (localStorage.getItem("smart") == "y") {
+		var smart = true;
+	} else {
+		var smart = false;
+	}
+	if (speed == "25x") {
+		document.getElementById("player").playbackRate = 0.25;
+		if (smart == true) {
+			document.getElementById("audioPlayer").playbackRate = 0.25;
+		}
+	} else if (speed == "5x") {
+		document.getElementById("player").playbackRate = 0.5;
+		if (smart == true) {
+			document.getElementById("audioPlayer").playbackRate = 0.5;
+		}
+	} else if (speed == "75x") {
+		document.getElementById("player").playbackRate = 0.75;
+		if (smart == true) {
+			document.getElementById("audioPlayer").playbackRate = 0.75;
+		}
+	} else if (speed == "1x") {
+		document.getElementById("player").playbackRate = 1.0;
+		if (smart == true) {
+			document.getElementById("audioPlayer").playbackRate = 1.0;
+		}
+	} else if (speed == "125x") {
+		document.getElementById("player").playbackRate = 1.25;
+		if (smart == true) {
+			document.getElementById("audioPlayer").playbackRate = 1.25;
+		}
+	} else if (speed == "15x") {
+		document.getElementById("player").playbackRate = 1.5;
+		if (smart == true) {
+			document.getElementById("audioPlayer").playbackRate = 1.5;
+		}
+	} else if (speed == "175x") {
+		document.getElementById("player").playbackRate = 1.75;
+		if (smart == true) {
+			document.getElementById("audioPlayer").playbackRate = 1.75;
+		}
+	} else if (speed == "2x") {
+		document.getElementById("player").playbackRate = 2.0;
+		if (smart == true) {
+			document.getElementById("audioPlayer").playbackRate = 2.0;
+		}
+	}
+	localStorage.setItem("pbSpeed", document.getElementById("speed").value);
+	document.getElementById("player").play();
 }
