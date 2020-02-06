@@ -1395,6 +1395,7 @@ function openVideo(opt) {
 							document.getElementById("ldBtn").style.display = 'none';
 							document.getElementById("ldDiv").style.display = 'none';
 						}
+						document.getElementById("player").play();
 						document.getElementById("author").innerHTML = auth;
 						document.getElementById("searchContainer").style.display = '';
 						document.getElementById("pubM").innerHTML = month;
