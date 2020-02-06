@@ -1581,9 +1581,17 @@ function loadComments(token, opt) {
 		http.send();
 		http.timeout = 5000;
 		http.ontimeout = () => {
-			document.getElementById("errorC").style.display = '';
-			document.getElementById("loadinC").style.display = 'none';
-			document.getElementById("loadedC").style.display = 'none';
+			http.ontimeout = () => {
+				if (opt == "a" | !opt) {
+					loadComments("none", "b");
+				} else if (opt == "b"){
+					loadComments("none", "c");
+				} else if (opt == "c") {
+					document.getElementById("errorC").style.display = '';
+					document.getElementById("loadinC").style.display = 'none';
+					document.getElementById("loadedC").style.display = 'none';
+				}
+			}
 		}
 		http.onreadystatechange=(e)=>{
 			var jsond = JSON.parse(http.responseText);
@@ -2257,9 +2265,15 @@ function loadComments(token, opt) {
 		http.send();
 		http.timeout = 5000;
 		http.ontimeout = () => {
-			document.getElementById("errorC").style.display = '';
-			document.getElementById("loadinC").style.display = 'none';
-			document.getElementById("loadedC").style.display = 'none';
+			if (opt == "a" | !opt) {
+				loadComments(token, "b");
+			} else if (opt == "b"){
+				loadComments(token, "c");
+			} else if (opt == "c") {
+				document.getElementById("errorC").style.display = '';
+				document.getElementById("loadinC").style.display = 'none';
+				document.getElementById("loadedC").style.display = 'none';
+			}
 		}
 		http.onreadystatechange=(e)=>{
 			var jsond = JSON.parse(http.responseText);
@@ -2981,7 +2995,7 @@ function translate(elem, opt) {
 			sessionStorage.setItem("currentlyRunningT", "y");
 			const http = new XMLHttpRequest();
 			if (opt == "a" | !opt) {
-				var url = "https://coorsproxyunlimited.herokuapp.com/?to=en&translate=" + encodeURIComponent(tex);
+				var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?to=en&translate=" + encodeURIComponent(tex);
 			} else if (opt == "b"){
 				var url = "https://vidpolaris.herokuapp.com/?to=en&translate=" + encodeURIComponent(tex);
 			} else if (opt == "c") {
