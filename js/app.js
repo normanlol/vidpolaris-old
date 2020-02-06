@@ -1003,6 +1003,7 @@ function openVideo(opt) {
 					}
 					var cat = jsond.info.media.category;
 					if (!cat == undefined) {
+						document.getElementById("catCont").style.display = "";
 						document.getElementById("cat").innerHTML = cat;
 					} else {
 						document.getElementById("catCont").style.display = "none";
