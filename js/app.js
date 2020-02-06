@@ -99,6 +99,58 @@ document.addEventListener('keydown', function (event) {
 				document.exitFullscreen();
 				sessionStorage.setItem('fullscreen', 'n')
 			}
+		} else if (key == "<" || key == 188) {
+			var speed = document.getElementById("speed").value;
+			if (speed == "25x") {
+				// do nothing
+			} else if (speed == "5x") {
+				document.getElementById("speed").value = "25x";
+				setSpeed();
+			} else if (speed == "75x") {
+				document.getElementById("speed").value = "5x";
+				setSpeed();
+			} else if (speed == "1x") {
+				document.getElementById("speed").value = "75x";
+				setSpeed();
+			} else if (speed == "125x") {
+				document.getElementById("speed").value = "1x";
+				setSpeed();
+			} else if (speed == "15x") {
+				document.getElementById("speed").value = "125x";
+				setSpeed();
+			} else if (speed == "175x") {
+				document.getElementById("speed").value = "15x";
+				setSpeed();
+			} else if (speed == "2x") {
+				document.getElementById("speed").value = "175x";
+				setSpeed();
+			}
+		} else if (key == ">" || key == 190) {
+			var speed = document.getElementById("speed").value;
+			if (speed == "2x") {
+				// do nothing
+			} else if (speed == "175x") {
+				document.getElementById("speed").value = "2x";
+				setSpeed();
+			} else if (speed == "15x") {
+				document.getElementById("speed").value = "175x";
+				setSpeed();
+			} else if (speed == "125x") {
+				document.getElementById("speed").value = "15x";
+				setSpeed();
+			} else if (speed == "1x") {
+				document.getElementById("speed").value = "125x";
+				setSpeed();
+			} else if (speed == "75x") {
+				document.getElementById("speed").value = "1x";
+				setSpeed();
+			} else if (speed == "5x") {
+				document.getElementById("speed").value = "75x";
+				setSpeed();
+			} else  if (speed == "25x") {
+				document.getElementById("speed").value = "5x";
+				setSpeed();
+			}
 		}
 	}
 });
@@ -113,9 +165,9 @@ document.getElementById("audioPlayer").onerror = function(e){
 	document.getElementById("loadErr").style.display = '';
 };
 
-console.log("autoplay: " + localStorage.getItem('autoplay'))
-console.log("smartQual: " + localStorage.getItem('smart'))
-console.log("server: " + localStorage.getItem('sLoc'))
+console.log("autoplay: " + localStorage.getItem('autoplay'));
+console.log("smartQual: " + localStorage.getItem('smart'));
+console.log("server: " + localStorage.getItem('sLoc'));
 
 // end onload functions
 
@@ -3328,7 +3380,6 @@ function retry() {
 
 function setSpeed() {
 	var speed = document.getElementById("speed").value;
-	document.getElementById("player").pause();
 	if (localStorage.getItem("smart") == "y") {
 		var smart = true;
 	} else {
@@ -3376,5 +3427,4 @@ function setSpeed() {
 		}
 	}
 	localStorage.setItem("pbSpeed", document.getElementById("speed").value);
-	document.getElementById("player").play();
 }
