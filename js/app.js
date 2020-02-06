@@ -151,6 +151,20 @@ document.addEventListener('keydown', function (event) {
 				document.getElementById("speed").value = "5x";
 				setSpeed();
 			}
+		} else if (key == "m" || key == "M" || key == 77) {
+			if (localStorage.getItem("smart") == "n") {
+				if (document.getElementById("player").muted == true) {
+					document.getElementById("player").muted = false;
+				} else {
+					document.getElementById("player").muted = true;
+				}
+			} else {
+				if (document.getElementById("audioPlayer").muted == true) {
+					document.getElementById("audioPlayer").muted = false;
+				} else {
+					document.getElementById("audioPlayer").muted = true;
+				}
+			}
 		}
 	}
 });
