@@ -258,7 +258,6 @@ function search(opt) {
 			return;
 		}
 		if (jsond.searchResults.items[0]) {
-			document.getElementById("sTerm").innerHTML = getClickedId(window.location.href, "#s#");
 			document.getElementById("re01").style.display = '';
 			var r01L = "#w#" + jsond.searchResults.items[0].link.substring(32);
 			var r01Th = jsond.searchResults.items[0].thumbnail;
