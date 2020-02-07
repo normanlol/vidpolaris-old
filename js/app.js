@@ -1,5 +1,9 @@
 resize();
-getTrending();
+if (localStorage.getItem("sLoc")) {
+	getTrending(localStorage.getItem("sLoc"));
+} else {
+	getTrending();
+}
 keepProg();
 refresh();
 
@@ -76,7 +80,7 @@ document.addEventListener('keydown', function (event) {
 		if (key == 'j' || key == 'J' || key == 74) {
 			document.getElementById("player").currentTime = document.getElementById("player").currentTime - 10;
 			if (localStorage.getItem('smart') == 'y') {
-				document.getElementById("audioPlayer").currentTime = document.getElementById("audioPlayer").currentTime - 10
+				document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
 			}
 		} else if (key == 'k' || key == 'K' || key == 75) {
 			if (!document.getElementById("player").paused) {
@@ -87,7 +91,7 @@ document.addEventListener('keydown', function (event) {
 		} else if (key == 'l' || key == 'L' || key == 76) {
 			document.getElementById("player").currentTime = document.getElementById("player").currentTime + 10;
 			if (localStorage.getItem('smart') == 'y') {
-				document.getElementById("audioPlayer").currentTime = document.getElementById("audioPlayer").currentTime + 10
+				document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
 			}
 		} else if (key == 't' || key == 'T' || key == 84) {
 			theatre();
@@ -102,53 +106,99 @@ document.addEventListener('keydown', function (event) {
 		} else if (key == "<" || key == 188) {
 			var speed = document.getElementById("speed").value;
 			if (speed == "25x") {
-				// do nothing
+				if (localStorage.getItem("smart") == "y") { 
+					document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
+				}
 			} else if (speed == "5x") {
 				document.getElementById("speed").value = "25x";
+				if (localStorage.getItem("smart") == "y") { 
+					document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
+				}
 				setSpeed();
 			} else if (speed == "75x") {
 				document.getElementById("speed").value = "5x";
+				if (localStorage.getItem("smart") == "y") { 
+					document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
+				}
 				setSpeed();
 			} else if (speed == "1x") {
 				document.getElementById("speed").value = "75x";
+				if (localStorage.getItem("smart") == "y") { 
+					document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
+				}
 				setSpeed();
 			} else if (speed == "125x") {
 				document.getElementById("speed").value = "1x";
+				if (localStorage.getItem("smart") == "y") { 
+					document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
+				}
 				setSpeed();
 			} else if (speed == "15x") {
 				document.getElementById("speed").value = "125x";
+				if (localStorage.getItem("smart") == "y") { 
+					document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
+				}
 				setSpeed();
 			} else if (speed == "175x") {
 				document.getElementById("speed").value = "15x";
+				if (localStorage.getItem("smart") == "y") { 
+					document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
+				}
 				setSpeed();
 			} else if (speed == "2x") {
 				document.getElementById("speed").value = "175x";
+				if (localStorage.getItem("smart") == "y") { 
+					document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
+				}
 				setSpeed();
 			}
 		} else if (key == ">" || key == 190) {
 			var speed = document.getElementById("speed").value;
 			if (speed == "2x") {
-				// do nothing
+				if (localStorage.getItem("smart") == "y") { 
+					document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
+				}
 			} else if (speed == "175x") {
 				document.getElementById("speed").value = "2x";
+				if (localStorage.getItem("smart") == "y") { 
+					document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
+				}
 				setSpeed();
 			} else if (speed == "15x") {
 				document.getElementById("speed").value = "175x";
+				if (localStorage.getItem("smart") == "y") { 
+					document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
+				}
 				setSpeed();
 			} else if (speed == "125x") {
 				document.getElementById("speed").value = "15x";
+				if (localStorage.getItem("smart") == "y") { 
+					document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
+				}
 				setSpeed();
 			} else if (speed == "1x") {
 				document.getElementById("speed").value = "125x";
+				if (localStorage.getItem("smart") == "y") { 
+					document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
+				}
 				setSpeed();
 			} else if (speed == "75x") {
 				document.getElementById("speed").value = "1x";
+				if (localStorage.getItem("smart") == "y") { 
+					document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
+				}
 				setSpeed();
 			} else if (speed == "5x") {
 				document.getElementById("speed").value = "75x";
+				if (localStorage.getItem("smart") == "y") { 
+					document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
+				}
 				setSpeed();
 			} else  if (speed == "25x") {
 				document.getElementById("speed").value = "5x";
+				if (localStorage.getItem("smart") == "y") { 
+					document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
+				}
 				setSpeed();
 			}
 		} else if (key == "m" || key == "M" || key == 77) {
@@ -578,8 +628,15 @@ function feelingLucky() {
 	}
 }
 
-function getTrending() {
+function getTrending(opt) {
 	const http = new XMLHttpRequest();
+	if (opt == "a" | !opt) {
+		var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?trending=us";
+	} else if (opt == "b") {
+		var url = "https://vidpolaris.herokuapp.com/?trending=us";
+	} else if (opt == "c") {
+		var url = "https://vidpolaris-europe.herokuapp.com/?trending=us";
+	}
 	var url = "https://coorsproxyunlimited.herokuapp.com/https://invidio.us/api/v1/trending"
 	http.open("GET", url);
 	http.send();
@@ -1611,8 +1668,20 @@ function sync() {
 		}
 	});
 	document.getElementById("player").onwaiting = function(){
-		document.getElementById("audioPlayer").pause();
+		if (localStorage.getItem("smart") == 'y') {
+			document.getElementById("audioPlayer").pause();
+		}
 	};
+	document.getElementById("audioPlayer").onwaiting = function(){
+		if (localStorage.getItem("smart") == 'y') {
+			document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
+		}
+	};
+	document.getElementById("audioPlayer").addEventListener("playing", function() {
+		if (localStorage.getItem("smart") == 'y') {
+			document.getElementById("audioPlayer").play();
+		}
+	});
 }
 
 function saveSettings() {
@@ -1647,14 +1716,28 @@ function loadComments(token, opt) {
 		}
 		http.open("GET", url);
 		http.send();
-		http.timeout = 5000;
+		http.timeout = 10000;
 		http.ontimeout = () => {
-			http.ontimeout = () => {
-				if (opt == "a" | !opt) {
+			if (opt == "a" | !opt) {
+				if (!localStorage.getItem("sLoc") == "b") {
 					loadComments("none", "b");
-				} else if (opt == "b"){
+				} else {
+					document.getElementById("errorC").style.display = '';
+					document.getElementById("loadinC").style.display = 'none';
+					document.getElementById("loadedC").style.display = 'none';
+				}
+			} else if (opt == "b"){
+				if (!localStorage.getItem("sLoc") == "c") {
 					loadComments("none", "c");
-				} else if (opt == "c") {
+				} else {
+					document.getElementById("errorC").style.display = '';
+					document.getElementById("loadinC").style.display = 'none';
+					document.getElementById("loadedC").style.display = 'none';
+				}
+			} else if (opt == "c") {
+				if (!localStorage.getItem("sLoc") == "a") {
+					loadComments("none", "a");
+				} else {
 					document.getElementById("errorC").style.display = '';
 					document.getElementById("loadinC").style.display = 'none';
 					document.getElementById("loadedC").style.display = 'none';
@@ -2318,6 +2401,7 @@ function loadComments(token, opt) {
 	} else {
 		document.getElementById("loadedComments").style.display = 'none';
 		document.getElementById("loadedC").style.display = 'none';
+		document.getElementById("errorC").style.display = 'none';
 		document.getElementById("loadinC").style.display = '';
 		var id = getClickedId(window.location.href, '#w#');
 		var fullUrl = "https://youtube.com/watch?v=" + id;
@@ -2328,19 +2412,35 @@ function loadComments(token, opt) {
 			var url = "https://vidpolaris.herokuapp.com/?comments=1&token=" + token + "&url=" + fullUrl;
 		} else if (opt == "c") {
 			var url = "https://vidpolaris-europe.herokuapp.com/?comments=1&token=" + token + "&url=" + fullUrl;
-		}
+	}
 		http.open("GET", url);
 		http.send();
-		http.timeout = 5000;
+		http.timeout = 10000;
 		http.ontimeout = () => {
 			if (opt == "a" | !opt) {
-				loadComments(token, "b");
+				if (!localStorage.getItem("sLoc") == "b") {
+					loadComments("none", "b");
+				} else {
+					document.getElementById("errorC").style.display = '';
+					document.getElementById("loadinC").style.display = 'none';
+					document.getElementById("loadedC").style.display = 'none';
+				}
 			} else if (opt == "b"){
-				loadComments(token, "c");
+				if (!localStorage.getItem("sLoc") == "c") {
+					loadComments("none", "c");
+				} else {
+					document.getElementById("errorC").style.display = '';
+					document.getElementById("loadinC").style.display = 'none';
+					document.getElementById("loadedC").style.display = 'none';
+				}
 			} else if (opt == "c") {
-				document.getElementById("errorC").style.display = '';
-				document.getElementById("loadinC").style.display = 'none';
-				document.getElementById("loadedC").style.display = 'none';
+				if (!localStorage.getItem("sLoc") == "a") {
+					loadComments("none", "a");
+				} else {
+					document.getElementById("errorC").style.display = '';
+					document.getElementById("loadinC").style.display = 'none';
+					document.getElementById("loadedC").style.display = 'none';
+				}
 			}
 		}
 		http.onreadystatechange=(e)=>{
