@@ -1638,6 +1638,7 @@ function share() {
 	var id = getClickedId(window.location.href, "#w#");
 	var fullUrl = "https://n0rmancodes.github.io/vidpolaris/#w#" + id;
 	document.getElementById("fUrlShar").value = fullUrl;
+	document.getElementById("youtubeLink").value = "https://youtube.com/watch?v=" + id;
 	document.getElementById("sUrlShar").value = "[Loading...]";
 	http.open("POST", "https://rel.ink/api/links/");
 	var params = JSON.stringify({

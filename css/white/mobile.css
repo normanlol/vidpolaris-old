@@ -28,7 +28,7 @@ body {
 
 .video {
 	width:90%;
-	height:305px;
+	height:415px;
 	border-radius:10px;
 	background-color:#ececec;
 	padding:5px;
@@ -92,7 +92,7 @@ body {
 
 .largeThumb {
 	width:99%;
-	height:55%;
+	height:72%;
 	object-fit: cover;
 }
 
