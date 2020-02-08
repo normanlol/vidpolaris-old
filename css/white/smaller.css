@@ -43,7 +43,7 @@ body {
 
 .smallVideo {
 	width:30%;
-	height:255px;
+	height:285px;
 	border-radius:10px;
 	background-color:#3c3c3c;
 	padding:5px;
@@ -54,6 +54,22 @@ body {
 }
 
 .smallVideo:hover {
+	background-color:#888;
+}
+
+.altSmallVideo {
+	width:23%;
+	height:285px;
+	border-radius:10px;
+	background-color:#ececec;
+	padding:5px;
+	margin:5px;
+	float:left;
+	display: inline-block;
+	transition: background-color .5s
+}
+
+.altSmallVideo:hover {
 	background-color:#888;
 }
 
