@@ -1727,6 +1727,7 @@ function sync() {
 	document.getElementById("audioPlayer").addEventListener("playing", function() {
 		if (localStorage.getItem("smart") == 'y') {
 			document.getElementById("audioPlayer").play();
+			document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
 		}
 	});
 }
