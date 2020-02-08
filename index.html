@@ -504,7 +504,7 @@
 								</div>
 								<span style="display:none;" id="token"></span>
 								<span style="display:none;" id="prevToken"></span>
-								<button id="backComments" style="display:none;" onclick="loadComments(document.getElementById('token').innerHTML, localStorage.getItem('sLoc'));">go back</button>
+								<button id="backComments" style="display:none;" onclick="loadComments(document.getElementById('prevToken').innerHTML, localStorage.getItem('sLoc'));">go back</button>
 								<button id="moreComments" onclick="loadComments(document.getElementById('token').innerHTML, localStorage.getItem('sLoc'));">load more comments</button>
 							</div>
 						</div>
