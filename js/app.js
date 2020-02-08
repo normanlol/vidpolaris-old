@@ -862,7 +862,7 @@ function getTrending(opt) {
 		} else {
 			document.getElementById("t22").innerHTML = jsond[21].title;
 		}
-		document.getElementById("r22").src = baseUrl + jsond[21].videoId;;
+		document.getElementById("r22").src = baseUrl + jsond[21].videoId;
 		document.getElementById("a22").innerHTML = jsond[21].author;
 		document.getElementById("d22").innerHTML = jsond[21].publishedText;
 		document.getElementById("l23").href = "#w#" + jsond[22].videoId;
@@ -875,7 +875,7 @@ function getTrending(opt) {
 		document.getElementById("a23").innerHTML = jsond[22].author;
 		document.getElementById("d23").innerHTML = jsond[22].publishedText;
 		document.getElementById("l24").href = "#w#" + jsond[23].videoId;
-		document.getElementById("r24").src = jsond[23].videoThumbnails[0].url;
+		document.getElementById("r24").src = baseUrl + jsond[21].videoId;
 		document.getElementById("a24").innerHTML = jsond[23].author;
 		document.getElementById("d24").innerHTML = jsond[23].publishedText;
 		if (jsond[23].title.length >= 75) {
