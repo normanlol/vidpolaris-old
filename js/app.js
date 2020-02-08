@@ -3364,7 +3364,15 @@ function openChannel(opt) {
 				var baseUrl = "https://vidpolaris-europe.herokuapp.com/?thumb=";
 			}
 			document.getElementById("profilePic").src = jsond.authorThumbnails[0].url;
-			document.getElementById("subCount").innerHTML = jsond.subCount.toLocaleString();
+			if (!jsond.subCount == 0) {
+				document.getElementById("subCount").innerHTML = jsond.subCount.toLocaleString();
+			} else {
+				if (jsond.totalViews > 5000) {
+					document.getElementById("subCount").innerHTML = "[Disabled]";
+				} else {
+					document.getElementById("subCount").innerHTML = 0;
+				}
+			}
 			document.getElementById("viewCount").innerHTML = jsond.totalViews.toLocaleString();
 			document.getElementById("chanName").innerHTML = jsond.author;
 			document.getElementById("channelDesc").innerHTML = jsond.description;
@@ -3548,7 +3556,7 @@ function watchOnInvidious() {
 }
 
 function retry() {
-	if (localStorage.getItem("smart") === "y") {
+	if (localStorage.getItem("smart") == "y") {
 		localStorage.setItem("smart", "n");
 		openVideo(localStorage.getItem("sLoc"));
 		sessionStorage.setItem("cb", "y");
