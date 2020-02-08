@@ -1462,6 +1462,10 @@ function openVideo(opt) {
 								sessionStorage.setItem("id", id);
 								sessionStorage.setItem("time", document.getElementById("player").currentTime);
 							}
+							if (sessionStorage.getItem("cb") == "y") {
+								localStorage.setItem("smart", "n");
+								sessionStorage.removeItem("cb");
+							}
 							return;
 						}
 					} else {
@@ -1558,6 +1562,10 @@ function openVideo(opt) {
 							} else {
 								sessionStorage.setItem("id", id);
 								sessionStorage.setItem("time", document.getElementById("player").currentTime);
+							}
+							if (sessionStorage.getItem("cb") == "y") {
+								localStorage.setItem("smart", "y");
+								sessionStorage.removeItem("cb");
 							}
 						}
 					}
