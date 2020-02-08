@@ -1262,6 +1262,10 @@ function openVideo(opt) {
 						http.onreadystatechange=(e)=>{
 							document.getElementById("qSelector").style.display = '';
 							var jsond = JSON.parse(http.responseText);
+							if (!jsond.audio) {
+								openVideo(opt);
+								return;
+							}
 							var audioUrl = jsond.audio[0].url;
 							document.getElementById("audioPlayer").src = audioUrl;
 							if (jsond.video[0].isHls == true | jsond.video[0].isLive == true | jsond.video[0].isDashMPD == true) {
