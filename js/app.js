@@ -909,7 +909,7 @@ function openVideo(opt) {
 			document.getElementById("vidViewer").style.display = 'none';
 			document.getElementById("vidLoader").style.display = '';
 			document.getElementById("playerContainer").style.display = '';
-			document.getElementById("sharBox").style.display = 'none';
+			document.getElementById("sharDiv").style.display = 'none';
 			document.getElementById("qOptions").innerHTML = "";
 			if (document.getElementById("ldBtn").innerHTML == "see less") {
 				document.getElementById("ldBtn").click();
@@ -1633,23 +1633,27 @@ function longDesc() {
 }
 
 function share() {
-	document.getElementById("sharBox").style.display = '';
-	const http = new XMLHttpRequest();
-	var id = getClickedId(window.location.href, "#w#");
-	var fullUrl = "https://n0rmancodes.github.io/vidpolaris/#w#" + id;
-	document.getElementById("fUrlShar").value = fullUrl;
-	document.getElementById("youtubeLink").value = "https://youtube.com/watch?v=" + id;
-	document.getElementById("sUrlShar").value = "[Loading...]";
-	http.open("POST", "https://rel.ink/api/links/");
-	var params = JSON.stringify({
-		"url": fullUrl
-	})
-	http.setRequestHeader('Content-Type', 'application/json')
-	http.send(params);
-	http.onreadystatechange=(e)=>{
-		var jsond = JSON.parse(http.responseText);
-		var shorter = "https://rel.ink/" + jsond.hashid;
-		document.getElementById("sUrlShar").value = shorter
+	if (!document.getElementById("sharDiv").style.display == "") {
+		document.getElementById("sharDiv").style.display = '';
+		const http = new XMLHttpRequest();
+		var id = getClickedId(window.location.href, "#w#");
+		var fullUrl = "https://n0rmancodes.github.io/vidpolaris/#w#" + id;
+		document.getElementById("fUrlShar").value = fullUrl;
+		document.getElementById("youtubeLink").value = "https://youtube.com/watch?v=" + id;
+		document.getElementById("sUrlShar").value = "[Loading...]";
+		http.open("POST", "https://rel.ink/api/links/");
+		var params = JSON.stringify({
+			"url": fullUrl
+		})
+		http.setRequestHeader('Content-Type', 'application/json')
+		http.send(params);
+		http.onreadystatechange=(e)=>{
+			var jsond = JSON.parse(http.responseText);
+			var shorter = "https://rel.ink/" + jsond.hashid;
+			document.getElementById("sUrlShar").value = shorter
+		}
+	} else {
+		document.getElementById("sharDiv").style.display = 'none';
 	}
 }
 
