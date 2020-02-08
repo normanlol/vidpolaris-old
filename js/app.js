@@ -1677,6 +1677,7 @@ function sync() {
 	document.getElementById("player").addEventListener("playing", function() {
 		if (localStorage.getItem("smart") == 'y') {
 			document.getElementById("audioPlayer").play();
+			document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
 		}
 	});
 	document.getElementById("player").addEventListener("pause", function() { 
@@ -1693,7 +1694,6 @@ function sync() {
 	document.getElementById('player').addEventListener('ended', function() {
 		if (localStorage.getItem("smart") == 'y') {
 			document.getElementById("audioPlayer").pause();
-			document.getElementById("audioPlayer").currentTime = 0;
 		}
 		if (localStorage.getItem("autoplay") == 'y') {
 			if (!document.getElementById("relatedVideos").style.display == 'none') {
@@ -2430,11 +2430,14 @@ function loadComments(token, opt) {
 			} else {
 				document.getElementById("c20r").innerHTML = jsond.comments[19].numReplies;
 			}
-			if (!commentsNum > 20 | !commentsNum == 20) {
+			if (!jsond.npToken) {
 				document.getElementById("moreComments").style.display = 'none';
+				document.getElementById("lessComments").style.display = 'none';
 			} else {
 				document.getElementById("token").innerHTML = jsond.npToken;
-				document.getElementById("moreComments").style.display = '';
+				document.getElementById("prevToken").innerHTML = jsond.comments[0].id;
+				document.getElementById("backComments").style.display = 'none';
+				sessionStorage.getItem("ft", jsond.comments[0].id);
 			}
 		}
 	} else {
@@ -3129,10 +3132,18 @@ function loadComments(token, opt) {
 			} else {
 				document.getElementById("c20r").innerHTML = jsond.comments[19].numReplies;
 			}
-			if (!commentsNum > 20 | !commentsNum == 20) {
+			if (!jsond.npToken) {
 				document.getElementById("moreComments").style.display = 'none';
+				document.getElementById("lessComments").style.display = 'none';
 			} else {
 				document.getElementById("token").innerHTML = jsond.npToken;
+				document.getElementById("prevToken").innerHTML = jsond.comments[0].id;
+				document.getElementById("backComments").style.display = '';
+				if (sessionStorage.getItem("ft")) {
+					if (sessionStorage.getItem("ft") == jsond.comments[0].id) {
+						document.getElementById("backComments").style.display = 'none';
+					}
+				}
 				document.getElementById("moreComments").style.display = '';
 			}
 		}
@@ -3337,6 +3348,13 @@ function openChannel(opt) {
 			} else {
 				document.getElementById("banner").src = "img/banner.jpg";
 			}
+			if (opt == "a" | !opt) {
+				var baseUrl = "http://normandotmp4.electrohaxz.tk:9019/?thumb=";
+			} else if (opt == "b") {
+				var baseUrl = "https://vidpolaris.herokuapp.com/?thumb=";
+			} else if (opt == "c") {
+				var baseUrl = "https://vidpolaris-europe.herokuapp.com/?thumb=";
+			}
 			document.getElementById("profilePic").src = jsond.authorThumbnails[0].url;
 			document.getElementById("subCount").innerHTML = jsond.subCount.toLocaleString();
 			document.getElementById("viewCount").innerHTML = jsond.totalViews.toLocaleString();
@@ -3344,49 +3362,49 @@ function openChannel(opt) {
 			document.getElementById("channelDesc").innerHTML = jsond.description;
 			document.title = jsond.author + " | vidpolaris";
 			if (jsond.latestVideos[0]) {
-				document.getElementById("up1Th").src = jsond.latestVideos[0].videoThumbnails[0].url;
+				document.getElementById("up1Th").src = baseUrl + jsond.latestVideos[0].videoId;
 				document.getElementById("up1Ti").innerHTML = jsond.latestVideos[0].title;
 				document.getElementById("up1Da").innerHTML = jsond.latestVideos[0].publishedText;
 				document.getElementById("up1Vi").innerHTML = jsond.latestVideos[0].viewCount.toLocaleString();
 				document.getElementById("up1").href = "#w#" + jsond.latestVideos[0].videoId;
 				if (jsond.latestVideos[1]) {
-					document.getElementById("up2Th").src = jsond.latestVideos[1].videoThumbnails[0].url;
+					document.getElementById("up2Th").src = baseUrl + jsond.latestVideos[1].videoId;
 					document.getElementById("up2Ti").innerHTML = jsond.latestVideos[1].title;
 					document.getElementById("up2Da").innerHTML = jsond.latestVideos[1].publishedText;
 					document.getElementById("up2Vi").innerHTML = jsond.latestVideos[1].viewCount.toLocaleString();
 					document.getElementById("up2").href = "#w#" + jsond.latestVideos[1].videoId;
 					if (jsond.latestVideos[2]) {
-						document.getElementById("up3Th").src = jsond.latestVideos[2].videoThumbnails[0].url;
+						document.getElementById("up3Th").src = baseUrl + jsond.latestVideos[2].videoId;
 						document.getElementById("up3Ti").innerHTML = jsond.latestVideos[2].title;
 						document.getElementById("up3Da").innerHTML = jsond.latestVideos[2].publishedText;
 						document.getElementById("up3Vi").innerHTML = jsond.latestVideos[2].viewCount.toLocaleString();
 						document.getElementById("up3").href = "#w#" + jsond.latestVideos[2].videoId;
 						if (jsond.latestVideos[3]) {
-							document.getElementById("up4Th").src = jsond.latestVideos[3].videoThumbnails[0].url;
+							document.getElementById("up4Th").src = baseUrl + jsond.latestVideos[3].videoId;
 							document.getElementById("up4Ti").innerHTML = jsond.latestVideos[3].title;
 							document.getElementById("up4Da").innerHTML = jsond.latestVideos[3].publishedText;
 							document.getElementById("up4Vi").innerHTML = jsond.latestVideos[3].viewCount.toLocaleString();
 							document.getElementById("up4").href = "#w#" + jsond.latestVideos[3].videoId;
 							if (jsond.latestVideos[4]) {
-								document.getElementById("up5Th").src = jsond.latestVideos[4].videoThumbnails[0].url;
+								document.getElementById("up5Th").src = baseUrl + jsond.latestVideos[4].videoId;
 								document.getElementById("up5Ti").innerHTML = jsond.latestVideos[4].title;
 								document.getElementById("up5Da").innerHTML = jsond.latestVideos[4].publishedText;
 								document.getElementById("up5Vi").innerHTML = jsond.latestVideos[4].viewCount.toLocaleString();
 								document.getElementById("up5").href = "#w#" + jsond.latestVideos[4].videoId;
 								if (jsond.latestVideos[5]) {
-									document.getElementById("up6Th").src = jsond.latestVideos[5].videoThumbnails[0].url;
+									document.getElementById("up6Th").src = baseUrl + jsond.latestVideos[5].videoId;
 									document.getElementById("up6Ti").innerHTML = jsond.latestVideos[5].title;
 									document.getElementById("up6Da").innerHTML = jsond.latestVideos[5].publishedText;
 									document.getElementById("up6Vi").innerHTML = jsond.latestVideos[5].viewCount.toLocaleString();
 									document.getElementById("up6").href = "#w#" + jsond.latestVideos[5].videoId;
 									if (jsond.latestVideos[6]) {
-										document.getElementById("up7Th").src = jsond.latestVideos[6].videoThumbnails[0].url;
+										document.getElementById("up7Th").src = baseUrl + jsond.latestVideos[6].videoId;
 										document.getElementById("up7Ti").innerHTML = jsond.latestVideos[6].title;
 										document.getElementById("up7Da").innerHTML = jsond.latestVideos[6].publishedText;
 										document.getElementById("up7Vi").innerHTML = jsond.latestVideos[6].viewCount.toLocaleString();
 										document.getElementById("up7").href = "#w#" + jsond.latestVideos[6].videoId;
 										if (jsond.latestVideos[7]) {
-											document.getElementById("up8Th").src = jsond.latestVideos[7].videoThumbnails[0].url;
+											document.getElementById("up8Th").src = baseUrl + jsond.latestVideos[7].videoId;
 											document.getElementById("up8Ti").innerHTML = jsond.latestVideos[7].title;
 											document.getElementById("up8Da").innerHTML = jsond.latestVideos[7].publishedText;
 											document.getElementById("up8Vi").innerHTML = jsond.latestVideos[7].viewCount.toLocaleString();
