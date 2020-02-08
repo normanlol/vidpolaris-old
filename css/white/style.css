@@ -91,7 +91,7 @@ body {
 
 .smallThumb {
 	width:45%;
-	height:auto;
+	height:312px;
 	object-fit: cover;
 }
 

@@ -80,7 +80,7 @@ body {
 
 .smallThumb {
 	width:45%;
-	height:auto;
+	height:220px;
 	object-fit: cover;
 }
 

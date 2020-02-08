@@ -308,9 +308,16 @@ function search(opt) {
 			return;
 		}
 		if (jsond.searchResults.items[0]) {
+			if (opt == "a" | !opt) {
+				var baseUrl = "http://normandotmp4.electrohaxz.tk:9019/?thumb=";
+			} else if (opt == "b") {
+				var baseUrl = "https://vidpolaris.herokuapp.com/?thumb=";
+			} else if (opt == "c") {
+				var baseUrl = "https://vidpolaris-europe.herokuapp.com/?thumb=";
+			}
 			document.getElementById("re01").style.display = '';
 			var r01L = "#w#" + jsond.searchResults.items[0].link.substring(32);
-			var r01Th = jsond.searchResults.items[0].thumbnail;
+			var r01Th = baseUrl + jsond.searchResults.items[0].link.substring(32);
 			var r01Au = jsond.searchResults.items[0].author.name;
 			var r01Ti = jsond.searchResults.items[0].title;
 			var r01Da = jsond.searchResults.items[0].uploaded_at;
@@ -332,7 +339,7 @@ function search(opt) {
 			if (jsond.searchResults.items[1]) {
 				document.getElementById("re02").style.display = '';
 				var r02L = "#w#" + jsond.searchResults.items[1].link.substring(32);
-				var r02Th = jsond.searchResults.items[1].thumbnail;
+				var r02Th = baseUrl + jsond.searchResults.items[1].link.substring(32);
 				var r02Au = jsond.searchResults.items[1].author.name;
 				var r02Ti = jsond.searchResults.items[1].title;
 				var r02Da = jsond.searchResults.items[1].uploaded_at;
@@ -354,7 +361,7 @@ function search(opt) {
 				if (jsond.searchResults.items[2]) {
 					document.getElementById("re03").style.display = '';
 					var r03L = "#w#" + jsond.searchResults.items[2].link.substring(32);
-					var r03Th = jsond.searchResults.items[2].thumbnail;
+					var r03Th = baseUrl + jsond.searchResults.items[2].link.substring(32);;
 					var r03Au = jsond.searchResults.items[2].author.name;
 					var r03Ti = jsond.searchResults.items[2].title;
 					var r03Da = jsond.searchResults.items[2].uploaded_at;
@@ -376,7 +383,7 @@ function search(opt) {
 					if (jsond.searchResults.items[3]) {
 						document.getElementById("re04").style.display = '';
 						var r04L = "#w#" + jsond.searchResults.items[3].link.substring(32);
-						var r04Th = jsond.searchResults.items[3].thumbnail;
+						var r04Th = baseUrl + jsond.searchResults.items[3].link.substring(32);;
 						var r04Au = jsond.searchResults.items[3].author.name;
 						var r04Ti = jsond.searchResults.items[3].title;
 						var r04Da = jsond.searchResults.items[3].uploaded_at;
@@ -398,7 +405,7 @@ function search(opt) {
 						if (jsond.searchResults.items[4]) {
 							document.getElementById("re05").style.display = '';
 							var r05L = "#w#" + jsond.searchResults.items[4].link.substring(32);
-							var r05Th = jsond.searchResults.items[4].thumbnail;
+							var r05Th = baseUrl + jsond.searchResults.items[4].link.substring(32);;
 							var r05Au = jsond.searchResults.items[4].author.name;
 							var r05Ti = jsond.searchResults.items[4].title;
 							var r05Da = jsond.searchResults.items[4].uploaded_at;
@@ -420,7 +427,7 @@ function search(opt) {
 							if (jsond.searchResults.items[5]) {
 								document.getElementById("re06").style.display = '';
 								var r06L = "#w#" + jsond.searchResults.items[5].link.substring(32);
-								var r06Th = jsond.searchResults.items[5].thumbnail;
+								var r06Th = baseUrl + jsond.searchResults.items[5].link.substring(32);;
 								var r06Au = jsond.searchResults.items[5].author.name;
 								var r06Ti = jsond.searchResults.items[5].title;
 								var r06Da = jsond.searchResults.items[5].uploaded_at;
@@ -442,7 +449,7 @@ function search(opt) {
 								if (jsond.searchResults.items[6]) {
 									document.getElementById("re07").style.display = '';
 									var r07L = "#w#" + jsond.searchResults.items[6].link.substring(32);
-									var r07Th = jsond.searchResults.items[6].thumbnail;
+									var r07Th = baseUrl + jsond.searchResults.items[6].link.substring(32);;
 									var r07Au = jsond.searchResults.items[6].author.name;
 									var r07Ti = jsond.searchResults.items[6].title;
 									var r07Da = jsond.searchResults.items[6].uploaded_at;
@@ -464,7 +471,7 @@ function search(opt) {
 									document.getElementById("re07Vi").innerHTML = r07Vi;
 									if (jsond.searchResults.items[7]) {
 										var r08L = "#w#" + jsond.searchResults.items[7].link.substring(32);
-										var r08Th = jsond.searchResults.items[7].thumbnail;
+										var r08Th = baseUrl + jsond.searchResults.items[7].link.substring(32);;
 										var r08Au = jsond.searchResults.items[7].author.name;
 										var r08Ti = jsond.searchResults.items[7].title;
 										var r08Da = jsond.searchResults.items[7].uploaded_at;
@@ -486,7 +493,7 @@ function search(opt) {
 										if (jsond.searchResults[8]) {
 											document.getElementById("re09").style.display = '';
 											var r09L = "#w#" + jsond.searchResults.items[8].link.substring(32);
-											var r09Th = jsond.searchResults.items[8].thumbnail;
+											var r09Th = baseUrl + jsond.searchResults.items[8].link.substring(32);;
 											var r09Au = jsond.searchResults.items[8].author.name;
 											var r09Ti = jsond.searchResults.items[8].title;
 											var r09Da = jsond.searchResults.items[8].uploaded_at;
@@ -508,7 +515,7 @@ function search(opt) {
 											if (jsond.searchResults.items[9]) {
 												document.getElementById("re10").style.display = '';
 												var r10L = "#w#" + jsond.searchResults.items[9].link.substring(32);
-												var r10Th = jsond.searchResults.items[9].thumbnail;
+												var r10Th = baseUrl + jsond.searchResults.items[9].link.substring(32);;
 												var r10Au = jsond.searchResults.items[9].author.name;
 												var r10Ti = jsond.searchResults.items[9].title;
 												var r10Da = jsond.searchResults.items[9].uploaded_at;
@@ -637,18 +644,36 @@ function getTrending(opt) {
 	} else if (opt == "c") {
 		var url = "https://vidpolaris-europe.herokuapp.com/?trending=us";
 	}
-	var url = "https://coorsproxyunlimited.herokuapp.com/https://invidio.us/api/v1/trending"
 	http.open("GET", url);
 	http.send();
 	http.onreadystatechange=(e)=>{
 		var jsond = JSON.parse(http.responseText);
+		if (!jsond[0]) {
+			if (opt == "a" | !opt) {
+				getTrending("b");
+				return;
+			} else if (opt == "b") {
+				getTrending("c");
+				return;
+			} else if (opt == "c") {
+				getTrending("a");
+				return;
+			}
+		}
+		if (opt == "a") {
+			var baseUrl = "http://normandotmp4.electrohaxz.tk:9019/?thumb=";
+		} else if (opt == "b") {
+			var baseUrl = "https://vidpolaris.herokuapp.com/?thumb=";
+		} else if (opt == "c") {
+			var baseUrl = "https://vidpolaris-europe.herokuapp.com/?thumb=";
+		}	
 		if (jsond[0].title.length >= 75) {
 			document.getElementById("t1").innerHTML = jsond[0].title.substring(0,75) + "...";
 		} else {
 			document.getElementById("t1").innerHTML = jsond[0].title;
 		}
 		document.getElementById("l1").href = "#w#" + jsond[0].videoId;
-		document.getElementById("r1").src = jsond[0].videoThumbnails[0].url;
+		document.getElementById("r1").src = baseUrl + jsond[0].videoId;
 		document.getElementById("a1").innerHTML = jsond[0].author;
 		document.getElementById("d1").innerHTML = jsond[0].publishedText;
 		if (jsond[1].title.length >= 75) {
@@ -657,7 +682,7 @@ function getTrending(opt) {
 			document.getElementById("t2").innerHTML = jsond[1].title;
 		}
 		document.getElementById("l2").href = "#w#" + jsond[1].videoId;
-		document.getElementById("r2").src = jsond[1].videoThumbnails[0].url;
+		document.getElementById("r2").src = baseUrl + jsond[1].videoId;;
 		document.getElementById("a2").innerHTML = jsond[1].author;
 		document.getElementById("d2").innerHTML = jsond[1].publishedText;
 		if (jsond[2].title.length >= 75) {
@@ -666,7 +691,7 @@ function getTrending(opt) {
 			document.getElementById("t3").innerHTML = jsond[2].title;
 		}
 		document.getElementById("l3").href = "#w#" + jsond[2].videoId;
-		document.getElementById("r3").src = jsond[2].videoThumbnails[0].url;
+		document.getElementById("r3").src = baseUrl + jsond[2].videoId;;
 		document.getElementById("a3").innerHTML = jsond[2].author;
 		document.getElementById("d3").innerHTML = jsond[2].publishedText;
 		if (jsond[3].title.length >= 75) {
@@ -675,7 +700,7 @@ function getTrending(opt) {
 			document.getElementById("t4").innerHTML = jsond[3].title;
 		}
 		document.getElementById("l4").href = "#w#" + jsond[3].videoId;
-		document.getElementById("r4").src = jsond[3].videoThumbnails[0].url;
+		document.getElementById("r4").src = baseUrl + jsond[3].videoId;;
 		document.getElementById("a4").innerHTML = jsond[3].author;
 		document.getElementById("d4").innerHTML = jsond[3].publishedText;
 		if (jsond[3].title.length >= 75) {
@@ -684,7 +709,7 @@ function getTrending(opt) {
 			document.getElementById("t5").innerHTML = jsond[4].title;
 		}
 		document.getElementById("l5").href = "#w#" + jsond[4].videoId;
-		document.getElementById("r5").src = jsond[4].videoThumbnails[0].url;
+		document.getElementById("r5").src = baseUrl + jsond[4].videoId;;
 		document.getElementById("a5").innerHTML = jsond[4].author;
 		document.getElementById("d5").innerHTML = jsond[4].publishedText;
 		if (jsond[5].title.length >= 75) {
@@ -693,7 +718,7 @@ function getTrending(opt) {
 			document.getElementById("t6").innerHTML = jsond[5].title;
 		}
 		document.getElementById("l6").href = "#w#" + jsond[5].videoId;
-		document.getElementById("r6").src = jsond[5].videoThumbnails[0].url;
+		document.getElementById("r6").src = baseUrl + jsond[5].videoId;;
 		document.getElementById("a6").innerHTML = jsond[5].author;
 		document.getElementById("d6").innerHTML = jsond[5].publishedText;
 		if (jsond[6].title.length >= 75) {
@@ -702,7 +727,7 @@ function getTrending(opt) {
 			document.getElementById("t7").innerHTML = jsond[6].title;
 		}
 		document.getElementById("l7").href = "#w#" + jsond[6].videoId;
-		document.getElementById("r7").src = jsond[6].videoThumbnails[0].url;
+		document.getElementById("r7").src = baseUrl + jsond[6].videoId;;
 		document.getElementById("a7").innerHTML = jsond[6].author;
 		document.getElementById("d7").innerHTML = jsond[6].publishedText;
 		if (jsond[7].title.length >= 75) {
@@ -711,7 +736,7 @@ function getTrending(opt) {
 			document.getElementById("t8").innerHTML = jsond[7].title;
 		}
 		document.getElementById("l8").href = "#w#" + jsond[7].videoId;
-		document.getElementById("r8").src = jsond[7].videoThumbnails[0].url;
+		document.getElementById("r8").src = baseUrl + jsond[7].videoId;;
 		document.getElementById("a8").innerHTML = jsond[7].author;
 		document.getElementById("d8").innerHTML = jsond[7].publishedText;
 		if (jsond[8].title.length >= 75) {
@@ -720,7 +745,7 @@ function getTrending(opt) {
 			document.getElementById("t9").innerHTML = jsond[8].title;
 		}
 		document.getElementById("l9").href = "#w#" + jsond[8].videoId;
-		document.getElementById("r9").src = jsond[8].videoThumbnails[0].url;
+		document.getElementById("r9").src = baseUrl + jsond[8].videoId;
 		document.getElementById("a9").innerHTML = jsond[8].author;
 		document.getElementById("d9").innerHTML = jsond[8].publishedText;
 		if (jsond[9].title.length >= 75) {
@@ -729,7 +754,7 @@ function getTrending(opt) {
 			document.getElementById("t10").innerHTML = jsond[9].title;
 		}
 		document.getElementById("l10").href = "#w#" + jsond[9].videoId;
-		document.getElementById("r10").src = jsond[9].videoThumbnails[0].url;
+		document.getElementById("r10").src = baseUrl + jsond[9].videoId;;
 		document.getElementById("a10").innerHTML = jsond[9].author;
 		document.getElementById("d10").innerHTML = jsond[9].publishedText;
 		if (jsond[10].title.length >= 75) {
@@ -738,7 +763,7 @@ function getTrending(opt) {
 			document.getElementById("t11").innerHTML = jsond[10].title;
 		}
 		document.getElementById("l11").href = "#w#" + jsond[10].videoId;
-		document.getElementById("r11").src = jsond[10].videoThumbnails[0].url;
+		document.getElementById("r11").src = baseUrl + jsond[10].videoId;;
 		document.getElementById("a11").innerHTML = jsond[10].author;
 		document.getElementById("d11").innerHTML = jsond[10].publishedText;
 		if (jsond[11].title.length >= 75) {
@@ -747,7 +772,7 @@ function getTrending(opt) {
 			document.getElementById("t12").innerHTML = jsond[11].title;
 		}
 		document.getElementById("l12").href = "#w#" + jsond[11].videoId;
-		document.getElementById("r12").src = jsond[11].videoThumbnails[0].url;
+		document.getElementById("r12").src = baseUrl + jsond[11].videoId;;
 		document.getElementById("a12").innerHTML = jsond[11].author;
 		document.getElementById("d12").innerHTML = jsond[11].publishedText;
 		document.getElementById("l13").href = "#w#" + jsond[12].videoId;
@@ -756,7 +781,7 @@ function getTrending(opt) {
 		} else {
 			document.getElementById("t13").innerHTML = jsond[12].title;
 		}
-		document.getElementById("r13").src = jsond[12].videoThumbnails[0].url;
+		document.getElementById("r13").src = baseUrl + jsond[12].videoId;;
 		document.getElementById("a13").innerHTML = jsond[12].author;
 		document.getElementById("d13").innerHTML = jsond[12].publishedText;
 		document.getElementById("l14").href = "#w#" + jsond[13].videoId;
@@ -765,7 +790,7 @@ function getTrending(opt) {
 		} else {
 			document.getElementById("t14").innerHTML = jsond[13].title;
 		}
-		document.getElementById("r14").src = jsond[13].videoThumbnails[0].url;
+		document.getElementById("r14").src = baseUrl + jsond[13].videoId;;
 		document.getElementById("a14").innerHTML = jsond[13].author;
 		document.getElementById("d14").innerHTML = jsond[13].publishedText;
 		document.getElementById("l15").href = "#w#" + jsond[14].videoId;
@@ -774,7 +799,7 @@ function getTrending(opt) {
 		} else {
 			document.getElementById("t15").innerHTML = jsond[14].title;
 		}
-		document.getElementById("r15").src = jsond[14].videoThumbnails[0].url;
+		document.getElementById("r15").src = baseUrl + jsond[14].videoId;;
 		document.getElementById("a15").innerHTML = jsond[14].author;
 		document.getElementById("d15").innerHTML = jsond[14].publishedText;
 		document.getElementById("l16").href = "#w#" + jsond[15].videoId;
@@ -783,7 +808,7 @@ function getTrending(opt) {
 		} else {
 			document.getElementById("t16").innerHTML = jsond[15].title;
 		}
-		document.getElementById("r16").src = jsond[15].videoThumbnails[0].url;
+		document.getElementById("r16").src = baseUrl + jsond[15].videoId;;
 		document.getElementById("a16").innerHTML = jsond[15].author;
 		document.getElementById("d16").innerHTML = jsond[15].publishedText;
 		document.getElementById("l17").href = "#w#" + jsond[16].videoId;
@@ -792,7 +817,7 @@ function getTrending(opt) {
 		} else {
 			document.getElementById("t17").innerHTML = jsond[16].title;
 		}
-		document.getElementById("r17").src = jsond[16].videoThumbnails[0].url;
+		document.getElementById("r17").src = baseUrl + jsond[16].videoId;;
 		document.getElementById("a17").innerHTML = jsond[16].author;
 		document.getElementById("d17").innerHTML = jsond[16].publishedText;
 		document.getElementById("l18").href = "#w#" + jsond[17].videoId;
@@ -801,7 +826,7 @@ function getTrending(opt) {
 		} else {
 			document.getElementById("t18").innerHTML = jsond[17].title;
 		}
-		document.getElementById("r18").src = jsond[17].videoThumbnails[0].url;
+		document.getElementById("r18").src = baseUrl + jsond[17].videoId;
 		document.getElementById("a18").innerHTML = jsond[17].author;
 		document.getElementById("d18").innerHTML = jsond[17].publishedText;
 		document.getElementById("l19").href = "#w#" + jsond[18].videoId;
@@ -810,7 +835,7 @@ function getTrending(opt) {
 		} else {
 			document.getElementById("t19").innerHTML = jsond[18].title;
 		}
-		document.getElementById("r19").src = jsond[18].videoThumbnails[0].url;
+		document.getElementById("r19").src = baseUrl + jsond[18].videoId;;
 		document.getElementById("a19").innerHTML = jsond[18].author;
 		document.getElementById("d19").innerHTML = jsond[18].publishedText;
 		document.getElementById("l20").href = "#w#" + jsond[19].videoId;
@@ -819,7 +844,7 @@ function getTrending(opt) {
 		} else {
 			document.getElementById("t20").innerHTML = jsond[19].title;
 		}
-		document.getElementById("r20").src = jsond[19].videoThumbnails[0].url;
+		document.getElementById("r20").src = baseUrl + jsond[19].videoId;;
 		document.getElementById("a20").innerHTML = jsond[19].author;
 		document.getElementById("d20").innerHTML = jsond[19].publishedText;
 		document.getElementById("l21").href = "#w#" + jsond[20].videoId;
@@ -828,7 +853,7 @@ function getTrending(opt) {
 		} else {
 			document.getElementById("t21").innerHTML = jsond[20].title;
 		}
-		document.getElementById("r21").src = jsond[20].videoThumbnails[0].url;
+		document.getElementById("r21").src = baseUrl + jsond[20].videoId;
 		document.getElementById("a21").innerHTML = jsond[20].author;
 		document.getElementById("d21").innerHTML = jsond[20].publishedText;
 		document.getElementById("l22").href = "#w#" + jsond[21].videoId;
@@ -837,7 +862,7 @@ function getTrending(opt) {
 		} else {
 			document.getElementById("t22").innerHTML = jsond[21].title;
 		}
-		document.getElementById("r22").src = jsond[21].videoThumbnails[0].url;
+		document.getElementById("r22").src = baseUrl + jsond[21].videoId;;
 		document.getElementById("a22").innerHTML = jsond[21].author;
 		document.getElementById("d22").innerHTML = jsond[21].publishedText;
 		document.getElementById("l23").href = "#w#" + jsond[22].videoId;
@@ -846,7 +871,7 @@ function getTrending(opt) {
 		} else {
 			document.getElementById("t23").innerHTML = jsond[22].title;
 		}
-		document.getElementById("r23").src = jsond[22].videoThumbnails[0].url;
+		document.getElementById("r23").src = baseUrl + jsond[22].videoId;;
 		document.getElementById("a23").innerHTML = jsond[22].author;
 		document.getElementById("d23").innerHTML = jsond[22].publishedText;
 		document.getElementById("l24").href = "#w#" + jsond[23].videoId;
@@ -1336,7 +1361,14 @@ function openVideo(opt) {
 							document.getElementById("player").src = videoUrl;
 							document.getElementById("qOptions").value = document.getElementById("itag").innerHTML;
 							document.getElementById("vidLoader").style.display = 'none';
-							document.getElementById("player").poster = thum;
+							if (opt == "a" | !opt) {
+								var tUrl = "http://normandotmp4.electrohaxz.tk:9019/?thumb=" + getClickedId(window.location.href, "#w#");
+							} else if (opt == "b"){
+								var tUrl = "https://vidpolaris.herokuapp.com/?thumb=" + getClickedId(window.location.href, "#w#");
+							} else if (opt == "c") {
+								var tUrl = "https://vidpolaris-europe.herokuapp.com/?thumb=" + getClickedId(window.location.href, "#w#");
+							}
+							document.getElementById("player").poster = tUrl;
 							document.getElementById("title").innerHTML = titl;
 							document.title = titl +  " | vidpolaris";
 							if (desc.length > 300) {
@@ -1355,7 +1387,6 @@ function openVideo(opt) {
 							document.getElementById("pubM").innerHTML = month;
 							document.getElementById("pubY").innerHTML = year;
 							document.getElementById("pubD").innerHTML = day;
-							
 							if (opt == "a" | !opt) {
 								var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?md=1&url=" + fullUrl;
 							} else if (opt == "b"){
@@ -1438,7 +1469,14 @@ function openVideo(opt) {
 						document.getElementById("vidViewer").style.display = '';
 						document.getElementById("vidLoader").style.display = 'none';
 						document.getElementById("player").src = wUrl;
-						document.getElementById("player").poster = thum;
+						if (opt == "a" | !opt) {
+							var tUrl = "http://normandotmp4.electrohaxz.tk:9019/?thumb=" + getClickedId(window.location.href, "#w#");
+						} else if (opt == "b"){
+							var tUrl = "https://vidpolaris.herokuapp.com/?thumb=" + getClickedId(window.location.href, "#w#");
+						} else if (opt == "c") {
+							var tUrl = "https://vidpolaris-europe.herokuapp.com/?thumb=" + getClickedId(window.location.href, "#w#");
+						}
+						document.getElementById("player").poster = tUrl;
 						document.getElementById("title").innerHTML = titl;
 						document.title = titl +  " | vidpolaris";
 						if (desc.length > 300) {
@@ -1567,6 +1605,7 @@ function home() {
 	document.getElementById("helpOut").style.display = 'none';
 	document.getElementById("bannerPfpContainer").style.display = 'none';
 	document.title = "vidpolaris";
+	getTrending(localStorage.getItem("sLoc"));
 }
 
 function longDesc() {
