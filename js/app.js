@@ -2246,6 +2246,7 @@ function loadComments(token, opt) {
 			document.getElementById("c01p").src = jsond.comments[0].authorThumb;
 			document.getElementById("c01c").innerHTML = jsond.comments[0].text.replace(/\n/g, "<br>");
 			document.getElementById("c01a").innerHTML = jsond.comments[0].author;
+			document.getElementById("c01aL").href = "#c#" + jsond.comments[0].authorLink.substring(9);
 			document.getElementById("c01l").innerHTML = jsond.comments[0].likes.toLocaleString();
 			document.getElementById("c01t").innerHTML = jsond.comments[0].time;
 			if (!jsond.comments[0].numReplies) {
@@ -2256,6 +2257,7 @@ function loadComments(token, opt) {
 			document.getElementById("c02p").src = jsond.comments[1].authorThumb;
 			document.getElementById("c02c").innerHTML = jsond.comments[1].text.replace(/\n/g, "<br>");
 			document.getElementById("c02a").innerHTML = jsond.comments[1].author;
+			document.getElementById("c02aL").href = "#c#" + jsond.comments[1].authorLink.substring(9);
 			document.getElementById("c02l").innerHTML = jsond.comments[1].likes.toLocaleString();
 			document.getElementById("c02t").innerHTML = jsond.comments[1].time;
 			if (!jsond.comments[1].numReplies) {
@@ -2266,6 +2268,7 @@ function loadComments(token, opt) {
 			document.getElementById("c03p").src = jsond.comments[2].authorThumb;
 			document.getElementById("c03c").innerHTML = jsond.comments[2].text.replace(/\n/g, "<br>");
 			document.getElementById("c03a").innerHTML = jsond.comments[2].author;
+			document.getElementById("c03aL").href = "#c#" + jsond.comments[2].authorLink.substring(9);
 			document.getElementById("c03l").innerHTML = jsond.comments[2].likes.toLocaleString();
 			document.getElementById("c03t").innerHTML = jsond.comments[2].time;
 			if (!jsond.comments[2].numReplies) {
@@ -2276,6 +2279,7 @@ function loadComments(token, opt) {
 			document.getElementById("c04p").src = jsond.comments[3].authorThumb;
 			document.getElementById("c04c").innerHTML = jsond.comments[3].text.replace(/\n/g, "<br>");
 			document.getElementById("c04a").innerHTML = jsond.comments[3].author;
+			document.getElementById("c04aL").href = "#c#" + jsond.comments[3].authorLink.substring(9);
 			document.getElementById("c04l").innerHTML = jsond.comments[3].likes.toLocaleString();
 			document.getElementById("c04t").innerHTML = jsond.comments[3].time;
 			if (!jsond.comments[3].numReplies) {
@@ -2286,6 +2290,7 @@ function loadComments(token, opt) {
 			document.getElementById("c05p").src = jsond.comments[4].authorThumb;
 			document.getElementById("c05c").innerHTML = jsond.comments[4].text.replace(/\n/g, "<br>");
 			document.getElementById("c05a").innerHTML = jsond.comments[4].author;
+			document.getElementById("c05aL").href = "#c#" + jsond.comments[4].authorLink.substring(9);
 			document.getElementById("c05l").innerHTML = jsond.comments[4].likes.toLocaleString();
 			document.getElementById("c05t").innerHTML = jsond.comments[4].time;
 			if (!jsond.comments[4].numReplies) {
@@ -2296,6 +2301,7 @@ function loadComments(token, opt) {
 			document.getElementById("c06p").src = jsond.comments[5].authorThumb;
 			document.getElementById("c06c").innerHTML = jsond.comments[5].text.replace(/\n/g, "<br>");
 			document.getElementById("c06a").innerHTML = jsond.comments[5].author;
+			document.getElementById("c06aL").href = "#c#" + jsond.comments[5].authorLink.substring(9);
 			document.getElementById("c06l").innerHTML = jsond.comments[5].likes.toLocaleString();
 			document.getElementById("c06t").innerHTML = jsond.comments[5].time;
 			if (!jsond.comments[5].numReplies) {
@@ -2306,6 +2312,7 @@ function loadComments(token, opt) {
 			document.getElementById("c07p").src = jsond.comments[6].authorThumb;
 			document.getElementById("c07c").innerHTML = jsond.comments[6].text.replace(/\n/g, "<br>");
 			document.getElementById("c07a").innerHTML = jsond.comments[6].author;
+			document.getElementById("c07aL").href = "#c#" + jsond.comments[6].authorLink.substring(9);
 			document.getElementById("c07l").innerHTML = jsond.comments[6].likes.toLocaleString();
 			document.getElementById("c07t").innerHTML = jsond.comments[6].time;
 			if (!jsond.comments[6].numReplies) {
@@ -2316,6 +2323,7 @@ function loadComments(token, opt) {
 			document.getElementById("c08p").src = jsond.comments[7].authorThumb;
 			document.getElementById("c08c").innerHTML = jsond.comments[7].text.replace(/\n/g, "<br>");
 			document.getElementById("c08a").innerHTML = jsond.comments[7].author;
+			document.getElementById("c08aL").href = "#c#" + jsond.comments[7].authorLink.substring(9);
 			document.getElementById("c08l").innerHTML = jsond.comments[7].likes.toLocaleString();
 			document.getElementById("c08t").innerHTML = jsond.comments[7].time;
 			if (!jsond.comments[7].numReplies) {
@@ -2326,6 +2334,7 @@ function loadComments(token, opt) {
 			document.getElementById("c09p").src = jsond.comments[8].authorThumb;
 			document.getElementById("c09c").innerHTML = jsond.comments[8].text.replace(/\n/g, "<br>");
 			document.getElementById("c09a").innerHTML = jsond.comments[8].author;
+			document.getElementById("c09aL").href = "#c#" + jsond.comments[8].authorLink.substring(9);
 			document.getElementById("c09l").innerHTML = jsond.comments[8].likes.toLocaleString();
 			document.getElementById("c09t").innerHTML = jsond.comments[8].time;
 			if (!jsond.comments[8].numReplies) {
@@ -2336,6 +2345,7 @@ function loadComments(token, opt) {
 			document.getElementById("c10p").src = jsond.comments[9].authorThumb;
 			document.getElementById("c10c").innerHTML = jsond.comments[9].text.replace(/\n/g, "<br>");
 			document.getElementById("c10a").innerHTML = jsond.comments[9].author;
+			document.getElementById("c10aL").href = "#c#" + jsond.comments[9].authorLink.substring(9);
 			document.getElementById("c10l").innerHTML = jsond.comments[9].likes.toLocaleString();
 			document.getElementById("c10t").innerHTML = jsond.comments[9].time;
 			if (!jsond.comments[9].numReplies) {
@@ -2346,6 +2356,7 @@ function loadComments(token, opt) {
 			document.getElementById("c11p").src = jsond.comments[10].authorThumb;
 			document.getElementById("c11c").innerHTML = jsond.comments[10].text.replace(/\n/g, "<br>");
 			document.getElementById("c11a").innerHTML = jsond.comments[10].author;
+			document.getElementById("c11aL").href = "#c#" + jsond.comments[10].authorLink.substring(9);
 			document.getElementById("c11l").innerHTML = jsond.comments[10].likes.toLocaleString();
 			document.getElementById("c11t").innerHTML = jsond.comments[10].time;
 			if (!jsond.comments[10].numReplies) {
@@ -2356,6 +2367,7 @@ function loadComments(token, opt) {
 			document.getElementById("c12p").src = jsond.comments[11].authorThumb;
 			document.getElementById("c12c").innerHTML = jsond.comments[11].text.replace(/\n/g, "<br>");
 			document.getElementById("c12a").innerHTML = jsond.comments[11].author;
+			document.getElementById("c12aL").href = "#c#" + jsond.comments[11].authorLink.substring(9);
 			document.getElementById("c12l").innerHTML = jsond.comments[11].likes.toLocaleString();
 			document.getElementById("c12t").innerHTML = jsond.comments[11].time;
 			if (!jsond.comments[11].numReplies) {
@@ -2366,6 +2378,7 @@ function loadComments(token, opt) {
 			document.getElementById("c13p").src = jsond.comments[12].authorThumb;
 			document.getElementById("c13c").innerHTML = jsond.comments[12].text.replace(/\n/g, "<br>");
 			document.getElementById("c13a").innerHTML = jsond.comments[12].author;
+			document.getElementById("c13aL").href = "#c#" + jsond.comments[12].authorLink.substring(9);
 			document.getElementById("c13l").innerHTML = jsond.comments[12].likes.toLocaleString();
 			document.getElementById("c13t").innerHTML = jsond.comments[12].time;
 			if (!jsond.comments[12].numReplies) {
@@ -2376,6 +2389,7 @@ function loadComments(token, opt) {
 			document.getElementById("c14p").src = jsond.comments[13].authorThumb;
 			document.getElementById("c14c").innerHTML = jsond.comments[13].text.replace(/\n/g, "<br>");
 			document.getElementById("c14a").innerHTML = jsond.comments[13].author;
+			document.getElementById("c14aL").href = "#c#" + jsond.comments[13].authorLink.substring(9);
 			document.getElementById("c14l").innerHTML = jsond.comments[13].likes.toLocaleString();
 			document.getElementById("c14t").innerHTML = jsond.comments[13].time;
 			if (!jsond.comments[13].numReplies) {
@@ -2386,6 +2400,7 @@ function loadComments(token, opt) {
 			document.getElementById("c15p").src = jsond.comments[14].authorThumb;
 			document.getElementById("c15c").innerHTML = jsond.comments[14].text.replace(/\n/g, "<br>");
 			document.getElementById("c15a").innerHTML = jsond.comments[14].author;
+			document.getElementById("c15aL").href = "#c#" + jsond.comments[14].authorLink.substring(9);
 			document.getElementById("c15l").innerHTML = jsond.comments[14].likes.toLocaleString();
 			document.getElementById("c15t").innerHTML = jsond.comments[14].time;
 			if (!jsond.comments[14].numReplies) {
@@ -2396,6 +2411,7 @@ function loadComments(token, opt) {
 			document.getElementById("c16p").src = jsond.comments[15].authorThumb;
 			document.getElementById("c16c").innerHTML = jsond.comments[15].text.replace(/\n/g, "<br>");
 			document.getElementById("c16a").innerHTML = jsond.comments[15].author;
+			document.getElementById("c16aL").href = "#c#" + jsond.comments[15].authorLink.substring(9);
 			document.getElementById("c16l").innerHTML = jsond.comments[15].likes.toLocaleString();
 			document.getElementById("c16t").innerHTML = jsond.comments[15].time;
 			if (!jsond.comments[15].numReplies) {
@@ -2406,6 +2422,7 @@ function loadComments(token, opt) {
 			document.getElementById("c17p").src = jsond.comments[16].authorThumb;
 			document.getElementById("c17c").innerHTML = jsond.comments[16].text.replace(/\n/g, "<br>");
 			document.getElementById("c17a").innerHTML = jsond.comments[16].author;
+			document.getElementById("c17aL").href = "#c#" + jsond.comments[16].authorLink.substring(9);
 			document.getElementById("c17l").innerHTML = jsond.comments[16].likes.toLocaleString();
 			document.getElementById("c17t").innerHTML = jsond.comments[16].time;
 			if (!jsond.comments[16].numReplies) {
@@ -2416,6 +2433,7 @@ function loadComments(token, opt) {
 			document.getElementById("c18p").src = jsond.comments[17].authorThumb;
 			document.getElementById("c18c").innerHTML = jsond.comments[17].text.replace(/\n/g, "<br>");
 			document.getElementById("c18a").innerHTML = jsond.comments[17].author;
+			document.getElementById("c18aL").href = "#c#" + jsond.comments[10].authorLink.substring(9);
 			document.getElementById("c18l").innerHTML = jsond.comments[17].likes.toLocaleString();
 			document.getElementById("c18t").innerHTML = jsond.comments[17].time;
 			if (!jsond.comments[17].numReplies) {
@@ -2426,6 +2444,7 @@ function loadComments(token, opt) {
 			document.getElementById("c19p").src = jsond.comments[18].authorThumb;
 			document.getElementById("c19c").innerHTML = jsond.comments[18].text.replace(/\n/g, "<br>");
 			document.getElementById("c19a").innerHTML = jsond.comments[18].author;
+			document.getElementById("c19aL").href = "#c#" + jsond.comments[18].authorLink.substring(9);
 			document.getElementById("c19l").innerHTML = jsond.comments[18].likes.toLocaleString();
 			document.getElementById("c19t").innerHTML = jsond.comments[18].time;
 			if (!jsond.comments[18].numReplies) {
@@ -2436,6 +2455,7 @@ function loadComments(token, opt) {
 			document.getElementById("c20p").src = jsond.comments[19].authorThumb;
 			document.getElementById("c20c").innerHTML = jsond.comments[19].text.replace(/\n/g, "<br>");
 			document.getElementById("c20a").innerHTML = jsond.comments[19].author;
+			document.getElementById("c20aL").href = "#c#" + jsond.comments[19].authorLink.substring(9);
 			document.getElementById("c20l").innerHTML = jsond.comments[19].likes.toLocaleString();
 			document.getElementById("c20t").innerHTML = jsond.comments[19].time;
 			if (!jsond.comments[19].numReplies) {
@@ -2948,6 +2968,7 @@ function loadComments(token, opt) {
 			document.getElementById("c01p").src = jsond.comments[0].authorThumb;
 			document.getElementById("c01c").innerHTML = jsond.comments[0].text.replace(/\n/g, "<br>");
 			document.getElementById("c01a").innerHTML = jsond.comments[0].author;
+			document.getElementById("c01aL").href = "#c#" + jsond.comments[0].authorLink.substring(9);
 			document.getElementById("c01l").innerHTML = jsond.comments[0].likes.toLocaleString();
 			document.getElementById("c01t").innerHTML = jsond.comments[0].time;
 			if (!jsond.comments[0].numReplies) {
@@ -2958,6 +2979,7 @@ function loadComments(token, opt) {
 			document.getElementById("c02p").src = jsond.comments[1].authorThumb;
 			document.getElementById("c02c").innerHTML = jsond.comments[1].text.replace(/\n/g, "<br>");
 			document.getElementById("c02a").innerHTML = jsond.comments[1].author;
+			document.getElementById("c02aL").href = "#c#" + jsond.comments[1].authorLink.substring(9);
 			document.getElementById("c02l").innerHTML = jsond.comments[1].likes.toLocaleString();
 			document.getElementById("c02t").innerHTML = jsond.comments[1].time;
 			if (!jsond.comments[1].numReplies) {
@@ -2968,6 +2990,7 @@ function loadComments(token, opt) {
 			document.getElementById("c03p").src = jsond.comments[2].authorThumb;
 			document.getElementById("c03c").innerHTML = jsond.comments[2].text.replace(/\n/g, "<br>");
 			document.getElementById("c03a").innerHTML = jsond.comments[2].author;
+			document.getElementById("c03aL").href = "#c#" + jsond.comments[2].authorLink.substring(9);
 			document.getElementById("c03l").innerHTML = jsond.comments[2].likes.toLocaleString();
 			document.getElementById("c03t").innerHTML = jsond.comments[2].time;
 			if (!jsond.comments[2].numReplies) {
@@ -2978,6 +3001,7 @@ function loadComments(token, opt) {
 			document.getElementById("c04p").src = jsond.comments[3].authorThumb;
 			document.getElementById("c04c").innerHTML = jsond.comments[3].text.replace(/\n/g, "<br>");
 			document.getElementById("c04a").innerHTML = jsond.comments[3].author;
+			document.getElementById("c04aL").href = "#c#" + jsond.comments[3].authorLink.substring(9);
 			document.getElementById("c04l").innerHTML = jsond.comments[3].likes.toLocaleString();
 			document.getElementById("c04t").innerHTML = jsond.comments[3].time;
 			if (!jsond.comments[3].numReplies) {
@@ -2988,6 +3012,7 @@ function loadComments(token, opt) {
 			document.getElementById("c05p").src = jsond.comments[4].authorThumb;
 			document.getElementById("c05c").innerHTML = jsond.comments[4].text.replace(/\n/g, "<br>");
 			document.getElementById("c05a").innerHTML = jsond.comments[4].author;
+			document.getElementById("c05aL").href = "#c#" + jsond.comments[4].authorLink.substring(9);
 			document.getElementById("c05l").innerHTML = jsond.comments[4].likes.toLocaleString();
 			document.getElementById("c05t").innerHTML = jsond.comments[4].time;
 			if (!jsond.comments[4].numReplies) {
@@ -2998,6 +3023,7 @@ function loadComments(token, opt) {
 			document.getElementById("c06p").src = jsond.comments[5].authorThumb;
 			document.getElementById("c06c").innerHTML = jsond.comments[5].text.replace(/\n/g, "<br>");
 			document.getElementById("c06a").innerHTML = jsond.comments[5].author;
+			document.getElementById("c06aL").href = "#c#" + jsond.comments[5].authorLink.substring(9);
 			document.getElementById("c06l").innerHTML = jsond.comments[5].likes.toLocaleString();
 			document.getElementById("c06t").innerHTML = jsond.comments[5].time;
 			if (!jsond.comments[5].numReplies) {
@@ -3008,6 +3034,7 @@ function loadComments(token, opt) {
 			document.getElementById("c07p").src = jsond.comments[6].authorThumb;
 			document.getElementById("c07c").innerHTML = jsond.comments[6].text.replace(/\n/g, "<br>");
 			document.getElementById("c07a").innerHTML = jsond.comments[6].author;
+			document.getElementById("c07aL").href = "#c#" + jsond.comments[6].authorLink.substring(9);
 			document.getElementById("c07l").innerHTML = jsond.comments[6].likes.toLocaleString();
 			document.getElementById("c07t").innerHTML = jsond.comments[6].time;
 			if (!jsond.comments[6].numReplies) {
@@ -3018,6 +3045,7 @@ function loadComments(token, opt) {
 			document.getElementById("c08p").src = jsond.comments[7].authorThumb;
 			document.getElementById("c08c").innerHTML = jsond.comments[7].text.replace(/\n/g, "<br>");
 			document.getElementById("c08a").innerHTML = jsond.comments[7].author;
+			document.getElementById("c08aL").href = "#c#" + jsond.comments[7].authorLink.substring(9);
 			document.getElementById("c08l").innerHTML = jsond.comments[7].likes.toLocaleString();
 			document.getElementById("c08t").innerHTML = jsond.comments[7].time;
 			if (!jsond.comments[7].numReplies) {
@@ -3028,6 +3056,7 @@ function loadComments(token, opt) {
 			document.getElementById("c09p").src = jsond.comments[8].authorThumb;
 			document.getElementById("c09c").innerHTML = jsond.comments[8].text.replace(/\n/g, "<br>");
 			document.getElementById("c09a").innerHTML = jsond.comments[8].author;
+			document.getElementById("c09aL").href = "#c#" + jsond.comments[8].authorLink.substring(9);
 			document.getElementById("c09l").innerHTML = jsond.comments[8].likes.toLocaleString();
 			document.getElementById("c09t").innerHTML = jsond.comments[8].time;
 			if (!jsond.comments[8].numReplies) {
@@ -3038,6 +3067,7 @@ function loadComments(token, opt) {
 			document.getElementById("c10p").src = jsond.comments[9].authorThumb;
 			document.getElementById("c10c").innerHTML = jsond.comments[9].text.replace(/\n/g, "<br>");
 			document.getElementById("c10a").innerHTML = jsond.comments[9].author;
+			document.getElementById("c10aL").href = "#c#" + jsond.comments[9].authorLink.substring(9);
 			document.getElementById("c10l").innerHTML = jsond.comments[9].likes.toLocaleString();
 			document.getElementById("c10t").innerHTML = jsond.comments[9].time;
 			if (!jsond.comments[9].numReplies) {
@@ -3048,6 +3078,7 @@ function loadComments(token, opt) {
 			document.getElementById("c11p").src = jsond.comments[10].authorThumb;
 			document.getElementById("c11c").innerHTML = jsond.comments[10].text.replace(/\n/g, "<br>");
 			document.getElementById("c11a").innerHTML = jsond.comments[10].author;
+			document.getElementById("c11aL").href = "#c#" + jsond.comments[10].authorLink.substring(9);
 			document.getElementById("c11l").innerHTML = jsond.comments[10].likes.toLocaleString();
 			document.getElementById("c11t").innerHTML = jsond.comments[10].time;
 			if (!jsond.comments[10].numReplies) {
@@ -3058,6 +3089,7 @@ function loadComments(token, opt) {
 			document.getElementById("c12p").src = jsond.comments[11].authorThumb;
 			document.getElementById("c12c").innerHTML = jsond.comments[11].text.replace(/\n/g, "<br>");
 			document.getElementById("c12a").innerHTML = jsond.comments[11].author;
+			document.getElementById("c12aL").href = "#c#" + jsond.comments[11].authorLink.substring(9);
 			document.getElementById("c12l").innerHTML = jsond.comments[11].likes.toLocaleString();
 			document.getElementById("c12t").innerHTML = jsond.comments[11].time;
 			if (!jsond.comments[11].numReplies) {
@@ -3068,6 +3100,7 @@ function loadComments(token, opt) {
 			document.getElementById("c13p").src = jsond.comments[12].authorThumb;
 			document.getElementById("c13c").innerHTML = jsond.comments[12].text.replace(/\n/g, "<br>");
 			document.getElementById("c13a").innerHTML = jsond.comments[12].author;
+			document.getElementById("c13aL").href = "#c#" + jsond.comments[12].authorLink.substring(9);
 			document.getElementById("c13l").innerHTML = jsond.comments[12].likes.toLocaleString();
 			document.getElementById("c13t").innerHTML = jsond.comments[12].time;
 			if (!jsond.comments[12].numReplies) {
@@ -3078,6 +3111,7 @@ function loadComments(token, opt) {
 			document.getElementById("c14p").src = jsond.comments[13].authorThumb;
 			document.getElementById("c14c").innerHTML = jsond.comments[13].text.replace(/\n/g, "<br>");
 			document.getElementById("c14a").innerHTML = jsond.comments[13].author;
+			document.getElementById("c14aL").href = "#c#" + jsond.comments[13].authorLink.substring(9);
 			document.getElementById("c14l").innerHTML = jsond.comments[13].likes.toLocaleString();
 			document.getElementById("c14t").innerHTML = jsond.comments[13].time;
 			if (!jsond.comments[13].numReplies) {
@@ -3088,6 +3122,7 @@ function loadComments(token, opt) {
 			document.getElementById("c15p").src = jsond.comments[14].authorThumb;
 			document.getElementById("c15c").innerHTML = jsond.comments[14].text.replace(/\n/g, "<br>");
 			document.getElementById("c15a").innerHTML = jsond.comments[14].author;
+			document.getElementById("c15aL").href = "#c#" + jsond.comments[14].authorLink.substring(9);
 			document.getElementById("c15l").innerHTML = jsond.comments[14].likes.toLocaleString();
 			document.getElementById("c15t").innerHTML = jsond.comments[14].time;
 			if (!jsond.comments[14].numReplies) {
@@ -3098,6 +3133,7 @@ function loadComments(token, opt) {
 			document.getElementById("c16p").src = jsond.comments[15].authorThumb;
 			document.getElementById("c16c").innerHTML = jsond.comments[15].text.replace(/\n/g, "<br>");
 			document.getElementById("c16a").innerHTML = jsond.comments[15].author;
+			document.getElementById("c16aL").href = "#c#" + jsond.comments[15].authorLink.substring(9);
 			document.getElementById("c16l").innerHTML = jsond.comments[15].likes.toLocaleString();
 			document.getElementById("c16t").innerHTML = jsond.comments[15].time;
 			if (!jsond.comments[15].numReplies) {
@@ -3108,6 +3144,7 @@ function loadComments(token, opt) {
 			document.getElementById("c17p").src = jsond.comments[16].authorThumb;
 			document.getElementById("c17c").innerHTML = jsond.comments[16].text.replace(/\n/g, "<br>");
 			document.getElementById("c17a").innerHTML = jsond.comments[16].author;
+			document.getElementById("c17aL").href = "#c#" + jsond.comments[16].authorLink.substring(9);
 			document.getElementById("c17l").innerHTML = jsond.comments[16].likes.toLocaleString();
 			document.getElementById("c17t").innerHTML = jsond.comments[16].time;
 			if (!jsond.comments[16].numReplies) {
@@ -3118,6 +3155,7 @@ function loadComments(token, opt) {
 			document.getElementById("c18p").src = jsond.comments[17].authorThumb;
 			document.getElementById("c18c").innerHTML = jsond.comments[17].text.replace(/\n/g, "<br>");
 			document.getElementById("c18a").innerHTML = jsond.comments[17].author;
+			document.getElementById("c18aL").href = "#c#" + jsond.comments[10].authorLink.substring(9);
 			document.getElementById("c18l").innerHTML = jsond.comments[17].likes.toLocaleString();
 			document.getElementById("c18t").innerHTML = jsond.comments[17].time;
 			if (!jsond.comments[17].numReplies) {
@@ -3128,6 +3166,7 @@ function loadComments(token, opt) {
 			document.getElementById("c19p").src = jsond.comments[18].authorThumb;
 			document.getElementById("c19c").innerHTML = jsond.comments[18].text.replace(/\n/g, "<br>");
 			document.getElementById("c19a").innerHTML = jsond.comments[18].author;
+			document.getElementById("c19aL").href = "#c#" + jsond.comments[18].authorLink.substring(9);
 			document.getElementById("c19l").innerHTML = jsond.comments[18].likes.toLocaleString();
 			document.getElementById("c19t").innerHTML = jsond.comments[18].time;
 			if (!jsond.comments[18].numReplies) {
@@ -3138,12 +3177,13 @@ function loadComments(token, opt) {
 			document.getElementById("c20p").src = jsond.comments[19].authorThumb;
 			document.getElementById("c20c").innerHTML = jsond.comments[19].text.replace(/\n/g, "<br>");
 			document.getElementById("c20a").innerHTML = jsond.comments[19].author;
+			document.getElementById("c20aL").href = "#c#" + jsond.comments[19].authorLink.substring(9);
 			document.getElementById("c20l").innerHTML = jsond.comments[19].likes.toLocaleString();
 			document.getElementById("c20t").innerHTML = jsond.comments[19].time;
 			if (!jsond.comments[19].numReplies) {
 				document.getElementById("c20r").innerHTML = "0";
 			} else {
-				document.getElementById("c20r").innerHTML = jsond.comments[19].numReplies;
+				document.getElementById("c20r").innerHTML = jsond.comments[17].numReplies;
 			}
 			if (!jsond.npToken) {
 				document.getElementById("moreComments").style.display = 'none';
