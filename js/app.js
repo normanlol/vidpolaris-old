@@ -719,7 +719,7 @@ function getTrending(opt) {
 				return;
 			}
 		}
-		if (opt == "a") {
+		if (opt == "a" | !opt) {
 			var baseUrl = "http://normandotmp4.electrohaxz.tk:9019/?thumb=";
 		} else if (opt == "b") {
 			var baseUrl = "https://vidpolaris.herokuapp.com/?thumb=";
@@ -970,6 +970,8 @@ function openVideo(opt) {
 			document.getElementById("vidLoader").style.display = '';
 			document.getElementById("playerContainer").style.display = '';
 			document.getElementById("sharDiv").style.display = 'none';
+			document.getElementById("lpSwitch").checked = false;
+			document.getElementById("player").removeAttribute("loop");
 			document.getElementById("qOptions").innerHTML = "";
 			if (document.getElementById("ldBtn").innerHTML == "see less") {
 				document.getElementById("ldBtn").click();
@@ -3254,11 +3256,23 @@ function loadComments(token, opt) {
 function toggleAuto() {
 	setTimeout( function () {
 		if (document.getElementById("apSwitch").checked) {
-			localStorage.setItem("autoplay", "y")
-			console.log("autoplay: on");
+			localStorage.setItem("autoplay", "y");
+			document.getElementById("lpSwitch").checked = false;
+			document.getElementById("player").removeAttribute("loop");
 		} else {
-			localStorage.setItem("autoplay", "n")
-			console.log("autoplay: off");
+			localStorage.setItem("autoplay", "n");
+		}
+	}, 100)
+}
+
+function toggleLoop() {
+	setTimeout( function () {
+		if (document.getElementById("lpSwitch").checked) {
+			document.getElementById("player").loop = "true";
+			document.getElementById("apSwitch").checked = false;
+			localStorage.setItem("autoplay", "n");
+		} else {
+			document.getElementById("player").removeAttribute("loop");
 		}
 	}, 100)
 }

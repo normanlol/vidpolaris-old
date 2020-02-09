@@ -236,6 +236,12 @@
 							<label onclick="toggleAuto()" class="switch">
 								<input id="apSwitch" type="checkbox" checked>
 								<span class="slider"></span>
+								<p>autoplay</p>
+							</label>
+							<label onclick="toggleLoop()" class="switch">
+								<input id="lpSwitch" type="checkbox">
+								<span class="slider"></span>
+								<p>loop</p>
 							</label>
 							<h3>Related Videos</h3>
 						</div>
@@ -629,7 +635,7 @@
 				</div>
 			</div>
 			<div id="settingsPage" style="display:none;" class="noCenter">
-				<div title="SmartQuality syncs up the highest quality audio and video, rather than the highest quality video/audio itag. Only reccomended for those with a strong connection.">
+				<div title="SmartQuality syncs up the highest quality audio and video, rather than the highest quality video/audio itag. Only reccomended for those with a strong connection. This may cause slowdown if you have a weaker computer.">
 					<label>SmartQuality (BETA):</label>
 					<select id="sq">
 						<option value="y">Enabled (Default)</option>
