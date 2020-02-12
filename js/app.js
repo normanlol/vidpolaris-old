@@ -1891,7 +1891,7 @@ function loadComments(token, opt) {
 				document.getElementById("c18").style.display = '';
 				document.getElementById("c19").style.display = '';
 				document.getElementById("c20").style.display = 'none';
-				document.getElementById("moreComments").style.display = 'none';
+
 			} else if (commentsNum == 18) {
 				document.getElementById("c01").style.display = '';
 				document.getElementById("c02").style.display = '';
@@ -1913,7 +1913,7 @@ function loadComments(token, opt) {
 				document.getElementById("c18").style.display = '';
 				document.getElementById("c19").style.display = 'none';
 				document.getElementById("c20").style.display = 'none';
-				document.getElementById("moreComments").style.display = 'none';
+
 			} else if (commentsNum == 17) {
 				document.getElementById("c01").style.display = '';
 				document.getElementById("c02").style.display = '';
@@ -1935,7 +1935,7 @@ function loadComments(token, opt) {
 				document.getElementById("c18").style.display = 'none';
 				document.getElementById("c19").style.display = 'none';
 				document.getElementById("c20").style.display = 'none';
-				document.getElementById("moreComments").style.display = 'none';
+
 			} else if (commentsNum == 16) {
 				document.getElementById("c01").style.display = '';
 				document.getElementById("c02").style.display = '';
@@ -1957,7 +1957,7 @@ function loadComments(token, opt) {
 				document.getElementById("c18").style.display = 'none';
 				document.getElementById("c19").style.display = 'none';
 				document.getElementById("c20").style.display = 'none';
-				document.getElementById("moreComments").style.display = 'none';
+
 			} else if (commentsNum == 15) {
 				document.getElementById("c01").style.display = '';
 				document.getElementById("c02").style.display = '';
@@ -1979,7 +1979,7 @@ function loadComments(token, opt) {
 				document.getElementById("c18").style.display = 'none';
 				document.getElementById("c19").style.display = 'none';
 				document.getElementById("c20").style.display = 'none';
-				document.getElementById("moreComments").style.display = 'none';
+
 			} else if (commentsNum == 14) {
 				document.getElementById("c01").style.display = '';
 				document.getElementById("c02").style.display = '';
@@ -2001,7 +2001,7 @@ function loadComments(token, opt) {
 				document.getElementById("c18").style.display = 'none';
 				document.getElementById("c19").style.display = 'none';
 				document.getElementById("c20").style.display = 'none';
-				document.getElementById("moreComments").style.display = 'none';
+
 			} else if (commentsNum == 13) {
 				document.getElementById("c01").style.display = '';
 				document.getElementById("c02").style.display = '';
@@ -2023,7 +2023,7 @@ function loadComments(token, opt) {
 				document.getElementById("c18").style.display = 'none';
 				document.getElementById("c19").style.display = 'none';
 				document.getElementById("c20").style.display = 'none';
-				document.getElementById("moreComments").style.display = 'none';
+
 			} else if (commentsNum == 12) {
 				document.getElementById("c01").style.display = '';
 				document.getElementById("c02").style.display = '';
@@ -2045,7 +2045,7 @@ function loadComments(token, opt) {
 				document.getElementById("c18").style.display = 'none';
 				document.getElementById("c19").style.display = 'none';
 				document.getElementById("c20").style.display = 'none';
-				document.getElementById("moreComments").style.display = 'none';
+
 			} else if (commentsNum == 10) {
 				document.getElementById("c01").style.display = '';
 				document.getElementById("c02").style.display = '';
@@ -2067,7 +2067,7 @@ function loadComments(token, opt) {
 				document.getElementById("c18").style.display = 'none';
 				document.getElementById("c19").style.display = 'none';
 				document.getElementById("c20").style.display = 'none';
-				document.getElementById("moreComments").style.display = 'none';
+
 			} else if (commentsNum == 9) {
 				document.getElementById("c01").style.display = '';
 				document.getElementById("c02").style.display = '';
@@ -2089,7 +2089,7 @@ function loadComments(token, opt) {
 				document.getElementById("c18").style.display = 'none';
 				document.getElementById("c19").style.display = 'none';
 				document.getElementById("c20").style.display = 'none';
-				document.getElementById("moreComments").style.display = 'none';
+
 			} else if (commentsNum == 8) {
 				document.getElementById("c01").style.display = '';
 				document.getElementById("c02").style.display = '';
@@ -2111,7 +2111,7 @@ function loadComments(token, opt) {
 				document.getElementById("c18").style.display = 'none';
 				document.getElementById("c19").style.display = 'none';
 				document.getElementById("c20").style.display = 'none';
-				document.getElementById("moreComments").style.display = 'none';
+
 			} else if (commentsNum == 7) {
 				document.getElementById("c01").style.display = '';
 				document.getElementById("c02").style.display = '';
@@ -2133,7 +2133,7 @@ function loadComments(token, opt) {
 				document.getElementById("c18").style.display = 'none';
 				document.getElementById("c19").style.display = 'none';
 				document.getElementById("c20").style.display = 'none';
-				document.getElementById("moreComments").style.display = 'none';
+
 			} else if (commentsNum == 6) {
 				document.getElementById("c01").style.display = '';
 				document.getElementById("c02").style.display = '';
@@ -2155,7 +2155,6 @@ function loadComments(token, opt) {
 				document.getElementById("c18").style.display = 'none';
 				document.getElementById("c19").style.display = 'none';
 				document.getElementById("c20").style.display = 'none';
-				document.getElementById("moreComments").style.display = 'none';
 			} else if (commentsNum == 5) {
 				document.getElementById("c01").style.display = '';
 				document.getElementById("c02").style.display = '';
@@ -2177,7 +2176,8 @@ function loadComments(token, opt) {
 				document.getElementById("c18").style.display = 'none';
 				document.getElementById("c19").style.display = 'none';
 				document.getElementById("c20").style.display = 'none';
-				document.getElementById("moreComments").style.display = 'none';
+				
+
 			} else if (commentsNum == 4) {
 				document.getElementById("c01").style.display = '';
 				document.getElementById("c02").style.display = '';
@@ -2199,7 +2199,7 @@ function loadComments(token, opt) {
 				document.getElementById("c18").style.display = 'none';
 				document.getElementById("c19").style.display = 'none';
 				document.getElementById("c20").style.display = 'none';
-				document.getElementById("moreComments").style.display = 'none';
+
 			} else if (commentsNum == 3) {
 				document.getElementById("c01").style.display = '';
 				document.getElementById("c02").style.display = '';
@@ -2221,7 +2221,7 @@ function loadComments(token, opt) {
 				document.getElementById("c18").style.display = 'none';
 				document.getElementById("c19").style.display = 'none';
 				document.getElementById("c20").style.display = 'none';
-				document.getElementById("moreComments").style.display = 'none';
+
 			} else if (commentsNum == 2) {
 				document.getElementById("c01").style.display = '';
 				document.getElementById("c02").style.display = '';
@@ -2243,7 +2243,7 @@ function loadComments(token, opt) {
 				document.getElementById("c18").style.display = 'none';
 				document.getElementById("c19").style.display = 'none';
 				document.getElementById("c20").style.display = 'none';
-				document.getElementById("moreComments").style.display = 'none';
+
 			} else if (commentsNum == 1) {
 				document.getElementById("c01").style.display = '';
 				document.getElementById("c02").style.display = 'none';
@@ -2265,7 +2265,7 @@ function loadComments(token, opt) {
 				document.getElementById("c18").style.display = 'none';
 				document.getElementById("c19").style.display = 'none';
 				document.getElementById("c20").style.display = 'none';
-				document.getElementById("moreComments").style.display = 'none';
+
 			} else {
 				document.getElementById("c01").style.display = 'none';
 				document.getElementById("c02").style.display = 'none';
@@ -2287,7 +2287,7 @@ function loadComments(token, opt) {
 				document.getElementById("c18").style.display = 'none';
 				document.getElementById("c19").style.display = 'none';
 				document.getElementById("c20").style.display = 'none';
-				document.getElementById("moreComments").style.display = 'none';
+
 			}
 			document.getElementById("loadedC").style.display = '';
 			document.getElementById("loadedComments").style.display = '';
@@ -2610,7 +2610,7 @@ function loadComments(token, opt) {
 				document.getElementById("c18").style.display = '';
 				document.getElementById("c19").style.display = '';
 				document.getElementById("c20").style.display = 'none';
-				document.getElementById("moreComments").style.display = 'none';
+				
 			} else if (commentsNum == 18) {
 				document.getElementById("c01").style.display = '';
 				document.getElementById("c02").style.display = '';
@@ -2632,7 +2632,7 @@ function loadComments(token, opt) {
 				document.getElementById("c18").style.display = '';
 				document.getElementById("c19").style.display = 'none';
 				document.getElementById("c20").style.display = 'none';
-				document.getElementById("moreComments").style.display = 'none';
+				
 			} else if (commentsNum == 17) {
 				document.getElementById("c01").style.display = '';
 				document.getElementById("c02").style.display = '';
@@ -2654,7 +2654,7 @@ function loadComments(token, opt) {
 				document.getElementById("c18").style.display = 'none';
 				document.getElementById("c19").style.display = 'none';
 				document.getElementById("c20").style.display = 'none';
-				document.getElementById("moreComments").style.display = 'none';
+				
 			} else if (commentsNum == 16) {
 				document.getElementById("c01").style.display = '';
 				document.getElementById("c02").style.display = '';
@@ -2676,7 +2676,7 @@ function loadComments(token, opt) {
 				document.getElementById("c18").style.display = 'none';
 				document.getElementById("c19").style.display = 'none';
 				document.getElementById("c20").style.display = 'none';
-				document.getElementById("moreComments").style.display = 'none';
+				
 			} else if (commentsNum == 15) {
 				document.getElementById("c01").style.display = '';
 				document.getElementById("c02").style.display = '';
@@ -2698,7 +2698,7 @@ function loadComments(token, opt) {
 				document.getElementById("c18").style.display = 'none';
 				document.getElementById("c19").style.display = 'none';
 				document.getElementById("c20").style.display = 'none';
-				document.getElementById("moreComments").style.display = 'none';
+				
 			} else if (commentsNum == 14) {
 				document.getElementById("c01").style.display = '';
 				document.getElementById("c02").style.display = '';
@@ -2720,7 +2720,7 @@ function loadComments(token, opt) {
 				document.getElementById("c18").style.display = 'none';
 				document.getElementById("c19").style.display = 'none';
 				document.getElementById("c20").style.display = 'none';
-				document.getElementById("moreComments").style.display = 'none';
+				
 			} else if (commentsNum == 13) {
 				document.getElementById("c01").style.display = '';
 				document.getElementById("c02").style.display = '';
@@ -2742,7 +2742,7 @@ function loadComments(token, opt) {
 				document.getElementById("c18").style.display = 'none';
 				document.getElementById("c19").style.display = 'none';
 				document.getElementById("c20").style.display = 'none';
-				document.getElementById("moreComments").style.display = 'none';
+				
 			} else if (commentsNum == 12) {
 				document.getElementById("c01").style.display = '';
 				document.getElementById("c02").style.display = '';
@@ -2764,7 +2764,7 @@ function loadComments(token, opt) {
 				document.getElementById("c18").style.display = 'none';
 				document.getElementById("c19").style.display = 'none';
 				document.getElementById("c20").style.display = 'none';
-				document.getElementById("moreComments").style.display = 'none';
+				
 			} else if (commentsNum == 10) {
 				document.getElementById("c01").style.display = '';
 				document.getElementById("c02").style.display = '';
@@ -2786,7 +2786,7 @@ function loadComments(token, opt) {
 				document.getElementById("c18").style.display = 'none';
 				document.getElementById("c19").style.display = 'none';
 				document.getElementById("c20").style.display = 'none';
-				document.getElementById("moreComments").style.display = 'none';
+				
 			} else if (commentsNum == 9) {
 				document.getElementById("c01").style.display = '';
 				document.getElementById("c02").style.display = '';
@@ -2808,7 +2808,7 @@ function loadComments(token, opt) {
 				document.getElementById("c18").style.display = 'none';
 				document.getElementById("c19").style.display = 'none';
 				document.getElementById("c20").style.display = 'none';
-				document.getElementById("moreComments").style.display = 'none';
+				
 			} else if (commentsNum == 8) {
 				document.getElementById("c01").style.display = '';
 				document.getElementById("c02").style.display = '';
@@ -2830,7 +2830,7 @@ function loadComments(token, opt) {
 				document.getElementById("c18").style.display = 'none';
 				document.getElementById("c19").style.display = 'none';
 				document.getElementById("c20").style.display = 'none';
-				document.getElementById("moreComments").style.display = 'none';
+				
 			} else if (commentsNum == 7) {
 				document.getElementById("c01").style.display = '';
 				document.getElementById("c02").style.display = '';
@@ -2852,7 +2852,7 @@ function loadComments(token, opt) {
 				document.getElementById("c18").style.display = 'none';
 				document.getElementById("c19").style.display = 'none';
 				document.getElementById("c20").style.display = 'none';
-				document.getElementById("moreComments").style.display = 'none';
+				
 			} else if (commentsNum == 6) {
 				document.getElementById("c01").style.display = '';
 				document.getElementById("c02").style.display = '';
@@ -2874,7 +2874,7 @@ function loadComments(token, opt) {
 				document.getElementById("c18").style.display = 'none';
 				document.getElementById("c19").style.display = 'none';
 				document.getElementById("c20").style.display = 'none';
-				document.getElementById("moreComments").style.display = 'none';
+				
 			} else if (commentsNum == 5) {
 				document.getElementById("c01").style.display = '';
 				document.getElementById("c02").style.display = '';
@@ -2896,7 +2896,7 @@ function loadComments(token, opt) {
 				document.getElementById("c18").style.display = 'none';
 				document.getElementById("c19").style.display = 'none';
 				document.getElementById("c20").style.display = 'none';
-				document.getElementById("moreComments").style.display = 'none';
+				
 			} else if (commentsNum == 4) {
 				document.getElementById("c01").style.display = '';
 				document.getElementById("c02").style.display = '';
@@ -2918,7 +2918,7 @@ function loadComments(token, opt) {
 				document.getElementById("c18").style.display = 'none';
 				document.getElementById("c19").style.display = 'none';
 				document.getElementById("c20").style.display = 'none';
-				document.getElementById("moreComments").style.display = 'none';
+				
 			} else if (commentsNum == 3) {
 				document.getElementById("c01").style.display = '';
 				document.getElementById("c02").style.display = '';
@@ -2940,7 +2940,7 @@ function loadComments(token, opt) {
 				document.getElementById("c18").style.display = 'none';
 				document.getElementById("c19").style.display = 'none';
 				document.getElementById("c20").style.display = 'none';
-				document.getElementById("moreComments").style.display = 'none';
+				
 			} else if (commentsNum == 2) {
 				document.getElementById("c01").style.display = '';
 				document.getElementById("c02").style.display = '';
@@ -2962,7 +2962,7 @@ function loadComments(token, opt) {
 				document.getElementById("c18").style.display = 'none';
 				document.getElementById("c19").style.display = 'none';
 				document.getElementById("c20").style.display = 'none';
-				document.getElementById("moreComments").style.display = 'none';
+				
 			} else if (commentsNum == 1) {
 				document.getElementById("c01").style.display = '';
 				document.getElementById("c02").style.display = 'none';
@@ -2984,7 +2984,7 @@ function loadComments(token, opt) {
 				document.getElementById("c18").style.display = 'none';
 				document.getElementById("c19").style.display = 'none';
 				document.getElementById("c20").style.display = 'none';
-				document.getElementById("moreComments").style.display = 'none';
+				
 			} else {
 				document.getElementById("c01").style.display = 'none';
 				document.getElementById("c02").style.display = 'none';
@@ -3006,7 +3006,6 @@ function loadComments(token, opt) {
 				document.getElementById("c18").style.display = 'none';
 				document.getElementById("c19").style.display = 'none';
 				document.getElementById("c20").style.display = 'none';
-				document.getElementById("moreComments").style.display = 'none';
 			}
 			document.getElementById("loadedC").style.display = '';
 			document.getElementById("loadedComments").style.display = '';
