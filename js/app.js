@@ -2515,12 +2515,9 @@ function loadComments(token, opt) {
 			}
 			if (!jsond.npToken) {
 				document.getElementById("moreComments").style.display = 'none';
-				document.getElementById("lessComments").style.display = 'none';
 			} else {
 				document.getElementById("token").innerHTML = jsond.npToken;
 				document.getElementById("prevToken").innerHTML = jsond.comments[0].id;
-				document.getElementById("backComments").style.display = 'none';
-				sessionStorage.getItem("ft", jsond.comments[0].id);
 			}
 		}
 	} else {
@@ -3237,16 +3234,9 @@ function loadComments(token, opt) {
 			}
 			if (!jsond.npToken) {
 				document.getElementById("moreComments").style.display = 'none';
-				document.getElementById("lessComments").style.display = 'none';
 			} else {
 				document.getElementById("token").innerHTML = jsond.npToken;
 				document.getElementById("prevToken").innerHTML = jsond.comments[0].id;
-				document.getElementById("backComments").style.display = '';
-				if (sessionStorage.getItem("ft")) {
-					if (sessionStorage.getItem("ft") == jsond.comments[0].id) {
-						document.getElementById("backComments").style.display = 'none';
-					}
-				}
 				document.getElementById("moreComments").style.display = '';
 			}
 		}
