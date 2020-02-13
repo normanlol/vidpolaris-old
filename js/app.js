@@ -98,10 +98,8 @@ document.addEventListener('keydown', function (event) {
 		} else if (key == 'f' || key == 'F' || key == 70) {
 			if (!sessionStorage.getItem("fullscreen") | sessionStorage.getItem("fullscreen") == 'n') {
 				document.getElementById("player").requestFullscreen();
-				sessionStorage.setItem('fullscreen', 'y')
 			} else {
 				document.exitFullscreen();
-				sessionStorage.setItem('fullscreen', 'n')
 			}
 		} else if (key == "<" || key == 188) {
 			var speed = document.getElementById("speed").value;
@@ -1787,9 +1785,10 @@ function sync() {
 }
 
 function saveSettings() {
-	localStorage.setItem("smart", document.getElementById("sq").value)
-	localStorage.setItem("theme", document.getElementById("wTheme").value)
-	localStorage.setItem("sLoc", document.getElementById("server").value)
+	localStorage.setItem("smart", document.getElementById("sq").value);
+	localStorage.setItem("theme", document.getElementById("wTheme").value);
+	localStorage.setItem("sLoc", document.getElementById("server").value);
+	localStorage.setItem("speedtest", document.getElementById("speedt").value);
 	resize();
 	home();
 	window.open("#", "_self")
@@ -3838,5 +3837,13 @@ function getSubs(opt) {
 		} else if (opt == "c") {
 			getSubs("a");
 		}
+	}
+}
+
+function toggleF() {
+	if (!sessionStorage.getItem("fullscreen") | sessionStorage.getItem("fullscreen") == "y") {
+		sessionStorage.setItem("fullscreen", "n");
+	} else {
+		sessionStorage.setItem("fullscreen", "y");
 	}
 }
