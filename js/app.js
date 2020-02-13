@@ -3451,7 +3451,7 @@ function openChannel(opt) {
 			document.getElementById("searchContainer").style.display = '';
 		} else {
 			if (jsond.authorBanners[0]) {
-				document.getElementById("banner").src = jsond.authorBanners[0].url;
+				document.getElementById("banner").src = jsond.authorBanners[0].url.substring(0,103);
 			} else {
 				document.getElementById("banner").src = "img/banner.png";
 			}
