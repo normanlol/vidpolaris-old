@@ -2517,7 +2517,6 @@ function loadComments(token, opt) {
 				document.getElementById("moreComments").style.display = 'none';
 			} else {
 				document.getElementById("token").innerHTML = jsond.npToken;
-				document.getElementById("prevToken").innerHTML = jsond.comments[0].id;
 			}
 		}
 	} else {
@@ -3237,7 +3236,6 @@ function loadComments(token, opt) {
 				document.getElementById("lessComments").style.display = 'none';
 			} else {
 				document.getElementById("token").innerHTML = jsond.npToken;
-				document.getElementById("prevToken").innerHTML = jsond.comments[0].id;
 				document.getElementById("moreComments").style.display = '';
 			}
 		}
