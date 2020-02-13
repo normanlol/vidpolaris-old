@@ -1152,10 +1152,7 @@ function openVideo(opt) {
 					if (!jsond.info.related_videos[0]) {
 						document.getElementById("relatedVideos").style.display = 'none';
 						document.getElementById("autoPlayBlock").style.display = 'none';
-						document.getElementById("commentsContainer").style = "margin-top:0px";
 					} else {
-						document.getElementById("commentsContainer").style = "margin-top:75%";
-						document.getElementById("commentsContainer").style = "margin-top:75%";
 						document.getElementById("relatedVideos").style.display = '';
 						document.getElementById("autoPlayBlock").style.display = '';
 						var r1L = "#w#" + jsond.info.related_videos[0].id;
