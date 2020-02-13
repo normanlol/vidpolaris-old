@@ -3294,7 +3294,7 @@ function changeQ(opt) {
 			document.getElementById("player").play();
 			document.getElementById("qOptions").disabled = false;
 		}
-		http.timeout = 5000;
+		http.timeout = 3000;
 		http.ontimeout = () => {
 			if (opt == "a" | !opt) {
 				changeQ("b");
