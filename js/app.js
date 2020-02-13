@@ -3258,6 +3258,10 @@ function toggleLoop() {
 		if (document.getElementById("lpSwitch").checked) {
 			document.getElementById("player").loop = "true";
 			document.getElementById("apSwitch").checked = false;
+			if (document.getElementById("player").ended == true) {
+				document.getElementById("player").currentTime = 0;
+				document.getElementById("player").play();
+			}
 			localStorage.setItem("autoplay", "n");
 		} else {
 			document.getElementById("player").removeAttribute("loop");
