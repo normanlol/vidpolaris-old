@@ -277,13 +277,19 @@ document.addEventListener('keydown', function (event) {
 });
 
 document.getElementById("player").onerror = function(e){
-	document.getElementById("playerContainer").style.display = 'none';
-	document.getElementById("loadErr").style.display = '';
+	if (!sessionStorage.getItem("cb")){
+		retry();
+	} else {
+		return;
+	}
 };
 
 document.getElementById("audioPlayer").onerror = function(e){
-	document.getElementById("playerContainer").style.display = 'none';
-	document.getElementById("loadErr").style.display = '';
+	if (!sessionStorage.getItem("cb")){
+		retry();
+	} else {
+		return;
+	}
 };
 
 console.log("autoplay: " + localStorage.getItem('autoplay'));
