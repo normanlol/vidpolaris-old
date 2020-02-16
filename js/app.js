@@ -3459,7 +3459,7 @@ function openChannel(opt) {
 			} else if (opt == "c") {
 				var baseUrl = "https://vidpolaris-europe.herokuapp.com/?thumb=";
 			}
-			document.getElementById("profilePic").src = jsond.authorThumbnails[0].url;
+			document.getElementById("profilePic").src = jsond.authorThumbnails[0].url.split('=s100')[0];
 			if (!jsond.subCount == 0) {
 				document.getElementById("subCount").innerHTML = jsond.subCount.toLocaleString();
 			} else {
