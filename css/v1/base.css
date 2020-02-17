@@ -93,6 +93,7 @@ button {
 }
 
 .loader {
+	color:white;
 	display:inline-block;
 	position:relative;
 	width:80px;
@@ -113,7 +114,6 @@ button {
 	width:6px;
 	height:18px;
 	border-radius:20%;
-	background:#fff;
 }
 
 .loader div:nth-child(1) {
