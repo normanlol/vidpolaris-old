@@ -13,6 +13,10 @@ if (sessionStorage.getItem("currentlyRunningT")) {
 	sessionStorage.removeItem("currentlyRunningT");
 }
 
+if (sessionStorage.getItem("fullscreen")) {
+	sessionStorage.removeItem("fullscreen")
+} 
+
 if (!localStorage.getItem("autoplay")) {
 	localStorage.setItem("autoplay" , "y");
 	document.getElementById('apSwitch').checked = true;
