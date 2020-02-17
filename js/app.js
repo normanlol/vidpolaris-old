@@ -114,6 +114,7 @@ document.addEventListener('keydown', function (event) {
 		} else if (key == "<" || key == 188) {
 			var speed = document.getElementById("speed").value;
 			if (speed == "25x") {
+				document.getElementById("speed").value = "p1x";
 				if (localStorage.getItem("smart") == "y") { 
 					document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
 				}
@@ -159,10 +160,54 @@ document.addEventListener('keydown', function (event) {
 					document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
 				}
 				setSpeed();
+			} else if (speed == "225x") {
+				document.getElementById("speed").value = "2x";
+				if (localStorage.getItem("smart") == "y") { 
+					document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
+				}
+				setSpeed();
+			} else if (speed == "2p5x") {
+				document.getElementById("speed").value = "225x";
+				if (localStorage.getItem("smart") == "y") { 
+					document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
+				}
+				setSpeed();
+			} else if (speed == "275x") {
+				document.getElementById("speed").value = "2p5x";
+				if (localStorage.getItem("smart") == "y") { 
+					document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
+				}
+				setSpeed();
+			} else if (speed == "3x") {
+				document.getElementById("speed").value = "275x";
+				if (localStorage.getItem("smart") == "y") { 
+					document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
+				}
+				setSpeed();
 			}
 		} else if (key == ">" || key == 190) {
 			var speed = document.getElementById("speed").value;
-			if (speed == "2x") {
+			if (speed == "3x") {
+				if (localStorage.getItem("smart") == "y") { 
+					document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
+				}
+			} else if (speed == "275x") {
+				document.getElementById("speed").value = "3x";
+				if (localStorage.getItem("smart") == "y") { 
+					document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
+				}
+			} else if (speed == "2p5x") {
+				document.getElementById("speed").value = "275x";
+				if (localStorage.getItem("smart") == "y") { 
+					document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
+				}
+			} else if (speed == "225x") {
+				document.getElementById("speed").value = "2p5x";
+				if (localStorage.getItem("smart") == "y") { 
+					document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
+				}
+			} else if (speed == "2x") {
+				document.getElementById("speed").value = "225x";
 				if (localStorage.getItem("smart") == "y") { 
 					document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
 				}
@@ -202,8 +247,14 @@ document.addEventListener('keydown', function (event) {
 					document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
 				}
 				setSpeed();
-			} else  if (speed == "25x") {
+			} else if (speed == "25x") {
 				document.getElementById("speed").value = "5x";
+				if (localStorage.getItem("smart") == "y") { 
+					document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
+				}
+				setSpeed();
+			} else if (speed == "p1x") {
+				document.getElementById("speed").value = "25x";
 				if (localStorage.getItem("smart") == "y") { 
 					document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
 				}
@@ -3872,7 +3923,12 @@ function setSpeed() {
 	} else {
 		var smart = false;
 	}
-	if (speed == "25x") {
+	if (speed == "p1x") {
+		document.getElementById("player").playbackRate = 0.1;
+		if (smart == true) {
+			document.getElementById("audioPlayer").playbackRate = 0.1;
+		}
+	} else if (speed == "25x") {
 		document.getElementById("player").playbackRate = 0.25;
 		if (smart == true) {
 			document.getElementById("audioPlayer").playbackRate = 0.25;
@@ -3911,6 +3967,26 @@ function setSpeed() {
 		document.getElementById("player").playbackRate = 2.0;
 		if (smart == true) {
 			document.getElementById("audioPlayer").playbackRate = 2.0;
+		}
+	} else if (speed == "225x") {
+		document.getElementById("player").playbackRate = 2.25;
+		if (smart == true) {
+			document.getElementById("audioPlayer").playbackRate = 2.25;
+		}
+	} else if (speed == "2p5x") {
+		document.getElementById("player").playbackRate = 2.5;
+		if (smart == true) {
+			document.getElementById("audioPlayer").playbackRate = 2.5;
+		}
+	} else if (speed == "275x") {
+		document.getElementById("player").playbackRate = 2.75;
+		if (smart == true) {
+			document.getElementById("audioPlayer").playbackRate = 2.75;
+		}
+	} else if (speed == "3x") {
+		document.getElementById("player").playbackRate = 3.0;
+		if (smart == true) {
+			document.getElementById("audioPlayer").playbackRate = 3.0;
 		}
 	}
 	localStorage.setItem("pbSpeed", document.getElementById("speed").value);
