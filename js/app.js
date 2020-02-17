@@ -37,9 +37,14 @@ if (!localStorage.getItem("pbSpeed")) {
 }
 
 if (!localStorage.getItem("theme")) {
-	localStorage.setItem("theme" , "d");
-	document.getElementById("wTheme").value = "d";
+	localStorage.setItem("theme" , "d_v1");
+	document.getElementById("wTheme").value = "d_v1";
 } else {
+	if (localStorage.getItem("theme") == "w") {
+		localStorage.setItem("theme" , "w_v1");
+	} else if (localStorage.getItem("theme") == "d") {
+		localStorage.setItem("theme" , "d_v1");
+	}
 	document.getElementById("wTheme").value = localStorage.getItem("theme");
 }
 
@@ -66,6 +71,7 @@ if (!localStorage.getItem("sLoc")) {
 	document.getElementById("server").value = localStorage.getItem("sLoc");
 }
 
+// end setting checkers
 // listeners
 
 document.addEventListener('keydown', function (event) {
@@ -326,7 +332,11 @@ function resize() {
 	var w = window.innerWidth;
 	if (!localStorage.getItem("theme") | localStorage.getItem("theme") == "d") {
 		if (!localStorage.getItem("theme")) {
-			localStorage.setItem("theme" , "d");
+			localStorage.setItem("theme" , "d_v1");
+		} else if (localStorage.getItem("theme") == "d") {
+			localStorage.setItem("theme" , "d_v1");
+		} else if (localStorage.getItem("theme") == "w") {
+			localStorage.setItem("theme" , "w_v1");
 		}
 		if (w < 1200) {
 			document.getElementById("theme").href = "css/v1/dark/mobile.css";
