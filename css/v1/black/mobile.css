@@ -77,12 +77,12 @@ input {
 }
 
 button {
-	color:#999;
-	background-color:#131313;
+	color:black;
+	background-color:#999;
 }
 
 button:hover {
-	background-color:#2d2d2d;
+	background-color:#c1c1c1;
 }
 
 .loader div::after {
