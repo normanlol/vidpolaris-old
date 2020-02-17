@@ -1,5 +1,5 @@
 body {
-	background:rgb(45, 45, 45);
+	background:black;
 	color:white;
 }
 
@@ -79,7 +79,7 @@ button {
 
 button:hover {
 	background-color:#c1c1c1;
-}s
+}
 
 .loader div::after {
 	background-color:white;

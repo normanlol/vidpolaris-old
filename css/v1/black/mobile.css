@@ -45,7 +45,7 @@ body {
 .resultVideo {
 	width:90%;
 	min-height:153px;
-	background-color:#282828;
+	background-color:#111;
 }
 
 .resultVideo:hover {
