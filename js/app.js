@@ -3865,10 +3865,6 @@ function watchOnInvidious() {
 	window.open("https://invidio.us/watch?v=" + id, "_self")
 }
 
-function retry() {
-	openVideo(localStorage.getItem("sLoc"), "y");
-}
-
 function setSpeed() {
 	var speed = document.getElementById("speed").value;
 	if (localStorage.getItem("smart") == "y") {
