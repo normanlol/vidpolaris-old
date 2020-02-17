@@ -302,7 +302,8 @@ document.getElementById("player").onerror = function(e){
 	if (!sessionStorage.getItem("cb")){
 		retry();
 	} else {
-		return;
+		document.getElementById("playerContainer").style.display = 'none';
+		document.getElementById("loadErr").style.display = '';
 	}
 };
 
@@ -310,7 +311,8 @@ document.getElementById("audioPlayer").onerror = function(e){
 	if (!sessionStorage.getItem("cb")){
 		retry();
 	} else {
-		return;
+		document.getElementById("playerContainer").style.display = 'none';
+		document.getElementById("loadErr").style.display = '';
 	}
 };
 
