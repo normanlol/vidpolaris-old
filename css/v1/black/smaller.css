@@ -1,6 +1,6 @@
 body {
 	background:black;
-	color:white;
+	color:#999;
 }
 
 #trending {
@@ -64,17 +64,17 @@ body {
 }
 
 a {
-	color:white;
+	color:#999;
 }
 
 input {
 	background-color:#131313;
-	color:white;
+	color:#999;
 }
 
 button {
 	color:black;
-	background-color:white;
+	background-color:#999;
 }
 
 button:hover {
@@ -82,7 +82,7 @@ button:hover {
 }
 
 .loader div::after {
-	background-color:white;
+	background-color:#999;
 }
 
 video {
@@ -92,7 +92,7 @@ video {
 }
 
 .invisibleLink {
-	color:white;
+	color:#999;
 }
 
 .comment {
@@ -101,6 +101,6 @@ video {
 
 select {
 	background-color: #111;
-	color:white;
+	color:#999;
 	border-color:#282828;
 }

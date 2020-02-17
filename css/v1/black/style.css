@@ -69,11 +69,11 @@ a {
 
 input {
 	background-color:#131313;
-	color:white;
+	color:#999;
 }
 
 button {
-	color:white;
+	color:#999;
 	background-color:#131313;
 }
 
@@ -82,7 +82,7 @@ button:hover {
 }
 
 .loader div::after {
-	background-color:white;
+	background-color:#999;
 }
 
 video {
@@ -101,6 +101,6 @@ video {
 
 select {
 	background-color: #111;
-	color:white;
+	color:#999;
 	border-color:#282828;
 }
