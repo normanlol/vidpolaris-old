@@ -1207,11 +1207,18 @@ function openVideo(opt) {
 						document.getElementById("relatedVideos").style.display = 'none';
 						document.getElementById("autoPlayBlock").style.display = 'none';
 					} else {
+						if (localStorage.getItem("sLoc") == "a") {
+							var baseUrl = "http://normandotmp4.electrohaxz.tk:9019/?thumb=";
+						} else if (localStorage.getItem("sLoc") == "b") {
+							var baseUrl = "https://vidpolaris.herokuapp.com/?thumb=";
+						} else if (localStorage.getItem("sLoc") == "c") {
+							var baseUrl = "https://vidpolaris-europe.herokuapp.com/?thumb=";
+						}
 						document.getElementById("relatedVideos").style.display = '';
 						document.getElementById("autoPlayBlock").style.display = '';
 						var r1L = "#w#" + jsond.info.related_videos[0].id;
 						var r1T = jsond.info.related_videos[0].title;
-						var r1A = jsond.info.related_videos[0].video_thumbnail;
+						var r1A = baseUrl + jsond.info.related_videos[0].id;
 						var r1Au = jsond.info.related_videos[0].author;
 						var r1V = jsond.info.related_videos[0].short_view_count_text;
 						document.getElementById("rv1").href = r1L;
@@ -1222,7 +1229,7 @@ function openVideo(opt) {
 						if (jsond.info.related_videos[1]) {
 							var r2L = "#w#" + jsond.info.related_videos[1].id;
 							var r2T = jsond.info.related_videos[1].title;
-							var r2A = jsond.info.related_videos[1].video_thumbnail;
+							var r2A = baseUrl + jsond.info.related_videos[1].id;;
 							var r2Au = jsond.info.related_videos[1].author;
 							var r2V = jsond.info.related_videos[1].short_view_count_text;
 							document.getElementById("rv2").href = r2L;
@@ -1233,7 +1240,7 @@ function openVideo(opt) {
 							if (jsond.info.related_videos[2]) {
 								var r3L = "#w#" + jsond.info.related_videos[2].id;
 								var r3T = jsond.info.related_videos[2].title;
-								var r3A = jsond.info.related_videos[2].video_thumbnail;
+								var r3A = baseUrl + jsond.info.related_videos[2].id;;
 								var r3Au = jsond.info.related_videos[2].author;
 								var r3V = jsond.info.related_videos[2].short_view_count_text;
 								document.getElementById("rv3").href = r3L;
@@ -1244,7 +1251,7 @@ function openVideo(opt) {
 								if (jsond.info.related_videos[3]) {
 									var r4L = "#w#" + jsond.info.related_videos[3].id;
 									var r4T = jsond.info.related_videos[3].title;
-									var r4A = jsond.info.related_videos[3].video_thumbnail;
+									var r4A = baseUrl + jsond.info.related_videos[3].id;;
 									var r4Au = jsond.info.related_videos[3].author;
 									var r4V = jsond.info.related_videos[3].short_view_count_text;
 									document.getElementById("rv4").href = r4L;
@@ -1255,7 +1262,7 @@ function openVideo(opt) {
 									if (jsond.info.related_videos[4]) {
 										var r5L = "#w#" + jsond.info.related_videos[4].id;
 										var r5T = jsond.info.related_videos[4].title;
-										var r5A = jsond.info.related_videos[4].video_thumbnail;
+										var r5A = baseUrl + jsond.info.related_videos[4].id;;
 										var r5Au = jsond.info.related_videos[4].author;
 										var r5V = jsond.info.related_videos[4].short_view_count_text;
 										document.getElementById("rv5").href = r5L;
@@ -1266,7 +1273,7 @@ function openVideo(opt) {
 										if (jsond.info.related_videos[5]) {
 											var r6L = "#w#" + jsond.info.related_videos[5].id;
 											var r6T = jsond.info.related_videos[5].title;
-											var r6A = jsond.info.related_videos[5].video_thumbnail;
+											var r6A = baseUrl + jsond.info.related_videos[5].id;;
 											var r6Au = jsond.info.related_videos[5].author;
 											var r6V = jsond.info.related_videos[5].short_view_count_text;
 											document.getElementById("rv6").href = r6L;
@@ -1277,7 +1284,7 @@ function openVideo(opt) {
 											if  (jsond.info.related_videos[6]) {
 												var r7L = "#w#" + jsond.info.related_videos[6].id;
 												var r7T = jsond.info.related_videos[6].title;
-												var r7A = jsond.info.related_videos[6].video_thumbnail;
+												var r7A = baseUrl + jsond.info.related_videos[6].id;;
 												var r7Au = jsond.info.related_videos[6].author;
 												var r7V = jsond.info.related_videos[6].short_view_count_text;
 												document.getElementById("rv7").href = r7L;
@@ -1288,7 +1295,7 @@ function openVideo(opt) {
 												if (jsond.info.related_videos[7]) {
 													var r8L = "#w#" + jsond.info.related_videos[7].id;
 													var r8T = jsond.info.related_videos[7].title;
-													var r8A = jsond.info.related_videos[7].video_thumbnail;
+													var r8A = baseUrl + jsond.info.related_videos[7].id;;
 													var r8Au = jsond.info.related_videos[7].author;
 													var r8V = jsond.info.related_videos[7].short_view_count_text;
 													document.getElementById("rv8").href = r8L;
@@ -1298,7 +1305,7 @@ function openVideo(opt) {
 													document.getElementById("rVie8").innerHTML = r8V;
 													if (jsond.info.related_videos[8]) {
 														var r9T = jsond.info.related_videos[8].title;
-														var r9A = jsond.info.related_videos[8].video_thumbnail;
+														var r9A = baseUrl + jsond.info.related_videos[8].id;;
 														var r9Au = jsond.info.related_videos[8].author;
 														var r9V = jsond.info.related_videos[8].short_view_count_text;
 														var r9L = "#w#" + jsond.info.related_videos[8].id;
