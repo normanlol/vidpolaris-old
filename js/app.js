@@ -214,57 +214,75 @@ document.addEventListener('keydown', function (event) {
 				}
 			}
 		} else if (key == "0" | key == 48) {
-			document.getElementById("player").currentTime = 0;
-			if (localStorage.getItem("smart") == "y") { 
-				document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
+			if (document.getElementById("playerContainer").style.display == "") {
+				document.getElementById("player").currentTime = 0;
+				if (localStorage.getItem("smart") == "y") { 
+					document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
+				}
 			}
 		} else if (key == "1" | key == 49) {
-			var d = (document.getElementById("player").duration / 10);
-			document.getElementById("player").currentTime = d;
-			if (localStorage.getItem("smart") == "y") { 
-				document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
+			if (document.getElementById("playerContainer").style.display == "") {
+				var d = (document.getElementById("player").duration / 10);
+				document.getElementById("player").currentTime = d;
+				if (localStorage.getItem("smart") == "y") { 
+					document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
+				}
 			}
 		} else if (key == "2" | key == 50) {
-			var d = (document.getElementById("player").duration / 10) * 2;
-			document.getElementById("player").currentTime = d;
-			if (localStorage.getItem("smart") == "y") { 
-				document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
+			if (document.getElementById("playerContainer").style.display == "") {
+				var d = (document.getElementById("player").duration / 10) * 2;
+				document.getElementById("player").currentTime = d;
+				if (localStorage.getItem("smart") == "y") { 
+					document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
+				}
 			}
 		} else if (key == "3" | key == 51) {
-			var d = (document.getElementById("player").duration / 10) * 3;
-			document.getElementById("player").currentTime = d;
-			if (localStorage.getItem("smart") == "y") { 
-				document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
+			if (document.getElementById("playerContainer").style.display == "") {
+				var d = (document.getElementById("player").duration / 10) * 3;
+				document.getElementById("player").currentTime = d;
+				if (localStorage.getItem("smart") == "y") { 
+					document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
+				}
 			}
 		} else if (key == "4" | key == 52) {
-			var d = (document.getElementById("player").duration / 10) * 4;
-			document.getElementById("player").currentTime = d;
-			if (localStorage.getItem("smart") == "y") { 
-				document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
+			if (document.getElementById("playerContainer").style.display == "") {
+				var d = (document.getElementById("player").duration / 10) * 4;
+				document.getElementById("player").currentTime = d;
+				if (localStorage.getItem("smart") == "y") { 
+					document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
+				}
 			}
 		} else if (key == "5" | key == 53) {
-			var d = (document.getElementById("player").duration / 10) * 5;
-			document.getElementById("player").currentTime = d;
-			if (localStorage.getItem("smart") == "y") { 
-				document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
+			if (document.getElementById("playerContainer").style.display == "") {
+				var d = (document.getElementById("player").duration / 10) * 5;
+				document.getElementById("player").currentTime = d;
+				if (localStorage.getItem("smart") == "y") { 
+					document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
+				}
 			}
 		} else if (key == "6" | key == 54) {
-			var d = (document.getElementById("player").duration / 10) * 6;
-			document.getElementById("player").currentTime = d;
-			if (localStorage.getItem("smart") == "y") { 
-				document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
+			if (document.getElementById("playerContainer").style.display == "") {
+				var d = (document.getElementById("player").duration / 10) * 6;
+				document.getElementById("player").currentTime = d;
+				if (localStorage.getItem("smart") == "y") { 
+					document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
+				}
 			}
 		} else if (key == "7" | key == 55) {
-			var d = (document.getElementById("player").duration / 10) * 7;
-			document.getElementById("player").currentTime = d;
-			if (localStorage.getItem("smart") == "y") { 
-				document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
+			if (document.getElementById("playerContainer").style.display == "") {
+				var d = (document.getElementById("player").duration / 10) * 7;
+				document.getElementById("player").currentTime = d;
+				if (localStorage.getItem("smart") == "y") { 
+					document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
+				}
 			}
 		} else if (key == "8" | key == 56) {
-			var d = (document.getElementById("player").duration / 10) * 8;
-			document.getElementById("player").currentTime = d;
-			if (localStorage.getItem("smart") == "y") { 
-				document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
+			if (document.getElementById("playerContainer").style.display == "") {
+				var d = (document.getElementById("player").duration / 10) * 8;
+				document.getElementById("player").currentTime = d;
+				if (localStorage.getItem("smart") == "y") { 
+					document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
+				}
 			}
 		} else if (key == "9" | key == 57) {
 			var d = (document.getElementById("player").duration / 10) * 9;
