@@ -1,0 +1,110 @@
+body {
+	background:black;
+	color:white;
+}
+
+#trending {
+	margin-left:12.5%;
+	margin-right:12.5%;
+}
+
+.video {
+	width:90%;
+	height:415px;
+	background-color:#111;
+}
+
+.video:hover {
+	background-color:#3c3c3c;
+}
+
+.resultD {
+	max-width:53%;
+}
+
+.smallVideo {
+	width:94%;
+	height:245px;
+	background-color:#111;
+}
+
+.smallVideo:hover {
+	background-color:#3c3c3c;
+}
+
+.altSmallVideo {
+	width:94%;
+	height:245px;
+	background-color:#111;
+}
+
+.altSmallVideo:hover {
+	background-color:#3c3c3c;
+}
+
+.resultVideo {
+	width:90%;
+	min-height:153px;
+	background-color:#282828;
+}
+
+.resultVideo:hover {
+	background-color:#3c3c3c;
+}
+
+.smallThumb {
+	width:45%;
+	height:220px;
+}
+
+.relatedThumb {
+	width:100%;
+	height:60%;
+}
+
+.largeThumb {
+	width:99%;
+	height:72%;
+}
+
+a {
+	color:white;
+}
+
+input {
+	background-color:#131313;
+	color:white;
+}
+
+button {
+	color:white;
+	background-color:#131313;
+}
+
+button:hover {
+	background-color:#2d2d2d;
+}
+
+.loader div::after {
+	background-color:white;
+}
+
+video {
+	width:65%;
+	height:10%;
+	max-height:645px;
+}
+
+.invisibleLink {
+	color:white;
+} 
+
+.comment {
+	background-color:#111;
+}
+
+select {
+	background-color: #111;
+	color:white;
+	border-color:#282828;
+}

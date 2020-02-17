@@ -330,13 +330,9 @@ console.log("server: " + localStorage.getItem('sLoc'));
 
 function resize() {
 	var w = window.innerWidth;
-	if (!localStorage.getItem("theme") | localStorage.getItem("theme") == "d") {
+	if (!localStorage.getItem("theme") | localStorage.getItem("theme") == "d_v1") {
 		if (!localStorage.getItem("theme")) {
 			localStorage.setItem("theme" , "d_v1");
-		} else if (localStorage.getItem("theme") == "d") {
-			localStorage.setItem("theme" , "d_v1");
-		} else if (localStorage.getItem("theme") == "w") {
-			localStorage.setItem("theme" , "w_v1");
 		}
 		if (w < 1200) {
 			document.getElementById("theme").href = "css/v1/dark/mobile.css";
@@ -348,7 +344,7 @@ function resize() {
 		} else {
 			document.getElementById("theme").href = "css/v1/dark/style.css";
 		}
-	} else {
+	} else if (localStorage.getItem("theme") == "w_v1") {
 		if (w < 1200) {
 			document.getElementById("theme").href = "css/v1/white/mobile.css";
 			if (localStorage.getItem("theater") == "n") {
@@ -358,6 +354,17 @@ function resize() {
 			document.getElementById("theme").href = "css/v1/white/smaller.css";
 		} else {
 			document.getElementById("theme").href = "css/v1/white/style.css";
+		}
+	} else if (localStorage.getItem("theme") == "b_v1") {
+		if (w < 1200) {
+			document.getElementById("theme").href = "css/v1/black/mobile.css";
+			if (localStorage.getItem("theater") == "n") {
+				theatre();
+			}
+		} else if (w < 1430) {
+			document.getElementById("theme").href = "css/v1/black/smaller.css";
+		} else {
+			document.getElementById("theme").href = "css/v1/black/style.css";
 		}
 	}
 }
