@@ -1,26 +1,30 @@
 body {
-	background:white;
-	color:black;
+	background:rgb(45, 45, 45);
+	color:white;
 }
 
 #trending {
-	max-width:1800px;
-	margin-left:2.5%;
+	margin-left:12.5%;
+	margin-right:12.5%;
 }
 
 .video {
-	width:280px;
-	height:305px;
-	background-color:#ececec;
+	width:90%;
+	height:415px;
+	background-color:#3c3c3c;
 }
 
 .video:hover {
-	background-color:#bfbfbf;
+	background-color:#888;
+}
+
+.resultD {
+	max-width:53%;
 }
 
 .smallVideo {
-	width:30%;
-	height:285px;
+	width:94%;
+	height:245px;
 	background-color:#3c3c3c;
 }
 
@@ -29,9 +33,9 @@ body {
 }
 
 .altSmallVideo {
-	width:23%;
-	height:285px;
-	background-color:#ececec;
+	width:94%;
+	height:245px;
+	background-color:#3c3c3c;
 }
 
 .altSmallVideo:hover {
@@ -39,7 +43,7 @@ body {
 }
 
 .resultVideo {
-	width:65%;
+	width:90%;
 	min-height:153px;
 	background-color:#3c3c3c;
 }
@@ -50,7 +54,7 @@ body {
 
 .smallThumb {
 	width:45%;
-	height:312px;
+	height:220px;
 }
 
 .relatedThumb {
@@ -59,46 +63,42 @@ body {
 }
 
 .largeThumb {
-	width:265px;
-	height:150px;
-}
-
-.noMargin {
-	margin:0px;
+	width:99%;
+	height:72%;
 }
 
 a {
-	color:black;
+	color:white;
 }
 
 input {
-	background-color:#e8e8e8;
-	color:black;
+	background-color:#282828;
+	color:white;
 }
 
 button {
 	color:black;
-	background-color:#c6c6c6;
+	background-color:white;
 }
 
 button:hover {
-	background-color:#f0f0f0;
+	background-color:#c1c1c1;
 }
 
 .loader {
-	color: #282828;
+	color:white;
 }
 
 video {
-	width:60%;
+	width:65%;
 	height:10%;
 	max-height:645px;
 }
 
 .invisibleLink {
-	color:black;
-}
+	color:white;
+} 
 
 .comment {
-	background-color:#e3e3e3;
+	background-color:#3c3c3c;
 }

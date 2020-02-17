@@ -305,14 +305,14 @@ function resize() {
 			localStorage.setItem("theme" , "d");
 		}
 		if (w < 1200) {
-			document.getElementById("theme").href = "css/mobile.css";
+			document.getElementById("theme").href = "css/dark/mobile.css";
 			if (localStorage.getItem("theater") == "n") {
 				theatre();
 			}
 		} else if (w < 1430) {
-			document.getElementById("theme").href = "css/smaller.css";
+			document.getElementById("theme").href = "css/dark/smaller.css";
 		} else {
-			document.getElementById("theme").href = "css/style.css";
+			document.getElementById("theme").href = "css/dark/style.css";
 		}
 	} else {
 		if (w < 1200) {
@@ -1791,10 +1791,8 @@ function saveSettings() {
 	localStorage.setItem("smart", document.getElementById("sq").value);
 	localStorage.setItem("theme", document.getElementById("wTheme").value);
 	localStorage.setItem("sLoc", document.getElementById("server").value);
-	localStorage.setItem("speedtest", document.getElementById("speedt").value);
 	resize();
-	home();
-	window.open("#", "_self")
+	window.open("#", "_self");
 }
 
 function dismiss() {

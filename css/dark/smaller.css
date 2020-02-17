@@ -1,6 +1,6 @@
 body {
-	background:white;
-	color:black;
+	background:rgb(45, 45, 45);
+	color:white;
 }
 
 #trending {
@@ -11,16 +11,16 @@ body {
 .video {
 	width:280px;
 	height:305px;
-	background-color:#ececec;
+	background-color:#3c3c3c;
 }
 
 .video:hover {
-	background-color:#bfbfbf;
+	background-color:#888;
 }
 
 .smallVideo {
 	width:30%;
-	height:285px;
+	height:255px;
 	background-color:#3c3c3c;
 }
 
@@ -31,7 +31,7 @@ body {
 .altSmallVideo {
 	width:23%;
 	height:285px;
-	background-color:#ececec;
+	background-color:#3c3c3c;
 }
 
 .altSmallVideo:hover {
@@ -63,30 +63,26 @@ body {
 	height:150px;
 }
 
-.noMargin {
-	margin:0px;
-}
-
 a {
-	color:black;
+	color:white;
 }
 
 input {
-	background-color:#e8e8e8;
-	color:black;
+	background-color:#282828;
+	color:white;
 }
 
 button {
 	color:black;
-	background-color:#c6c6c6;
+	background-color:white;
 }
 
 button:hover {
-	background-color:#f0f0f0;
+	background-color:#c1c1c1;
 }
 
 .loader {
-	color: #282828;
+	color:white;
 }
 
 video {
@@ -96,9 +92,9 @@ video {
 }
 
 .invisibleLink {
-	color:black;
+	color:white;
 }
 
 .comment {
-	background-color:#e3e3e3;
+	background-color:#3c3c3c;
 }
