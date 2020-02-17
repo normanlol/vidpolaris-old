@@ -81,8 +81,8 @@ button:hover {
 	background-color:#f0f0f0;
 }
 
-.loader {
-	color: #282828;
+.loader div::after {
+	color:#282828;
 }
 
 video {

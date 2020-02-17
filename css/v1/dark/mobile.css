@@ -85,7 +85,7 @@ button:hover {
 	background-color:#c1c1c1;
 }
 
-.loader {
+.loader div::after {
 	color:white;
 }
 

@@ -305,25 +305,25 @@ function resize() {
 			localStorage.setItem("theme" , "d");
 		}
 		if (w < 1200) {
-			document.getElementById("theme").href = "css/dark/mobile.css";
+			document.getElementById("theme").href = "css/v1/dark/mobile.css";
 			if (localStorage.getItem("theater") == "n") {
 				theatre();
 			}
 		} else if (w < 1430) {
-			document.getElementById("theme").href = "css/dark/smaller.css";
+			document.getElementById("theme").href = "css/v1/dark/smaller.css";
 		} else {
-			document.getElementById("theme").href = "css/dark/style.css";
+			document.getElementById("theme").href = "css/v1/dark/style.css";
 		}
 	} else {
 		if (w < 1200) {
-			document.getElementById("theme").href = "css/white/mobile.css";
+			document.getElementById("theme").href = "css/v1/white/mobile.css";
 			if (localStorage.getItem("theater") == "n") {
 				theatre();
 			}
 		} else if (w < 1430) {
-			document.getElementById("theme").href = "css/white/smaller.css";
+			document.getElementById("theme").href = "css/v1/white/smaller.css";
 		} else {
-			document.getElementById("theme").href = "css/white/style.css";
+			document.getElementById("theme").href = "css/v1/white/style.css";
 		}
 	}
 }

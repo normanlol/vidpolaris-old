@@ -19,7 +19,7 @@ body {
 }
 
 .smallVideo {
-	width:30%;
+	width:31%;
 	height:255px;
 	background-color:#3c3c3c;
 }
@@ -81,7 +81,7 @@ button:hover {
 	background-color:#c1c1c1;
 }
 
-.loader {
+.loader div::after {
 	color:white;
 }
 
