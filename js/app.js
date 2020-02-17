@@ -6,6 +6,13 @@ if (localStorage.getItem("sLoc")) {
 }
 keepProg();
 refresh();
+if (sessionStorage.getItem("cb") && localStorage.getItem("smart") == "y") {
+	localStorage.setItem("smart", "n");
+	sessionStorage.removeItem("cb");
+} else if (sessionStorage.getItem("cb") && localStorage.getItem("smart") == "n") {
+	localStorage.setItem("smart", "y");
+	sessionStorage.removeItem("cb");
+}
 
 // settings checkers
 
