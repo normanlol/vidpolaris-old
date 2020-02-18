@@ -640,14 +640,14 @@
 				</div>
 			</div>
 			<div id="settingsPage" style="display:none;" class="noCenter">
-				<div title="smartquality syncs up the highest quality audio and video, rather than the highest quality video/audio itag. only reccomended for those with a strong connection. this may cause slowdown if you have a weaker computer.">
+				<div class="setting" title="smartquality syncs up the highest quality audio and video, rather than the highest quality video/audio itag. only reccomended for those with a strong connection. this may cause slowdown if you have a weaker computer.">
 					<label>smartquality (beta):</label>
 					<select id="sq">
 						<option value="y">enabled (default)</option>
 						<option value="n">disabled</option>
 					</select><br>
 				</div>
-				<div title="choose a theme to use for the site.">
+				<div class="setting" title="choose a theme to use for the site.">
 					<label>theme:</label>
 					<select id="wTheme">
 						<option value="d_v1">dark v1 (default)</option>
@@ -655,15 +655,15 @@
 						<option value="b_v1">pure black v1</option>
 					</select>
 				</div>
-				<div title="select a server to use. you can change it if a server isn't working for you.">
-					<label>Server Location:</label>
+				<div class="setting" title="select a server to use. you can change it if a server isn't working for you.">
+					<label>server location:</label>
 					<select id="server">
 						<option value="a">server a (us west, electrohaxz [donated server]) (default)</option>
 						<option value="b">server b (us east, heroku)</option>
 						<option value="c">server c (eu, heroku)</option>
 					</select>
 				</div>
-				<div title="self explanitory.">
+				<div class="setting" title="self explanitory.">
 					<label>show search suggestions:</label>
 					<select id="server">
 						<option value="y">enabled (default)</option>
@@ -671,7 +671,7 @@
 					</select>
 				</div>
 				<div style="width:1px; height:10px;"></div>
-				<button onclick="saveSettings()" class="material-icons ico">save</button>
+				<button onclick="saveSettings()"><span class="material-icons ico">save</span> save settings</button>
 			</div>
 			<div id="nsWarnPage" style="display:none; width:50%;" class="noCenter">
 				<h1 class="material-icons ico" style="font-size:72px; margin:0;">warning</h1>

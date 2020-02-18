@@ -346,3 +346,8 @@ input:checked + .slider:before {
 .noMargin {
 	margin:0px;
 }
+
+.setting {
+	margin-top:5px;
+	margin-bottom:5px;
+}
