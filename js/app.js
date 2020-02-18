@@ -1252,11 +1252,11 @@ function openVideo(opt,ret) {
 							}
 						}
 						var cat = jsond.info.media.category;
-						if (!cat == undefined) {
+						if (cat == undefined) {
+							document.getElementById("catCont").style.display = "none";
+						} else {
 							document.getElementById("catCont").style.display = "";
 							document.getElementById("cat").innerHTML = cat;
-						} else {
-							document.getElementById("catCont").style.display = "none";
 						}
 						if (!jsond.info.related_videos[0]) {
 							document.getElementById("relatedVideos").style.display = 'none';
