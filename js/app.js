@@ -4137,6 +4137,7 @@ function toggleF() {
 
 function suggest(opt) {
 	if (document.getElementById("q").value == "" | localStorage.getItem("suggest") == "n") {
+		document.getElementById("suggest").innerHTML = "";
 		return;
 	}
 	
