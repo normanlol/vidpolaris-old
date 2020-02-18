@@ -36,6 +36,13 @@ if (!localStorage.getItem("pbSpeed")) {
 	setSpeed();
 }
 
+if (!localStorage.getItem("suggest")) {
+	localStorage.setItem("suggest" , "y");
+	document.getElementById("suggest").value = "y"
+} else {
+	document.getElementById("suggest").value = localStorage.getItem("suggest");
+}
+
 if (!localStorage.getItem("theme")) {
 	localStorage.setItem("theme" , "d_v1");
 	document.getElementById("wTheme").value = "d_v1";
@@ -2052,6 +2059,7 @@ function saveSettings() {
 	localStorage.setItem("smart", document.getElementById("sq").value);
 	localStorage.setItem("theme", document.getElementById("wTheme").value);
 	localStorage.setItem("sLoc", document.getElementById("server").value);
+	localStorage.setItem("suggest", document.getElementById("suggest").value);
 	resize();
 	window.open("#", "_self");
 }
@@ -4124,5 +4132,52 @@ function toggleF() {
 		sessionStorage.setItem("fullscreen", "n");
 	} else {
 		sessionStorage.setItem("fullscreen", "y");
+	}
+}
+
+function suggest(opt) {
+	if (document.getElementById("q").value == "" | localStorage.getItem("suggest") == "n") {
+		return;
+	}
+	
+	var q = document.getElementById("q").value
+	if (opt == "a" | !opt) {
+		var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?suggest=" + q;
+	} else if (opt == "b"){
+		var url = "https://vidpolaris.herokuapp.com/?suggest=" + q;
+	} else if (opt == "c") {
+		var url = "https://vidpolaris-europe.herokuapp.com/?suggest=" + q;
+	}
+	const http = new XMLHttpRequest();
+	http.open("GET", url);
+	http.send();
+	http.onreadystatechange=(e)=>{
+		var jsond = JSON.parse(http.responseText);
+		if (jsond.results[0]) {
+			var opti = document.createElement("OPTION");
+			opti.innerHTML = jsond.results[0];
+			document.getElementById("suggest").innerHTML = "";
+			document.getElementById("suggest").appendChild(opti);
+			if (jsond.results[1]) {
+				var opti = document.createElement("OPTION");
+				opti.innerHTML = jsond.results[1];
+				document.getElementById("suggest").appendChild(opti);
+				if (jsond.results[2]) {
+					var opti = document.createElement("OPTION");
+					opti.innerHTML = jsond.results[2];
+					document.getElementById("suggest").appendChild(opti);
+					if (jsond.results[3]) {
+						var opti = document.createElement("OPTION");
+						opti.innerHTML = jsond.results[3];
+						document.getElementById("suggest").appendChild(opti);
+						if (jsond.results[4]) {
+							var opti = document.createElement("OPTION");
+							opti.innerHTML = jsond.results[4];
+							document.getElementById("suggest").appendChild(opti);
+						}
+					}
+				}
+			}
+		}
 	}
 }

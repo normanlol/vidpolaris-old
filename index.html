@@ -19,7 +19,8 @@
 		<div class="centerMe">
 			<a href="#" class="invisibleLink" style="width:151px;"><h1>vidpolaris</h1></a>
 			<div id="searchContainer">
-				<input id="q" autocomplete="off">
+				<input id="q" autocomplete="off" list="suggest" oninput="suggest(localStorage.getItem('sLoc'))">
+				<datalist id="suggest"></datalist>
 				<button onclick="getSLink()">search</button>
 				<button onclick="feelingLucky()">i'm feeling lucky</button>
 				<a href="#settings"><button>settings</button></a>
@@ -639,31 +640,38 @@
 				</div>
 			</div>
 			<div id="settingsPage" style="display:none;" class="noCenter">
-				<div title="SmartQuality syncs up the highest quality audio and video, rather than the highest quality video/audio itag. Only reccomended for those with a strong connection. This may cause slowdown if you have a weaker computer.">
-					<label>SmartQuality (BETA):</label>
+				<div title="smartquality syncs up the highest quality audio and video, rather than the highest quality video/audio itag. only reccomended for those with a strong connection. this may cause slowdown if you have a weaker computer.">
+					<label>smartquality (beta):</label>
 					<select id="sq">
-						<option value="y">Enabled (Default)</option>
-						<option value="n">Disabled</option>
+						<option value="y">enabled (default)</option>
+						<option value="n">disabled</option>
 					</select><br>
 				</div>
-				<div title="Choose a theme to use for the site.">
-					<label>Website Theme:</label>
+				<div title="choose a theme to use for the site.">
+					<label>theme:</label>
 					<select id="wTheme">
-						<option value="d_v1">Dark v1 (Default)</option>
-						<option value="w_v1">White v1</option>
-						<option value="b_v1">Pure Black v1</option>
+						<option value="d_v1">dark v1 (default)</option>
+						<option value="w_v1">white v1</option>
+						<option value="b_v1">pure black v1</option>
 					</select>
 				</div>
-				<div title="Select a server to use. You can change it if a server isn't working for you.">
+				<div title="select a server to use. you can change it if a server isn't working for you.">
 					<label>Server Location:</label>
 					<select id="server">
-						<option value="a">Server A (US West, ELTX)</option>
-						<option value="b">Server B (US, Heroku)</option>
-						<option value="c">Server C (EU, Heroku)</option>
+						<option value="a">server a (us west, electrohaxz [donated server]) (default)</option>
+						<option value="b">server b (us east, heroku)</option>
+						<option value="c">server c (eu, heroku)</option>
+					</select>
+				</div>
+				<div title="self explanitory.">
+					<label>show search suggestions:</label>
+					<select id="server">
+						<option value="y">enabled (default)</option>
+						<option value="n">disabled</option>
 					</select>
 				</div>
 				<div style="width:1px; height:10px;"></div>
-				<button onclick="saveSettings()">Save Settings</button>
+				<button onclick="saveSettings()" class="material-icons ico">save</button>
 			</div>
 			<div id="nsWarnPage" style="display:none; width:50%;" class="noCenter">
 				<h1 class="material-icons ico" style="font-size:72px; margin:0;">warning</h1>
