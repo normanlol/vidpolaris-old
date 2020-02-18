@@ -17,6 +17,15 @@ if (sessionStorage.getItem("fullscreen")) {
 	sessionStorage.removeItem("fullscreen")
 } 
 
+if (!localStorage.getItem("trendCont")) {
+	if (localStorage.getItem("c")) {
+		console.log("country imported from NewsPage")
+		localStorage.setItem("trendCont", localStorage.getItem("c"))
+	} else {
+		localStorage.setItem("trendCont", "us");
+	}
+}
+
 if (!localStorage.getItem("autoplay")) {
 	localStorage.setItem("autoplay" , "y");
 	document.getElementById('apSwitch').checked = true;
@@ -800,11 +809,11 @@ function feelingLucky() {
 function getTrending(opt) {
 	const http = new XMLHttpRequest();
 	if (opt == "a" | !opt) {
-		var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?trending=us";
+		var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?trending=" + localStorage.getItem("trendingCont")
 	} else if (opt == "b") {
-		var url = "https://vidpolaris.herokuapp.com/?trending=us";
+		var url = "https://vidpolaris.herokuapp.com/?trending=" + localStorage.getItem("trendingCont");
 	} else if (opt == "c") {
-		var url = "https://vidpolaris-europe.herokuapp.com/?trending=us";
+		var url = "https://vidpolaris-europe.herokuapp.com/?trending=" + localStorage.getItem("trendingCont");
 	}
 	http.open("GET", url);
 	http.send();
@@ -2115,6 +2124,7 @@ function saveSettings() {
 	localStorage.setItem("theme", document.getElementById("wTheme").value);
 	localStorage.setItem("sLoc", document.getElementById("server").value);
 	localStorage.setItem("suggest", document.getElementById("suggest").value);
+	localStorage.setItem("trendingCont", document.getElementById("country").value);
 	resize();
 	window.open("#", "_self");
 }
