@@ -3974,6 +3974,287 @@ function openChannel(opt) {
 	}
 }
 
+function openChannelVideos(opt) {
+	document.getElementById("recentUploads").style.display = 'none';
+	document.getElementById("allUploadsPage").style.display = '';
+	const http = new XMLHttpRequest();
+	var id = getClickedId(window.location.href, '#c#');
+	if (opt == "a" | !opt) {
+		var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?channelVideos=" + id + "&sortBy=" + document.getElementById("sortBy").value;
+	} else if (opt == "b"){
+		var url = "https://vidpolaris.herokuapp.com/?channelVideos=" + id + "&sortBy=" + document.getElementById("sortBy").value;
+	} else if (opt == "c") {
+		var url = "https://vidpolaris-europe.herokuapp.com/?channelVideos=" + id + "&sortBy=" + document.getElementById("sortBy").value;
+	}
+	http.open("GET", url);
+	http.send();
+	http.onreadystatechange=(e)=>{
+		document.getElementById("allUploads").innerHTML = "";
+		var jsond = JSON.parse(http.responseText);
+		var link = document.createElement("A");
+		link.href = "#w#" + jsond[0].videoId;
+		link.id = "au1";
+		document.getElementById("allUploads").appendChild(link);
+		var div = document.createElement("DIV");
+		div.classList.add("altSmallVideo");
+		div.id = "au1Div"
+		document.getElementById("au1").appendChild(div);
+		var img = document.createElement("IMG");
+		img.classList.add("relatedThumb");
+		img.src = "https://vidpolaris.herokuapp.com/?thumb=" + jsond[0].videoId;
+		document.getElementById("au1Div").appendChild(img);
+		var h3 = document.createElement("H3");
+		h3.classList.add("stat");
+		h3.innerHTML = jsond[0].title;
+		document.getElementById("au1Div").appendChild(h3);
+		var link = document.createElement("A");
+		link.href = "#w#" + jsond[1].videoId;
+		link.id = "au2";
+		document.getElementById("allUploads").appendChild(link);
+		var div = document.createElement("DIV");
+		div.classList.add("altSmallVideo");
+		div.id = "au2Div"
+		document.getElementById("au2").appendChild(div);
+		var img = document.createElement("IMG");
+		img.classList.add("relatedThumb");
+		img.src = "https://vidpolaris.herokuapp.com/?thumb=" + jsond[1].videoId;
+		document.getElementById("au2Div").appendChild(img);
+		var h3 = document.createElement("H3");
+		h3.classList.add("stat");
+		h3.innerHTML = jsond[1].title;
+		document.getElementById("au2Div").appendChild(h3);
+		var link = document.createElement("A");
+		link.href = "#w#" + jsond[2].videoId;
+		link.id = "au3";
+		document.getElementById("allUploads").appendChild(link);
+		var div = document.createElement("DIV");
+		div.classList.add("altSmallVideo");
+		div.id = "au3Div"
+		document.getElementById("au3").appendChild(div);
+		var img = document.createElement("IMG");
+		img.classList.add("relatedThumb");
+		img.src = "https://vidpolaris.herokuapp.com/?thumb=" + jsond[2].videoId;
+		document.getElementById("au3Div").appendChild(img);
+		var h3 = document.createElement("H3");
+		h3.classList.add("stat");
+		h3.innerHTML = jsond[2].title;
+		document.getElementById("au3Div").appendChild(h3);
+		var link = document.createElement("A");
+		link.href = "#w#" + jsond[3].videoId;
+		link.id = "au4";
+		document.getElementById("allUploads").appendChild(link);
+		var div = document.createElement("DIV");
+		div.classList.add("altSmallVideo");
+		div.id = "au4Div"
+		document.getElementById("au4").appendChild(div);
+		var img = document.createElement("IMG");
+		img.classList.add("relatedThumb");
+		img.src = "https://vidpolaris.herokuapp.com/?thumb=" + jsond[3].videoId;
+		document.getElementById("au4Div").appendChild(img);
+		var h3 = document.createElement("H3");
+		h3.classList.add("stat");
+		h3.innerHTML = jsond[3].title;
+		document.getElementById("au4Div").appendChild(h3);
+		var link = document.createElement("A");
+		link.href = "#w#" + jsond[4].videoId;
+		link.id = "au5";
+		document.getElementById("allUploads").appendChild(link);
+		var div = document.createElement("DIV");
+		div.classList.add("altSmallVideo");
+		div.id = "au5Div"
+		document.getElementById("au5").appendChild(div);
+		var img = document.createElement("IMG");
+		img.classList.add("relatedThumb");
+		img.src = "https://vidpolaris.herokuapp.com/?thumb=" + jsond[4].videoId;
+		document.getElementById("au5Div").appendChild(img);
+		var h3 = document.createElement("H3");
+		h3.classList.add("stat");
+		h3.innerHTML = jsond[4].title;
+		document.getElementById("au5Div").appendChild(h3);
+		var link = document.createElement("A");
+		link.href = "#w#" + jsond[5].videoId;
+		link.id = "au6";
+		document.getElementById("allUploads").appendChild(link);
+		var div = document.createElement("DIV");
+		div.classList.add("altSmallVideo");
+		div.id = "au6Div"
+		document.getElementById("au6").appendChild(div);
+		var img = document.createElement("IMG");
+		img.classList.add("relatedThumb");
+		img.src = "https://vidpolaris.herokuapp.com/?thumb=" + jsond[5].videoId;
+		document.getElementById("au6Div").appendChild(img);
+		var h3 = document.createElement("H3");
+		h3.classList.add("stat");
+		h3.innerHTML = jsond[5].title;
+		document.getElementById("au6Div").appendChild(h3);
+		var link = document.createElement("A");
+		link.href = "#w#" + jsond[6].videoId;
+		link.id = "au7";
+		document.getElementById("allUploads").appendChild(link);
+		var div = document.createElement("DIV");
+		div.classList.add("altSmallVideo");
+		div.id = "au7Div"
+		document.getElementById("au7").appendChild(div);
+		var img = document.createElement("IMG");
+		img.classList.add("relatedThumb");
+		img.src = "https://vidpolaris.herokuapp.com/?thumb=" + jsond[6].videoId;
+		document.getElementById("au7Div").appendChild(img);
+		var h3 = document.createElement("H3");
+		h3.classList.add("stat");
+		h3.innerHTML = jsond[6].title;
+		document.getElementById("au7Div").appendChild(h3);
+		var link = document.createElement("A");
+		link.href = "#w#" + jsond[7].videoId;
+		link.id = "au8";
+		document.getElementById("allUploads").appendChild(link);
+		var div = document.createElement("DIV");
+		div.classList.add("altSmallVideo");
+		div.id = "au8Div"
+		document.getElementById("au8").appendChild(div);
+		var img = document.createElement("IMG");
+		img.classList.add("relatedThumb");
+		img.src = "https://vidpolaris.herokuapp.com/?thumb=" + jsond[7].videoId;
+		document.getElementById("au8Div").appendChild(img);
+		var h3 = document.createElement("H3");
+		h3.classList.add("stat");
+		h3.innerHTML = jsond[7].title;
+		document.getElementById("au8Div").appendChild(h3);
+		var link = document.createElement("A");
+		link.href = "#w#" + jsond[8].videoId;
+		link.id = "au9";
+		document.getElementById("allUploads").appendChild(link);
+		var div = document.createElement("DIV");
+		div.classList.add("altSmallVideo");
+		div.id = "au9Div"
+		document.getElementById("au9").appendChild(div);
+		var img = document.createElement("IMG");
+		img.classList.add("relatedThumb");
+		img.src = "https://vidpolaris.herokuapp.com/?thumb=" + jsond[8].videoId;
+		document.getElementById("au9Div").appendChild(img);
+		var h3 = document.createElement("H3");
+		h3.classList.add("stat");
+		h3.innerHTML = jsond[8].title;
+		document.getElementById("au9Div").appendChild(h3);
+		var link = document.createElement("A");
+		link.href = "#w#" + jsond[9].videoId;
+		link.id = "au10";
+		document.getElementById("allUploads").appendChild(link);
+		var div = document.createElement("DIV");
+		div.classList.add("altSmallVideo");
+		div.id = "au10Div"
+		document.getElementById("au10").appendChild(div);
+		var img = document.createElement("IMG");
+		img.classList.add("relatedThumb");
+		img.src = "https://vidpolaris.herokuapp.com/?thumb=" + jsond[9].videoId;
+		document.getElementById("au10Div").appendChild(img);
+		var h3 = document.createElement("H3");
+		h3.classList.add("stat");
+		h3.innerHTML = jsond[9].title;
+		document.getElementById("au10Div").appendChild(h3);
+		var link = document.createElement("A");
+		link.href = "#w#" + jsond[10].videoId;
+		link.id = "au11";
+		document.getElementById("allUploads").appendChild(link);
+		var div = document.createElement("DIV");
+		div.classList.add("altSmallVideo");
+		div.id = "au11Div"
+		document.getElementById("au11").appendChild(div);
+		var img = document.createElement("IMG");
+		img.classList.add("relatedThumb");
+		img.src = "https://vidpolaris.herokuapp.com/?thumb=" + jsond[10].videoId;
+		document.getElementById("au11Div").appendChild(img);
+		var h3 = document.createElement("H3");
+		h3.classList.add("stat");
+		h3.innerHTML = jsond[10].title;
+		document.getElementById("au11Div").appendChild(h3);
+		var link = document.createElement("A");
+		link.href = "#w#" + jsond[11].videoId;
+		link.id = "au12";
+		document.getElementById("allUploads").appendChild(link);
+		var div = document.createElement("DIV");
+		div.classList.add("altSmallVideo");
+		div.id = "au12Div"
+		document.getElementById("au12").appendChild(div);
+		var img = document.createElement("IMG");
+		img.classList.add("relatedThumb");
+		img.src = "https://vidpolaris.herokuapp.com/?thumb=" + jsond[11].videoId;
+		document.getElementById("au12Div").appendChild(img);
+		var h3 = document.createElement("H3");
+		h3.classList.add("stat");
+		h3.innerHTML = jsond[11].title;
+		document.getElementById("au12Div").appendChild(h3);
+		var link = document.createElement("A");
+		link.href = "#w#" + jsond[12].videoId;
+		link.id = "au13";
+		document.getElementById("allUploads").appendChild(link);
+		var div = document.createElement("DIV");
+		div.classList.add("altSmallVideo");
+		div.id = "au13Div"
+		document.getElementById("au13").appendChild(div);
+		var img = document.createElement("IMG");
+		img.classList.add("relatedThumb");
+		img.src = "https://vidpolaris.herokuapp.com/?thumb=" + jsond[12].videoId;
+		document.getElementById("au13Div").appendChild(img);
+		var h3 = document.createElement("H3");
+		h3.classList.add("stat");
+		h3.innerHTML = jsond[12].title;
+		document.getElementById("au13Div").appendChild(h3);
+		var link = document.createElement("A");
+		link.href = "#w#" + jsond[13].videoId;
+		link.id = "au14";
+		document.getElementById("allUploads").appendChild(link);
+		var div = document.createElement("DIV");
+		div.classList.add("altSmallVideo");
+		div.id = "au14Div"
+		document.getElementById("au14").appendChild(div);
+		var img = document.createElement("IMG");
+		img.classList.add("relatedThumb");
+		img.src = "https://vidpolaris.herokuapp.com/?thumb=" + jsond[13].videoId;
+		document.getElementById("au14Div").appendChild(img);
+		var h3 = document.createElement("H3");
+		h3.classList.add("stat");
+		h3.innerHTML = jsond[13].title;
+		document.getElementById("au14Div").appendChild(h3);
+		var link = document.createElement("A");
+		link.href = "#w#" + jsond[14].videoId;
+		link.id = "au15";
+		document.getElementById("allUploads").appendChild(link);
+		var div = document.createElement("DIV");
+		div.classList.add("altSmallVideo");
+		div.id = "au15Div"
+		document.getElementById("au15").appendChild(div);
+		var img = document.createElement("IMG");
+		img.classList.add("relatedThumb");
+		img.src = "https://vidpolaris.herokuapp.com/?thumb=" + jsond[14].videoId;
+		document.getElementById("au15Div").appendChild(img);
+		var h3 = document.createElement("H3");
+		h3.classList.add("stat");
+		h3.innerHTML = jsond[14].title;
+		document.getElementById("au15Div").appendChild(h3);
+		var link = document.createElement("A");
+		link.href = "#w#" + jsond[15].videoId;
+		link.id = "au16";
+		document.getElementById("allUploads").appendChild(link);
+		var div = document.createElement("DIV");
+		div.classList.add("altSmallVideo");
+		div.id = "au16Div"
+		document.getElementById("au16").appendChild(div);
+		var img = document.createElement("IMG");
+		img.classList.add("relatedThumb");
+		img.src = "https://vidpolaris.herokuapp.com/?thumb=" + jsond[15].videoId;
+		document.getElementById("au16Div").appendChild(img);
+		var h3 = document.createElement("H3");
+		h3.classList.add("stat");
+		h3.innerHTML = jsond[15].title;
+		document.getElementById("au16Div").appendChild(h3);
+	}
+}
+
+function cHome() {
+	document.getElementById("recentUploads").style.display = '';
+	document.getElementById("allUploadsPage").style.display = 'none';
+}
+
 function watchOnYoutube() {
 	var id = getClickedId(window.location.href, "#w#");
 	window.open("https://youtube.com/watch?v=" + id, "_self")
