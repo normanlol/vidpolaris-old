@@ -1656,7 +1656,7 @@ function openVideo(opt,ret) {
 								sync();
 								document.getElementById("player").load();
 								document.getElementById("audioPlayer").load();
-								loadComments("none", opt);
+								getComments("none", opt);
 								setSpeed();
 								getSubs(opt);
 								document.getElementById("player").play();
@@ -1707,7 +1707,7 @@ function openVideo(opt,ret) {
 							} else {
 								var url = "https://vidpolaris.herokuapp.com/?md=1&url=" + fullUrl;
 							}
-							loadComments("none", opt);
+							getComments("none", opt);
 							setSpeed();
 							getSubs(opt);
 							http.open("GET", url);
@@ -2134,7 +2134,7 @@ function dismiss() {
 	document.getElementById("lasaga").style.display = 'none';
 }
 
-function loadComments(token, opt) {
+function getComments(token, opt) {
 	if (!token | token == "none") {
 		document.getElementById("loadedComments").style.display = 'none';
 		document.getElementById("loadedC").style.display = 'none';
@@ -2156,7 +2156,7 @@ function loadComments(token, opt) {
 		http.ontimeout = () => {
 			if (opt == "a" | !opt) {
 				if (!localStorage.getItem("sLoc") == "b") {
-					loadComments("none", "b");
+					getComments("none", "b");
 				} else {
 					document.getElementById("errorC").style.display = '';
 					document.getElementById("loadinC").style.display = 'none';
@@ -2164,7 +2164,7 @@ function loadComments(token, opt) {
 				}
 			} else if (opt == "b"){
 				if (!localStorage.getItem("sLoc") == "c") {
-					loadComments("none", "c");
+					getComments("none", "c");
 				} else {
 					document.getElementById("errorC").style.display = '';
 					document.getElementById("loadinC").style.display = 'none';
@@ -2172,7 +2172,7 @@ function loadComments(token, opt) {
 				}
 			} else if (opt == "c") {
 				if (!localStorage.getItem("sLoc") == "a") {
-					loadComments("none", "a");
+					getComments("none", "a");
 				} else {
 					document.getElementById("errorC").style.display = '';
 					document.getElementById("loadinC").style.display = 'none';
@@ -2874,7 +2874,7 @@ function loadComments(token, opt) {
 		http.ontimeout = () => {
 			if (opt == "a" | !opt) {
 				if (!localStorage.getItem("sLoc") == "b") {
-					loadComments("none", "b");
+					getComments("none", "b");
 				} else {
 					document.getElementById("errorC").style.display = '';
 					document.getElementById("loadinC").style.display = 'none';
@@ -2882,7 +2882,7 @@ function loadComments(token, opt) {
 				}
 			} else if (opt == "b"){
 				if (!localStorage.getItem("sLoc") == "c") {
-					loadComments("none", "c");
+					getComments("none", "c");
 				} else {
 					document.getElementById("errorC").style.display = '';
 					document.getElementById("loadinC").style.display = 'none';
@@ -2890,7 +2890,7 @@ function loadComments(token, opt) {
 				}
 			} else if (opt == "c") {
 				if (!localStorage.getItem("sLoc") == "a") {
-					loadComments("none", "a");
+					getComments("none", "a");
 				} else {
 					document.getElementById("errorC").style.display = '';
 					document.getElementById("loadinC").style.display = 'none';
