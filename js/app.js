@@ -26,6 +26,13 @@ if (!localStorage.getItem("trendCont")) {
 	}
 }
 
+if (!localStorage.getItem("loadComm")) {
+	localStorage.setItem("loadComm", "y");
+	document.getElementById("autoComm").value = "y";
+} else {
+	document.getElementById("autoComm").value = localStorage.getItem("loadComm");
+}
+
 if (!localStorage.getItem("autoplay")) {
 	localStorage.setItem("autoplay" , "y");
 	document.getElementById('apSwitch').checked = true;
@@ -1656,7 +1663,15 @@ function openVideo(opt,ret) {
 								sync();
 								document.getElementById("player").load();
 								document.getElementById("audioPlayer").load();
-								getComments("none", opt);
+								if (localStorage.getItem("loadComm") == "y") {
+									getComments("none", opt);
+								} else {
+									document.getElementById("loadC").style.display = '';
+									document.getElementById("loadedC").style.display = 'none';
+									document.getElementById("loadedComments").style.display = 'none';
+									document.getElementById("loadinC").style.display = 'none';
+									document.getElementById("errorC").style.display = 'none';
+								}
 								setSpeed();
 								getSubs(opt);
 								document.getElementById("player").play();
@@ -1707,7 +1722,15 @@ function openVideo(opt,ret) {
 							} else {
 								var url = "https://vidpolaris.herokuapp.com/?md=1&url=" + fullUrl;
 							}
-							getComments("none", opt);
+							if (localStorage.getItem("loadComm") == "y") {
+								getComments("none", opt);
+							} else {
+								document.getElementById("loadC").style.display = '';
+								document.getElementById("loadedC").style.display = 'none';
+								document.getElementById("loadedComments").style.display = 'none';
+								document.getElementById("loadinC").style.display = 'none';
+								document.getElementById("errorC").style.display = 'none';
+							}
 							setSpeed();
 							getSubs(opt);
 							http.open("GET", url);
@@ -2125,6 +2148,7 @@ function saveSettings() {
 	localStorage.setItem("sLoc", document.getElementById("server").value);
 	localStorage.setItem("suggest", document.getElementById("suggest").value);
 	localStorage.setItem("trendingCont", document.getElementById("country").value);
+	localStorage.setItem("loadComm", document.getElementById("autoComm").value);
 	resize();
 	window.open("#", "_self");
 }
@@ -2139,6 +2163,7 @@ function getComments(token, opt) {
 		document.getElementById("loadedComments").style.display = 'none';
 		document.getElementById("loadedC").style.display = 'none';
 		document.getElementById("errorC").style.display = 'none';
+		document.getElementById("loadC").style.display = 'none';
 		document.getElementById("loadinC").style.display = '';
 		var id = getClickedId(window.location.href, '#w#');
 		var fullUrl = "https://youtube.com/watch?v=" + id;
@@ -2857,6 +2882,7 @@ function getComments(token, opt) {
 		document.getElementById("loadedComments").style.display = 'none';
 		document.getElementById("loadedC").style.display = 'none';
 		document.getElementById("errorC").style.display = 'none';
+		document.getElementById("loadC").style.display = 'none';
 		document.getElementById("loadinC").style.display = '';
 		var id = getClickedId(window.location.href, '#w#');
 		var fullUrl = "https://youtube.com/watch?v=" + id;

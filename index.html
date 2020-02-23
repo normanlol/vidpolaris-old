@@ -311,6 +311,7 @@
 						<div id="commentsContainer">
 							<div id="loadComments">
 								<h2><span class="material-icons ico">comment</span> 
+									<a id="loadC" style="cursor:pointer;" class="channelLink" onclick="getComments('none', localStorage.getItem('sLoc'));"><span>Load the comments.</span></a>
 									<span id="loadedC" style="display:none;">Loaded <span id="loadedComm">[loading]</span> of <span id="commNum">[loading]</span> comments.</span>
 									<span id="loadinC">Loading the comments...</span>
 									<span id="errorC" style="display:none;">There was an error loading the comments.</span>
@@ -658,7 +659,7 @@
 				<div class="setting" title="select a server to use. you can change it if a server isn't working for you.">
 					<label>server location:</label>
 					<select id="server">
-						<option value="a">server a (us west, electrohaxz [donated server]) (default)</option>
+						<option value="a">server a (us west, electrohaxz) [donated server] (default)</option>
 						<option value="b">server b (us east, heroku)</option>
 						<option value="c">server c (eu west, heroku)</option>
 					</select>
@@ -673,7 +674,7 @@
 				<div class="setting" title="What country do you want your trending data to come from?">
 					<label>trending data location:</label>
 					<select id="country">
-						<option value="us">united states</option>
+						<option value="us">united states (default)</option>
 						<option value="ae">united arab emirates</option>
 						<option value="ar">argentina</option>
 						<option value="at">austria</option>
@@ -727,6 +728,13 @@
 						<option value="ua">ukraine</option>
 						<option value="ve">venezuela</option>
 						<option value="za">south africa</option>
+					</select>
+				</div>
+				<div class="setting" title="prevents or accepts the automatic loading of comments when you open a video">
+					<label>automatically load comments when you load a video. disbaling this will reduce requests to our servers.</label>
+					<select id="autoComm">
+						<option value="y">enabled (default)</option>
+						<option value="n">disabled</option>
 					</select>
 				</div>
 				<div style="width:1px; height:10px;"></div>
