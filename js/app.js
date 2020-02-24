@@ -3692,8 +3692,219 @@ function translate(elem, opt) {
 			http.onreadystatechange=(e)=>{
 				var jsond = JSON.parse(http.responseText);
 				var tTex = jsond.res.text;
-				var fTex = jsond.res.from.language.iso;
-				document.getElementById(elem).innerHTML = tTex + " (translated from " + fTex + ")";
+				var f = jsond.res.from.language.iso;
+				if (f == "af") {
+					var fTex = "afrikaans";
+				} else if (f == "sq") {
+					var fTex = "albanian";
+				} else if (f == "am") {
+					var fTex = "amharic";
+				} else if (f == "ar") {
+					var fTex = "arabic";
+				} else if (f == "hy") {
+					var fTex = "armenian";
+				} else if (f == "az") {
+					var fTex = "azerbaijani";
+				} else if (f == "eu") {
+					var fTex = "basque";
+				} else if (f == "be") {
+					var fTex = "belarusian";
+				} else if (f == "bn") {
+					var fTex = "bengali";
+				} else if (f == "bs") {
+					var fTex = "bosnian";
+				} else if (f == "bg") {
+					var fTex = "bulgarian";
+				} else if (f == "ca") {
+					var fTex = "catalan";
+				} else if (f == "ceb") {
+					var fTex = "cebuano";
+				} else if (f == "ny") {
+					var fTex = "chichewa";
+				} else if (f == "zh-CN") {
+					var fTex = "chinese (simplified)";
+				} else if (f == "zh-TW") {
+					var fTex = "chinese (traditional)";
+				} else if (f == "co") {
+					var fTex = "corsican";
+				} else if (f == "hr") {
+					var fTex = "croatian";
+				} else if (f == "cz") {
+					var fTex = "czech";
+				} else if (f == "da") {
+					var fTex = "danish";
+				} else if (f == "nl") {
+					var fTex = "dutch";
+				} else if (f == "en") {
+					var fTex = "english";
+				} else if (f == "eo") {
+					var fTex = "esperanto";
+				} else if (f == "et") {
+					var fTex = "estonian";
+				} else if (f == "tl") {
+					var fTex = "filipino";
+				} else if (f == "fi") {
+					var fTex = "finnish";
+				} else if (f == "fr") {
+					var fTex = "french";
+				} else if (f == "fy") {
+					var fTex = "frisian";
+				} else if (f == "gl") {
+					var fTex = "galician";
+				} else if (f == "ka") {
+					var fTex = "georgian";
+				} else if (f == "de") {
+					var fTex = "german";
+				} else if (f == "el") {
+					var fTex = "greek"
+				} else if (f == "gu") {
+					var fTex = "gujarati";
+				} else if (f == "ht") {
+					var fTex = "haitian creole";
+				} else if (f == "ha") {
+					var fTex = "hausa";
+				} else if (f == "haw") {
+					var fTex = "hawaiian";
+				} else if (f == "iw") {
+					var fTex = "hebrew";
+				} else if (f == "hi") {
+					var fTex = "hindi";
+				} else if (f == "hmn") {
+					var fTex = "hmong";
+				} else if (f == "hu") {
+					var fTex = "hungarian";
+				} else if (f == "is") {
+					var fTex = "icelandic";
+				} else if (f == "ig") {
+					var fTex = "igbo";
+				} else if (f == "id") {
+					var fTex = "indonesian";
+				} else if (f == "ga") {
+					var fTex = "irish";
+				} else if (f == "it") {
+					var fTex = "italian";
+				} else if (f == "ja") {
+					var fTex = "japanese";
+				} else if (f == "jw") {
+					var fTex = "javanese";
+				} else if (f == "kn") {
+					var fTex = "kannada";
+				} else if (f == "kk") {
+					var fTex = "kazakh";
+				} else if (f == "km") {
+					var fTex = "khmer";
+				} else if (f == "ko") {
+					var fTex = "korean";
+				} else if (f == "ku") {
+					var fTex = "kurdish (kurmanji)";
+				} else if (f == "ky") {
+					var fTex = "kyrgyz";
+				} else if (f == "lo") {
+					var fTex = "lao";
+				} else if (f == "la") {
+					var fTex = "latin";
+				} else if (f == "lv") {
+					var fTex = "latvian";
+				} else if (f == "lt") {
+					var fTex = "lithuanian";
+				} else if (f == "lb") {
+					var fTex = "luxembourgish";
+				} else if (f == "mk") {
+					var fTex = "macedonian";
+				} else if (f == "mg") {
+					var fTex = "malagasy";
+				} else if (f == "ms") {
+					var fTex = "malay";
+				} else if (f == "ml") {
+					var fTex = "malayalam";
+				} else if (f == "mt") {
+					var fTex = "maltese";
+				} else if (f == "mi") {
+					var fTex = "maori";
+				} else if (f == "mr") {
+					var fTex = "marathi";
+				} else if (f == "mn") {
+					var fTex = "mongolain";
+				} else if (f == "my") {
+					var fTex = "myanmar (burmese)";
+				} else if (f == "ne") {
+					var fTex = "nepali";
+				} else if (f == "no") {
+					var fTex = "norwegian";
+				} else if (f == "ps") {
+					var fTex = "pashto";
+				} else if (f == "fa") {
+					var fTex = "persian";
+				} else if (f == "pl") {
+					var fTex = "polish";
+				} else if (f == "pt") {
+					var fTex = "portuguese";
+				} else if (f == "pa") {
+					var fTex = "punjabi";
+				} else if (f == "ro") {
+					var fTex = "romanian";
+				} else if (f == "ru") {
+					var fTex = "russian";
+				} else if (f == "sm") {
+					var fTex = "samoan";
+				} else if (f == "gd") {
+					var fTex = "scots gaelic";
+				} else if (f == "sr") {
+					var fTex = "serbian";
+				} else if (f == "st") {
+					var fTex = "sesotho";
+				} else if (f == "sn") {
+					var fTex = "shona";
+				} else if (f == "sd") {
+					var fTex = "sindhi";
+				} else if (f == "si") {
+					var fTex = "sinhala";
+				} else if (f == "sk") {
+					var fTex = "slovak";
+				} else if (f == "sl") {
+					var fTex = "solvenian";
+				} else if (f == "so") {
+					var fTex = "somali";
+				} else if (f == "es") {
+					var fTex = "spanish";
+				} else if (f == "su") {
+					var fTex = "sundanese";
+				} else if (f == "sw") {
+					var fTex = "swahili";
+				} else if (f == "sv") {
+					var fTex = "swedish";
+				} else if (f == "tg") {
+					var fTex = "tajik";
+				} else if (f == "ta") {
+					var fTex = "tamil";
+				} else if (f == "te") {
+					var fTex = "telugu";
+				} else if (f == "th") {
+					var fTex = "thai";
+				} else if (f == "tr") {
+					var fTex = "turkish";
+				} else if (f == "uk") {
+					var fTex = "ukrainian";
+				} else if (f == "ur") {
+					var fTex = "urdu";
+				} else if (f == "uz") {
+					var fTex = "uzbek";
+				} else if (f == "vi") {
+					var fTex = "vietnamese";
+				} else if (f == "cy") {
+					var fTex = "welsh";
+				} else if (f == "xh") {
+					var fTex = "xhosa";
+				} else if (f == "yi") {
+					var fTex = "yiddish";
+				} else if (f == "yo") {
+					var fTex = "yoruba";
+				} else if (f == "zu") {
+					var fTex = "zulu";
+				} else {
+					var fTex = jsond.res.from.language.iso + " (if you see this, report it to <a href='https://twitter.com/normanisnotrad' class='channelLink'>my twitter</a>)";
+				}
+ 				document.getElementById(elem).innerHTML = tTex + " (translated from " + fTex + ")";
 				sessionStorage.setItem("currentlyRunningT", "n");
 			}
 			http.timeout = 5000;
