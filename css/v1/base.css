@@ -351,3 +351,8 @@ input:checked + .slider:before {
 	margin-top:5px;
 	margin-bottom:5px;
 }
+
+.cText {
+	max-width:100%;
+	overflow-wrap:break-word;
+}
