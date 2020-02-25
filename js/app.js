@@ -2149,6 +2149,14 @@ function saveSettings() {
 	localStorage.setItem("suggest", document.getElementById("suggest").value);
 	localStorage.setItem("trendingCont", document.getElementById("country").value);
 	localStorage.setItem("loadComm", document.getElementById("autoComm").value);
+	//localStorage.setItem("homeRec", document.getElementById("homeRec").value);
+	//if (localStorage.getItem("homeRec") == "n") {
+	//	document.getElementById("reccomendedVideos").style.display = "none";
+	//} else if (localStorage.getItem("homeRec") == "y") {
+	//	document.getElementById("reccomendedVideos").style.display = "";
+	//	document.getElementById("rvStart").style.display = "none";
+	//	document.getElementById("rvWatch").style.display = "";
+	//}
 	resize();
 	window.open("#", "_self");
 }
@@ -4764,4 +4772,15 @@ function suggest(opt) {
 			}
 		}
 	}
+}
+
+function hideRec() {
+	localStorage.setItem("homeRec", "n");
+	document.getElementById("reccomendedVideos").style.display = "none";
+}
+
+function allowVL() {
+	localStorage.setItem("homeRec", "y");
+	document.getElementById("rvStart").style.display = "none";
+	document.getElementById("rvWatch").style.display = "";
 }

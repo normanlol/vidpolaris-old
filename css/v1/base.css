@@ -356,3 +356,15 @@ input:checked + .slider:before {
 	max-width:100%;
 	overflow-wrap:break-word;
 }
+
+.homeTitle {
+	margin-left:4px;
+}
+
+.centerXY {
+	margin:auto;
+}
+
+.centerXYP {
+	display:grid;
+}

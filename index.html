@@ -31,7 +31,36 @@
 					<h2>loading home page...</h2>
 				</div>
 				<div id="trending" style="display:none;">
-					<h2>trending right now</h2>
+					<div id="reccomendedVideos">
+						<h2 class="noCenter"><span class="material-icons ico">ondemand_video</span> reccomended videos</h2>
+						<div class="centerXYP" style="width:100%;height:250px;" id="rvStart">
+							<div class="centerXY">
+								<p>if you want reccomended videos on the home screen, we must log the videos you watch. this is only logged locally and no information is stored server-side.</p>
+								<button onclick="allowVL();">yes, i agree to video logging</button>
+								<button onclick="hideRec();">no, hide this section</button>
+							</div>
+						</div>
+						<div class="centerXYP" style="width:100%;height:250px;display:none;" id="rvWatch">
+							<div class="centerXY">
+								<p>please watch more videos to start getting reccomended videos.</p>
+							</div>
+						</div>
+						<div id="rvVideos" style="display:none;">
+							<a id="rec1"><div class="video">
+								<img id="rec1r" class="largeThumb">
+								<h3 id="rec1t" style="margin-bottom:5px;"></h3>
+								<h4 class="stat">by <span id="rec1a"></span></h4>
+								<h4 class="stat"><span id="rec1v"></span> views</h4>
+							</div></a>
+							<a id="rec2"><div class="video">
+								<img id="rec2r" class="largeThumb">
+								<h3 id="rec2t" style="margin-bottom:5px;"></h3>
+								<h4 class="stat">by <span id="rec2a"></span></h4>
+								<h4 class="stat"><span id="rec2v"></span> views</h4>
+							</div></a>
+						</div>
+					</div>
+					<h2 class="noCenter homeTitle"><span class="material-icons ico">trending_up</span> trending right now</h2>
 					<a id="l1"><div class="video">
 						<img id="r1" class="largeThumb">
 						<h3 id="t1" style="margin-bottom:5px;"></h3>
@@ -735,6 +764,13 @@
 					<select id="autoComm">
 						<option value="y">enabled (default)</option>
 						<option value="n">disabled</option>
+					</select>
+				</div>
+				<div class="setting" title="the video logs and all settings are stored locally, we have no access to them.">
+					<label>allow video logging for home reccomendations?:</label>
+					<select id="homeRec">
+						<option value="n">disabled (default)</option>
+						<option value="y">enabled</option>
 					</select>
 				</div>
 				<div style="width:1px; height:10px;"></div>
