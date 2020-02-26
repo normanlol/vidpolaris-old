@@ -383,6 +383,7 @@ document.getElementById("player").onerror = function(e){
 	if (!sessionStorage.getItem("ewa")) {
 		openVideo(localStorage.getItem("sLoc"), "y");
 	} else {
+		document.getElementById("loadErr").style.display = "";
 		return;
 	}
 };
@@ -392,6 +393,7 @@ document.getElementById("audioPlayer").onerror = function(e){
 	if (!sessionStorage.getItem("ewv")) {
 		openVideo(localStorage.getItem("sLoc"), "y");
 	} else {
+		document.getElementById("loadErr").style.display = "";
 		return;
 	}
 };
@@ -1007,65 +1009,155 @@ function getTrending(opt) {
 		document.getElementById("r18").src = baseUrl + jsond[17].videoId;
 		document.getElementById("a18").innerHTML = jsond[17].author;
 		document.getElementById("d18").innerHTML = jsond[17].publishedText;
-		document.getElementById("l19").href = "#w#" + jsond[18].videoId;
-		if (jsond[18].title.length >= 75) {
-			document.getElementById("t19").innerHTML = jsond[18].title.substring(0,75) + "...";
-		} else {
-			document.getElementById("t19").innerHTML = jsond[18].title;
-		}
-		document.getElementById("r19").src = baseUrl + jsond[18].videoId;;
-		document.getElementById("a19").innerHTML = jsond[18].author;
-		document.getElementById("d19").innerHTML = jsond[18].publishedText;
-		document.getElementById("l20").href = "#w#" + jsond[19].videoId;
-		if (jsond[19].title.length >= 75) {
-			document.getElementById("t20").innerHTML = jsond[19].title.substring(0,75) + "...";
-		} else {
-			document.getElementById("t20").innerHTML = jsond[19].title;
-		}
-		document.getElementById("r20").src = baseUrl + jsond[19].videoId;;
-		document.getElementById("a20").innerHTML = jsond[19].author;
-		document.getElementById("d20").innerHTML = jsond[19].publishedText;
-		document.getElementById("l21").href = "#w#" + jsond[20].videoId;
-		if (jsond[20].title.length >= 75) {
-			document.getElementById("t21").innerHTML = jsond[20].title.substring(0,75) + "...";
-		} else {
-			document.getElementById("t21").innerHTML = jsond[20].title;
-		}
-		document.getElementById("r21").src = baseUrl + jsond[20].videoId;
-		document.getElementById("a21").innerHTML = jsond[20].author;
-		document.getElementById("d21").innerHTML = jsond[20].publishedText;
-		document.getElementById("l22").href = "#w#" + jsond[21].videoId;
-		if (jsond[21].title.length >= 75) {
-			document.getElementById("t22").innerHTML = jsond[21].title.substring(0,75) + "...";
-		} else {
-			document.getElementById("t22").innerHTML = jsond[21].title;
-		}
-		document.getElementById("r22").src = baseUrl + jsond[21].videoId;
-		document.getElementById("a22").innerHTML = jsond[21].author;
-		document.getElementById("d22").innerHTML = jsond[21].publishedText;
-		document.getElementById("l23").href = "#w#" + jsond[22].videoId;
-		if (jsond[22].title.length >= 75) {
-			document.getElementById("t23").innerHTML = jsond[22].title.substring(0,75) + "...";
-		} else {
-			document.getElementById("t23").innerHTML = jsond[22].title;
-		}
-		document.getElementById("r23").src = baseUrl + jsond[22].videoId;;
-		document.getElementById("a23").innerHTML = jsond[22].author;
-		document.getElementById("d23").innerHTML = jsond[22].publishedText;
-		document.getElementById("l24").href = "#w#" + jsond[23].videoId;
-		document.getElementById("r24").src = baseUrl + jsond[23].videoId;
-		document.getElementById("a24").innerHTML = jsond[23].author;
-		document.getElementById("d24").innerHTML = jsond[23].publishedText;
-		if (jsond[23].title.length >= 75) {
-			document.getElementById("t24").innerHTML = jsond[23].title.substring(0,75) + "...";
-		} else {
-			document.getElementById("t24").innerHTML = jsond[23].title;
-		}
 		document.getElementById("trendingLoader").style.display = 'none';
 		document.getElementById("trending").style.display = '';
+		getTrendingMusic(opt);
 	}
 	http.onerror = function (error) {
-		getTrending();
+		getTrending(opt);
+	}
+}
+
+function getTrendingMusic(opt) {
+	const http = new XMLHttpRequest();
+	if (opt == "a" | !opt) {
+		var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?trending=" + localStorage.getItem("trendingCont") + "&type=music";
+	} else if (opt == "b") {
+		var url = "https://vidpolaris.herokuapp.com/?trending=" + localStorage.getItem("trendingCont") + "&type=music";
+	} else if (opt == "c") {
+		var url = "https://vidpolaris-europe.herokuapp.com/?trending=" + localStorage.getItem("trendingCont") + "&type=music";
+	}
+	http.open("GET", url);
+	http.send();
+	http.onreadystatechange=(e)=>{
+		var jsond = JSON.parse(http.responseText);
+		if (!jsond[0]) {
+			if (opt == "a" | !opt) {
+				getTrending("b");
+				return;
+			} else if (opt == "b") {
+				getTrending("c");
+				return;
+			} else if (opt == "c") {
+				getTrending("a");
+				return;
+			}
+		}
+		if (opt == "a" | !opt) {
+			var baseUrl = "http://normandotmp4.electrohaxz.tk:9019/?thumb=";
+		} else if (opt == "b") {
+			var baseUrl = "https://vidpolaris.herokuapp.com/?thumb=";
+		} else if (opt == "c") {
+			var baseUrl = "https://vidpolaris-europe.herokuapp.com/?thumb=";
+		}	
+		if (jsond[0].title.length >= 75) {
+			document.getElementById("mt1").innerHTML = jsond[0].title.substring(0,75) + "...";
+		} else {
+			document.getElementById("mt1").innerHTML = jsond[0].title;
+		}
+		document.getElementById("ml1").href = "#w#" + jsond[0].videoId;
+		document.getElementById("mr1").src = baseUrl + jsond[0].videoId;
+		document.getElementById("ma1").innerHTML = jsond[0].author;
+		document.getElementById("md1").innerHTML = jsond[0].publishedText;
+		if (jsond[1].title.length >= 75) {
+			document.getElementById("mt2").innerHTML = jsond[1].title.substring(0,75) + "...";
+		} else {
+			document.getElementById("mt2").innerHTML = jsond[1].title;
+		}
+		document.getElementById("ml2").href = "#w#" + jsond[1].videoId;
+		document.getElementById("mr2").src = baseUrl + jsond[1].videoId;;
+		document.getElementById("ma2").innerHTML = jsond[1].author;
+		document.getElementById("md2").innerHTML = jsond[1].publishedText;
+		if (jsond[2].title.length >= 75) {
+			document.getElementById("mt3").innerHTML = jsond[2].title.substring(0,75) + "...";
+		} else {
+			document.getElementById("mt3").innerHTML = jsond[2].title;
+		}
+		document.getElementById("ml3").href = "#w#" + jsond[2].videoId;
+		document.getElementById("mr3").src = baseUrl + jsond[2].videoId;;
+		document.getElementById("ma3").innerHTML = jsond[2].author;
+		document.getElementById("md3").innerHTML = jsond[2].publishedText;
+		if (jsond[3].title.length >= 75) {
+			document.getElementById("mt4").innerHTML = jsond[3].title.substring(0,75) + "...";
+		} else {
+			document.getElementById("mt4").innerHTML = jsond[3].title;
+		}
+		document.getElementById("ml4").href = "#w#" + jsond[3].videoId;
+		document.getElementById("mr4").src = baseUrl + jsond[3].videoId;;
+		document.getElementById("ma4").innerHTML = jsond[3].author;
+		document.getElementById("md4").innerHTML = jsond[3].publishedText;
+		if (jsond[3].title.length >= 75) {
+			document.getElementById("mt5").innerHTML = jsond[4].title.substring(0,75) + "...";
+		} else {
+			document.getElementById("mt5").innerHTML = jsond[4].title;
+		}
+		document.getElementById("ml5").href = "#w#" + jsond[4].videoId;
+		document.getElementById("mr5").src = baseUrl + jsond[4].videoId;;
+		document.getElementById("ma5").innerHTML = jsond[4].author;
+		document.getElementById("md5").innerHTML = jsond[4].publishedText;
+		if (jsond[5].title.length >= 75) {
+			document.getElementById("mt6").innerHTML = jsond[5].title.substring(0,75) + "...";
+		} else {
+			document.getElementById("mt6").innerHTML = jsond[5].title;
+		}
+		document.getElementById("ml6").href = "#w#" + jsond[5].videoId;
+		document.getElementById("mr6").src = baseUrl + jsond[5].videoId;;
+		document.getElementById("ma6").innerHTML = jsond[5].author;
+		document.getElementById("md6").innerHTML = jsond[5].publishedText;
+		if (jsond[6].title.length >= 75) {
+			document.getElementById("mt7").innerHTML = jsond[6].title.substring(0,75) + "...";
+		} else {
+			document.getElementById("mt7").innerHTML = jsond[6].title;
+		}
+		document.getElementById("ml7").href = "#w#" + jsond[6].videoId;
+		document.getElementById("mr7").src = baseUrl + jsond[6].videoId;;
+		document.getElementById("ma7").innerHTML = jsond[6].author;
+		document.getElementById("md7").innerHTML = jsond[6].publishedText;
+		if (jsond[7].title.length >= 75) {
+			document.getElementById("mt8").innerHTML = jsond[7].title.substring(0,75) + "...";
+		} else {
+			document.getElementById("mt8").innerHTML = jsond[7].title;
+		}
+		document.getElementById("ml8").href = "#w#" + jsond[7].videoId;
+		document.getElementById("mr8").src = baseUrl + jsond[7].videoId;;
+		document.getElementById("ma8").innerHTML = jsond[7].author;
+		document.getElementById("md8").innerHTML = jsond[7].publishedText;
+		if (jsond[8].title.length >= 75) {
+			document.getElementById("mt9").innerHTML = jsond[8].title.substring(0,75) + "...";
+		} else {
+			document.getElementById("mt9").innerHTML = jsond[8].title;
+		}
+		document.getElementById("ml9").href = "#w#" + jsond[8].videoId;
+		document.getElementById("mr9").src = baseUrl + jsond[8].videoId;;
+		document.getElementById("ma9").innerHTML = jsond[8].author;
+		document.getElementById("md9").innerHTML = jsond[8].publishedText;
+		if (jsond[9].title.length >= 75) {
+			document.getElementById("mt10").innerHTML = jsond[9].title.substring(0,75) + "...";
+		} else {
+			document.getElementById("mt10").innerHTML = jsond[9].title;
+		}
+		document.getElementById("ml10").href = "#w#" + jsond[9].videoId;
+		document.getElementById("mr10").src = baseUrl + jsond[9].videoId;;
+		document.getElementById("ma10").innerHTML = jsond[9].author;
+		document.getElementById("md10").innerHTML = jsond[9].publishedText;
+		if (jsond[10].title.length >= 75) {
+			document.getElementById("mt11").innerHTML = jsond[10].title.substring(0,75) + "...";
+		} else {
+			document.getElementById("mt11").innerHTML = jsond[10].title;
+		}
+		document.getElementById("ml11").href = "#w#" + jsond[10].videoId;
+		document.getElementById("mr11").src = baseUrl + jsond[10].videoId;;
+		document.getElementById("ma11").innerHTML = jsond[10].author;
+		document.getElementById("md11").innerHTML = jsond[10].publishedText;
+		if (jsond[11].title.length >= 75) {
+			document.getElementById("mt12").innerHTML = jsond[11].title.substring(0,75) + "...";
+		} else {
+			document.getElementById("mt12").innerHTML = jsond[11].title;
+		}
+		document.getElementById("ml12").href = "#w#" + jsond[11].videoId;
+		document.getElementById("mr12").src = baseUrl + jsond[11].videoId;;
+		document.getElementById("ma12").innerHTML = jsond[11].author;
+		document.getElementById("md12").innerHTML = jsond[11].publishedText;
 	}
 }
 
@@ -1622,6 +1714,9 @@ function openVideo(opt,ret) {
 								}
 								http.onreadystatechange=(e)=>{
 									var jsond = JSON.parse(http.responseText);
+									if (!jsond.meta) {
+										getMeta(opt);
+									}
 									var view = jsond.meta.views.toLocaleString();
 									if (!jsond.meta.dislikeCount) {
 										var dlik = 0;
@@ -1746,6 +1841,9 @@ function openVideo(opt,ret) {
 							}
 							http.onreadystatechange=(e)=>{
 								var jsond = JSON.parse(http.responseText);
+								if (!jsond.meta) {
+									getMeta(opt);
+								}
 								var view = jsond.meta.views.toLocaleString();
 								if (!jsond.meta.dislikeCount) {
 									var dlik = 0;
@@ -2066,8 +2164,13 @@ function refresh() {
 		if (!id) {
 			home();
 			return;
+		} else {
+			if (id.length == 11) {
+				openVideo(localStorage.getItem("sLoc"));
+			} else {
+				notPlayable();
+			}
 		}
-		openVideo(localStorage.getItem("sLoc"));
 	} else if (window.location.href.includes("#s#")) {
 		var q = getClickedId(window.location.href, "#s#");
 		if (!document.getElementById("q").value == q) {
@@ -2078,6 +2181,8 @@ function refresh() {
 		}
 	} else if (window.location.href.includes("#settings")) {
 		document.getElementById("player").pause();
+		document.getElementById("saveB").setAttribute("disabled", "true");
+		document.getElementById("server").innerHTML = "<option>please wait...</option>";
 		document.getElementById("homePage").style.display = 'none';
 		document.getElementById("vidPage").style.display = 'none';
 		document.getElementById("channelPage").style.display = 'none';
@@ -2085,6 +2190,44 @@ function refresh() {
 		document.getElementById("settingsPage").style.display = '';
 		document.getElementById("helpOut").style.display = '';
 		document.title = "settings | vidpolaris";
+		const http = new XMLHttpRequest();
+		http.open("GET", "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/");
+		http.send();
+		http.onreadystatechange=(e)=>{
+			var json = JSON.parse(http.responseText);
+			var option1 = document.createElement("OPTION");
+			option1.innerHTML = "server a (us west, electrohaxz) [donated server] (default) {" + json.version + "}" ;
+			option1.value = "a";
+			document.getElementById("server").innerHTML = "";
+			document.getElementById("server").appendChild(option1);
+			console.log("option 1 added");
+			sessionStorage.setItem("sl", "i")
+			http.open("GET", "https://vidpolaris.herokuapp.com/");
+			http.send();
+			http.onreadystatechange=(e)=>{
+				if (sessionStorage.getItem("sl").length == 3) {
+					return;
+				} 
+				var json = JSON.parse(http.responseText);
+				var option2 = document.createElement("OPTION");
+				option2.innerHTML = "server b (us east, heroku) {" + json.version + "}";
+				option2.value = "b";
+				document.getElementById("server").appendChild(option2);
+				console.log("option 2 added");
+				sessionStorage.setItem("sl", "ii")
+				var option3 = document.createElement("OPTION");
+				option3.innerHTML = "server c (eu west, heroku) {" + json.version + "}";
+				option3.value = "c";
+				document.getElementById("server").appendChild(option3);
+				console.log("option 3 added");
+				sessionStorage.setItem("sl", "iii")
+				document.getElementById("saveB").removeAttribute("disabled");
+				document.getElementById("server").value = localStorage.getItem("sLoc");
+				setTimeout(function() {
+					sessionStorage.removeItem("sl");
+				},5000)
+			}
+		}
 	} else if (window.location.href.includes("#c#")){
 		openChannel(localStorage.getItem("sLoc"));
 	} else {
@@ -4783,4 +4926,68 @@ function allowVL() {
 	localStorage.setItem("homeRec", "y");
 	document.getElementById("rvStart").style.display = "none";
 	document.getElementById("rvWatch").style.display = "";
+}
+
+function getMeta(opt) {
+	if (opt == "a" | !opt) {
+		var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?md=1&url=" + fullUrl;
+ 	} else if (opt == "b"){
+ 		var url = "https://vidpolaris.herokuapp.com/?md=1&url=" + fullUrl;
+ 	} else if (opt == "c") {
+ 		var url = "https://vidpolaris-europe.herokuapp.com/?md=1&url=" + fullUrl;
+ 	}
+ 	http.open("GET", url);
+ 	http.send();
+ 	http.timeout = 5000;
+ 	http.ontimeout = () => {
+ 		document.getElementById("viewNum").innerHTML = "[Error]";
+ 		document.getElementById("likeNum").innerHTML = "[Error]";
+ 		document.getElementById("dlikNum").innerHTML = "[Error]";
+		document.getElementById("commNum").innerHTML = "[Error]";
+ 		document.getElementById("ulIco").style.display = "none";
+ 		document.getElementById("title").style = "margin:0;"
+ 	}
+ 	http.onreadystatechange=(e)=>{
+ 		var jsond = JSON.parse(http.responseText);
+ 		if (!jsond.meta) {
+ 			getMeta(opt);
+ 			return;
+ 		}
+ 		var view = jsond.meta.views.toLocaleString();
+ 		if (!jsond.meta.dislikeCount) {
+ 			var dlik = 0;
+ 		} else {
+ 			var dlik = jsond.meta.dislikeCount.toLocaleString();
+ 		}
+ 		if (!jsond.meta.likeCount) {
+ 			var like = 0;
+ 		} else {
+ 			var like = jsond.meta.likeCount.toLocaleString();
+ 		}
+ 		if (!jsond.meta.commentCount) {
+ 			var comm = 0;
+ 		} else {
+ 			var comm = jsond.meta.commentCount.toLocaleString();
+ 		}
+ 		var totl = jsond.meta.dislikeCount + jsond.meta.likeCount;
+ 		if (!totl == 0){
+ 			var untRatio = jsond.meta.likeCount / totl;
+ 			var percent = 100 * untRatio;
+ 			var ratio = percent.toPrecision(4); 			
+		} else {
+			var ratio = 0;
+		}
+		if (jsond.meta.unlisted == false) {
+			document.getElementById("ulIco").style.display = "none";
+			document.getElementById("title").style = "margin:0;"
+		} else {
+			document.getElementById("ulIco").style.display = "";
+			document.getElementById("title").style = "margin-top:-27px;margin-left:25px;"
+		}
+		document.getElementById("viewNum").innerHTML = view;
+		document.getElementById("likeNum").innerHTML = like;
+		document.getElementById("dlikNum").innerHTML = dlik;
+		document.getElementById("commNum").innerHTML = comm;
+		document.getElementById("ldRatio").innerHTML = ratio;
+	}
 }
