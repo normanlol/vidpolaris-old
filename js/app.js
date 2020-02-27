@@ -87,13 +87,6 @@ if (!localStorage.getItem("theatre")) {
 	}
 }
 
-if (!localStorage.getItem("sLoc")) {
-	localStorage.setItem("sLoc", "a");
-	document.getElementById("server").value = "a";
-} else {
-	document.getElementById("server").value = localStorage.getItem("sLoc");
-}
-
 // end setting checkers
 // listeners
 
