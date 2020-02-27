@@ -301,13 +301,19 @@
 						<button id="ldBtn" onclick="longDesc()">see more</button>
 						<button id="theat" onclick="theatre()">theater mode</button>
 						<button class="material-icons ico" onclick="share()">link</button>
-						<div id="sharDiv" style="display:none;">
-							<p>Full URL:</p>
-							<input id="fUrlShar" onclick="this.select()">
-							<p>Shortened URL:</p>
-							<input id="sUrlShar" onclick="this.select()">
-							<p>YouTube Link:</p>
-							<input id="youtubeLink" onclick="this.select()">
+						<div id="sharDiv" style="display:none;margin:5px;">
+							<div style="float:left;margin:5px;">
+								<p>Full URL:</p>
+								<input id="fUrlShar" onclick="this.select()">
+							</div>
+							<div style="float:left;margin:5px;">
+								<p>Shortened URL:</p>
+								<input id="sUrlShar" onclick="this.select()">
+							</div>
+							<div style="float:left;margin:5px;">
+								<p>YouTube Link:</p>
+								<input id="youtubeLink" onclick="this.select()">
+							</div>
 						</div>
 						<div id="autoPlayBlock">
 							<label onclick="toggleAuto()" class="switch">
