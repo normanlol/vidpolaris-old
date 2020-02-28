@@ -1,7 +1,7 @@
 # vidpolaris
 vidpolaris is an alternative youtube client that focuses on simplicity, quality, and speed.
 
-[use it right now](https://n0rmancodes.github.io/vidpolaris/#w#2nBzs_4HdLA) - [api](/n0rmancodes/vidpolaris)
+[use it right now](https://n0rmancodes.github.io/vidpolaris/#w#2nBzs_4HdLA) - [api](https://github.com/n0rmancodes/vidpolaris)
 
 ## screenshots
 ![A screenshot of VidPolaris](https://i.ibb.co/8K957N1/image.png)
