@@ -5,7 +5,7 @@ vidpolaris is an alternative youtube client that focuses on simplicity, quality,
 ![A screenshot of VidPolaris](https://i.ibb.co/8K957N1/image.png)
 *The original video was only available in 360p.*
 
-![Home screen preview](https://i.ibb.co/BCB4fL6/image.png)
+![Home screen preview](https://i.ibb.co/rGK4DXr/image.png)
 
 ## Powered by
 - [fent/node-ytdl-core](https://github.com/fent/node-ytdl-core) - some metadata/links to the video
