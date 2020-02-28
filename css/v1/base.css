@@ -374,3 +374,7 @@ input:checked + .slider:before {
 	padding-left:3px;
 	padding-right:3px;
 }
+
+.noCursor {
+	cursor:none;
+}
