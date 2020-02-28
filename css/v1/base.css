@@ -368,3 +368,9 @@ input:checked + .slider:before {
 .centerXYP {
 	display:grid;
 }
+
+.td {
+	text-align:left;
+	padding-left:3px;
+	padding-right:3px;
+}

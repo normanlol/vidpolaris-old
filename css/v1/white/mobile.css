@@ -4,13 +4,12 @@ body {
 }
 
 #trending {
-	max-width:1800px;
 	margin-left:12.5%;
 	margin-right:12.5%;
 }
 
 .video {
-	width:90%;
+	width:94%;
 	height:415px;
 	background-color:#ececec;
 }
