@@ -22,7 +22,7 @@
 				<input id="q" autocomplete="off" list="suggest" oninput="suggest(localStorage.getItem('sLoc'))">
 				<datalist id="suggest"></datalist>
 				<button onclick="getSLink()">search</button>
-				<button onclick="feelingLucky()">i'm feeling lucky</button>
+				<button onclick="feelingLucky(localStorage.getItem('sLoc'))">i'm feeling lucky</button>
 				<a href="#settings"><button>settings</button></a>
 			</div>
 			<div id="homePage" class="centerMe">

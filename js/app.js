@@ -816,159 +816,90 @@ function feelingLucky(opt) {
 	const http = new XMLHttpRequest();
 	if (!document.getElementById("q").value == "") {
 		var q = document.getElementById("q").value;
-	} else {
-		var randomArray = [
-			// top searches by letter, taken on february 29, 2020
-			"asmr",
-			"ariana grande",
-			"azzyland",
-			"alan walker",
-			"alicia keys",
-			"bad bunny",
-			"baby shark",
-			"billie eilish",
-			"bts",
-			"bretman walk",
-			"candyman 2020",
-			"christmas songs",
-			"cardi b",
-			"chris brown", 
-			"candyman",
-			"dance monkey",
-			"dababy",
-			"doja cat",
-			"drake",
-			"daisy marquez",
-			"eminem",
-			"elsy guevara",
-			"eddievr",
-			"ed sheeran",
-			"espn",
-			"fortnite",
-			"falling harry styles",
-			"funny videos",
-			"fgteev",
-			"frozen 2",
-			"g herbo",
-			"gacha life",
-			"gabriel hernandez",
-			"g herbo ptsd",
-			"goldberg vs the fiend",
-			"harry styles",
-			"halsey",
-			"hallelujah",
-			"hermitcraft season 7",
-			"hindi songs",
-			"invisible man trailer 2020",
-			"itsfunneh",
-			"into the unknown",
-			"imagine dragons",
-			"impaulsive",
-			"juice wrld",
-			"justin bieber",
-			"joe rogan",
-			"jake paul",
-			"kobe bryant",
-			"kevin gates",
-			"king von",
-			"kobe bryant memorial",
-			"kodak black",
-			"lil baby",
-			"lady gaga",
-			"logan paul",
-			"lil baby my turn",
-			"lil wayne",
-			"music",
-			"mop", // ???
-			"mrbeast",
-			"minecraft",
-			"micheal jackson",
-			"nicki minaj",
-			"nfl combine 2020",
-			"nf",
-			"nelk",
-			"ninja",
-			"old town road",
-			"on my block season 3",
-			"onision",
-			"ozuna",
-			"on bts",
-			"peppa pig",
-			"pewdiepie",
-			"pop smoke",
-			"post malone",
-			"ptsd g herbo",
-			"queen",
-			"q park",
-			"queen and slim",
-			"que calor",
-			"queen of mean",
-			"rod wave",
-			"rene",
-			"roxxane",
-			"renegade",
-			"roblox",
-			"song",
-			"stupid love lady gaga",
-			"senorita",
-			"snl",
-			"slime",
-			"the box",
-			"the man taylor swift",
-			"try not to laugh",
-			"taylor swift",
-			"unspeakable",
-			"upchurch",
-			"ufc",
-			"usher",
-			"undisputed",
-			"vines",
-			"valentino",
-			"viddal riley boxing",
-			"vanessa bryant speech",
-			"vsauce",
-			"wwe",
-			"wild n out",
-			"wilder vs fury 2",
-			"wabbit season",
-			"wiz khalifa",
-			"x",
-			"xfl",
-			"xbox series x",
-			"xisumavoid",
-			"xo beyonce",
-			"ynw melly", 
-			"yummy",
-			"young thug",
-			"youtube",
-			"yo gotti",
-			"zhc",
-			"zombies 2",
-			"zach choi",
-			"zombies 2 songs",
-			"zombie", // and now for random shit 
-			"caramelldansen",
-			"awooga",
-			"gamecube gorilla meme",
-			"gorillaz humility",
-			"jack black",
-			"stfu pink guy",
-			"fallin back sagun"
-		]
-		var q = randomArray[Math.floor(Math.random()*randomArray.length)];
-	}
-	const sUrl = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?search=" + encodeURIComponent(q);
-	http.open("GET", sUrl);
-	http.send();
-	http.onreadystatechange=(e)=>{
-		var jsond = JSON.parse(http.responseText);
-		if (!jsond) {
-			home();
-			return;
+		if (opt == "a" | !opt) {
+			var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?search=" + encodeURIComponent(q);
+		} else if (opt == "b") {
+			var url = "https://vidpolaris.herokuapp.com/?search=" + encodeURIComponent(q);
+		} else if (opt == "c") {
+			var url = "https://vidpolaris-europe.herokuapp.com/?search=" + encodeURIComponent(q);
 		}
-		var wLink = jsond.searchResults.items[0].link;
-		var link2 = wLink.substring(32);
-		window.open("#w#" + link2, "_self");
+		http.open("GET", url);
+		http.send();
+		http.onreadystatechange=(e)=>{
+			var jsond = JSON.parse(http.responseText);
+			if (!jsond) {
+				home();
+				return;
+			}
+			var wLink = jsond.searchResults.items[0].link;
+			var link2 = wLink.substring(32);
+			window.open("#w#" + link2, "_self");
+		}
+	} else {
+		var randomLetter = [
+			"a",
+			"b",
+			"c",
+			"d",
+			"e",
+			"f",
+			"g",
+			"h",
+			"i",
+			"j",
+			"k",
+			"l",
+			"m",
+			"n",
+			"o",
+			"p",
+			"q",
+			"r",
+			"s",
+			"t",
+			"u",
+			"v",
+			"w",
+			"x",
+			"y",
+			"z"
+		]
+		var qLetter = randomLetter[Math.floor(Math.random()*randomLetter.length)];
+		console.log(qLetter)
+		if (opt == "a" | !opt) {
+			var surl = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?suggest=" + qLetter;
+		} else if (opt == "b") {
+			var surl = "https://vidpolaris.herokuapp.com/?suggest=" + qLetter;
+		} else if (opt == "c") {
+			var surl = "https://vidpolaris-europe.herokuapp.com/?suggest=" + qLetter;
+		}
+		console.log(surl)
+		http.open("GET",surl);
+		http.send();
+		http.onreadystatechange=(e)=>{
+			var json = JSON.parse(http.responseText);
+			var res = json.results;
+			var q = res[Math.floor(Math.random()*res.length)];
+			if (opt == "a" | !opt) {
+				var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?search=" + encodeURIComponent(q);
+			} else if (opt == "b") {
+				var url = "https://vidpolaris.herokuapp.com/?search=" + encodeURIComponent(q);
+			} else if (opt == "c") {
+				var url = "https://vidpolaris-europe.herokuapp.com/?search=" + encodeURIComponent(q);
+			}
+			http.open("GET", url);
+			http.send();
+			http.onreadystatechange=(e)=>{
+				var jsond = JSON.parse(http.responseText);
+				if (!jsond) {
+					home();
+					return;
+				}
+				var wLink = jsond.searchResults.items[0].link;
+				var link2 = wLink.substring(32);
+				window.open("#w#" + link2, "_self");
+			}
+		}
 	}
 }
 
