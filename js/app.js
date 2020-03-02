@@ -13,9 +13,9 @@ if (sessionStorage.getItem("currentlyRunningT")) {
 	sessionStorage.removeItem("currentlyRunningT");
 }
 
-if (sessionStorage.getItem("fullscreen")) {
-	sessionStorage.removeItem("fullscreen")
-} 
+if (sessionStorage.getItem("currentlyOpening")) {
+	sessionStorage.removeItem("currentlyOpening");
+}
 
 if (!localStorage.getItem("trendCont")) {
 	if (localStorage.getItem("c")) {
@@ -1399,337 +1399,349 @@ function openVideo(opt,ret) {
 			return;
 		} else {
 			if (!ret) {
-				document.title = "[loading...] vidpolaris";
-				document.getElementById("homePage").style.display = 'none';
-				document.getElementById("searchContainer").style.display = 'none';
-				document.getElementById("searchPage").style.display = 'none';
-				document.getElementById("settingsPage").style.display = 'none';
-				document.getElementById("channelPage").style.display = 'none';
-				document.getElementById("loadErr").style.display = 'none';
-				document.getElementById("player").pause();
-				document.getElementById("vidPage").style.display = '';
-				document.getElementById("helpOut").style.display = '';
-				document.getElementById("player").innerHTML = '';
-				document.getElementById("vidViewer").style.display = 'none';
-				document.getElementById("vidLoader").style.display = '';
-				document.getElementById("playerContainer").style.display = '';
-				document.getElementById("sharDiv").style.display = 'none';
-				document.getElementById("lpSwitch").checked = false;
-				document.getElementById("player").removeAttribute("loop");
-				sessionStorage.removeItem("tried2");
-				sessionStorage.removeItem("ewv");
-				sessionStorage.removeItem("ewa");
-				sessionStorage.removeItem("ratio");
-				sessionStorage.removeItem("total");
-				document.getElementById("qOptions").innerHTML = "";
-				if (document.getElementById("ldBtn").innerHTML == "see less") {
-					document.getElementById("ldBtn").click();
-				}
-				var id = getClickedId(window.location.href, '#w#');
-				var fullUrl = "https://youtube.com/watch?v=" + id;
-				const http = new XMLHttpRequest();
-				if (opt == "a" | !opt) {
-					var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?info=1&url=" + fullUrl;
-				} else if (opt == "b"){
-					var url = "https://vidpolaris.herokuapp.com/?info=1&url=" + fullUrl;
-				} else if (opt == "c") {
-					var url = "https://vidpolaris-europe.herokuapp.com/?info=1&url=" + fullUrl;
-				}
-				http.open("GET", url);
-				http.send();
-				http.onreadystatechange=(e)=>{
-					var jsond = JSON.parse(http.responseText);
-					if (jsond.err) {
-						notPlayable();
-					} else {
-						var wUrl = jsond.info.formats[0].url;
-						var titl = jsond.info.player_response.videoDetails.title;
-						var auth = jsond.info.player_response.videoDetails.author;
-						var aLink = "#c#" + jsond.info.author.id;
-						document.getElementById("authorL").href = aLink;
-						var t = jsond.info.player_response.videoDetails.thumbnail.thumbnails;
-						var thum = jsond.info.player_response.videoDetails.thumbnail.thumbnails[t.length - 1].url;
-						var desc = jsond.info.player_response.videoDetails.shortDescription.replace(/\n/g, "<br>")
-						var pDate = new Date(jsond.info.published);
-						var month = pDate.getMonth() + 1;
-						var day = pDate.getDate();
-						var year = pDate.getFullYear();
-						if (jsond.info.age_restricted == true) {
-							showWarning();
-						}
-						if (!jsond.info.player_response.playabilityStatus.status == "OK") {
+				if (!sessionStorage.getItem("currentlyOpening")) {
+					document.title = "[loading...] vidpolaris";
+					document.getElementById("homePage").style.display = 'none';
+					document.getElementById("searchContainer").style.display = 'none';
+					document.getElementById("searchPage").style.display = 'none';
+					document.getElementById("settingsPage").style.display = 'none';
+					document.getElementById("channelPage").style.display = 'none';
+					document.getElementById("loadErr").style.display = 'none';
+					document.getElementById("player").pause();
+					document.getElementById("vidPage").style.display = '';
+					document.getElementById("helpOut").style.display = '';
+					document.getElementById("player").innerHTML = '';
+					document.getElementById("vidViewer").style.display = 'none';
+					document.getElementById("vidLoader").style.display = '';
+					document.getElementById("playerContainer").style.display = '';
+					document.getElementById("sharDiv").style.display = 'none';
+					document.getElementById("lpSwitch").checked = false;
+					document.getElementById("player").removeAttribute("loop");
+					sessionStorage.removeItem("tried2");
+					sessionStorage.removeItem("ewv");
+					sessionStorage.removeItem("ewa");
+					sessionStorage.removeItem("ratio");
+					sessionStorage.removeItem("total");
+					sessionStorage.setItem("currentlyOpening", "y");
+					document.getElementById("qOptions").innerHTML = "";
+					if (document.getElementById("ldBtn").innerHTML == "see less") {
+						document.getElementById("ldBtn").click();
+					}
+					var id = getClickedId(window.location.href, '#w#');
+					var fullUrl = "https://youtube.com/watch?v=" + id;
+					const http = new XMLHttpRequest();
+					if (opt == "a" | !opt) {
+						var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?info=1&url=" + fullUrl;
+					} else if (opt == "b"){
+						var url = "https://vidpolaris.herokuapp.com/?info=1&url=" + fullUrl;
+					} else if (opt == "c") {
+						var url = "https://vidpolaris-europe.herokuapp.com/?info=1&url=" + fullUrl;
+					}
+					http.open("GET", url);
+					http.send();
+					http.onreadystatechange=(e)=>{
+						var jsond = JSON.parse(http.responseText);
+						if (jsond.err) {
 							notPlayable();
-						}
-						if (!jsond.info.player_response.cards) {
-							document.getElementById("card1").style.display = 'none';
-							document.getElementById("card2").style.display = 'none';
-							document.getElementById("card3").style.display = 'none';
-							document.getElementById("card4").style.display = 'none';
-							document.getElementById("card5").style.display = 'none';
+							sessionStorage.removeItem("currentlyOpening");
 						} else {
-							if (jsond.info.player_response.cards.cardCollectionRenderer.cards[0]) {
-								if (jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.videoInfoCardContentRenderer) {
-									document.getElementById("card1").style.display = '';
-									if (!jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.videoInfoCardContentRenderer.customMessage) {
-										document.getElementById("cardMessage1").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.videoInfoCardContentRenderer.videoTitle.simpleText || "[No message]";
-										document.getElementById("cardLink1").href = "#w#" + jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.videoInfoCardContentRenderer.action.watchEndpoint.videoId;
-									} else {
-										document.getElementById("cardMessage1").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.videoInfoCardContentRenderer.customMessage.simpleText;
-										document.getElementById("cardLink1").href = "#w#" + jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.videoInfoCardContentRenderer.action.watchEndpoint.videoId;
-									}
-								} else if (jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.playlistInfoCardContentRenderer) {
-									document.getElementById("card1").style.display = '';
-									if (!jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.playlistInfoCardContentRenderer.customMessage) {
-										document.getElementById("cardMessage1").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.playlistInfoCardContentRenderer.playlistTitle.simpleText;
-										document.getElementById("cardLink1").href = "https://youtube.com/playlist?list=" + jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.playlistInfoCardContentRenderer.action.watchEndpoint.playlistId;
-									} else {
-										document.getElementById("cardMessage1").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.playlistInfoCardContentRenderer.customMessage.simpleText;
-										document.getElementById("cardLink1").href = "https://youtube.com/playlist?list=" + jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.playlistInfoCardContentRenderer.action.watchEndpoint.playlistId;
-									}
-								}
-							} else {
+							var wUrl = jsond.info.formats[0].url;
+							var titl = jsond.info.player_response.videoDetails.title;
+							var auth = jsond.info.player_response.videoDetails.author;
+							var aLink = "#c#" + jsond.info.author.id;
+							document.getElementById("authorL").href = aLink;
+							var t = jsond.info.player_response.videoDetails.thumbnail.thumbnails;
+							var thum = jsond.info.player_response.videoDetails.thumbnail.thumbnails[t.length - 1].url;
+							var desc = jsond.info.player_response.videoDetails.shortDescription.replace(/\n/g, "<br>")
+							var pDate = new Date(jsond.info.published);
+							var month = pDate.getMonth() + 1;
+							var day = pDate.getDate();
+							var year = pDate.getFullYear();
+							if (jsond.info.age_restricted == true) {
+								showWarning();
+							}
+							if (!jsond.info.player_response.playabilityStatus.status == "OK") {
+								notPlayable();
+								sessionStorage.removeItem("currentlyOpening");
+							}
+							if (!jsond.info.player_response.cards) {
 								document.getElementById("card1").style.display = 'none';
 								document.getElementById("card2").style.display = 'none';
 								document.getElementById("card3").style.display = 'none';
 								document.getElementById("card4").style.display = 'none';
 								document.getElementById("card5").style.display = 'none';
-							}
-							if (jsond.info.player_response.cards.cardCollectionRenderer.cards[1]) {
-								if (jsond.info.player_response.cards.cardCollectionRenderer.cards[1].cardRenderer.content.videoInfoCardContentRenderer) {
-									document.getElementById("card2").style.display = '';
-									if (!jsond.info.player_response.cards.cardCollectionRenderer.cards[1].cardRenderer.content.videoInfoCardContentRenderer.customMessage) {
-										document.getElementById("cardMessage2").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[1].cardRenderer.content.videoInfoCardContentRenderer.videoTitle.simpleText || "[No message]";
-										document.getElementById("cardLink2").href = "#w#" + jsond.info.player_response.cards.cardCollectionRenderer.cards[1].cardRenderer.content.videoInfoCardContentRenderer.action.watchEndpoint.videoId;
-									} else {
-										document.getElementById("cardMessage2").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[1].cardRenderer.content.videoInfoCardContentRenderer.customMessage.simpleText;
-										document.getElementById("cardLink2").href = "#w#" + jsond.info.player_response.cards.cardCollectionRenderer.cards[1].cardRenderer.content.videoInfoCardContentRenderer.action.watchEndpoint.videoId;
-									}
-								} else if (jsond.info.player_response.cards.cardCollectionRenderer.cards[1].cardRenderer.content.playlistInfoCardContentRenderer) {
-									document.getElementById("card2").style.display = '';
-									if (!jsond.info.player_response.cards.cardCollectionRenderer.cards[1].cardRenderer.content.playlistInfoCardContentRenderer.customMessage) {
-										document.getElementById("cardMessage2").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[1].cardRenderer.content.playlistInfoCardContentRenderer.playlistTitle.simpleText;;
-										document.getElementById("cardLink2").href = "https://youtube.com/playlist?list=" + jsond.info.player_response.cards.cardCollectionRenderer.cards[1].cardRenderer.content.playlistInfoCardContentRenderer.action.watchEndpoint.playlistId;
-									} else {
-										document.getElementById("cardMessage2").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[1].cardRenderer.content.playlistInfoCardContentRenderer.customMessage.simpleText;
-										document.getElementById("cardLink2").href = "https://youtube.com/playlist?list=" + jsond.info.player_response.cards.cardCollectionRenderer.cards[1].cardRenderer.content.playlistInfoCardContentRenderer.action.watchEndpoint.playlistId;
-									}
-								}
 							} else {
-								document.getElementById("card2").style.display = 'none';
-								document.getElementById("card3").style.display = 'none';
-								document.getElementById("card4").style.display = 'none';
-								document.getElementById("card5").style.display = 'none';
-							}
-							if (jsond.info.player_response.cards.cardCollectionRenderer.cards[2]) {
-								if (jsond.info.player_response.cards.cardCollectionRenderer.cards[2].cardRenderer.content.videoInfoCardContentRenderer) {
-									document.getElementById("card3").style.display = '';
-									if (!jsond.info.player_response.cards.cardCollectionRenderer.cards[2].cardRenderer.content.videoInfoCardContentRenderer.customMessage) {
-										document.getElementById("cardMessage3").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[2].cardRenderer.content.videoInfoCardContentRenderer.videoTitle.simpleText || "[No message]";
-										document.getElementById("cardLink3").href = "#w#" + jsond.info.player_response.cards.cardCollectionRenderer.cards[2].cardRenderer.content.videoInfoCardContentRenderer.action.watchEndpoint.videoId;
-									} else {
-										document.getElementById("cardMessage3").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[2].cardRenderer.content.videoInfoCardContentRenderer.customMessage.simpleText;
-										document.getElementById("cardLink3").href = "#w#" + jsond.info.player_response.cards.cardCollectionRenderer.cards[2].cardRenderer.content.videoInfoCardContentRenderer.action.watchEndpoint.videoId;
+								if (jsond.info.player_response.cards.cardCollectionRenderer.cards[0]) {
+									if (jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.videoInfoCardContentRenderer) {
+										document.getElementById("card1").style.display = '';
+										if (!jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.videoInfoCardContentRenderer.customMessage) {
+											document.getElementById("cardMessage1").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.videoInfoCardContentRenderer.videoTitle.simpleText || "[No message]";
+											document.getElementById("cardLink1").href = "#w#" + jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.videoInfoCardContentRenderer.action.watchEndpoint.videoId;
+										} else {
+											document.getElementById("cardMessage1").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.videoInfoCardContentRenderer.customMessage.simpleText;
+											document.getElementById("cardLink1").href = "#w#" + jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.videoInfoCardContentRenderer.action.watchEndpoint.videoId;
+										}
+									} else if (jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.playlistInfoCardContentRenderer) {
+										document.getElementById("card1").style.display = '';
+										if (!jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.playlistInfoCardContentRenderer.customMessage) {
+											document.getElementById("cardMessage1").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.playlistInfoCardContentRenderer.playlistTitle.simpleText;
+											document.getElementById("cardLink1").href = "https://youtube.com/playlist?list=" + jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.playlistInfoCardContentRenderer.action.watchEndpoint.playlistId;
+										} else {
+											document.getElementById("cardMessage1").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.playlistInfoCardContentRenderer.customMessage.simpleText;
+											document.getElementById("cardLink1").href = "https://youtube.com/playlist?list=" + jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.playlistInfoCardContentRenderer.action.watchEndpoint.playlistId;
+										}
 									}
-								} else if (jsond.info.player_response.cards.cardCollectionRenderer.cards[2].cardRenderer.content.playlistInfoCardContentRenderer) {
-									document.getElementById("card3").style.display = '';
-									if (!jsond.info.player_response.cards.cardCollectionRenderer.cards[2].cardRenderer.content.playlistInfoCardContentRenderer.customMessage) {
-										document.getElementById("cardMessage3").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[2].cardRenderer.content.playlistInfoCardContentRenderer.playlistTitle.simpleText;;
-										document.getElementById("cardLink3").href = "https://youtube.com/playlist?list=" + jsond.info.player_response.cards.cardCollectionRenderer.cards[2].cardRenderer.content.playlistInfoCardContentRenderer.action.watchEndpoint.playlistId;
-									} else {
-										document.getElementById("cardMessage3").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[2].cardRenderer.content.playlistInfoCardContentRenderer.customMessage.simpleText;
-										document.getElementById("cardLink3").href = "https://youtube.com/playlist?list=" + jsond.info.player_response.cards.cardCollectionRenderer.cards[2].cardRenderer.content.playlistInfoCardContentRenderer.action.watchEndpoint.playlistId;
-									}
+								} else {
+									document.getElementById("card1").style.display = 'none';
+									document.getElementById("card2").style.display = 'none';
+									document.getElementById("card3").style.display = 'none';
+									document.getElementById("card4").style.display = 'none';
+									document.getElementById("card5").style.display = 'none';
 								}
-							} else {
-								document.getElementById("card3").style.display = 'none';
-								document.getElementById("card4").style.display = 'none';
-								document.getElementById("card5").style.display = 'none';
-							}
-							if (jsond.info.player_response.cards.cardCollectionRenderer.cards[3]) {
-								if (jsond.info.player_response.cards.cardCollectionRenderer.cards[3].cardRenderer.content.videoInfoCardContentRenderer) {
-									document.getElementById("card4").style.display = '';
-									if (!jsond.info.player_response.cards.cardCollectionRenderer.cards[3].cardRenderer.content.videoInfoCardContentRenderer.customMessage) {
-										document.getElementById("cardMessage4").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[3].cardRenderer.content.videoInfoCardContentRenderer.videoTitle.simpleText || "[No message]";
-										document.getElementById("cardLink4").href = "#w#" + jsond.info.player_response.cards.cardCollectionRenderer.cards[3].cardRenderer.content.videoInfoCardContentRenderer.action.watchEndpoint.videoId;
-									} else {
-										document.getElementById("cardMessage4").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[3].cardRenderer.content.videoInfoCardContentRenderer.customMessage.simpleText;
-										document.getElementById("cardLink4").href = "#w#" + jsond.info.player_response.cards.cardCollectionRenderer.cards[3].cardRenderer.content.videoInfoCardContentRenderer.action.watchEndpoint.videoId;
+								if (jsond.info.player_response.cards.cardCollectionRenderer.cards[1]) {
+									if (jsond.info.player_response.cards.cardCollectionRenderer.cards[1].cardRenderer.content.videoInfoCardContentRenderer) {
+										document.getElementById("card2").style.display = '';
+										if (!jsond.info.player_response.cards.cardCollectionRenderer.cards[1].cardRenderer.content.videoInfoCardContentRenderer.customMessage) {
+											document.getElementById("cardMessage2").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[1].cardRenderer.content.videoInfoCardContentRenderer.videoTitle.simpleText || "[No message]";
+											document.getElementById("cardLink2").href = "#w#" + jsond.info.player_response.cards.cardCollectionRenderer.cards[1].cardRenderer.content.videoInfoCardContentRenderer.action.watchEndpoint.videoId;
+										} else {
+											document.getElementById("cardMessage2").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[1].cardRenderer.content.videoInfoCardContentRenderer.customMessage.simpleText;
+											document.getElementById("cardLink2").href = "#w#" + jsond.info.player_response.cards.cardCollectionRenderer.cards[1].cardRenderer.content.videoInfoCardContentRenderer.action.watchEndpoint.videoId;
+										}
+									} else if (jsond.info.player_response.cards.cardCollectionRenderer.cards[1].cardRenderer.content.playlistInfoCardContentRenderer) {
+										document.getElementById("card2").style.display = '';
+										if (!jsond.info.player_response.cards.cardCollectionRenderer.cards[1].cardRenderer.content.playlistInfoCardContentRenderer.customMessage) {
+											document.getElementById("cardMessage2").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[1].cardRenderer.content.playlistInfoCardContentRenderer.playlistTitle.simpleText;;
+											document.getElementById("cardLink2").href = "https://youtube.com/playlist?list=" + jsond.info.player_response.cards.cardCollectionRenderer.cards[1].cardRenderer.content.playlistInfoCardContentRenderer.action.watchEndpoint.playlistId;
+										} else {
+											document.getElementById("cardMessage2").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[1].cardRenderer.content.playlistInfoCardContentRenderer.customMessage.simpleText;
+											document.getElementById("cardLink2").href = "https://youtube.com/playlist?list=" + jsond.info.player_response.cards.cardCollectionRenderer.cards[1].cardRenderer.content.playlistInfoCardContentRenderer.action.watchEndpoint.playlistId;
+										}
 									}
-								} else if (jsond.info.player_response.cards.cardCollectionRenderer.cards[3].cardRenderer.content.playlistInfoCardContentRenderer) {
-									document.getElementById("card4").style.display = '';
-									if (!jsond.info.player_response.cards.cardCollectionRenderer.cards[3].cardRenderer.content.playlistInfoCardContentRenderer.customMessage) {
-										document.getElementById("cardMessage4").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[3].cardRenderer.content.playlistInfoCardContentRenderer.playlistTitle.simpleText;;
-										document.getElementById("cardLink4").href = "https://youtube.com/playlist?list=" + jsond.info.player_response.cards.cardCollectionRenderer.cards[3].cardRenderer.content.playlistInfoCardContentRenderer.action.watchEndpoint.playlistId;
-									} else {
-										document.getElementById("cardMessage4").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[3].cardRenderer.content.playlistInfoCardContentRenderer.customMessage.simpleText;
-										document.getElementById("cardLink4").href = "https://youtube.com/playlist?list=" + jsond.info.player_response.cards.cardCollectionRenderer.cards[3].cardRenderer.content.playlistInfoCardContentRenderer.action.watchEndpoint.playlistId;
-									}
+								} else {
+									document.getElementById("card2").style.display = 'none';
+									document.getElementById("card3").style.display = 'none';
+									document.getElementById("card4").style.display = 'none';
+									document.getElementById("card5").style.display = 'none';
 								}
-							} else {
-								document.getElementById("card4").style.display = 'none';
-								document.getElementById("card5").style.display = 'none';
-							}
-							if (jsond.info.player_response.cards.cardCollectionRenderer.cards[4]) {
-								if (jsond.info.player_response.cards.cardCollectionRenderer.cards[4].cardRenderer.content.videoInfoCardContentRenderer) {
-									document.getElementById("card5").style.display = '';
-									if (!jsond.info.player_response.cards.cardCollectionRenderer.cards[4].cardRenderer.content.videoInfoCardContentRenderer.customMessage) {
-										document.getElementById("cardMessage5").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[4].cardRenderer.content.videoInfoCardContentRenderer.videoTitle.simpleText || "[No message]";
-										document.getElementById("cardLink5").href = "#w#" + jsond.info.player_response.cards.cardCollectionRenderer.cards[4].cardRenderer.content.videoInfoCardContentRenderer.action.watchEndpoint.videoId;
-									} else {
-										document.getElementById("cardMessage5").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[4].cardRenderer.content.videoInfoCardContentRenderer.customMessage.simpleText;
-										document.getElementById("cardLink5").href = "#w#" + jsond.info.player_response.cards.cardCollectionRenderer.cards[4].cardRenderer.content.videoInfoCardContentRenderer.action.watchEndpoint.videoId;
+								if (jsond.info.player_response.cards.cardCollectionRenderer.cards[2]) {
+									if (jsond.info.player_response.cards.cardCollectionRenderer.cards[2].cardRenderer.content.videoInfoCardContentRenderer) {
+										document.getElementById("card3").style.display = '';
+										if (!jsond.info.player_response.cards.cardCollectionRenderer.cards[2].cardRenderer.content.videoInfoCardContentRenderer.customMessage) {
+											document.getElementById("cardMessage3").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[2].cardRenderer.content.videoInfoCardContentRenderer.videoTitle.simpleText || "[No message]";
+											document.getElementById("cardLink3").href = "#w#" + jsond.info.player_response.cards.cardCollectionRenderer.cards[2].cardRenderer.content.videoInfoCardContentRenderer.action.watchEndpoint.videoId;
+										} else {
+											document.getElementById("cardMessage3").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[2].cardRenderer.content.videoInfoCardContentRenderer.customMessage.simpleText;
+											document.getElementById("cardLink3").href = "#w#" + jsond.info.player_response.cards.cardCollectionRenderer.cards[2].cardRenderer.content.videoInfoCardContentRenderer.action.watchEndpoint.videoId;
+										}
+									} else if (jsond.info.player_response.cards.cardCollectionRenderer.cards[2].cardRenderer.content.playlistInfoCardContentRenderer) {
+										document.getElementById("card3").style.display = '';
+										if (!jsond.info.player_response.cards.cardCollectionRenderer.cards[2].cardRenderer.content.playlistInfoCardContentRenderer.customMessage) {
+											document.getElementById("cardMessage3").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[2].cardRenderer.content.playlistInfoCardContentRenderer.playlistTitle.simpleText;;
+											document.getElementById("cardLink3").href = "https://youtube.com/playlist?list=" + jsond.info.player_response.cards.cardCollectionRenderer.cards[2].cardRenderer.content.playlistInfoCardContentRenderer.action.watchEndpoint.playlistId;
+										} else {
+											document.getElementById("cardMessage3").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[2].cardRenderer.content.playlistInfoCardContentRenderer.customMessage.simpleText;
+											document.getElementById("cardLink3").href = "https://youtube.com/playlist?list=" + jsond.info.player_response.cards.cardCollectionRenderer.cards[2].cardRenderer.content.playlistInfoCardContentRenderer.action.watchEndpoint.playlistId;
+										}
 									}
-								} else if (jsond.info.player_response.cards.cardCollectionRenderer.cards[4].cardRenderer.content.playlistInfoCardContentRenderer) {
-									document.getElementById("card5").style.display = '';
-									if (!jsond.info.player_response.cards.cardCollectionRenderer.cards[4].cardRenderer.content.playlistInfoCardContentRenderer.customMessage) {
-										document.getElementById("cardMessage5").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[4].cardRenderer.content.playlistInfoCardContentRenderer.playlistTitle.simpleText;;
-										document.getElementById("cardLink5").href = "https://youtube.com/playlist?list=" + jsond.info.player_response.cards.cardCollectionRenderer.cards[4].cardRenderer.content.playlistInfoCardContentRenderer.action.watchEndpoint.playlistId;
-									} else {
-										document.getElementById("cardMessage5").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[4].cardRenderer.content.playlistInfoCardContentRenderer.customMessage.simpleText;
-										document.getElementById("cardLink5").href = "https://youtube.com/playlist?list=" + jsond.info.player_response.cards.cardCollectionRenderer.cards[4].cardRenderer.content.playlistInfoCardContentRenderer.action.watchEndpoint.playlistId;
-									}
+								} else {
+									document.getElementById("card3").style.display = 'none';
+									document.getElementById("card4").style.display = 'none';
+									document.getElementById("card5").style.display = 'none';
 								}
+								if (jsond.info.player_response.cards.cardCollectionRenderer.cards[3]) {
+									if (jsond.info.player_response.cards.cardCollectionRenderer.cards[3].cardRenderer.content.videoInfoCardContentRenderer) {
+										document.getElementById("card4").style.display = '';
+										if (!jsond.info.player_response.cards.cardCollectionRenderer.cards[3].cardRenderer.content.videoInfoCardContentRenderer.customMessage) {
+											document.getElementById("cardMessage4").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[3].cardRenderer.content.videoInfoCardContentRenderer.videoTitle.simpleText || "[No message]";
+											document.getElementById("cardLink4").href = "#w#" + jsond.info.player_response.cards.cardCollectionRenderer.cards[3].cardRenderer.content.videoInfoCardContentRenderer.action.watchEndpoint.videoId;
+										} else {
+											document.getElementById("cardMessage4").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[3].cardRenderer.content.videoInfoCardContentRenderer.customMessage.simpleText;
+											document.getElementById("cardLink4").href = "#w#" + jsond.info.player_response.cards.cardCollectionRenderer.cards[3].cardRenderer.content.videoInfoCardContentRenderer.action.watchEndpoint.videoId;
+										}
+									} else if (jsond.info.player_response.cards.cardCollectionRenderer.cards[3].cardRenderer.content.playlistInfoCardContentRenderer) {
+										document.getElementById("card4").style.display = '';
+										if (!jsond.info.player_response.cards.cardCollectionRenderer.cards[3].cardRenderer.content.playlistInfoCardContentRenderer.customMessage) {
+											document.getElementById("cardMessage4").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[3].cardRenderer.content.playlistInfoCardContentRenderer.playlistTitle.simpleText;;
+											document.getElementById("cardLink4").href = "https://youtube.com/playlist?list=" + jsond.info.player_response.cards.cardCollectionRenderer.cards[3].cardRenderer.content.playlistInfoCardContentRenderer.action.watchEndpoint.playlistId;
+										} else {
+											document.getElementById("cardMessage4").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[3].cardRenderer.content.playlistInfoCardContentRenderer.customMessage.simpleText;
+											document.getElementById("cardLink4").href = "https://youtube.com/playlist?list=" + jsond.info.player_response.cards.cardCollectionRenderer.cards[3].cardRenderer.content.playlistInfoCardContentRenderer.action.watchEndpoint.playlistId;
+										}
+									}
+								} else {
+									document.getElementById("card4").style.display = 'none';
+									document.getElementById("card5").style.display = 'none';
+								}
+								if (jsond.info.player_response.cards.cardCollectionRenderer.cards[4]) {
+									if (jsond.info.player_response.cards.cardCollectionRenderer.cards[4].cardRenderer.content.videoInfoCardContentRenderer) {
+										document.getElementById("card5").style.display = '';
+										if (!jsond.info.player_response.cards.cardCollectionRenderer.cards[4].cardRenderer.content.videoInfoCardContentRenderer.customMessage) {
+											document.getElementById("cardMessage5").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[4].cardRenderer.content.videoInfoCardContentRenderer.videoTitle.simpleText || "[No message]";
+											document.getElementById("cardLink5").href = "#w#" + jsond.info.player_response.cards.cardCollectionRenderer.cards[4].cardRenderer.content.videoInfoCardContentRenderer.action.watchEndpoint.videoId;
+										} else {
+											document.getElementById("cardMessage5").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[4].cardRenderer.content.videoInfoCardContentRenderer.customMessage.simpleText;
+											document.getElementById("cardLink5").href = "#w#" + jsond.info.player_response.cards.cardCollectionRenderer.cards[4].cardRenderer.content.videoInfoCardContentRenderer.action.watchEndpoint.videoId;
+										}
+									} else if (jsond.info.player_response.cards.cardCollectionRenderer.cards[4].cardRenderer.content.playlistInfoCardContentRenderer) {
+										document.getElementById("card5").style.display = '';
+										if (!jsond.info.player_response.cards.cardCollectionRenderer.cards[4].cardRenderer.content.playlistInfoCardContentRenderer.customMessage) {
+											document.getElementById("cardMessage5").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[4].cardRenderer.content.playlistInfoCardContentRenderer.playlistTitle.simpleText;;
+											document.getElementById("cardLink5").href = "https://youtube.com/playlist?list=" + jsond.info.player_response.cards.cardCollectionRenderer.cards[4].cardRenderer.content.playlistInfoCardContentRenderer.action.watchEndpoint.playlistId;
+										} else {
+											document.getElementById("cardMessage5").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[4].cardRenderer.content.playlistInfoCardContentRenderer.customMessage.simpleText;
+											document.getElementById("cardLink5").href = "https://youtube.com/playlist?list=" + jsond.info.player_response.cards.cardCollectionRenderer.cards[4].cardRenderer.content.playlistInfoCardContentRenderer.action.watchEndpoint.playlistId;
+										}
+									}
+								} else {
+									document.getElementById("card5").style.display = 'none';
+								}
+							}
+							var cat = jsond.info.media.category;
+							if (cat == undefined) {
+								document.getElementById("catCont").style.display = "none";
 							} else {
-								document.getElementById("card5").style.display = 'none';
+								document.getElementById("catCont").style.display = "";
+								document.getElementById("cat").innerHTML = cat;
 							}
-						}
-						var cat = jsond.info.media.category;
-						if (cat == undefined) {
-							document.getElementById("catCont").style.display = "none";
-						} else {
-							document.getElementById("catCont").style.display = "";
-							document.getElementById("cat").innerHTML = cat;
-						}
-						if (!jsond.info.related_videos[0]) {
-							document.getElementById("relatedVideos").style.display = 'none';
-							document.getElementById("autoPlayBlock").style.display = 'none';
-						} else {
-							if (localStorage.getItem("sLoc") == "a") {
-								var baseUrl = "http://normandotmp4.electrohaxz.tk:9019/?thumb=";
-							} else if (localStorage.getItem("sLoc") == "b") {
-								var baseUrl = "https://vidpolaris.herokuapp.com/?thumb=";
-							} else if (localStorage.getItem("sLoc") == "c") {
-								var baseUrl = "https://vidpolaris-europe.herokuapp.com/?thumb=";
-							}
-							document.getElementById("relatedVideos").style.display = '';
-							document.getElementById("autoPlayBlock").style.display = '';
-							var r1L = "#w#" + jsond.info.related_videos[0].id;
-							var r1T = jsond.info.related_videos[0].title;
-							var r1A = baseUrl + jsond.info.related_videos[0].id;
-							var r1Au = jsond.info.related_videos[0].author;
-							var r1V = jsond.info.related_videos[0].short_view_count_text;
-							document.getElementById("rv1").href = r1L;
-							document.getElementById("rTit1").innerHTML = r1T;
-							document.getElementById("rTh1").src = r1A;
-							document.getElementById("rAut1").innerHTML = r1Au;
-							document.getElementById("rVie1").innerHTML = r1V;
-							if (jsond.info.related_videos[1]) {
-								var r2L = "#w#" + jsond.info.related_videos[1].id;
-								var r2T = jsond.info.related_videos[1].title;
-								var r2A = baseUrl + jsond.info.related_videos[1].id;;
-								var r2Au = jsond.info.related_videos[1].author;
-								var r2V = jsond.info.related_videos[1].short_view_count_text;
-								document.getElementById("rv2").href = r2L;
-								document.getElementById("rTit2").innerHTML = r2T;
-								document.getElementById("rTh2").src = r2A;
-								document.getElementById("rAut2").innerHTML = r2Au;
-								document.getElementById("rVie2").innerHTML = r2V;
-								if (jsond.info.related_videos[2]) {
-									var r3L = "#w#" + jsond.info.related_videos[2].id;
-									var r3T = jsond.info.related_videos[2].title;
-									var r3A = baseUrl + jsond.info.related_videos[2].id;;
-									var r3Au = jsond.info.related_videos[2].author;
-									var r3V = jsond.info.related_videos[2].short_view_count_text;
-									document.getElementById("rv3").href = r3L;
-									document.getElementById("rTit3").innerHTML = r3T;
-									document.getElementById("rTh3").src = r3A;
-									document.getElementById("rAut3").innerHTML = r3Au;
-									document.getElementById("rVie3").innerHTML = r3V;
-									if (jsond.info.related_videos[3]) {
-										var r4L = "#w#" + jsond.info.related_videos[3].id;
-										var r4T = jsond.info.related_videos[3].title;
-										var r4A = baseUrl + jsond.info.related_videos[3].id;;
-										var r4Au = jsond.info.related_videos[3].author;
-										var r4V = jsond.info.related_videos[3].short_view_count_text;
-										document.getElementById("rv4").href = r4L;
-										document.getElementById("rTit4").innerHTML = r4T;
-										document.getElementById("rTh4").src = r4A;
-										document.getElementById("rAut4").innerHTML = r4Au;
-										document.getElementById("rVie4").innerHTML = r4V;
-										if (jsond.info.related_videos[4]) {
-											var r5L = "#w#" + jsond.info.related_videos[4].id;
-											var r5T = jsond.info.related_videos[4].title;
-											var r5A = baseUrl + jsond.info.related_videos[4].id;;
-											var r5Au = jsond.info.related_videos[4].author;
-											var r5V = jsond.info.related_videos[4].short_view_count_text;
-											document.getElementById("rv5").href = r5L;
-											document.getElementById("rTit5").innerHTML = r5T;
-											document.getElementById("rTh5").src = r5A;
-											document.getElementById("rAut5").innerHTML = r5Au;
-											document.getElementById("rVie5").innerHTML = r5V;
-											if (jsond.info.related_videos[5]) {
-												var r6L = "#w#" + jsond.info.related_videos[5].id;
-												var r6T = jsond.info.related_videos[5].title;
-												var r6A = baseUrl + jsond.info.related_videos[5].id;;
-												var r6Au = jsond.info.related_videos[5].author;
-												var r6V = jsond.info.related_videos[5].short_view_count_text;
-												document.getElementById("rv6").href = r6L;
-												document.getElementById("rTit6").innerHTML = r6T;
-												document.getElementById("rTh6").src = r6A;
-												document.getElementById("rAut6").innerHTML = r6Au;
-												document.getElementById("rVie6").innerHTML = r6V;
-												if  (jsond.info.related_videos[6]) {
-													var r7L = "#w#" + jsond.info.related_videos[6].id;
-													var r7T = jsond.info.related_videos[6].title;
-													var r7A = baseUrl + jsond.info.related_videos[6].id;;
-													var r7Au = jsond.info.related_videos[6].author;
-													var r7V = jsond.info.related_videos[6].short_view_count_text;
-													document.getElementById("rv7").href = r7L;
-													document.getElementById("rTit7").innerHTML = r7T;
-													document.getElementById("rTh7").src = r7A;
-													document.getElementById("rAut7").innerHTML = r7Au;
-													document.getElementById("rVie7").innerHTML = r7V;
-													if (jsond.info.related_videos[7]) {
-														var r8L = "#w#" + jsond.info.related_videos[7].id;
-														var r8T = jsond.info.related_videos[7].title;
-														var r8A = baseUrl + jsond.info.related_videos[7].id;;
-														var r8Au = jsond.info.related_videos[7].author;
-														var r8V = jsond.info.related_videos[7].short_view_count_text;
-														document.getElementById("rv8").href = r8L;
-														document.getElementById("rTit8").innerHTML = r8T;
-														document.getElementById("rTh8").src = r8A;
-														document.getElementById("rAut8").innerHTML = r8Au;
-														document.getElementById("rVie8").innerHTML = r8V;
-														if (jsond.info.related_videos[8]) {
-															var r9T = jsond.info.related_videos[8].title;
-															var r9A = baseUrl + jsond.info.related_videos[8].id;;
-															var r9Au = jsond.info.related_videos[8].author;
-															var r9V = jsond.info.related_videos[8].short_view_count_text;
-															var r9L = "#w#" + jsond.info.related_videos[8].id;
-															document.getElementById("rTit9").innerHTML = r9T;
-															document.getElementById("rTh9").src = r9A;
-															document.getElementById("rAut9").innerHTML = r9Au;
-															document.getElementById("rVie9").innerHTML = r9V;
-															document.getElementById("rv9").href = r9L;
+							if (!jsond.info.related_videos[0]) {
+								document.getElementById("relatedVideos").style.display = 'none';
+								document.getElementById("autoPlayBlock").style.display = 'none';
+							} else {
+								if (localStorage.getItem("sLoc") == "a") {
+									var baseUrl = "http://normandotmp4.electrohaxz.tk:9019/?thumb=";
+								} else if (localStorage.getItem("sLoc") == "b") {
+									var baseUrl = "https://vidpolaris.herokuapp.com/?thumb=";
+								} else if (localStorage.getItem("sLoc") == "c") {
+									var baseUrl = "https://vidpolaris-europe.herokuapp.com/?thumb=";
+								}
+								document.getElementById("relatedVideos").style.display = '';
+								document.getElementById("autoPlayBlock").style.display = '';
+								var r1L = "#w#" + jsond.info.related_videos[0].id;
+								var r1T = jsond.info.related_videos[0].title;
+								var r1A = baseUrl + jsond.info.related_videos[0].id;
+								var r1Au = jsond.info.related_videos[0].author;
+								var r1V = jsond.info.related_videos[0].short_view_count_text;
+								document.getElementById("rv1").href = r1L;
+								document.getElementById("rTit1").innerHTML = r1T;
+								document.getElementById("rTh1").src = r1A;
+								document.getElementById("rAut1").innerHTML = r1Au;
+								document.getElementById("rVie1").innerHTML = r1V;
+								if (jsond.info.related_videos[1]) {
+									var r2L = "#w#" + jsond.info.related_videos[1].id;
+									var r2T = jsond.info.related_videos[1].title;
+									var r2A = baseUrl + jsond.info.related_videos[1].id;;
+									var r2Au = jsond.info.related_videos[1].author;
+									var r2V = jsond.info.related_videos[1].short_view_count_text;
+									document.getElementById("rv2").href = r2L;
+									document.getElementById("rTit2").innerHTML = r2T;
+									document.getElementById("rTh2").src = r2A;
+									document.getElementById("rAut2").innerHTML = r2Au;
+									document.getElementById("rVie2").innerHTML = r2V;
+									if (jsond.info.related_videos[2]) {
+										var r3L = "#w#" + jsond.info.related_videos[2].id;
+										var r3T = jsond.info.related_videos[2].title;
+										var r3A = baseUrl + jsond.info.related_videos[2].id;;
+										var r3Au = jsond.info.related_videos[2].author;
+										var r3V = jsond.info.related_videos[2].short_view_count_text;
+										document.getElementById("rv3").href = r3L;
+										document.getElementById("rTit3").innerHTML = r3T;
+										document.getElementById("rTh3").src = r3A;
+										document.getElementById("rAut3").innerHTML = r3Au;
+										document.getElementById("rVie3").innerHTML = r3V;
+										if (jsond.info.related_videos[3]) {
+											var r4L = "#w#" + jsond.info.related_videos[3].id;
+											var r4T = jsond.info.related_videos[3].title;
+											var r4A = baseUrl + jsond.info.related_videos[3].id;;
+											var r4Au = jsond.info.related_videos[3].author;
+											var r4V = jsond.info.related_videos[3].short_view_count_text;
+											document.getElementById("rv4").href = r4L;
+											document.getElementById("rTit4").innerHTML = r4T;
+											document.getElementById("rTh4").src = r4A;
+											document.getElementById("rAut4").innerHTML = r4Au;
+											document.getElementById("rVie4").innerHTML = r4V;
+											if (jsond.info.related_videos[4]) {
+												var r5L = "#w#" + jsond.info.related_videos[4].id;
+												var r5T = jsond.info.related_videos[4].title;
+												var r5A = baseUrl + jsond.info.related_videos[4].id;;
+												var r5Au = jsond.info.related_videos[4].author;
+												var r5V = jsond.info.related_videos[4].short_view_count_text;
+												document.getElementById("rv5").href = r5L;
+												document.getElementById("rTit5").innerHTML = r5T;
+												document.getElementById("rTh5").src = r5A;
+												document.getElementById("rAut5").innerHTML = r5Au;
+												document.getElementById("rVie5").innerHTML = r5V;
+												if (jsond.info.related_videos[5]) {
+													var r6L = "#w#" + jsond.info.related_videos[5].id;
+													var r6T = jsond.info.related_videos[5].title;
+													var r6A = baseUrl + jsond.info.related_videos[5].id;;
+													var r6Au = jsond.info.related_videos[5].author;
+													var r6V = jsond.info.related_videos[5].short_view_count_text;
+													document.getElementById("rv6").href = r6L;
+													document.getElementById("rTit6").innerHTML = r6T;
+													document.getElementById("rTh6").src = r6A;
+													document.getElementById("rAut6").innerHTML = r6Au;
+													document.getElementById("rVie6").innerHTML = r6V;
+													if  (jsond.info.related_videos[6]) {
+														var r7L = "#w#" + jsond.info.related_videos[6].id;
+														var r7T = jsond.info.related_videos[6].title;
+														var r7A = baseUrl + jsond.info.related_videos[6].id;;
+														var r7Au = jsond.info.related_videos[6].author;
+														var r7V = jsond.info.related_videos[6].short_view_count_text;
+														document.getElementById("rv7").href = r7L;
+														document.getElementById("rTit7").innerHTML = r7T;
+														document.getElementById("rTh7").src = r7A;
+														document.getElementById("rAut7").innerHTML = r7Au;
+														document.getElementById("rVie7").innerHTML = r7V;
+														if (jsond.info.related_videos[7]) {
+															var r8L = "#w#" + jsond.info.related_videos[7].id;
+															var r8T = jsond.info.related_videos[7].title;
+															var r8A = baseUrl + jsond.info.related_videos[7].id;;
+															var r8Au = jsond.info.related_videos[7].author;
+															var r8V = jsond.info.related_videos[7].short_view_count_text;
+															document.getElementById("rv8").href = r8L;
+															document.getElementById("rTit8").innerHTML = r8T;
+															document.getElementById("rTh8").src = r8A;
+															document.getElementById("rAut8").innerHTML = r8Au;
+															document.getElementById("rVie8").innerHTML = r8V;
+															if (jsond.info.related_videos[8]) {
+																var r9T = jsond.info.related_videos[8].title;
+																var r9A = baseUrl + jsond.info.related_videos[8].id;;
+																var r9Au = jsond.info.related_videos[8].author;
+																var r9V = jsond.info.related_videos[8].short_view_count_text;
+																var r9L = "#w#" + jsond.info.related_videos[8].id;
+																document.getElementById("rTit9").innerHTML = r9T;
+																document.getElementById("rTh9").src = r9A;
+																document.getElementById("rAut9").innerHTML = r9Au;
+																document.getElementById("rVie9").innerHTML = r9V;
+																document.getElementById("rv9").href = r9L;
+															} else {
+																document.getElementById("rv9").style.display = 'none';
+															}
 														} else {
+															document.getElementById("rv8").style.display = 'none';
 															document.getElementById("rv9").style.display = 'none';
 														}
 													} else {
+														document.getElementById("rv7").style.display = 'none';
 														document.getElementById("rv8").style.display = 'none';
 														document.getElementById("rv9").style.display = 'none';
 													}
 												} else {
+													document.getElementById("rv6").style.display = 'none';
 													document.getElementById("rv7").style.display = 'none';
 													document.getElementById("rv8").style.display = 'none';
 													document.getElementById("rv9").style.display = 'none';
 												}
 											} else {
+												document.getElementById("rv5").style.display = 'none';
 												document.getElementById("rv6").style.display = 'none';
 												document.getElementById("rv7").style.display = 'none';
 												document.getElementById("rv8").style.display = 'none';
 												document.getElementById("rv9").style.display = 'none';
 											}
 										} else {
+											document.getElementById("rv4").style.display = 'none'
 											document.getElementById("rv5").style.display = 'none';
 											document.getElementById("rv6").style.display = 'none';
 											document.getElementById("rv7").style.display = 'none';
@@ -1737,7 +1749,8 @@ function openVideo(opt,ret) {
 											document.getElementById("rv9").style.display = 'none';
 										}
 									} else {
-										document.getElementById("rv4").style.display = 'none'
+										document.getElementById("rv3").style.display = 'none';
+										document.getElementById("rv4").style.display = 'none';
 										document.getElementById("rv5").style.display = 'none';
 										document.getElementById("rv6").style.display = 'none';
 										document.getElementById("rv7").style.display = 'none';
@@ -1745,6 +1758,7 @@ function openVideo(opt,ret) {
 										document.getElementById("rv9").style.display = 'none';
 									}
 								} else {
+									document.getElementById("rv2").style.display = 'none';
 									document.getElementById("rv3").style.display = 'none';
 									document.getElementById("rv4").style.display = 'none';
 									document.getElementById("rv5").style.display = 'none';
@@ -1753,155 +1767,267 @@ function openVideo(opt,ret) {
 									document.getElementById("rv8").style.display = 'none';
 									document.getElementById("rv9").style.display = 'none';
 								}
-							} else {
-								document.getElementById("rv2").style.display = 'none';
-								document.getElementById("rv3").style.display = 'none';
-								document.getElementById("rv4").style.display = 'none';
-								document.getElementById("rv5").style.display = 'none';
-								document.getElementById("rv6").style.display = 'none';
-								document.getElementById("rv7").style.display = 'none';
-								document.getElementById("rv8").style.display = 'none';
-								document.getElementById("rv9").style.display = 'none';
 							}
-						}
-						if (localStorage.getItem("smart") == "y") {
-							if (opt == "a" | !opt) {
-								var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?smart=1&url=" + fullUrl;
-							} else if (opt == "b"){
-								var url = "https://vidpolaris.herokuapp.com/?smart=1&url=" + fullUrl;
-							} else if (opt == "c") {
-								var url = "https://vidpolaris-europe.herokuapp.com/?smart=1&url=" + fullUrl;
-							}
-							http.open("GET", url);
-							http.send();
-							http.onreadystatechange=(e)=>{
-								document.getElementById("qSelector").style.display = '';
-								var jsond = JSON.parse(http.responseText);
-								if (!jsond.audio) {
-									openVideo(opt);
-									return;
+							if (localStorage.getItem("smart") == "y") {
+								if (opt == "a" | !opt) {
+									var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?smart=1&url=" + fullUrl;
+								} else if (opt == "b"){
+									var url = "https://vidpolaris.herokuapp.com/?smart=1&url=" + fullUrl;
+								} else if (opt == "c") {
+									var url = "https://vidpolaris-europe.herokuapp.com/?smart=1&url=" + fullUrl;
 								}
-								var audioUrl = jsond.audio[0].url;
-								document.getElementById("audioPlayer").src = audioUrl;
-								if (jsond.video[0].isHls == true | jsond.video[0].isLive == true | jsond.video[0].isDashMPD == true) {
-									var videoUrl =  jsond.video[1].url;
-									document.getElementById("itag").innerHTML = jsond.video[1].itag;
-								} else {
-									var videoUrl = jsond.video[0].url;
-									document.getElementById("itag").innerHTML = jsond.video[0].itag;
-								}
-								var length = jsond.video.length;
-								if (length > 5) {
-									var opt1 = document.createElement("option")
-									opt1.value = jsond.video[0].itag;
-									opt1.innerHTML = jsond.video[0].qualityLabel;
-									document.getElementById("qOptions").appendChild(opt1);
-									var opt2 = document.createElement("option");
-									if (!jsond.video[1].qualityLabel == jsond.video[0].qualityLabel ) {
-										opt2.value = jsond.video[1].itag;
-										opt2.innerHTML = jsond.video[1].qualityLabel;
-									} else {
-										if (!jsond.video[2].qualityLabel == jsond.video[0].qualityLabel) {
-											opt2.value = jsond.video[2].itag;
-											opt2.innerHTML = jsond.video[2].qualityLabel;
-										} else {
-											opt2.value = jsond.video[3].itag;
-											opt2.innerHTML = jsond.video[3].qualityLabel;
-										}
+								http.open("GET", url);
+								http.send();
+								http.onreadystatechange=(e)=>{
+									document.getElementById("qSelector").style.display = '';
+									var jsond = JSON.parse(http.responseText);
+									if (!jsond.audio) {
+										openVideo(opt);
+										return;
 									}
-									document.getElementById("qOptions").appendChild(opt2);
-									var opt3 = document.createElement("option");
-									if (!jsond.video[2].qualityLabel == jsond.video[1].qualityLabel && !jsond.video[2].qualityLabel == jsond.video[0].qualityLabel) {
-										opt3.value = jsond.video[2].itag;
-										opt3.innerHTML = jsond.video[2].qualityLabel;
+									var audioUrl = jsond.audio[0].url;
+									document.getElementById("audioPlayer").src = audioUrl;
+									if (jsond.video[0].isHls == true | jsond.video[0].isLive == true | jsond.video[0].isDashMPD == true) {
+										var videoUrl =  jsond.video[1].url;
+										document.getElementById("itag").innerHTML = jsond.video[1].itag;
 									} else {
-										if (!jsond.video[3].qualityLabel == jsond.video[1].qualityLabel && !jsond.video[3].qualityLabel == jsond.video[0].qualityLabel) {
-											opt3.value = jsond.video[3].itag;
-											opt3.innerHTML = jsond.video[3].qualityLabel;
-										} else {
-											opt3.value = jsond.video[4].itag;
-											opt3.innerHTML = jsond.video[4].qualityLabel;
-										}
+										var videoUrl = jsond.video[0].url;
+										document.getElementById("itag").innerHTML = jsond.video[0].itag;
 									}
-									document.getElementById("qOptions").appendChild(opt3);
-									var opt4 = document.createElement("option");
-									if (!jsond.video[3].qualityLabel == jsond.video[2].qualityLabel && !jsond.video[3].qualityLabel == jsond.video[1].qualityLabel && !jsond.video[3].qualityLabel == jsond.video[0].qualityLabel) {
-										opt4.value = jsond.video[3].itag;
-										opt4.innerHTML = jsond.video[3].qualityLabel;
-									} else {
-										if (!jsond.video[4].qualityLabel == jsond.video[3].qualityLabel && !jsond.video[4].qualityLabel == jsond.video[2].qualityLabel && !jsond.video[4].qualityLabel == jsond.video[1].qualityLabel && !jsond.video[4].qualityLabel == jsond.video[0].qualityLabel) {
-											opt4.value = jsond.video[4].itag;
-											opt4.innerHTML = jsond.video[4].qualityLabel;
+									var length = jsond.video.length;
+									if (length > 5) {
+										var opt1 = document.createElement("option")
+										opt1.value = jsond.video[0].itag;
+										opt1.innerHTML = jsond.video[0].qualityLabel;
+										document.getElementById("qOptions").appendChild(opt1);
+										var opt2 = document.createElement("option");
+										if (!jsond.video[1].qualityLabel == jsond.video[0].qualityLabel ) {
+											opt2.value = jsond.video[1].itag;
+											opt2.innerHTML = jsond.video[1].qualityLabel;
 										} else {
-											opt4.value = jsond.video[5].itag;
-											opt4.innerHTML = jsond.video[5].qualityLabel;
-										}
-									}
-									document.getElementById("qOptions").appendChild(opt4);
-									var opt5 = document.createElement("option");
-									if (!jsond.video[4].qualityLabel == jsond.video[3].qualityLabel && !jsond.video[4].qualityLabel == jsond.video[2].qualityLabel && !jsond.video[4].qualityLabel == jsond.video[1].qualityLabel && !jsond.video[4].qualityLabel == jsond.video[0].qualityLabel) {
-										opt5.value = jsond.video[4].itag;
-										opt5.innerHTML = jsond.video[4].qualityLabel;
-										document.getElementById("qOptions").appendChild(opt5);
-									} else {
-										if (!jsond.video[5].qualityLabel == jsond.video[4].qualityLabel && !jsond.video[5].qualityLabel == jsond.video[3].qualityLabel && !jsond.video[5].qualityLabel == jsond.video[2].qualityLabel && !jsond.video[5].qualityLabel == jsond.video[1].qualityLabel && !jsond.video[5].qualityLabel == jsond.video[0].qualityLabel) {
-											opt5.value = jsond.video[5].itag;
-											opt5.innerHTML = jsond.video[5].qualityLabel;
-										} else {
-											if (!jsond.video[6] == undefined) {
-												opt5.value = jsond.video[6].itag;
-												opt5.innerHTML = jsond.video[6].qualityLabel;
+											if (!jsond.video[2].qualityLabel == jsond.video[0].qualityLabel) {
+												opt2.value = jsond.video[2].itag;
+												opt2.innerHTML = jsond.video[2].qualityLabel;
+											} else {
+												opt2.value = jsond.video[3].itag;
+												opt2.innerHTML = jsond.video[3].qualityLabel;
 											}
 										}
+										document.getElementById("qOptions").appendChild(opt2);
+										var opt3 = document.createElement("option");
+										if (!jsond.video[2].qualityLabel == jsond.video[1].qualityLabel && !jsond.video[2].qualityLabel == jsond.video[0].qualityLabel) {
+											opt3.value = jsond.video[2].itag;
+											opt3.innerHTML = jsond.video[2].qualityLabel;
+										} else {
+											if (!jsond.video[3].qualityLabel == jsond.video[1].qualityLabel && !jsond.video[3].qualityLabel == jsond.video[0].qualityLabel) {
+												opt3.value = jsond.video[3].itag;
+												opt3.innerHTML = jsond.video[3].qualityLabel;
+											} else {
+												opt3.value = jsond.video[4].itag;
+												opt3.innerHTML = jsond.video[4].qualityLabel;
+											}
+										}
+										document.getElementById("qOptions").appendChild(opt3);
+										var opt4 = document.createElement("option");
+										if (!jsond.video[3].qualityLabel == jsond.video[2].qualityLabel && !jsond.video[3].qualityLabel == jsond.video[1].qualityLabel && !jsond.video[3].qualityLabel == jsond.video[0].qualityLabel) {
+											opt4.value = jsond.video[3].itag;
+											opt4.innerHTML = jsond.video[3].qualityLabel;
+										} else {
+											if (!jsond.video[4].qualityLabel == jsond.video[3].qualityLabel && !jsond.video[4].qualityLabel == jsond.video[2].qualityLabel && !jsond.video[4].qualityLabel == jsond.video[1].qualityLabel && !jsond.video[4].qualityLabel == jsond.video[0].qualityLabel) {
+												opt4.value = jsond.video[4].itag;
+												opt4.innerHTML = jsond.video[4].qualityLabel;
+											} else {
+												opt4.value = jsond.video[5].itag;
+												opt4.innerHTML = jsond.video[5].qualityLabel;
+											}
+										}
+										document.getElementById("qOptions").appendChild(opt4);
+										var opt5 = document.createElement("option");
+										if (!jsond.video[4].qualityLabel == jsond.video[3].qualityLabel && !jsond.video[4].qualityLabel == jsond.video[2].qualityLabel && !jsond.video[4].qualityLabel == jsond.video[1].qualityLabel && !jsond.video[4].qualityLabel == jsond.video[0].qualityLabel) {
+											opt5.value = jsond.video[4].itag;
+											opt5.innerHTML = jsond.video[4].qualityLabel;
+											document.getElementById("qOptions").appendChild(opt5);
+										} else {
+											if (!jsond.video[5].qualityLabel == jsond.video[4].qualityLabel && !jsond.video[5].qualityLabel == jsond.video[3].qualityLabel && !jsond.video[5].qualityLabel == jsond.video[2].qualityLabel && !jsond.video[5].qualityLabel == jsond.video[1].qualityLabel && !jsond.video[5].qualityLabel == jsond.video[0].qualityLabel) {
+												opt5.value = jsond.video[5].itag;
+												opt5.innerHTML = jsond.video[5].qualityLabel;
+											} else {
+												if (!jsond.video[6] == undefined) {
+													opt5.value = jsond.video[6].itag;
+													opt5.innerHTML = jsond.video[6].qualityLabel;
+												}
+											}
+										}
+									} else if (length == 4) {
+										var opt1 = document.createElement("option")
+										opt1.value = jsond.video[0].itag;
+										opt1.innerHTML = jsond.video[0].qualityLabel;
+										document.getElementById("qOptions").appendChild(opt1);
+										var opt2 = document.createElement("option");
+										opt2.value = jsond.video[1].itag;
+										opt2.innerHTML = jsond.video[1].qualityLabel;
+										document.getElementById("qOptions").appendChild(opt2);
+										var opt3 = document.createElement("option");
+										opt3.value = jsond.video[2].itag;
+										opt3.innerHTML = jsond.video[2].qualityLabel;
+										document.getElementById("qOptions").appendChild(opt3);
+										var opt4 = document.createElement("option");
+										opt4.value = jsond.video[3].itag;
+										opt4.innerHTML = jsond.video[3].qualityLabel;
+										document.getElementById("qOptions").appendChild(opt4);
+									} else if (length == 3) {
+										var opt1 = document.createElement("option")
+										opt1.value = jsond.video[0].itag;
+										opt1.innerHTML = jsond.video[0].qualityLabel;
+										document.getElementById("qOptions").appendChild(opt1);
+										var opt2 = document.createElement("option");
+										opt2.value = jsond.video[1].itag;
+										opt2.innerHTML = jsond.video[1].qualityLabel;
+										document.getElementById("qOptions").appendChild(opt2);
+										var opt3 = document.createElement("option");
+										opt3.value = jsond.video[2].itag;
+										opt3.innerHTML = jsond.video[2].qualityLabel;
+									} else if (length == 2) {
+										var opt1 = document.createElement("option")
+										opt1.value = jsond.video[0].itag;
+										opt1.innerHTML = jsond.video[0].qualityLabel;
+										document.getElementById("qOptions").appendChild(opt1);
+										var opt2 = document.createElement("option");
+										opt2.value = jsond.video[1].itag;
+										opt2.innerHTML = jsond.video[1].qualityLabel;
+										document.getElementById("qOptions").appendChild(opt2);
+									} else {
+										document.getElementById("qOptions").disabled = true;
+										var opt1 = document.createElement("option")
+										opt1.value = jsond.video[0].itag;
+										opt1.innerHTML = jsond.video[0].qualityLabel;
+										document.getElementById("qOptions").appendChild(opt1);
 									}
-								} else if (length == 4) {
-									var opt1 = document.createElement("option")
-									opt1.value = jsond.video[0].itag;
-									opt1.innerHTML = jsond.video[0].qualityLabel;
-									document.getElementById("qOptions").appendChild(opt1);
-									var opt2 = document.createElement("option");
-									opt2.value = jsond.video[1].itag;
-									opt2.innerHTML = jsond.video[1].qualityLabel;
-									document.getElementById("qOptions").appendChild(opt2);
-									var opt3 = document.createElement("option");
-									opt3.value = jsond.video[2].itag;
-									opt3.innerHTML = jsond.video[2].qualityLabel;
-									document.getElementById("qOptions").appendChild(opt3);
-									var opt4 = document.createElement("option");
-									opt4.value = jsond.video[3].itag;
-									opt4.innerHTML = jsond.video[3].qualityLabel;
-									document.getElementById("qOptions").appendChild(opt4);
-								} else if (length == 3) {
-									var opt1 = document.createElement("option")
-									opt1.value = jsond.video[0].itag;
-									opt1.innerHTML = jsond.video[0].qualityLabel;
-									document.getElementById("qOptions").appendChild(opt1);
-									var opt2 = document.createElement("option");
-									opt2.value = jsond.video[1].itag;
-									opt2.innerHTML = jsond.video[1].qualityLabel;
-									document.getElementById("qOptions").appendChild(opt2);
-									var opt3 = document.createElement("option");
-									opt3.value = jsond.video[2].itag;
-									opt3.innerHTML = jsond.video[2].qualityLabel;
-								} else if (length == 2) {
-									var opt1 = document.createElement("option")
-									opt1.value = jsond.video[0].itag;
-									opt1.innerHTML = jsond.video[0].qualityLabel;
-									document.getElementById("qOptions").appendChild(opt1);
-									var opt2 = document.createElement("option");
-									opt2.value = jsond.video[1].itag;
-									opt2.innerHTML = jsond.video[1].qualityLabel;
-									document.getElementById("qOptions").appendChild(opt2);
-								} else {
-									document.getElementById("qOptions").disabled = true;
-									var opt1 = document.createElement("option")
-									opt1.value = jsond.video[0].itag;
-									opt1.innerHTML = jsond.video[0].qualityLabel;
-									document.getElementById("qOptions").appendChild(opt1);
+									document.getElementById("player").src = videoUrl;
+									document.getElementById("qOptions").value = document.getElementById("itag").innerHTML;
+									document.getElementById("vidLoader").style.display = 'none';
+									if (opt == "a" | !opt) {
+										var tUrl = "http://normandotmp4.electrohaxz.tk:9019/?thumb=" + getClickedId(window.location.href, "#w#");
+									} else if (opt == "b"){
+										var tUrl = "https://vidpolaris.herokuapp.com/?thumb=" + getClickedId(window.location.href, "#w#");
+									} else if (opt == "c") {
+										var tUrl = "https://vidpolaris-europe.herokuapp.com/?thumb=" + getClickedId(window.location.href, "#w#");
+									}
+									document.getElementById("player").poster = tUrl;
+									document.getElementById("title").innerHTML = titl;
+									document.title = titl +  " | vidpolaris";
+									if (desc.length > 300) {
+										var shortDesc = desc.substring(0,300) + "..."
+										document.getElementById("desc").innerHTML = shortDesc;
+										document.getElementById("longDesc").innerHTML = desc;
+										document.getElementById("ldBtn").style.display = '';
+										document.getElementById("ldDiv").style.display = 'none';
+									} else {
+										document.getElementById("desc").innerHTML = desc;
+										document.getElementById("ldBtn").style.display = 'none';
+										document.getElementById("ldDiv").style.display = 'none';
+									}
+									document.getElementById("author").innerHTML = auth;
+									document.getElementById("searchContainer").style.display = '';
+									document.getElementById("pubM").innerHTML = month;
+									document.getElementById("pubY").innerHTML = year;
+									document.getElementById("pubD").innerHTML = day;
+									if (opt == "a" | !opt) {
+										var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?md=1&url=" + fullUrl;
+									} else if (opt == "b"){
+										var url = "https://vidpolaris.herokuapp.com/?md=1&url=" + fullUrl;
+									} else if (opt == "c") {
+										var url = "https://vidpolaris-europe.herokuapp.com/?md=1&url=" + fullUrl;
+									}
+									http.open("GET", url);
+									http.send();
+									http.timeout = 5000;
+									http.ontimeout = () => {
+										document.getElementById("viewNum").innerHTML = "[Error]";
+										document.getElementById("likeNum").innerHTML = "[Error]";
+										document.getElementById("dlikNum").innerHTML = "[Error]";
+										document.getElementById("commNum").innerHTML = "[Error]";
+										document.getElementById("ulIco").style.display = "none";
+										document.getElementById("title").style = "margin:0;"
+									}
+									http.onreadystatechange=(e)=>{
+										var jsond = JSON.parse(http.responseText);
+										if (!jsond.meta) {
+											getMeta(opt);
+										}
+										var view = jsond.meta.views.toLocaleString();
+										if (!jsond.meta.dislikeCount) {
+											var dlik = 0;
+										} else {
+											var dlik = jsond.meta.dislikeCount.toLocaleString();
+										}
+										if (!jsond.meta.likeCount) {
+											var like = 0;
+										} else {
+											var like = jsond.meta.likeCount.toLocaleString();
+										}
+										if (!jsond.meta.commentCount) {
+											var comm = 0;
+										} else {
+											var comm = jsond.meta.commentCount.toLocaleString();
+										}
+										var totl = jsond.meta.dislikeCount + jsond.meta.likeCount;
+										sessionStorage.setItem("total", totl.toLocaleString());
+										if (!totl == 0){
+											var untRatio = jsond.meta.likeCount / totl;
+											var percent = 100 * untRatio;
+											var ratio = percent.toPrecision(4);
+											sessionStorage.setItem("ratio", ratio);
+										} else {
+											var ratio = 0;
+											sessionStorage.setItem("ratio", ratio);
+										}
+										if (jsond.meta.unlisted == false) {
+											document.getElementById("ulIco").style.display = "none";
+											document.getElementById("title").style = "margin:0;"
+										} else {
+											document.getElementById("ulIco").style.display = "";
+											document.getElementById("title").style = "margin-top:-27px;margin-left:25px;"
+										}
+										document.getElementById("viewNum").innerHTML = view;
+										document.getElementById("likeNum").innerHTML = like;
+										document.getElementById("dlikNum").innerHTML = dlik;
+										document.getElementById("commNum").innerHTML = comm;
+										document.getElementById("ldRatio").innerHTML = ratio;
+									}
+									document.getElementById("vidViewer").style.display = '';
+									sync();
+									document.getElementById("player").load();
+									document.getElementById("audioPlayer").load();
+									if (localStorage.getItem("loadComm") == "y") {
+										getComments("none", opt);
+										sessionStorage.removeItem("currentlyOpening");
+									} else {
+										document.getElementById("loadC").style.display = '';
+										document.getElementById("loadedC").style.display = 'none';
+										document.getElementById("loadedComments").style.display = 'none';
+										document.getElementById("loadinC").style.display = 'none';
+										document.getElementById("errorC").style.display = 'none';
+										sessionStorage.removeItem("currentlyOpening");
+									}
+									setSpeed();
+									getSubs(opt);
+									document.getElementById("player").play();
+									if (sessionStorage.getItem("id") == id) {
+										document.getElementById("player").currentTime = sessionStorage.getItem("time");
+										document.getElementById("audioPlayer").currentTime = sessionStorage.getItem("time");
+									} else {
+										sessionStorage.setItem("id", id);
+										sessionStorage.setItem("time", document.getElementById("player").currentTime);
+									}
+									return;
 								}
-								document.getElementById("player").src = videoUrl;
-								document.getElementById("qOptions").value = document.getElementById("itag").innerHTML;
+								return;
+							} else {
+								document.getElementById("qSelector").style.display = 'none';
+								document.getElementById("vidViewer").style.display = '';
 								document.getElementById("vidLoader").style.display = 'none';
+								document.getElementById("player").src = wUrl;
 								if (opt == "a" | !opt) {
 									var tUrl = "http://normandotmp4.electrohaxz.tk:9019/?thumb=" + getClickedId(window.location.href, "#w#");
 								} else if (opt == "b"){
@@ -1923,18 +2049,28 @@ function openVideo(opt,ret) {
 									document.getElementById("ldBtn").style.display = 'none';
 									document.getElementById("ldDiv").style.display = 'none';
 								}
+								document.getElementById("player").play();
 								document.getElementById("author").innerHTML = auth;
 								document.getElementById("searchContainer").style.display = '';
 								document.getElementById("pubM").innerHTML = month;
 								document.getElementById("pubY").innerHTML = year;
 								document.getElementById("pubD").innerHTML = day;
-								if (opt == "a" | !opt) {
+								if (!opt) {
 									var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?md=1&url=" + fullUrl;
-								} else if (opt == "b"){
+								} else {
 									var url = "https://vidpolaris.herokuapp.com/?md=1&url=" + fullUrl;
-								} else if (opt == "c") {
-									var url = "https://vidpolaris-europe.herokuapp.com/?md=1&url=" + fullUrl;
 								}
+								if (localStorage.getItem("loadComm") == "y") {
+									getComments("none", opt);
+								} else {
+									document.getElementById("loadC").style.display = '';
+									document.getElementById("loadedC").style.display = 'none';
+									document.getElementById("loadedComments").style.display = 'none';
+									document.getElementById("loadinC").style.display = 'none';
+									document.getElementById("errorC").style.display = 'none';
+								}
+								setSpeed();
+								getSubs(opt);
 								http.open("GET", url);
 								http.send();
 								http.timeout = 5000;
@@ -1985,142 +2121,14 @@ function openVideo(opt,ret) {
 										document.getElementById("ulIco").style.display = "";
 										document.getElementById("title").style = "margin-top:-27px;margin-left:25px;"
 									}
+									sessionStorage.removeItem("currentlyOpening");
 									document.getElementById("viewNum").innerHTML = view;
 									document.getElementById("likeNum").innerHTML = like;
 									document.getElementById("dlikNum").innerHTML = dlik;
-									document.getElementById("commNum").innerHTML = comm;
 									document.getElementById("ldRatio").innerHTML = ratio;
-								}
-								document.getElementById("vidViewer").style.display = '';
-								sync();
-								document.getElementById("player").load();
-								document.getElementById("audioPlayer").load();
-								if (localStorage.getItem("loadComm") == "y") {
-									getComments("none", opt);
-								} else {
-									document.getElementById("loadC").style.display = '';
-									document.getElementById("loadedC").style.display = 'none';
-									document.getElementById("loadedComments").style.display = 'none';
-									document.getElementById("loadinC").style.display = 'none';
-									document.getElementById("errorC").style.display = 'none';
-								}
-								setSpeed();
-								getSubs(opt);
-								document.getElementById("player").play();
-								if (sessionStorage.getItem("id") == id) {
-									document.getElementById("player").currentTime = sessionStorage.getItem("time");
-									document.getElementById("audioPlayer").currentTime = sessionStorage.getItem("time");
-								} else {
-									sessionStorage.setItem("id", id);
-									sessionStorage.setItem("time", document.getElementById("player").currentTime);
-								}
-								return;
-							}
-							return;
-						} else {
-							document.getElementById("qSelector").style.display = 'none';
-							document.getElementById("vidViewer").style.display = '';
-							document.getElementById("vidLoader").style.display = 'none';
-							document.getElementById("player").src = wUrl;
-							if (opt == "a" | !opt) {
-								var tUrl = "http://normandotmp4.electrohaxz.tk:9019/?thumb=" + getClickedId(window.location.href, "#w#");
-							} else if (opt == "b"){
-								var tUrl = "https://vidpolaris.herokuapp.com/?thumb=" + getClickedId(window.location.href, "#w#");
-							} else if (opt == "c") {
-								var tUrl = "https://vidpolaris-europe.herokuapp.com/?thumb=" + getClickedId(window.location.href, "#w#");
-							}
-							document.getElementById("player").poster = tUrl;
-							document.getElementById("title").innerHTML = titl;
-							document.title = titl +  " | vidpolaris";
-							if (desc.length > 300) {
-								var shortDesc = desc.substring(0,300) + "..."
-								document.getElementById("desc").innerHTML = shortDesc;
-								document.getElementById("longDesc").innerHTML = desc;
-								document.getElementById("ldBtn").style.display = '';
-								document.getElementById("ldDiv").style.display = 'none';
-							} else {
-								document.getElementById("desc").innerHTML = desc;
-								document.getElementById("ldBtn").style.display = 'none';
-								document.getElementById("ldDiv").style.display = 'none';
-							}
-							document.getElementById("player").play();
-							document.getElementById("author").innerHTML = auth;
-							document.getElementById("searchContainer").style.display = '';
-							document.getElementById("pubM").innerHTML = month;
-							document.getElementById("pubY").innerHTML = year;
-							document.getElementById("pubD").innerHTML = day;
-							if (!opt) {
-								var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?md=1&url=" + fullUrl;
-							} else {
-								var url = "https://vidpolaris.herokuapp.com/?md=1&url=" + fullUrl;
-							}
-							if (localStorage.getItem("loadComm") == "y") {
-								getComments("none", opt);
-							} else {
-								document.getElementById("loadC").style.display = '';
-								document.getElementById("loadedC").style.display = 'none';
-								document.getElementById("loadedComments").style.display = 'none';
-								document.getElementById("loadinC").style.display = 'none';
-								document.getElementById("errorC").style.display = 'none';
-							}
-							setSpeed();
-							getSubs(opt);
-							http.open("GET", url);
-							http.send();
-							http.timeout = 5000;
-							http.ontimeout = () => {
-								document.getElementById("viewNum").innerHTML = "[Error]";
-								document.getElementById("likeNum").innerHTML = "[Error]";
-								document.getElementById("dlikNum").innerHTML = "[Error]";
-								document.getElementById("commNum").innerHTML = "[Error]";
-								document.getElementById("ulIco").style.display = "none";
-								document.getElementById("title").style = "margin:0;"
-							}
-							http.onreadystatechange=(e)=>{
-								var jsond = JSON.parse(http.responseText);
-								if (!jsond.meta) {
-									getMeta(opt);
-								}
-								var view = jsond.meta.views.toLocaleString();
-								if (!jsond.meta.dislikeCount) {
-									var dlik = 0;
-								} else {
-									var dlik = jsond.meta.dislikeCount.toLocaleString();
-								}
-								if (!jsond.meta.likeCount) {
-									var like = 0;
-								} else {
-									var like = jsond.meta.likeCount.toLocaleString();
-								}
-								if (!jsond.meta.commentCount) {
-									var comm = 0;
-								} else {
-									var comm = jsond.meta.commentCount.toLocaleString();
-								}
-								var totl = jsond.meta.dislikeCount + jsond.meta.likeCount;
-								sessionStorage.setItem("total", totl.toLocaleString());
-								if (!totl == 0){
-									var untRatio = jsond.meta.likeCount / totl;
-									var percent = 100 * untRatio;
-									var ratio = percent.toPrecision(4);
-									sessionStorage.setItem("ratio", ratio);
-								} else {
-									var ratio = 0;
-									sessionStorage.setItem("ratio", ratio);
-								}
-								if (jsond.meta.unlisted == false) {
-									document.getElementById("ulIco").style.display = "none";
-									document.getElementById("title").style = "margin:0;"
-								} else {
-									document.getElementById("ulIco").style.display = "";
-									document.getElementById("title").style = "margin-top:-27px;margin-left:25px;"
-								}
-								document.getElementById("viewNum").innerHTML = view;
-								document.getElementById("likeNum").innerHTML = like;
-								document.getElementById("dlikNum").innerHTML = dlik;
-								document.getElementById("ldRatio").innerHTML = ratio;
-								if (!document.getElementById("vidViewer").style.display == 'none') {
-									document.getElementById("player").play()
+									if (!document.getElementById("vidViewer").style.display == 'none') {
+										document.getElementById("player").play()
+									}
 								}
 							}
 						}
