@@ -24,6 +24,15 @@ if (!localStorage.getItem("trendCont")) {
 	} else {
 		localStorage.setItem("trendCont", "us");
 	}
+} else {
+	document.getElementById("country").value = localStorage.getItem("trendingCont");
+}
+
+if (!localStorage.getItem("proxyVid")) {
+	localStorage.setItem("proxyVid", "n");
+	document.getElementById("proxyVideos").value = "n";
+} else {
+	document.getElementById("proxyVideos").value = localStorage.getItem("proxyVid");
 }
 
 if (!localStorage.getItem("loadComm")) {
@@ -1786,13 +1795,27 @@ function openVideo(opt,ret) {
 										return;
 									}
 									var audioUrl = jsond.audio[0].url;
-									document.getElementById("audioPlayer").src = audioUrl;
-									if (jsond.video[0].isHls == true | jsond.video[0].isLive == true | jsond.video[0].isDashMPD == true) {
-										var videoUrl =  jsond.video[1].url;
-										document.getElementById("itag").innerHTML = jsond.video[1].itag;
+									if (localStorage.getItem("proxyVid") == "n") {
+										document.getElementById("audioPlayer").src = audioUrl;
 									} else {
-										var videoUrl = jsond.video[0].url;
-										document.getElementById("itag").innerHTML = jsond.video[0].itag;
+										document.getElementById("audioPlayer").src = proxy(audioUrl);
+									}
+									if (jsond.video[0].isHls == true | jsond.video[0].isLive == true | jsond.video[0].isDashMPD == true) {
+										if (localStorage.getItem("proxyVid") == "n") {
+											var videoUrl = jsond.video[1].url;
+											document.getElementById("itag").innerHTML = jsond.video[1].itag;
+										} else {
+											var videoUrl = proxy(jsond.video[1].url);
+											document.getElementById("itag").innerHTML = jsond.video[1].itag;
+										}
+									} else {
+										if (localStorage.getItem("proxyVid") == "n") {
+											var videoUrl = jsond.video[0].url;
+											document.getElementById("itag").innerHTML = jsond.video[0].itag;
+										} else {
+											var videoUrl = proxy(jsond.video[0].url);
+											document.getElementById("itag").innerHTML = jsond.video[0].itag;
+										}
 									}
 									var length = jsond.video.length;
 									if (length > 5) {
@@ -1903,7 +1926,11 @@ function openVideo(opt,ret) {
 										opt1.innerHTML = jsond.video[0].qualityLabel;
 										document.getElementById("qOptions").appendChild(opt1);
 									}
-									document.getElementById("player").src = videoUrl;
+									if (localStorage.getItem("proxyVid") == "n") {
+										document.getElementById("player").src = videoUrl;
+									} else {
+										document.getElementById("player").src = proxy(videoUrl);
+									}
 									document.getElementById("qOptions").value = document.getElementById("itag").innerHTML;
 									document.getElementById("vidLoader").style.display = 'none';
 									if (opt == "a" | !opt) {
@@ -2027,7 +2054,11 @@ function openVideo(opt,ret) {
 								document.getElementById("qSelector").style.display = 'none';
 								document.getElementById("vidViewer").style.display = '';
 								document.getElementById("vidLoader").style.display = 'none';
-								document.getElementById("player").src = wUrl;
+								if (localStorage.getItem("proxyVid") == "n") {
+									document.getElementById("player").src = wUrl;
+								} else {
+									document.getElementById("player").src = proxy(wUrl);
+								}
 								if (opt == "a" | !opt) {
 									var tUrl = "http://normandotmp4.electrohaxz.tk:9019/?thumb=" + getClickedId(window.location.href, "#w#");
 								} else if (opt == "b"){
@@ -2133,6 +2164,25 @@ function openVideo(opt,ret) {
 							}
 						}
 					}
+					http.timeout = 7000
+					http.ontimeout = () => {
+						if (opt == "a" | !opt) {
+							openVideo("b");
+						} else if (opt == "b"){
+							openVideo("c");
+						} else if (opt == "c") {
+							openVideo("a");
+						}
+					}
+					http.onerror = () => {
+						if (opt == "a" | !opt) {
+							openVideo("b");
+						} else if (opt == "b"){
+							openVideo("c");
+						} else if (opt == "c") {
+							openVideo("a");
+						}
+					}
 				}
 			} else {
 				if (!sessionStorage.getItem("tried2")) {
@@ -2166,7 +2216,11 @@ function openVideo(opt,ret) {
 					http.onreadystatechange=(e)=>{
 						var jsond = JSON.parse(http.responseText);
 						document.getElementById("playerContainer").style.display = "";
-						document.getElementById("player").src = jsond.datainfo[0].url;
+						if (localStorage.getItem("proxyVid") == "n") {
+							document.getElementById("player").src = jsond.datainfo[0].url;
+						} else {
+							document.getElementById("player").src = proxy(jsond.datainfo[0].url);
+						}
 						document.getElementById("player").play();
 						document.getElementById("qSelector").style.display = "none";
 						document.getElementById("loadErr").style.display = "none";
@@ -2220,7 +2274,11 @@ function openVideo(opt,ret) {
 							return;
 						}
 						var audioUrl = jsond.audio[0].url;
-						document.getElementById("audioPlayer").src = audioUrl;
+						if (localStorage.getItem("proxyVid") == "n") {
+							document.getElementById("audioPlayer").src = audioUrl;
+						} else {
+							document.getElementById("audioPlayer").src = proxy(audioUrl);
+						}
 						var videoUrl = jsond.video[0].url;
 						document.getElementById("itag").innerHTML = jsond.video[0].itag;
 						var length = jsond.video.length;
@@ -2332,7 +2390,11 @@ function openVideo(opt,ret) {
 							opt1.innerHTML = jsond.video[0].qualityLabel;
 							document.getElementById("qOptions").appendChild(opt1);
 						}
-						document.getElementById("player").src = videoUrl;
+						if (localStorage.getItem("proxyVid") == "n") {
+							document.getElementById("player").src = videoUrl;
+						} else {
+							document.getElementById("player").src = proxy(videoUrl);
+						}
 						document.getElementById("player").play();
 						document.getElementById("playerContainer").style.display = "";
 						document.getElementById("qOptions").value = document.getElementById("itag").innerHTML;
@@ -2478,8 +2540,14 @@ function refresh() {
 		}
 	} else if (window.location.href.includes("#c#")){
 		openChannel(localStorage.getItem("sLoc"));
+	} else if (window.location.href.includes("#")) {
+		if (window.location.href.includes("#c") | window.location.href.includes("#w") | window.location.href.includes("#s")) {
+			return;
+		} else {
+			home();
+		}
 	} else {
-		home();
+		return;
 	}
 }
 
@@ -2548,6 +2616,7 @@ function saveSettings() {
 	//	document.getElementById("rvStart").style.display = "none";
 	//	document.getElementById("rvWatch").style.display = "";
 	//}
+	localStorage.setItem("proxyVid", document.getElementById("proxyVideos").value);
 	resize();
 	window.open("#", "_self");
 }
@@ -4051,7 +4120,11 @@ function changeQ(opt) {
 			var jsond = JSON.parse(http.responseText);
 			var currentTime = document.getElementById("player").currentTime;
 			document.getElementById("itag").innerHTML = jsond.datainfo.itag;
-			document.getElementById("player").src = jsond.datainfo.url;
+			if (localStorage.getItem("proxyVid") == "n") {
+				document.getElementById("player").src = jsond.datainfo.url;
+			} else {
+				document.getElementById("player").src = proxy(jsond.datainfo.url);
+			}
 			document.getElementById("player").currentTime = currentTime;
 			document.getElementById("player").pause();
 			document.getElementById("player").play();
@@ -5252,4 +5325,8 @@ function swap(intent) {
 			return;
 		}
 	}
+}
+
+function proxy(url) {
+	return ("https://vipoproxy.herokuapp.com/?url="+btoa(url));
 }
