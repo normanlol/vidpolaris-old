@@ -4761,11 +4761,9 @@ function openChannelVideos(opt, pg) {
 				}
 				document.getElementById("nextUpload").removeAttribute("disabled");
 				sessionStorage.setItem("nxtpg", ("i" * pg.length) + "i");
-				sessionStorage.setItem("prvpg", ("i" * pg.length).substring(0, pg.length - 1));
 			} else {
 				document.getElementById("nextUpload").removeAttribute("disabled");
 				sessionStorage.setItem("nxtpg", ("i" * pg.length) + "i");
-				sessionStorage.setItem("prvpg", ("i" * pg.length).substring(0, pg.length - 1));
 			}
 		} else {
 			if (pg == "i" | !pg) {
