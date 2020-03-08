@@ -378,3 +378,9 @@ input:checked + .slider:before {
 .noCursor {
 	cursor:none;
 }
+
+#channelDesc {
+	max-height:75px;
+	overflow:auto;
+	padding-right:7px
+}
