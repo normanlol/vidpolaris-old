@@ -4740,10 +4740,18 @@ function openChannelVideos(opt, pg) {
 			img.classList.add("relatedThumb");
 			img.src = "https://vidpolaris.herokuapp.com/?thumb=" + jsond[c].videoId;
 			document.getElementById("au"+c+"Div").appendChild(img);
-			var h3 = document.createElement("H3");
+			var h3 = document.createElement("H4");
 			h3.classList.add("stat");
 			h3.innerHTML = jsond[c].title;
 			document.getElementById("au"+c+"Div").appendChild(h3);
+			var stat1 = document.createElement("H5");
+			stat1.innerHTML = '<span class="material-icons ico">calendar_today</span> posted ' + jsond[c].publishedText;
+			stat1.classList.add("stat")
+			document.getElementById("au"+c+"Div").appendChild(stat1);
+			var stat2 = document.createElement("H5");
+			stat2.innerHTML = '<span class="material-icons ico">remove_red_eye</span> ' + jsond[c].viewCount.toLocaleString() + ' views'
+			stat2.classList.add("stat");
+			document.getElementById("au"+c+"Div").appendChild(stat2);
 		}
 		document.getElementById("pwChannel").style.display = 'none';
 		if (jsond.length == 60) {
@@ -4751,12 +4759,10 @@ function openChannelVideos(opt, pg) {
 				if (!pg){
 					var pg = "i"
 				}
-				document.getElementById("prevUpload").setAttribute("disabled", "true");
 				document.getElementById("nextUpload").removeAttribute("disabled");
 				sessionStorage.setItem("nxtpg", ("i" * pg.length) + "i");
 				sessionStorage.setItem("prvpg", ("i" * pg.length).substring(0, pg.length - 1));
 			} else {
-				document.getElementById("prevUpload").removeAttribute("disabled");
 				document.getElementById("nextUpload").removeAttribute("disabled");
 				sessionStorage.setItem("nxtpg", ("i" * pg.length) + "i");
 				sessionStorage.setItem("prvpg", ("i" * pg.length).substring(0, pg.length - 1));
@@ -4766,11 +4772,9 @@ function openChannelVideos(opt, pg) {
 				if (!pg){
 					var pg = "i"
 				}
-				document.getElementById("prevUpload").setAttribute("disabled", "true");
 				document.getElementById("nextUpload").setAttribute("disabled", "true");
 				sessionStorage.setItem("nxtpg", ("i" * pg.length) + "i");
 			} else {
-				document.getElementById("prevUpload").setAttribute("disabled", "true");
 				document.getElementById("nextUpload").removeAttribute("disabled");
 				sessionStorage.setItem("nxtpg", ("i" * pg.length) + "i");
 			}
