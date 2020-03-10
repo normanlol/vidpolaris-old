@@ -4692,15 +4692,20 @@ function openChannel(opt) {
 	}
 }
 
-function openChannelVideos(opt, pg) {
+function openChannelVideos(opt,pg) {
 	document.getElementById("recentUploads").style.display = 'none';
 	document.getElementById("allUploadsPage").style.display = '';
 	document.getElementById("pwChannel").style.display = '';
 	const http = new XMLHttpRequest();
-	if (sessionStorage.getItem("nxtpg")) {
-		var pageNum = sessionStorage.getItem("nxtpg").length;
+	if (!document.getElementById("pageNumChan").innerHTML | document.getElementById("pageNumChan").innerHTML == "i") {
+		sessionStorage.setItem("nxtpg", "ii");
+		document.getElementById("pageNumChan").innerHTML = "ii";
 	} else {
-		var pageNum = 1;
+		var curPage = document.getElementById("pageNumChan").innerHTML.length;
+		var pageNum_b = document.getElementById("pageNumChan").innerHTML + "i";
+		sessionStorage.setItem("nxtpg", pageNum_b);
+		var pageNum = curPage;
+		document.getElementById("pageNumChan").innerHTML = pageNum_b;
 	}
 	var id = getClickedId(window.location.href, '#c#');
 	if (opt == "a" | !opt) {
@@ -4755,27 +4760,9 @@ function openChannelVideos(opt, pg) {
 		}
 		document.getElementById("pwChannel").style.display = 'none';
 		if (jsond.length == 60) {
-			if (pg == "i" | !pg) {
-				if (!pg){
-					var pg = "i"
-				}
-				document.getElementById("nextUpload").removeAttribute("disabled");
-				sessionStorage.setItem("nxtpg", ("i" * pg.length) + "i");
-			} else {
-				document.getElementById("nextUpload").removeAttribute("disabled");
-				sessionStorage.setItem("nxtpg", ("i" * pg.length) + "i");
-			}
+			document.getElementById("nextUpload").removeAttribute("disabled");
 		} else {
-			if (pg == "i" | !pg) {
-				if (!pg){
-					var pg = "i"
-				}
-				document.getElementById("nextUpload").setAttribute("disabled", "true");
-				sessionStorage.setItem("nxtpg", ("i" * pg.length) + "i");
-			} else {
-				document.getElementById("nextUpload").removeAttribute("disabled");
-				sessionStorage.setItem("nxtpg", ("i" * pg.length) + "i");
-			}
+			document.getElementById("nextUpload").setAttribute("disabled", "true");
 		}
 	}
 }
