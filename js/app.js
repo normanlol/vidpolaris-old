@@ -573,7 +573,7 @@ function search(opt) {
 				if (jsond.searchResults.items[2]) {
 					document.getElementById("re03").style.display = '';
 					var r03L = "#w#" + jsond.searchResults.items[2].link.substring(32);
-					var r03Th = baseUrl + jsond.searchResults.items[2].link.substring(32);;
+					var r03Th = baseUrl + jsond.searchResults.items[2].link.substring(32);
 					var r03Au = jsond.searchResults.items[2].author.name;
 					var r03Ti = jsond.searchResults.items[2].title;
 					var r03Da = jsond.searchResults.items[2].uploaded_at;
@@ -595,7 +595,7 @@ function search(opt) {
 					if (jsond.searchResults.items[3]) {
 						document.getElementById("re04").style.display = '';
 						var r04L = "#w#" + jsond.searchResults.items[3].link.substring(32);
-						var r04Th = baseUrl + jsond.searchResults.items[3].link.substring(32);;
+						var r04Th = baseUrl + jsond.searchResults.items[3].link.substring(32);
 						var r04Au = jsond.searchResults.items[3].author.name;
 						var r04Ti = jsond.searchResults.items[3].title;
 						var r04Da = jsond.searchResults.items[3].uploaded_at;
@@ -617,7 +617,7 @@ function search(opt) {
 						if (jsond.searchResults.items[4]) {
 							document.getElementById("re05").style.display = '';
 							var r05L = "#w#" + jsond.searchResults.items[4].link.substring(32);
-							var r05Th = baseUrl + jsond.searchResults.items[4].link.substring(32);;
+							var r05Th = baseUrl + jsond.searchResults.items[4].link.substring(32);
 							var r05Au = jsond.searchResults.items[4].author.name;
 							var r05Ti = jsond.searchResults.items[4].title;
 							var r05Da = jsond.searchResults.items[4].uploaded_at;
@@ -639,7 +639,7 @@ function search(opt) {
 							if (jsond.searchResults.items[5]) {
 								document.getElementById("re06").style.display = '';
 								var r06L = "#w#" + jsond.searchResults.items[5].link.substring(32);
-								var r06Th = baseUrl + jsond.searchResults.items[5].link.substring(32);;
+								var r06Th = baseUrl + jsond.searchResults.items[5].link.substring(32);
 								var r06Au = jsond.searchResults.items[5].author.name;
 								var r06Ti = jsond.searchResults.items[5].title;
 								var r06Da = jsond.searchResults.items[5].uploaded_at;
@@ -661,7 +661,7 @@ function search(opt) {
 								if (jsond.searchResults.items[6]) {
 									document.getElementById("re07").style.display = '';
 									var r07L = "#w#" + jsond.searchResults.items[6].link.substring(32);
-									var r07Th = baseUrl + jsond.searchResults.items[6].link.substring(32);;
+									var r07Th = baseUrl + jsond.searchResults.items[6].link.substring(32);
 									var r07Au = jsond.searchResults.items[6].author.name;
 									var r07Ti = jsond.searchResults.items[6].title;
 									var r07Da = jsond.searchResults.items[6].uploaded_at;
@@ -683,7 +683,7 @@ function search(opt) {
 									document.getElementById("re07Vi").innerHTML = r07Vi;
 									if (jsond.searchResults.items[7]) {
 										var r08L = "#w#" + jsond.searchResults.items[7].link.substring(32);
-										var r08Th = baseUrl + jsond.searchResults.items[7].link.substring(32);;
+										var r08Th = baseUrl + jsond.searchResults.items[7].link.substring(32);
 										var r08Au = jsond.searchResults.items[7].author.name;
 										var r08Ti = jsond.searchResults.items[7].title;
 										var r08Da = jsond.searchResults.items[7].uploaded_at;
@@ -705,7 +705,7 @@ function search(opt) {
 										if (jsond.searchResults[8]) {
 											document.getElementById("re09").style.display = '';
 											var r09L = "#w#" + jsond.searchResults.items[8].link.substring(32);
-											var r09Th = baseUrl + jsond.searchResults.items[8].link.substring(32);;
+											var r09Th = baseUrl + jsond.searchResults.items[8].link.substring(32);
 											var r09Au = jsond.searchResults.items[8].author.name;
 											var r09Ti = jsond.searchResults.items[8].title;
 											var r09Da = jsond.searchResults.items[8].uploaded_at;
@@ -727,7 +727,7 @@ function search(opt) {
 											if (jsond.searchResults.items[9]) {
 												document.getElementById("re10").style.display = '';
 												var r10L = "#w#" + jsond.searchResults.items[9].link.substring(32);
-												var r10Th = baseUrl + jsond.searchResults.items[9].link.substring(32);;
+												var r10Th = baseUrl + jsond.searchResults.items[9].link.substring(32);
 												var r10Au = jsond.searchResults.items[9].author.name;
 												var r10Ti = jsond.searchResults.items[9].title;
 												var r10Da = jsond.searchResults.items[9].uploaded_at;
@@ -967,7 +967,7 @@ function getTrending(opt) {
 			document.getElementById("t2").innerHTML = jsond[1].title;
 		}
 		document.getElementById("l2").href = "#w#" + jsond[1].videoId;
-		document.getElementById("r2").src = baseUrl + jsond[1].videoId;;
+		document.getElementById("r2").src = baseUrl + jsond[1].videoId;
 		document.getElementById("a2").innerHTML = jsond[1].author;
 		document.getElementById("d2").innerHTML = jsond[1].publishedText;
 		if (jsond[2].title.length >= 75) {
@@ -976,7 +976,7 @@ function getTrending(opt) {
 			document.getElementById("t3").innerHTML = jsond[2].title;
 		}
 		document.getElementById("l3").href = "#w#" + jsond[2].videoId;
-		document.getElementById("r3").src = baseUrl + jsond[2].videoId;;
+		document.getElementById("r3").src = baseUrl + jsond[2].videoId;
 		document.getElementById("a3").innerHTML = jsond[2].author;
 		document.getElementById("d3").innerHTML = jsond[2].publishedText;
 		if (jsond[3].title.length >= 75) {
@@ -985,7 +985,7 @@ function getTrending(opt) {
 			document.getElementById("t4").innerHTML = jsond[3].title;
 		}
 		document.getElementById("l4").href = "#w#" + jsond[3].videoId;
-		document.getElementById("r4").src = baseUrl + jsond[3].videoId;;
+		document.getElementById("r4").src = baseUrl + jsond[3].videoId;
 		document.getElementById("a4").innerHTML = jsond[3].author;
 		document.getElementById("d4").innerHTML = jsond[3].publishedText;
 		if (jsond[3].title.length >= 75) {
@@ -994,7 +994,7 @@ function getTrending(opt) {
 			document.getElementById("t5").innerHTML = jsond[4].title;
 		}
 		document.getElementById("l5").href = "#w#" + jsond[4].videoId;
-		document.getElementById("r5").src = baseUrl + jsond[4].videoId;;
+		document.getElementById("r5").src = baseUrl + jsond[4].videoId;
 		document.getElementById("a5").innerHTML = jsond[4].author;
 		document.getElementById("d5").innerHTML = jsond[4].publishedText;
 		if (jsond[5].title.length >= 75) {
@@ -1003,7 +1003,7 @@ function getTrending(opt) {
 			document.getElementById("t6").innerHTML = jsond[5].title;
 		}
 		document.getElementById("l6").href = "#w#" + jsond[5].videoId;
-		document.getElementById("r6").src = baseUrl + jsond[5].videoId;;
+		document.getElementById("r6").src = baseUrl + jsond[5].videoId;
 		document.getElementById("a6").innerHTML = jsond[5].author;
 		document.getElementById("d6").innerHTML = jsond[5].publishedText;
 		if (jsond[6].title.length >= 75) {
@@ -1012,7 +1012,7 @@ function getTrending(opt) {
 			document.getElementById("t7").innerHTML = jsond[6].title;
 		}
 		document.getElementById("l7").href = "#w#" + jsond[6].videoId;
-		document.getElementById("r7").src = baseUrl + jsond[6].videoId;;
+		document.getElementById("r7").src = baseUrl + jsond[6].videoId;
 		document.getElementById("a7").innerHTML = jsond[6].author;
 		document.getElementById("d7").innerHTML = jsond[6].publishedText;
 		if (jsond[7].title.length >= 75) {
@@ -1021,7 +1021,7 @@ function getTrending(opt) {
 			document.getElementById("t8").innerHTML = jsond[7].title;
 		}
 		document.getElementById("l8").href = "#w#" + jsond[7].videoId;
-		document.getElementById("r8").src = baseUrl + jsond[7].videoId;;
+		document.getElementById("r8").src = baseUrl + jsond[7].videoId;
 		document.getElementById("a8").innerHTML = jsond[7].author;
 		document.getElementById("d8").innerHTML = jsond[7].publishedText;
 		if (jsond[8].title.length >= 75) {
@@ -1039,7 +1039,7 @@ function getTrending(opt) {
 			document.getElementById("t10").innerHTML = jsond[9].title;
 		}
 		document.getElementById("l10").href = "#w#" + jsond[9].videoId;
-		document.getElementById("r10").src = baseUrl + jsond[9].videoId;;
+		document.getElementById("r10").src = baseUrl + jsond[9].videoId;
 		document.getElementById("a10").innerHTML = jsond[9].author;
 		document.getElementById("d10").innerHTML = jsond[9].publishedText;
 		if (jsond[10].title.length >= 75) {
@@ -1048,7 +1048,7 @@ function getTrending(opt) {
 			document.getElementById("t11").innerHTML = jsond[10].title;
 		}
 		document.getElementById("l11").href = "#w#" + jsond[10].videoId;
-		document.getElementById("r11").src = baseUrl + jsond[10].videoId;;
+		document.getElementById("r11").src = baseUrl + jsond[10].videoId;
 		document.getElementById("a11").innerHTML = jsond[10].author;
 		document.getElementById("d11").innerHTML = jsond[10].publishedText;
 		if (jsond[11].title.length >= 75) {
@@ -1057,7 +1057,7 @@ function getTrending(opt) {
 			document.getElementById("t12").innerHTML = jsond[11].title;
 		}
 		document.getElementById("l12").href = "#w#" + jsond[11].videoId;
-		document.getElementById("r12").src = baseUrl + jsond[11].videoId;;
+		document.getElementById("r12").src = baseUrl + jsond[11].videoId;
 		document.getElementById("a12").innerHTML = jsond[11].author;
 		document.getElementById("d12").innerHTML = jsond[11].publishedText;
 		document.getElementById("l13").href = "#w#" + jsond[12].videoId;
@@ -1066,7 +1066,7 @@ function getTrending(opt) {
 		} else {
 			document.getElementById("t13").innerHTML = jsond[12].title;
 		}
-		document.getElementById("r13").src = baseUrl + jsond[12].videoId;;
+		document.getElementById("r13").src = baseUrl + jsond[12].videoId;
 		document.getElementById("a13").innerHTML = jsond[12].author;
 		document.getElementById("d13").innerHTML = jsond[12].publishedText;
 		document.getElementById("l14").href = "#w#" + jsond[13].videoId;
@@ -1075,7 +1075,7 @@ function getTrending(opt) {
 		} else {
 			document.getElementById("t14").innerHTML = jsond[13].title;
 		}
-		document.getElementById("r14").src = baseUrl + jsond[13].videoId;;
+		document.getElementById("r14").src = baseUrl + jsond[13].videoId;
 		document.getElementById("a14").innerHTML = jsond[13].author;
 		document.getElementById("d14").innerHTML = jsond[13].publishedText;
 		document.getElementById("l15").href = "#w#" + jsond[14].videoId;
@@ -1084,7 +1084,7 @@ function getTrending(opt) {
 		} else {
 			document.getElementById("t15").innerHTML = jsond[14].title;
 		}
-		document.getElementById("r15").src = baseUrl + jsond[14].videoId;;
+		document.getElementById("r15").src = baseUrl + jsond[14].videoId;
 		document.getElementById("a15").innerHTML = jsond[14].author;
 		document.getElementById("d15").innerHTML = jsond[14].publishedText;
 		document.getElementById("l16").href = "#w#" + jsond[15].videoId;
@@ -1093,7 +1093,7 @@ function getTrending(opt) {
 		} else {
 			document.getElementById("t16").innerHTML = jsond[15].title;
 		}
-		document.getElementById("r16").src = baseUrl + jsond[15].videoId;;
+		document.getElementById("r16").src = baseUrl + jsond[15].videoId;
 		document.getElementById("a16").innerHTML = jsond[15].author;
 		document.getElementById("d16").innerHTML = jsond[15].publishedText;
 		document.getElementById("l17").href = "#w#" + jsond[16].videoId;
@@ -1102,7 +1102,7 @@ function getTrending(opt) {
 		} else {
 			document.getElementById("t17").innerHTML = jsond[16].title;
 		}
-		document.getElementById("r17").src = baseUrl + jsond[16].videoId;;
+		document.getElementById("r17").src = baseUrl + jsond[16].videoId;
 		document.getElementById("a17").innerHTML = jsond[16].author;
 		document.getElementById("d17").innerHTML = jsond[16].publishedText;
 		document.getElementById("l18").href = "#w#" + jsond[17].videoId;
@@ -1116,6 +1116,7 @@ function getTrending(opt) {
 		document.getElementById("d18").innerHTML = jsond[17].publishedText;
 		document.getElementById("trendingLoader").style.display = 'none';
 		document.getElementById("trending").style.display = '';
+		document.getElementById("mainTrending").style.display = '';
 		getTrendingMusic(opt);
 	}
 	http.onerror = function (error) {
@@ -1170,7 +1171,7 @@ function getTrendingMusic(opt) {
 			document.getElementById("mt2").innerHTML = jsond[1].title;
 		}
 		document.getElementById("ml2").href = "#w#" + jsond[1].videoId;
-		document.getElementById("mr2").src = baseUrl + jsond[1].videoId;;
+		document.getElementById("mr2").src = baseUrl + jsond[1].videoId;
 		document.getElementById("ma2").innerHTML = jsond[1].author;
 		document.getElementById("md2").innerHTML = jsond[1].publishedText;
 		if (jsond[2].title.length >= 75) {
@@ -1179,7 +1180,7 @@ function getTrendingMusic(opt) {
 			document.getElementById("mt3").innerHTML = jsond[2].title;
 		}
 		document.getElementById("ml3").href = "#w#" + jsond[2].videoId;
-		document.getElementById("mr3").src = baseUrl + jsond[2].videoId;;
+		document.getElementById("mr3").src = baseUrl + jsond[2].videoId;
 		document.getElementById("ma3").innerHTML = jsond[2].author;
 		document.getElementById("md3").innerHTML = jsond[2].publishedText;
 		if (jsond[3].title.length >= 75) {
@@ -1188,7 +1189,7 @@ function getTrendingMusic(opt) {
 			document.getElementById("mt4").innerHTML = jsond[3].title;
 		}
 		document.getElementById("ml4").href = "#w#" + jsond[3].videoId;
-		document.getElementById("mr4").src = baseUrl + jsond[3].videoId;;
+		document.getElementById("mr4").src = baseUrl + jsond[3].videoId;
 		document.getElementById("ma4").innerHTML = jsond[3].author;
 		document.getElementById("md4").innerHTML = jsond[3].publishedText;
 		if (jsond[3].title.length >= 75) {
@@ -1197,7 +1198,7 @@ function getTrendingMusic(opt) {
 			document.getElementById("mt5").innerHTML = jsond[4].title;
 		}
 		document.getElementById("ml5").href = "#w#" + jsond[4].videoId;
-		document.getElementById("mr5").src = baseUrl + jsond[4].videoId;;
+		document.getElementById("mr5").src = baseUrl + jsond[4].videoId;
 		document.getElementById("ma5").innerHTML = jsond[4].author;
 		document.getElementById("md5").innerHTML = jsond[4].publishedText;
 		if (jsond[5].title.length >= 75) {
@@ -1206,7 +1207,7 @@ function getTrendingMusic(opt) {
 			document.getElementById("mt6").innerHTML = jsond[5].title;
 		}
 		document.getElementById("ml6").href = "#w#" + jsond[5].videoId;
-		document.getElementById("mr6").src = baseUrl + jsond[5].videoId;;
+		document.getElementById("mr6").src = baseUrl + jsond[5].videoId;
 		document.getElementById("ma6").innerHTML = jsond[5].author;
 		document.getElementById("md6").innerHTML = jsond[5].publishedText;
 		if (jsond[6].title.length >= 75) {
@@ -1215,7 +1216,7 @@ function getTrendingMusic(opt) {
 			document.getElementById("mt7").innerHTML = jsond[6].title;
 		}
 		document.getElementById("ml7").href = "#w#" + jsond[6].videoId;
-		document.getElementById("mr7").src = baseUrl + jsond[6].videoId;;
+		document.getElementById("mr7").src = baseUrl + jsond[6].videoId;
 		document.getElementById("ma7").innerHTML = jsond[6].author;
 		document.getElementById("md7").innerHTML = jsond[6].publishedText;
 		if (jsond[7].title.length >= 75) {
@@ -1224,7 +1225,7 @@ function getTrendingMusic(opt) {
 			document.getElementById("mt8").innerHTML = jsond[7].title;
 		}
 		document.getElementById("ml8").href = "#w#" + jsond[7].videoId;
-		document.getElementById("mr8").src = baseUrl + jsond[7].videoId;;
+		document.getElementById("mr8").src = baseUrl + jsond[7].videoId;
 		document.getElementById("ma8").innerHTML = jsond[7].author;
 		document.getElementById("md8").innerHTML = jsond[7].publishedText;
 		if (jsond[8].title.length >= 75) {
@@ -1233,7 +1234,7 @@ function getTrendingMusic(opt) {
 			document.getElementById("mt9").innerHTML = jsond[8].title;
 		}
 		document.getElementById("ml9").href = "#w#" + jsond[8].videoId;
-		document.getElementById("mr9").src = baseUrl + jsond[8].videoId;;
+		document.getElementById("mr9").src = baseUrl + jsond[8].videoId;
 		document.getElementById("ma9").innerHTML = jsond[8].author;
 		document.getElementById("md9").innerHTML = jsond[8].publishedText;
 		if (jsond[9].title.length >= 75) {
@@ -1242,7 +1243,7 @@ function getTrendingMusic(opt) {
 			document.getElementById("mt10").innerHTML = jsond[9].title;
 		}
 		document.getElementById("ml10").href = "#w#" + jsond[9].videoId;
-		document.getElementById("mr10").src = baseUrl + jsond[9].videoId;;
+		document.getElementById("mr10").src = baseUrl + jsond[9].videoId;
 		document.getElementById("ma10").innerHTML = jsond[9].author;
 		document.getElementById("md10").innerHTML = jsond[9].publishedText;
 		if (jsond[10].title.length >= 75) {
@@ -1251,7 +1252,7 @@ function getTrendingMusic(opt) {
 			document.getElementById("mt11").innerHTML = jsond[10].title;
 		}
 		document.getElementById("ml11").href = "#w#" + jsond[10].videoId;
-		document.getElementById("mr11").src = baseUrl + jsond[10].videoId;;
+		document.getElementById("mr11").src = baseUrl + jsond[10].videoId;
 		document.getElementById("ma11").innerHTML = jsond[10].author;
 		document.getElementById("md11").innerHTML = jsond[10].publishedText;
 		if (jsond[11].title.length >= 75) {
@@ -1260,9 +1261,10 @@ function getTrendingMusic(opt) {
 			document.getElementById("mt12").innerHTML = jsond[11].title;
 		}
 		document.getElementById("ml12").href = "#w#" + jsond[11].videoId;
-		document.getElementById("mr12").src = baseUrl + jsond[11].videoId;;
+		document.getElementById("mr12").src = baseUrl + jsond[11].videoId;
 		document.getElementById("ma12").innerHTML = jsond[11].author;
 		document.getElementById("md12").innerHTML = jsond[11].publishedText;
+		document.getElementById("musicTrending").style.display = '';
 		getTrendingGaming(opt);
 	}
 }
@@ -1314,7 +1316,7 @@ function getTrendingGaming(opt) {
 			document.getElementById("gt2").innerHTML = jsond[1].title;
 		}
 		document.getElementById("gl2").href = "#w#" + jsond[1].videoId;
-		document.getElementById("gr2").src = baseUrl + jsond[1].videoId;;
+		document.getElementById("gr2").src = baseUrl + jsond[1].videoId;
 		document.getElementById("ga2").innerHTML = jsond[1].author;
 		document.getElementById("gd2").innerHTML = jsond[1].publishedText;
 		if (jsond[2].title.length >= 75) {
@@ -1323,7 +1325,7 @@ function getTrendingGaming(opt) {
 			document.getElementById("gt3").innerHTML = jsond[2].title;
 		}
 		document.getElementById("gl3").href = "#w#" + jsond[2].videoId;
-		document.getElementById("gr3").src = baseUrl + jsond[2].videoId;;
+		document.getElementById("gr3").src = baseUrl + jsond[2].videoId;
 		document.getElementById("ga3").innerHTML = jsond[2].author;
 		document.getElementById("gd3").innerHTML = jsond[2].publishedText;
 		if (jsond[3].title.length >= 75) {
@@ -1332,7 +1334,7 @@ function getTrendingGaming(opt) {
 			document.getElementById("gt4").innerHTML = jsond[3].title;
 		}
 		document.getElementById("gl4").href = "#w#" + jsond[3].videoId;
-		document.getElementById("gr4").src = baseUrl + jsond[3].videoId;;
+		document.getElementById("gr4").src = baseUrl + jsond[3].videoId;
 		document.getElementById("ga4").innerHTML = jsond[3].author;
 		document.getElementById("gd4").innerHTML = jsond[3].publishedText;
 		if (jsond[3].title.length >= 75) {
@@ -1341,7 +1343,7 @@ function getTrendingGaming(opt) {
 			document.getElementById("gt5").innerHTML = jsond[4].title;
 		}
 		document.getElementById("gl5").href = "#w#" + jsond[4].videoId;
-		document.getElementById("gr5").src = baseUrl + jsond[4].videoId;;
+		document.getElementById("gr5").src = baseUrl + jsond[4].videoId;
 		document.getElementById("ga5").innerHTML = jsond[4].author;
 		document.getElementById("gd5").innerHTML = jsond[4].publishedText;
 		if (jsond[5].title.length >= 75) {
@@ -1350,7 +1352,7 @@ function getTrendingGaming(opt) {
 			document.getElementById("gt6").innerHTML = jsond[5].title;
 		}
 		document.getElementById("gl6").href = "#w#" + jsond[5].videoId;
-		document.getElementById("gr6").src = baseUrl + jsond[5].videoId;;
+		document.getElementById("gr6").src = baseUrl + jsond[5].videoId;
 		document.getElementById("ga6").innerHTML = jsond[5].author;
 		document.getElementById("gd6").innerHTML = jsond[5].publishedText;
 		if (jsond[6].title.length >= 75) {
@@ -1359,7 +1361,7 @@ function getTrendingGaming(opt) {
 			document.getElementById("gt7").innerHTML = jsond[6].title;
 		}
 		document.getElementById("gl7").href = "#w#" + jsond[6].videoId;
-		document.getElementById("gr7").src = baseUrl + jsond[6].videoId;;
+		document.getElementById("gr7").src = baseUrl + jsond[6].videoId;
 		document.getElementById("ga7").innerHTML = jsond[6].author;
 		document.getElementById("gd7").innerHTML = jsond[6].publishedText;
 		if (jsond[7].title.length >= 75) {
@@ -1368,7 +1370,7 @@ function getTrendingGaming(opt) {
 			document.getElementById("gt8").innerHTML = jsond[7].title;
 		}
 		document.getElementById("gl8").href = "#w#" + jsond[7].videoId;
-		document.getElementById("gr8").src = baseUrl + jsond[7].videoId;;
+		document.getElementById("gr8").src = baseUrl + jsond[7].videoId;
 		document.getElementById("ga8").innerHTML = jsond[7].author;
 		document.getElementById("gd8").innerHTML = jsond[7].publishedText;
 		if (jsond[8].title.length >= 75) {
@@ -1377,7 +1379,7 @@ function getTrendingGaming(opt) {
 			document.getElementById("gt9").innerHTML = jsond[8].title;
 		}
 		document.getElementById("gl9").href = "#w#" + jsond[8].videoId;
-		document.getElementById("gr9").src = baseUrl + jsond[8].videoId;;
+		document.getElementById("gr9").src = baseUrl + jsond[8].videoId;
 		document.getElementById("ga9").innerHTML = jsond[8].author;
 		document.getElementById("gd9").innerHTML = jsond[8].publishedText;
 		if (jsond[9].title.length >= 75) {
@@ -1386,7 +1388,7 @@ function getTrendingGaming(opt) {
 			document.getElementById("gt10").innerHTML = jsond[9].title;
 		}
 		document.getElementById("gl10").href = "#w#" + jsond[9].videoId;
-		document.getElementById("gr10").src = baseUrl + jsond[9].videoId;;
+		document.getElementById("gr10").src = baseUrl + jsond[9].videoId;
 		document.getElementById("ga10").innerHTML = jsond[9].author;
 		document.getElementById("gd10").innerHTML = jsond[9].publishedText;
 		if (jsond[10].title.length >= 75) {
@@ -1395,7 +1397,7 @@ function getTrendingGaming(opt) {
 			document.getElementById("gt11").innerHTML = jsond[10].title;
 		}
 		document.getElementById("gl11").href = "#w#" + jsond[10].videoId;
-		document.getElementById("gr11").src = baseUrl + jsond[10].videoId;;
+		document.getElementById("gr11").src = baseUrl + jsond[10].videoId;
 		document.getElementById("ga11").innerHTML = jsond[10].author;
 		document.getElementById("gd11").innerHTML = jsond[10].publishedText;
 		if (jsond[11].title.length >= 75) {
@@ -1404,9 +1406,10 @@ function getTrendingGaming(opt) {
 			document.getElementById("gt12").innerHTML = jsond[11].title;
 		}
 		document.getElementById("gl12").href = "#w#" + jsond[11].videoId;
-		document.getElementById("gr12").src = baseUrl + jsond[11].videoId;;
+		document.getElementById("gr12").src = baseUrl + jsond[11].videoId;
 		document.getElementById("ga12").innerHTML = jsond[11].author;
 		document.getElementById("gd12").innerHTML = jsond[11].publishedText;
+		document.getElementById("gamingTrending").style.display = '';
 	}
 }
 
@@ -1530,7 +1533,7 @@ function openVideo(opt,ret) {
 									} else if (jsond.info.player_response.cards.cardCollectionRenderer.cards[1].cardRenderer.content.playlistInfoCardContentRenderer) {
 										document.getElementById("card2").style.display = '';
 										if (!jsond.info.player_response.cards.cardCollectionRenderer.cards[1].cardRenderer.content.playlistInfoCardContentRenderer.customMessage) {
-											document.getElementById("cardMessage2").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[1].cardRenderer.content.playlistInfoCardContentRenderer.playlistTitle.simpleText;;
+											document.getElementById("cardMessage2").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[1].cardRenderer.content.playlistInfoCardContentRenderer.playlistTitle.simpleText;
 											document.getElementById("cardLink2").href = "https://youtube.com/playlist?list=" + jsond.info.player_response.cards.cardCollectionRenderer.cards[1].cardRenderer.content.playlistInfoCardContentRenderer.action.watchEndpoint.playlistId;
 										} else {
 											document.getElementById("cardMessage2").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[1].cardRenderer.content.playlistInfoCardContentRenderer.customMessage.simpleText;
@@ -1556,7 +1559,7 @@ function openVideo(opt,ret) {
 									} else if (jsond.info.player_response.cards.cardCollectionRenderer.cards[2].cardRenderer.content.playlistInfoCardContentRenderer) {
 										document.getElementById("card3").style.display = '';
 										if (!jsond.info.player_response.cards.cardCollectionRenderer.cards[2].cardRenderer.content.playlistInfoCardContentRenderer.customMessage) {
-											document.getElementById("cardMessage3").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[2].cardRenderer.content.playlistInfoCardContentRenderer.playlistTitle.simpleText;;
+											document.getElementById("cardMessage3").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[2].cardRenderer.content.playlistInfoCardContentRenderer.playlistTitle.simpleText;
 											document.getElementById("cardLink3").href = "https://youtube.com/playlist?list=" + jsond.info.player_response.cards.cardCollectionRenderer.cards[2].cardRenderer.content.playlistInfoCardContentRenderer.action.watchEndpoint.playlistId;
 										} else {
 											document.getElementById("cardMessage3").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[2].cardRenderer.content.playlistInfoCardContentRenderer.customMessage.simpleText;
@@ -1581,7 +1584,7 @@ function openVideo(opt,ret) {
 									} else if (jsond.info.player_response.cards.cardCollectionRenderer.cards[3].cardRenderer.content.playlistInfoCardContentRenderer) {
 										document.getElementById("card4").style.display = '';
 										if (!jsond.info.player_response.cards.cardCollectionRenderer.cards[3].cardRenderer.content.playlistInfoCardContentRenderer.customMessage) {
-											document.getElementById("cardMessage4").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[3].cardRenderer.content.playlistInfoCardContentRenderer.playlistTitle.simpleText;;
+											document.getElementById("cardMessage4").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[3].cardRenderer.content.playlistInfoCardContentRenderer.playlistTitle.simpleText;
 											document.getElementById("cardLink4").href = "https://youtube.com/playlist?list=" + jsond.info.player_response.cards.cardCollectionRenderer.cards[3].cardRenderer.content.playlistInfoCardContentRenderer.action.watchEndpoint.playlistId;
 										} else {
 											document.getElementById("cardMessage4").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[3].cardRenderer.content.playlistInfoCardContentRenderer.customMessage.simpleText;
@@ -1605,7 +1608,7 @@ function openVideo(opt,ret) {
 									} else if (jsond.info.player_response.cards.cardCollectionRenderer.cards[4].cardRenderer.content.playlistInfoCardContentRenderer) {
 										document.getElementById("card5").style.display = '';
 										if (!jsond.info.player_response.cards.cardCollectionRenderer.cards[4].cardRenderer.content.playlistInfoCardContentRenderer.customMessage) {
-											document.getElementById("cardMessage5").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[4].cardRenderer.content.playlistInfoCardContentRenderer.playlistTitle.simpleText;;
+											document.getElementById("cardMessage5").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[4].cardRenderer.content.playlistInfoCardContentRenderer.playlistTitle.simpleText;
 											document.getElementById("cardLink5").href = "https://youtube.com/playlist?list=" + jsond.info.player_response.cards.cardCollectionRenderer.cards[4].cardRenderer.content.playlistInfoCardContentRenderer.action.watchEndpoint.playlistId;
 										} else {
 											document.getElementById("cardMessage5").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[4].cardRenderer.content.playlistInfoCardContentRenderer.customMessage.simpleText;
@@ -1649,7 +1652,7 @@ function openVideo(opt,ret) {
 								if (jsond.info.related_videos[1]) {
 									var r2L = "#w#" + jsond.info.related_videos[1].id;
 									var r2T = jsond.info.related_videos[1].title;
-									var r2A = baseUrl + jsond.info.related_videos[1].id;;
+									var r2A = baseUrl + jsond.info.related_videos[1].id;
 									var r2Au = jsond.info.related_videos[1].author;
 									var r2V = jsond.info.related_videos[1].short_view_count_text;
 									document.getElementById("rv2").href = r2L;
@@ -1660,7 +1663,7 @@ function openVideo(opt,ret) {
 									if (jsond.info.related_videos[2]) {
 										var r3L = "#w#" + jsond.info.related_videos[2].id;
 										var r3T = jsond.info.related_videos[2].title;
-										var r3A = baseUrl + jsond.info.related_videos[2].id;;
+										var r3A = baseUrl + jsond.info.related_videos[2].id;
 										var r3Au = jsond.info.related_videos[2].author;
 										var r3V = jsond.info.related_videos[2].short_view_count_text;
 										document.getElementById("rv3").href = r3L;
@@ -1671,7 +1674,7 @@ function openVideo(opt,ret) {
 										if (jsond.info.related_videos[3]) {
 											var r4L = "#w#" + jsond.info.related_videos[3].id;
 											var r4T = jsond.info.related_videos[3].title;
-											var r4A = baseUrl + jsond.info.related_videos[3].id;;
+											var r4A = baseUrl + jsond.info.related_videos[3].id;
 											var r4Au = jsond.info.related_videos[3].author;
 											var r4V = jsond.info.related_videos[3].short_view_count_text;
 											document.getElementById("rv4").href = r4L;
@@ -1682,7 +1685,7 @@ function openVideo(opt,ret) {
 											if (jsond.info.related_videos[4]) {
 												var r5L = "#w#" + jsond.info.related_videos[4].id;
 												var r5T = jsond.info.related_videos[4].title;
-												var r5A = baseUrl + jsond.info.related_videos[4].id;;
+												var r5A = baseUrl + jsond.info.related_videos[4].id;
 												var r5Au = jsond.info.related_videos[4].author;
 												var r5V = jsond.info.related_videos[4].short_view_count_text;
 												document.getElementById("rv5").href = r5L;
@@ -1693,7 +1696,7 @@ function openVideo(opt,ret) {
 												if (jsond.info.related_videos[5]) {
 													var r6L = "#w#" + jsond.info.related_videos[5].id;
 													var r6T = jsond.info.related_videos[5].title;
-													var r6A = baseUrl + jsond.info.related_videos[5].id;;
+													var r6A = baseUrl + jsond.info.related_videos[5].id;
 													var r6Au = jsond.info.related_videos[5].author;
 													var r6V = jsond.info.related_videos[5].short_view_count_text;
 													document.getElementById("rv6").href = r6L;
@@ -1704,7 +1707,7 @@ function openVideo(opt,ret) {
 													if  (jsond.info.related_videos[6]) {
 														var r7L = "#w#" + jsond.info.related_videos[6].id;
 														var r7T = jsond.info.related_videos[6].title;
-														var r7A = baseUrl + jsond.info.related_videos[6].id;;
+														var r7A = baseUrl + jsond.info.related_videos[6].id;
 														var r7Au = jsond.info.related_videos[6].author;
 														var r7V = jsond.info.related_videos[6].short_view_count_text;
 														document.getElementById("rv7").href = r7L;
@@ -1715,7 +1718,7 @@ function openVideo(opt,ret) {
 														if (jsond.info.related_videos[7]) {
 															var r8L = "#w#" + jsond.info.related_videos[7].id;
 															var r8T = jsond.info.related_videos[7].title;
-															var r8A = baseUrl + jsond.info.related_videos[7].id;;
+															var r8A = baseUrl + jsond.info.related_videos[7].id;
 															var r8Au = jsond.info.related_videos[7].author;
 															var r8V = jsond.info.related_videos[7].short_view_count_text;
 															document.getElementById("rv8").href = r8L;
@@ -1725,7 +1728,7 @@ function openVideo(opt,ret) {
 															document.getElementById("rVie8").innerHTML = r8V;
 															if (jsond.info.related_videos[8]) {
 																var r9T = jsond.info.related_videos[8].title;
-																var r9A = baseUrl + jsond.info.related_videos[8].id;;
+																var r9A = baseUrl + jsond.info.related_videos[8].id;
 																var r9Au = jsond.info.related_videos[8].author;
 																var r9V = jsond.info.related_videos[8].short_view_count_text;
 																var r9L = "#w#" + jsond.info.related_videos[8].id;
