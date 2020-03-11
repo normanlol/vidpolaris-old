@@ -1424,6 +1424,9 @@ function openVideo(opt,ret) {
 					document.getElementById("settingsPage").style.display = 'none';
 					document.getElementById("channelPage").style.display = 'none';
 					document.getElementById("loadErr").style.display = 'none';
+					document.getElementById("vidAuthor").style.display = 'none';
+					document.getElementById("vidViews").style.display = 'none';
+					document.getElementById("vidRatings").style.display = 'none';
 					document.getElementById("player").pause();
 					document.getElementById("vidPage").style.display = '';
 					document.getElementById("helpOut").style.display = '';
@@ -1466,9 +1469,8 @@ function openVideo(opt,ret) {
 							var titl = jsond.info.player_response.videoDetails.title;
 							var auth = jsond.info.player_response.videoDetails.author;
 							var aLink = "#c#" + jsond.info.author.id;
+							document.getElementById("vidAuthor").style.display = "";
 							document.getElementById("authorL").href = aLink;
-							var t = jsond.info.player_response.videoDetails.thumbnail.thumbnails;
-							var thum = jsond.info.player_response.videoDetails.thumbnail.thumbnails[t.length - 1].url;
 							var desc = jsond.info.player_response.videoDetails.shortDescription.replace(/\n/g, "<br>")
 							var pDate = new Date(jsond.info.published);
 							var month = pDate.getMonth() + 1;
@@ -2024,6 +2026,8 @@ function openVideo(opt,ret) {
 											document.getElementById("ulIco").style.display = "";
 											document.getElementById("title").style = "margin-top:-27px;margin-left:25px;"
 										}
+										document.getElementById("vidViews").style.display = "";
+										document.getElementById("vidRatings").style.display = "";
 										document.getElementById("viewNum").innerHTML = view;
 										document.getElementById("likeNum").innerHTML = like;
 										document.getElementById("dlikNum").innerHTML = dlik;
