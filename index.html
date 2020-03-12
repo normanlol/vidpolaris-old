@@ -673,18 +673,16 @@
 						</div>
 					</div>
 					<div id="channelInfo" style="margin-bottom:30px;">
-						<div style="width:15%;margin-left:15%;float:left;">
+						<div style="margin-left:15%;margin-right:15%;">
 							<h2 id="chanName" class="stat">[Loading]</h2>
 							<h3 class="stat"><span id="subCount">[Loading]</span> subscribers</h3>
 							<h3 class="stat"><span id="viewCount">[Loading]</span> total views</h3>
-						</div>
-						<div style="width:53%;float:left;text-align:right;">
-							<p class="stat" id="channelDesc"></p>
 						</div>
 					</div>
 					<div class="centerMe">
 						<button onclick="cHome()"><span class="material-icons ico">home</span> home</button>
 						<button onclick="openChannelVideos(localStorage.getItem('sLoc'))"><span class="material-icons ico">live_tv</span> videos</button>
+						<button onclick="openAbout()"><span class="material-icons ico">person</span> about</button>
 					</div>
 					<div id="recentUploads" style="margin-left:15%;margin-right:15%;">
 						<a id="up1"><div class="altSmallVideo">
@@ -759,6 +757,10 @@
 								<p style="display:none;margin:0;"id="pwChannel">[please wait...]</p>
 							</div>
 						</div>
+					</div>
+					<div id="aboutPage" style="display:none;margin-left:15%;margin-right:15%;">
+						<p class="stat" id="channelDesc"></p>
+						<div id="relatedChannels"></div>
 					</div>
 				</div>
 			</div>

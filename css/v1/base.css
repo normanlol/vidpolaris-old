@@ -329,6 +329,23 @@ input:checked + .slider:before {
 	left:10px;
 }
 
+.profilePics {
+	width:150px;
+	height:150px;
+	object-fit: cover;
+}
+
+.relatedChannel {
+	width:46%;
+	height:210px;
+	transition:background-color .5s;
+	float:left;
+	border:none;
+	border-radius:10px;
+	padding:5px;
+	margin:2px;
+}
+
 #bannerPfpContainer {
 	position:relative;
 	width:100%;
@@ -337,6 +354,11 @@ input:checked + .slider:before {
 
 #channelInfo {
 	min-height:75px;
+}
+
+#channelDesc {
+	margin-top:2%;
+	margin-bottom:3%;
 }
 
 .maindetails {
@@ -377,10 +399,4 @@ input:checked + .slider:before {
 
 .noCursor {
 	cursor:none;
-}
-
-#channelDesc {
-	max-height:75px;
-	overflow:auto;
-	padding-right:7px
 }

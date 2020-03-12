@@ -4217,6 +4217,7 @@ function openChannel(opt) {
 			document.getElementById("homePage").style.display = 'none';
 			document.getElementById("bannerPfpContainer").style.display = 'none';
 			document.getElementById("allUploadsPage").style.display = 'none';
+			document.getElementById("aboutPage").style.display = 'none';
 			document.getElementById("searchContainer").style.display = '';
 		} else {
 			if (jsond.authorBanners[0]) {
@@ -4394,6 +4395,25 @@ function openChannel(opt) {
 			document.getElementById("chanViewer").style.display = '';
 			document.getElementById("searchContainer").style.display = '';
 			document.getElementById("bannerPfpContainer").style.display = '';
+			for (c in jsond.relatedChannels) {
+				var link = document.createElement("A");
+				link.href = "#c#" + jsond.relatedChannels[c].authorId;
+				link.id = "reCh" + c;
+				document.getElementById("relatedChannels").appendChild(link);
+				var div = document.createElement("DIV");
+				div.classList.add("relatedChannel");
+				div.id = "reChDiv" + c;
+				document.getElementById("reCh"+c).appendChild(div);
+				var img = document.createElement("IMG");
+				var url = jsond.relatedChannels[c].authorThumbnails[0].url
+				img.src = url.split('=s')[0];
+				img.classList.add("profilePics");
+				document.getElementById("reChDiv"+c).appendChild(img);
+				var name = document.createElement("H2");
+				name.innerHTML = jsond.relatedChannels[c].author;
+				name.classList.add("stat");
+				document.getElementById("reChDiv"+c).appendChild(name);
+			}
 		}
 	}
 	http.timeout = 7000;
@@ -4411,6 +4431,7 @@ function openChannel(opt) {
 function openChannelVideos(opt,pg) {
 	document.getElementById("recentUploads").style.display = 'none';
 	document.getElementById("allUploadsPage").style.display = '';
+	document.getElementById("aboutPage").style.display = 'none';
 	document.getElementById("pwChannel").style.display = '';
 	const http = new XMLHttpRequest();
 	if (!document.getElementById("pageNumChan").innerHTML | document.getElementById("pageNumChan").innerHTML == "i") {
@@ -4859,4 +4880,10 @@ function swap(intent) {
 
 function proxy(url) {
 	return ("https://vipoproxy.herokuapp.com/?url="+btoa(url));
+}
+
+function openAbout() {
+	document.getElementById("aboutPage").style.display = "";
+	document.getElementById("allUploadsPage").style.display = "none";
+	document.getElementById("recentUploads").style.display = "none";
 }

@@ -32,6 +32,14 @@ body {
 	background-color:#3c3c3c;
 }
 
+.relatedChannel {
+	background-color:#111;
+}
+
+.relatedChannel:hover {
+	background-color:#3c3c3c;
+}
+
 .altSmallVideo {
 	width:94%;
 	height:245px;
