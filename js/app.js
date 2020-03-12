@@ -6,9 +6,9 @@ if (localStorage.getItem("sLoc")) {
 }
 keepProg();
 if (!window.location.href.includes("#c") | !window.location.href.includes("#w") | !window.location.href.includes("#s")) {
-	// do nothing
-} else {
 	refresh();
+} else {
+	// do nothing
 }
 
 document.getElementById("trendingLoader").style.display = "";
