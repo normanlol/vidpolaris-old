@@ -4193,6 +4193,8 @@ function openChannel(opt) {
 	document.getElementById("chanLoader").style.display = '';
 	document.getElementById("chanViewer").style.display = 'none';
 	document.getElementById("bannerPfpContainer").style.display = 'none';
+	document.getElementById("aboutPage").style.display = 'none';
+	document.getElementById("allUploadsPage").style.display = "none";
 	const http = new XMLHttpRequest();
 	var id = getClickedId(window.location.href, '#c#');
 	if (opt == "a" | !opt) {
