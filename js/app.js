@@ -5,7 +5,7 @@ if (localStorage.getItem("sLoc")) {
 	getTrending();
 }
 keepProg();
-if (!window.location.href.includes("#c") | !window.location.href.includes("#w") | !window.location.href.includes("#s")) {
+if (window.location.href.includes("#c") | window.location.href.includes("#w") | window.location.href.includes("#s")) {
 	refresh();
 } else {
 	// do nothing
