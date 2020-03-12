@@ -7,6 +7,8 @@ if (localStorage.getItem("sLoc")) {
 keepProg();
 refresh();
 
+document.getElementById("trendingLoader").style.display = "";
+
 // settings checkers
 
 if (sessionStorage.getItem("currentlyRunningT")) {
@@ -952,172 +954,44 @@ function getTrending(opt) {
 		} else if (opt == "c") {
 			var baseUrl = "https://vidpolaris-europe.herokuapp.com/?thumb=";
 		}	
-		if (jsond[0].title.length >= 75) {
-			document.getElementById("t1").innerHTML = jsond[0].title.substring(0,75) + "...";
-		} else {
-			document.getElementById("t1").innerHTML = jsond[0].title;
+		var jsond = JSON.parse(http.responseText);
+		for (var c in jsond) {
+			if (c > 17) {
+				document.getElementById("trendingLoader").style.display = 'none';
+				document.getElementById("trending").style.display = '';
+				document.getElementById("mainTrending").style.display = '';
+				getTrendingMusic(opt)
+				return;
+			}
+			var link = document.createElement("A");
+			link.href = "#w#" + jsond[c].videoId;
+			link.id = "l" + c;
+			document.getElementById("mainTrending").appendChild(link);
+			var div = document.createElement("DIV");
+			div.classList.add("video");
+			div.id = "div" + c;
+			document.getElementById("l"+c).appendChild(div);
+			var img = document.createElement("IMG");
+			img.classList.add("largeThumb");
+			img.src = baseUrl + jsond[c].videoId;
+			document.getElementById("div"+c).appendChild(img);
+			var div2 = document.createElement("DIV");
+			div2.classList.add("td");
+			div2.id = "tdDiv"+c;
+			document.getElementById("div"+c).appendChild(div2);
+			var h3 = document.createElement("H3");
+			h3.classList.add("stat");
+			h3.innerHTML = jsond[c].title;
+			document.getElementById("tdDiv"+c).appendChild(h3);
+			var stat1 = document.createElement("H4");
+			stat1.innerHTML = 'by ' + jsond[c].author;
+			stat1.classList.add("stat")
+			document.getElementById("tdDiv"+c).appendChild(stat1);
+			var stat2 = document.createElement("H4");
+			stat2.innerHTML = 'posted ' + jsond[c].publishedText;
+			stat2.classList.add("stat");
+			document.getElementById("tdDiv"+c).appendChild(stat2);
 		}
-		document.getElementById("l1").href = "#w#" + jsond[0].videoId;
-		document.getElementById("r1").src = baseUrl + jsond[0].videoId;
-		document.getElementById("a1").innerHTML = jsond[0].author;
-		document.getElementById("d1").innerHTML = jsond[0].publishedText;
-		if (jsond[1].title.length >= 75) {
-			document.getElementById("t2").innerHTML = jsond[1].title.substring(0,75) + "...";
-		} else {
-			document.getElementById("t2").innerHTML = jsond[1].title;
-		}
-		document.getElementById("l2").href = "#w#" + jsond[1].videoId;
-		document.getElementById("r2").src = baseUrl + jsond[1].videoId;
-		document.getElementById("a2").innerHTML = jsond[1].author;
-		document.getElementById("d2").innerHTML = jsond[1].publishedText;
-		if (jsond[2].title.length >= 75) {
-			document.getElementById("t3").innerHTML = jsond[2].title.substring(0,75) + "...";
-		} else {
-			document.getElementById("t3").innerHTML = jsond[2].title;
-		}
-		document.getElementById("l3").href = "#w#" + jsond[2].videoId;
-		document.getElementById("r3").src = baseUrl + jsond[2].videoId;
-		document.getElementById("a3").innerHTML = jsond[2].author;
-		document.getElementById("d3").innerHTML = jsond[2].publishedText;
-		if (jsond[3].title.length >= 75) {
-			document.getElementById("t4").innerHTML = jsond[3].title.substring(0,75) + "...";
-		} else {
-			document.getElementById("t4").innerHTML = jsond[3].title;
-		}
-		document.getElementById("l4").href = "#w#" + jsond[3].videoId;
-		document.getElementById("r4").src = baseUrl + jsond[3].videoId;
-		document.getElementById("a4").innerHTML = jsond[3].author;
-		document.getElementById("d4").innerHTML = jsond[3].publishedText;
-		if (jsond[3].title.length >= 75) {
-			document.getElementById("t5").innerHTML = jsond[4].title.substring(0,75) + "...";
-		} else {
-			document.getElementById("t5").innerHTML = jsond[4].title;
-		}
-		document.getElementById("l5").href = "#w#" + jsond[4].videoId;
-		document.getElementById("r5").src = baseUrl + jsond[4].videoId;
-		document.getElementById("a5").innerHTML = jsond[4].author;
-		document.getElementById("d5").innerHTML = jsond[4].publishedText;
-		if (jsond[5].title.length >= 75) {
-			document.getElementById("t6").innerHTML = jsond[5].title.substring(0,75) + "...";
-		} else {
-			document.getElementById("t6").innerHTML = jsond[5].title;
-		}
-		document.getElementById("l6").href = "#w#" + jsond[5].videoId;
-		document.getElementById("r6").src = baseUrl + jsond[5].videoId;
-		document.getElementById("a6").innerHTML = jsond[5].author;
-		document.getElementById("d6").innerHTML = jsond[5].publishedText;
-		if (jsond[6].title.length >= 75) {
-			document.getElementById("t7").innerHTML = jsond[6].title.substring(0,75) + "...";
-		} else {
-			document.getElementById("t7").innerHTML = jsond[6].title;
-		}
-		document.getElementById("l7").href = "#w#" + jsond[6].videoId;
-		document.getElementById("r7").src = baseUrl + jsond[6].videoId;
-		document.getElementById("a7").innerHTML = jsond[6].author;
-		document.getElementById("d7").innerHTML = jsond[6].publishedText;
-		if (jsond[7].title.length >= 75) {
-			document.getElementById("t8").innerHTML = jsond[7].title.substring(0,75) + "...";
-		} else {
-			document.getElementById("t8").innerHTML = jsond[7].title;
-		}
-		document.getElementById("l8").href = "#w#" + jsond[7].videoId;
-		document.getElementById("r8").src = baseUrl + jsond[7].videoId;
-		document.getElementById("a8").innerHTML = jsond[7].author;
-		document.getElementById("d8").innerHTML = jsond[7].publishedText;
-		if (jsond[8].title.length >= 75) {
-			document.getElementById("t9").innerHTML = jsond[8].title.substring(0,75) + "...";
-		} else {
-			document.getElementById("t9").innerHTML = jsond[8].title;
-		}
-		document.getElementById("l9").href = "#w#" + jsond[8].videoId;
-		document.getElementById("r9").src = baseUrl + jsond[8].videoId;
-		document.getElementById("a9").innerHTML = jsond[8].author;
-		document.getElementById("d9").innerHTML = jsond[8].publishedText;
-		if (jsond[9].title.length >= 75) {
-			document.getElementById("t10").innerHTML = jsond[9].title.substring(0,75) + "...";
-		} else {
-			document.getElementById("t10").innerHTML = jsond[9].title;
-		}
-		document.getElementById("l10").href = "#w#" + jsond[9].videoId;
-		document.getElementById("r10").src = baseUrl + jsond[9].videoId;
-		document.getElementById("a10").innerHTML = jsond[9].author;
-		document.getElementById("d10").innerHTML = jsond[9].publishedText;
-		if (jsond[10].title.length >= 75) {
-			document.getElementById("t11").innerHTML = jsond[10].title.substring(0,75) + "...";
-		} else {
-			document.getElementById("t11").innerHTML = jsond[10].title;
-		}
-		document.getElementById("l11").href = "#w#" + jsond[10].videoId;
-		document.getElementById("r11").src = baseUrl + jsond[10].videoId;
-		document.getElementById("a11").innerHTML = jsond[10].author;
-		document.getElementById("d11").innerHTML = jsond[10].publishedText;
-		if (jsond[11].title.length >= 75) {
-			document.getElementById("t12").innerHTML = jsond[11].title.substring(0,75) + "...";
-		} else {
-			document.getElementById("t12").innerHTML = jsond[11].title;
-		}
-		document.getElementById("l12").href = "#w#" + jsond[11].videoId;
-		document.getElementById("r12").src = baseUrl + jsond[11].videoId;
-		document.getElementById("a12").innerHTML = jsond[11].author;
-		document.getElementById("d12").innerHTML = jsond[11].publishedText;
-		document.getElementById("l13").href = "#w#" + jsond[12].videoId;
-		if (jsond[12].title.length >= 75) {
-			document.getElementById("t13").innerHTML = jsond[12].title.substring(0,75) + "...";
-		} else {
-			document.getElementById("t13").innerHTML = jsond[12].title;
-		}
-		document.getElementById("r13").src = baseUrl + jsond[12].videoId;
-		document.getElementById("a13").innerHTML = jsond[12].author;
-		document.getElementById("d13").innerHTML = jsond[12].publishedText;
-		document.getElementById("l14").href = "#w#" + jsond[13].videoId;
-		if (jsond[13].title.length >= 75) {
-			document.getElementById("t14").innerHTML = jsond[13].title.substring(0,75) + "...";
-		} else {
-			document.getElementById("t14").innerHTML = jsond[13].title;
-		}
-		document.getElementById("r14").src = baseUrl + jsond[13].videoId;
-		document.getElementById("a14").innerHTML = jsond[13].author;
-		document.getElementById("d14").innerHTML = jsond[13].publishedText;
-		document.getElementById("l15").href = "#w#" + jsond[14].videoId;
-		if (jsond[14].title.length >= 75) {
-			document.getElementById("t15").innerHTML = jsond[14].title.substring(0,75) + "...";
-		} else {
-			document.getElementById("t15").innerHTML = jsond[14].title;
-		}
-		document.getElementById("r15").src = baseUrl + jsond[14].videoId;
-		document.getElementById("a15").innerHTML = jsond[14].author;
-		document.getElementById("d15").innerHTML = jsond[14].publishedText;
-		document.getElementById("l16").href = "#w#" + jsond[15].videoId;
-		if (jsond[15].title.length >= 75) {
-			document.getElementById("t16").innerHTML = jsond[15].title.substring(0,75) + "...";
-		} else {
-			document.getElementById("t16").innerHTML = jsond[15].title;
-		}
-		document.getElementById("r16").src = baseUrl + jsond[15].videoId;
-		document.getElementById("a16").innerHTML = jsond[15].author;
-		document.getElementById("d16").innerHTML = jsond[15].publishedText;
-		document.getElementById("l17").href = "#w#" + jsond[16].videoId;
-		if (jsond[16].title.length >= 75) {
-			document.getElementById("t17").innerHTML = jsond[16].title.substring(0,75) + "...";
-		} else {
-			document.getElementById("t17").innerHTML = jsond[16].title;
-		}
-		document.getElementById("r17").src = baseUrl + jsond[16].videoId;
-		document.getElementById("a17").innerHTML = jsond[16].author;
-		document.getElementById("d17").innerHTML = jsond[16].publishedText;
-		document.getElementById("l18").href = "#w#" + jsond[17].videoId;
-		if (jsond[17].title.length >= 75) {
-			document.getElementById("t18").innerHTML = jsond[17].title.substring(0,75) + "...";
-		} else {
-			document.getElementById("t18").innerHTML = jsond[17].title;
-		}
-		document.getElementById("r18").src = baseUrl + jsond[17].videoId;
-		document.getElementById("a18").innerHTML = jsond[17].author;
-		document.getElementById("d18").innerHTML = jsond[17].publishedText;
-		document.getElementById("trendingLoader").style.display = 'none';
-		document.getElementById("trending").style.display = '';
-		document.getElementById("mainTrending").style.display = '';
-		getTrendingMusic(opt);
 	}
 	http.onerror = function (error) {
 		getTrending(opt);
@@ -1136,19 +1010,6 @@ function getTrendingMusic(opt) {
 	http.open("GET", url);
 	http.send();
 	http.onreadystatechange=(e)=>{
-		var jsond = JSON.parse(http.responseText);
-		if (!jsond[0]) {
-			if (opt == "a" | !opt) {
-				getTrendingMusic("b");
-				return;
-			} else if (opt == "b") {
-				getTrendingMusic("c");
-				return;
-			} else if (opt == "c") {
-				getTrendingMusic("a");
-				return;
-			}
-		}
 		if (opt == "a" | !opt) {
 			var baseUrl = "http://normandotmp4.electrohaxz.tk:9019/?thumb=";
 		} else if (opt == "b") {
@@ -1156,116 +1017,42 @@ function getTrendingMusic(opt) {
 		} else if (opt == "c") {
 			var baseUrl = "https://vidpolaris-europe.herokuapp.com/?thumb=";
 		}	
-		if (jsond[0].title.length >= 75) {
-			document.getElementById("mt1").innerHTML = jsond[0].title.substring(0,75) + "...";
-		} else {
-			document.getElementById("mt1").innerHTML = jsond[0].title;
+		var jsond = JSON.parse(http.responseText);
+		for (var c in jsond) {
+			if (c > 11) {
+				document.getElementById("musicTrending").style.display = '';
+				getTrendingGaming(opt)
+				return;
+			}
+			var link = document.createElement("A");
+			link.href = "#w#" + jsond[c].videoId;
+			link.id = "ml" + c;
+			document.getElementById("musicTrending").appendChild(link);
+			var div = document.createElement("DIV");
+			div.classList.add("video");
+			div.id = "mDiv" + c;
+			document.getElementById("ml"+c).appendChild(div);
+			var img = document.createElement("IMG");
+			img.classList.add("largeThumb");
+			img.src = baseUrl + jsond[c].videoId;
+			document.getElementById("mDiv"+c).appendChild(img);
+			var div2 = document.createElement("DIV");
+			div2.classList.add("td");
+			div2.id = "mtdDiv"+c;
+			document.getElementById("mDiv"+c).appendChild(div2);
+			var h3 = document.createElement("H3");
+			h3.classList.add("stat");
+			h3.innerHTML = jsond[c].title;
+			document.getElementById("mtdDiv"+c).appendChild(h3);
+			var stat1 = document.createElement("H4");
+			stat1.innerHTML = 'by ' + jsond[c].author;
+			stat1.classList.add("stat")
+			document.getElementById("mtdDiv"+c).appendChild(stat1);
+			var stat2 = document.createElement("H4");
+			stat2.innerHTML = 'posted ' + jsond[c].publishedText;
+			stat2.classList.add("stat");
+			document.getElementById("mtdDiv"+c).appendChild(stat2);
 		}
-		document.getElementById("ml1").href = "#w#" + jsond[0].videoId;
-		document.getElementById("mr1").src = baseUrl + jsond[0].videoId;
-		document.getElementById("ma1").innerHTML = jsond[0].author;
-		document.getElementById("md1").innerHTML = jsond[0].publishedText;
-		if (jsond[1].title.length >= 75) {
-			document.getElementById("mt2").innerHTML = jsond[1].title.substring(0,75) + "...";
-		} else {
-			document.getElementById("mt2").innerHTML = jsond[1].title;
-		}
-		document.getElementById("ml2").href = "#w#" + jsond[1].videoId;
-		document.getElementById("mr2").src = baseUrl + jsond[1].videoId;
-		document.getElementById("ma2").innerHTML = jsond[1].author;
-		document.getElementById("md2").innerHTML = jsond[1].publishedText;
-		if (jsond[2].title.length >= 75) {
-			document.getElementById("mt3").innerHTML = jsond[2].title.substring(0,75) + "...";
-		} else {
-			document.getElementById("mt3").innerHTML = jsond[2].title;
-		}
-		document.getElementById("ml3").href = "#w#" + jsond[2].videoId;
-		document.getElementById("mr3").src = baseUrl + jsond[2].videoId;
-		document.getElementById("ma3").innerHTML = jsond[2].author;
-		document.getElementById("md3").innerHTML = jsond[2].publishedText;
-		if (jsond[3].title.length >= 75) {
-			document.getElementById("mt4").innerHTML = jsond[3].title.substring(0,75) + "...";
-		} else {
-			document.getElementById("mt4").innerHTML = jsond[3].title;
-		}
-		document.getElementById("ml4").href = "#w#" + jsond[3].videoId;
-		document.getElementById("mr4").src = baseUrl + jsond[3].videoId;
-		document.getElementById("ma4").innerHTML = jsond[3].author;
-		document.getElementById("md4").innerHTML = jsond[3].publishedText;
-		if (jsond[3].title.length >= 75) {
-			document.getElementById("mt5").innerHTML = jsond[4].title.substring(0,75) + "...";
-		} else {
-			document.getElementById("mt5").innerHTML = jsond[4].title;
-		}
-		document.getElementById("ml5").href = "#w#" + jsond[4].videoId;
-		document.getElementById("mr5").src = baseUrl + jsond[4].videoId;
-		document.getElementById("ma5").innerHTML = jsond[4].author;
-		document.getElementById("md5").innerHTML = jsond[4].publishedText;
-		if (jsond[5].title.length >= 75) {
-			document.getElementById("mt6").innerHTML = jsond[5].title.substring(0,75) + "...";
-		} else {
-			document.getElementById("mt6").innerHTML = jsond[5].title;
-		}
-		document.getElementById("ml6").href = "#w#" + jsond[5].videoId;
-		document.getElementById("mr6").src = baseUrl + jsond[5].videoId;
-		document.getElementById("ma6").innerHTML = jsond[5].author;
-		document.getElementById("md6").innerHTML = jsond[5].publishedText;
-		if (jsond[6].title.length >= 75) {
-			document.getElementById("mt7").innerHTML = jsond[6].title.substring(0,75) + "...";
-		} else {
-			document.getElementById("mt7").innerHTML = jsond[6].title;
-		}
-		document.getElementById("ml7").href = "#w#" + jsond[6].videoId;
-		document.getElementById("mr7").src = baseUrl + jsond[6].videoId;
-		document.getElementById("ma7").innerHTML = jsond[6].author;
-		document.getElementById("md7").innerHTML = jsond[6].publishedText;
-		if (jsond[7].title.length >= 75) {
-			document.getElementById("mt8").innerHTML = jsond[7].title.substring(0,75) + "...";
-		} else {
-			document.getElementById("mt8").innerHTML = jsond[7].title;
-		}
-		document.getElementById("ml8").href = "#w#" + jsond[7].videoId;
-		document.getElementById("mr8").src = baseUrl + jsond[7].videoId;
-		document.getElementById("ma8").innerHTML = jsond[7].author;
-		document.getElementById("md8").innerHTML = jsond[7].publishedText;
-		if (jsond[8].title.length >= 75) {
-			document.getElementById("mt9").innerHTML = jsond[8].title.substring(0,75) + "...";
-		} else {
-			document.getElementById("mt9").innerHTML = jsond[8].title;
-		}
-		document.getElementById("ml9").href = "#w#" + jsond[8].videoId;
-		document.getElementById("mr9").src = baseUrl + jsond[8].videoId;
-		document.getElementById("ma9").innerHTML = jsond[8].author;
-		document.getElementById("md9").innerHTML = jsond[8].publishedText;
-		if (jsond[9].title.length >= 75) {
-			document.getElementById("mt10").innerHTML = jsond[9].title.substring(0,75) + "...";
-		} else {
-			document.getElementById("mt10").innerHTML = jsond[9].title;
-		}
-		document.getElementById("ml10").href = "#w#" + jsond[9].videoId;
-		document.getElementById("mr10").src = baseUrl + jsond[9].videoId;
-		document.getElementById("ma10").innerHTML = jsond[9].author;
-		document.getElementById("md10").innerHTML = jsond[9].publishedText;
-		if (jsond[10].title.length >= 75) {
-			document.getElementById("mt11").innerHTML = jsond[10].title.substring(0,75) + "...";
-		} else {
-			document.getElementById("mt11").innerHTML = jsond[10].title;
-		}
-		document.getElementById("ml11").href = "#w#" + jsond[10].videoId;
-		document.getElementById("mr11").src = baseUrl + jsond[10].videoId;
-		document.getElementById("ma11").innerHTML = jsond[10].author;
-		document.getElementById("md11").innerHTML = jsond[10].publishedText;
-		if (jsond[11].title.length >= 75) {
-			document.getElementById("mt12").innerHTML = jsond[11].title.substring(0,75) + "...";
-		} else {
-			document.getElementById("mt12").innerHTML = jsond[11].title;
-		}
-		document.getElementById("ml12").href = "#w#" + jsond[11].videoId;
-		document.getElementById("mr12").src = baseUrl + jsond[11].videoId;
-		document.getElementById("ma12").innerHTML = jsond[11].author;
-		document.getElementById("md12").innerHTML = jsond[11].publishedText;
-		document.getElementById("musicTrending").style.display = '';
-		getTrendingGaming(opt);
 	}
 }
 
@@ -1281,19 +1068,6 @@ function getTrendingGaming(opt) {
 	http.open("GET", url);
 	http.send();
 	http.onreadystatechange=(e)=>{
-		var jsond = JSON.parse(http.responseText);
-		if (!jsond[0]) {
-			if (opt == "a" | !opt) {
-				getTrendingGaming("b");
-				return;
-			} else if (opt == "b") {
-				getTrendingGaming("c");
-				return;
-			} else if (opt == "c") {
-				getTrendingGaming("a");
-				return;
-			}
-		}
 		if (opt == "a" | !opt) {
 			var baseUrl = "http://normandotmp4.electrohaxz.tk:9019/?thumb=";
 		} else if (opt == "b") {
@@ -1301,115 +1075,41 @@ function getTrendingGaming(opt) {
 		} else if (opt == "c") {
 			var baseUrl = "https://vidpolaris-europe.herokuapp.com/?thumb=";
 		}	
-		if (jsond[0].title.length >= 75) {
-			document.getElementById("gt1").innerHTML = jsond[0].title.substring(0,75) + "...";
-		} else {
-			document.getElementById("gt1").innerHTML = jsond[0].title;
+		var jsond = JSON.parse(http.responseText);
+		for (var c in jsond) {
+			if (c > 11) {
+				document.getElementById("gamingTrending").style.display = '';
+				return;
+			}
+			var link = document.createElement("A");
+			link.href = "#w#" + jsond[c].videoId;
+			link.id = "gl" + c;
+			document.getElementById("gamingTrending").appendChild(link);
+			var div = document.createElement("DIV");
+			div.classList.add("video");
+			div.id = "gDiv" + c;
+			document.getElementById("gl"+c).appendChild(div);
+			var img = document.createElement("IMG");
+			img.classList.add("largeThumb");
+			img.src = baseUrl + jsond[c].videoId;
+			document.getElementById("gDiv"+c).appendChild(img);
+			var div2 = document.createElement("DIV");
+			div2.classList.add("td");
+			div2.id = "gtdDiv"+c;
+			document.getElementById("gDiv"+c).appendChild(div2);
+			var h3 = document.createElement("H3");
+			h3.classList.add("stat");
+			h3.innerHTML = jsond[c].title;
+			document.getElementById("gtdDiv"+c).appendChild(h3);
+			var stat1 = document.createElement("H4");
+			stat1.innerHTML = 'by ' + jsond[c].author;
+			stat1.classList.add("stat")
+			document.getElementById("gtdDiv"+c).appendChild(stat1);
+			var stat2 = document.createElement("H4");
+			stat2.innerHTML = 'posted ' + jsond[c].publishedText;
+			stat2.classList.add("stat");
+			document.getElementById("gtdDiv"+c).appendChild(stat2);
 		}
-		document.getElementById("gl1").href = "#w#" + jsond[0].videoId;
-		document.getElementById("gr1").src = baseUrl + jsond[0].videoId;
-		document.getElementById("ga1").innerHTML = jsond[0].author;
-		document.getElementById("gd1").innerHTML = jsond[0].publishedText;
-		if (jsond[1].title.length >= 75) {
-			document.getElementById("gt2").innerHTML = jsond[1].title.substring(0,75) + "...";
-		} else {
-			document.getElementById("gt2").innerHTML = jsond[1].title;
-		}
-		document.getElementById("gl2").href = "#w#" + jsond[1].videoId;
-		document.getElementById("gr2").src = baseUrl + jsond[1].videoId;
-		document.getElementById("ga2").innerHTML = jsond[1].author;
-		document.getElementById("gd2").innerHTML = jsond[1].publishedText;
-		if (jsond[2].title.length >= 75) {
-			document.getElementById("gt3").innerHTML = jsond[2].title.substring(0,75) + "...";
-		} else {
-			document.getElementById("gt3").innerHTML = jsond[2].title;
-		}
-		document.getElementById("gl3").href = "#w#" + jsond[2].videoId;
-		document.getElementById("gr3").src = baseUrl + jsond[2].videoId;
-		document.getElementById("ga3").innerHTML = jsond[2].author;
-		document.getElementById("gd3").innerHTML = jsond[2].publishedText;
-		if (jsond[3].title.length >= 75) {
-			document.getElementById("gt4").innerHTML = jsond[3].title.substring(0,75) + "...";
-		} else {
-			document.getElementById("gt4").innerHTML = jsond[3].title;
-		}
-		document.getElementById("gl4").href = "#w#" + jsond[3].videoId;
-		document.getElementById("gr4").src = baseUrl + jsond[3].videoId;
-		document.getElementById("ga4").innerHTML = jsond[3].author;
-		document.getElementById("gd4").innerHTML = jsond[3].publishedText;
-		if (jsond[3].title.length >= 75) {
-			document.getElementById("gt5").innerHTML = jsond[4].title.substring(0,75) + "...";
-		} else {
-			document.getElementById("gt5").innerHTML = jsond[4].title;
-		}
-		document.getElementById("gl5").href = "#w#" + jsond[4].videoId;
-		document.getElementById("gr5").src = baseUrl + jsond[4].videoId;
-		document.getElementById("ga5").innerHTML = jsond[4].author;
-		document.getElementById("gd5").innerHTML = jsond[4].publishedText;
-		if (jsond[5].title.length >= 75) {
-			document.getElementById("gt6").innerHTML = jsond[5].title.substring(0,75) + "...";
-		} else {
-			document.getElementById("gt6").innerHTML = jsond[5].title;
-		}
-		document.getElementById("gl6").href = "#w#" + jsond[5].videoId;
-		document.getElementById("gr6").src = baseUrl + jsond[5].videoId;
-		document.getElementById("ga6").innerHTML = jsond[5].author;
-		document.getElementById("gd6").innerHTML = jsond[5].publishedText;
-		if (jsond[6].title.length >= 75) {
-			document.getElementById("gt7").innerHTML = jsond[6].title.substring(0,75) + "...";
-		} else {
-			document.getElementById("gt7").innerHTML = jsond[6].title;
-		}
-		document.getElementById("gl7").href = "#w#" + jsond[6].videoId;
-		document.getElementById("gr7").src = baseUrl + jsond[6].videoId;
-		document.getElementById("ga7").innerHTML = jsond[6].author;
-		document.getElementById("gd7").innerHTML = jsond[6].publishedText;
-		if (jsond[7].title.length >= 75) {
-			document.getElementById("gt8").innerHTML = jsond[7].title.substring(0,75) + "...";
-		} else {
-			document.getElementById("gt8").innerHTML = jsond[7].title;
-		}
-		document.getElementById("gl8").href = "#w#" + jsond[7].videoId;
-		document.getElementById("gr8").src = baseUrl + jsond[7].videoId;
-		document.getElementById("ga8").innerHTML = jsond[7].author;
-		document.getElementById("gd8").innerHTML = jsond[7].publishedText;
-		if (jsond[8].title.length >= 75) {
-			document.getElementById("gt9").innerHTML = jsond[8].title.substring(0,75) + "...";
-		} else {
-			document.getElementById("gt9").innerHTML = jsond[8].title;
-		}
-		document.getElementById("gl9").href = "#w#" + jsond[8].videoId;
-		document.getElementById("gr9").src = baseUrl + jsond[8].videoId;
-		document.getElementById("ga9").innerHTML = jsond[8].author;
-		document.getElementById("gd9").innerHTML = jsond[8].publishedText;
-		if (jsond[9].title.length >= 75) {
-			document.getElementById("gt10").innerHTML = jsond[9].title.substring(0,75) + "...";
-		} else {
-			document.getElementById("gt10").innerHTML = jsond[9].title;
-		}
-		document.getElementById("gl10").href = "#w#" + jsond[9].videoId;
-		document.getElementById("gr10").src = baseUrl + jsond[9].videoId;
-		document.getElementById("ga10").innerHTML = jsond[9].author;
-		document.getElementById("gd10").innerHTML = jsond[9].publishedText;
-		if (jsond[10].title.length >= 75) {
-			document.getElementById("gt11").innerHTML = jsond[10].title.substring(0,75) + "...";
-		} else {
-			document.getElementById("gt11").innerHTML = jsond[10].title;
-		}
-		document.getElementById("gl11").href = "#w#" + jsond[10].videoId;
-		document.getElementById("gr11").src = baseUrl + jsond[10].videoId;
-		document.getElementById("ga11").innerHTML = jsond[10].author;
-		document.getElementById("gd11").innerHTML = jsond[10].publishedText;
-		if (jsond[11].title.length >= 75) {
-			document.getElementById("gt12").innerHTML = jsond[11].title.substring(0,75) + "...";
-		} else {
-			document.getElementById("gt12").innerHTML = jsond[11].title;
-		}
-		document.getElementById("gl12").href = "#w#" + jsond[11].videoId;
-		document.getElementById("gr12").src = baseUrl + jsond[11].videoId;
-		document.getElementById("ga12").innerHTML = jsond[11].author;
-		document.getElementById("gd12").innerHTML = jsond[11].publishedText;
-		document.getElementById("gamingTrending").style.display = '';
 	}
 }
 
