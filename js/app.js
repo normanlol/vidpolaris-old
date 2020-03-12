@@ -5,7 +5,11 @@ if (localStorage.getItem("sLoc")) {
 	getTrending();
 }
 keepProg();
-refresh();
+if (!window.location.href.includes("#c") | !window.location.href.includes("#w") | !window.location.href.includes("#s")) {
+	// do nothing
+} else {
+	refresh();
+}
 
 document.getElementById("trendingLoader").style.display = "";
 
@@ -2141,6 +2145,11 @@ function home() {
 	document.getElementById("settingsPage").style.display = 'none';
 	document.getElementById("helpOut").style.display = 'none';
 	document.getElementById("bannerPfpContainer").style.display = 'none';
+	document.getElementById("mainTrending").innerHTML = "";
+	document.getElementById("musicTrending").innerHTML = "";
+	document.getElementById("gamingTrending").innerHTML = "";
+	document.getElementById("trendingLoader").style.display = "";
+	document.getElementById("trending").style.display = "none";
 	document.title = "vidpolaris";
 	getTrending(localStorage.getItem("sLoc"));
 }
