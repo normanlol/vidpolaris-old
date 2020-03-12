@@ -4395,6 +4395,7 @@ function openChannel(opt) {
 			document.getElementById("chanViewer").style.display = '';
 			document.getElementById("searchContainer").style.display = '';
 			document.getElementById("bannerPfpContainer").style.display = '';
+			document.getElementById("relatedChannels").innerHTML = "";
 			for (c in jsond.relatedChannels) {
 				var link = document.createElement("A");
 				link.href = "#c#" + jsond.relatedChannels[c].authorId;
