@@ -4210,7 +4210,7 @@ function openChannel(opt) {
 		var jsond = JSON.parse(http.responseText);
 		if (jsond.error) {
 			document.getElementById("errorPage").style.display = '';
-			document.getElementById("errorTxt").innerHTML = "for one reason or another, this channel could not be opened. try again or watch it on youtube itself."
+			document.getElementById("errorTxt").innerHTML = "for one reason or another, this channel could not be opened. try again or see it on youtube itself."
 			document.getElementById("vidPage").style.display = 'none';
 			document.getElementById("channelPage").style.display = 'none';
 			document.getElementById("nsWarnPage").style.display = 'none';
