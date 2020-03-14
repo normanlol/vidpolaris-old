@@ -155,31 +155,33 @@ document.addEventListener('keydown', function (event) {
 				theatre();
 			}
 		} else if (key == 'f' || key == 'F' || key == 70) {
-			// credit: https://stackoverflow.com/questions/36672561/how-to-exit-fullscreen-onclick-using-javascript
-			var isInFullScreen = (document.fullscreenElement && document.fullscreenElement !== null) ||
-				(document.webkitFullscreenElement && document.webkitFullscreenElement !== null) ||
-				(document.mozFullScreenElement && document.mozFullScreenElement !== null) ||
-				(document.msFullscreenElement && document.msFullscreenElement !== null);
+			if (!document.getElementById("embedContainer").style.display == "") {
+				// credit: https://stackoverflow.com/questions/36672561/how-to-exit-fullscreen-onclick-using-javascript
+				var isInFullScreen = (document.fullscreenElement && document.fullscreenElement !== null) ||
+					(document.webkitFullscreenElement && document.webkitFullscreenElement !== null) ||
+					(document.mozFullScreenElement && document.mozFullScreenElement !== null) ||
+					(document.msFullscreenElement && document.msFullscreenElement !== null);
 
-			if (!isInFullScreen) {
-				if (document.getElementById("player").requestFullscreen) {
-					document.getElementById("player").requestFullscreen();
-				} else if (document.getElementById("player").mozRequestFullScreen) {
-					document.getElementById("player").mozRequestFullScreen();
-				} else if (document.getElementById("player").webkitRequestFullScreen) {
-					document.getElementById("player").webkitRequestFullScreen();
-				} else if (document.getElementById("player").msRequestFullscreen) {
-					document.getElementById("player").msRequestFullscreen();
-				}
-			} else {
-				if (document.exitFullscreen) {
-					document.exitFullscreen();
-				} else if (document.webkitExitFullscreen) {
-					document.webkitExitFullscreen();
-				} else if (document.mozCancelFullScreen) {
-					document.mozCancelFullScreen();
-				} else if (document.msExitFullscreen) {
-					document.msExitFullscreen();
+				if (!isInFullScreen) {
+					if (document.getElementById("player").requestFullscreen) {
+						document.getElementById("player").requestFullscreen();
+					} else if (document.getElementById("player").mozRequestFullScreen) {
+						document.getElementById("player").mozRequestFullScreen();
+					} else if (document.getElementById("player").webkitRequestFullScreen) {
+						document.getElementById("player").webkitRequestFullScreen();
+					} else if (document.getElementById("player").msRequestFullscreen) {
+						document.getElementById("player").msRequestFullscreen();
+					}
+				} else {
+					if (document.exitFullscreen) {
+						document.exitFullscreen();
+					} else if (document.webkitExitFullscreen) {
+						document.webkitExitFullscreen();
+					} else if (document.mozCancelFullScreen) {
+						document.mozCancelFullScreen();
+					} else if (document.msExitFullscreen) {
+						document.msExitFullscreen();
+					}
 				}
 			}
 		} else if (key == "<" || key == 188) {
