@@ -3669,6 +3669,7 @@ function embedNoCookie() {
 	document.getElementById("playerContainer").style.display = "none";
 	document.getElementById("player").pause();
 	document.getElementById("embedContainer").style.display = "";
+	document.getElementById("loadErr").style.display = "none";
 	document.getElementById("theat_native").style.display = "none";
 	document.getElementById("theat_embed").style.display = "";
 	var iframe = document.createElement("IFRAME");

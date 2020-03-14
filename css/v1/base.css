@@ -407,3 +407,8 @@ iframe {
 	border:none;
 	transition:width .5s,height .5s;
 }
+
+#embedContainer {
+	margin-bottom:16px;
+	margin-top:16px;
+}
