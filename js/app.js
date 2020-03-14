@@ -3276,13 +3276,10 @@ function openChannelVideos(opt,pg) {
 		if (jsond.length == 60) {
 			document.getElementById("controls").style = "width:20%;float:left;margin:0;";
 			document.getElementById("nextUpload").removeAttribute("disabled");
+			document.getElementById("nextUpload").style.display = "";
 		} else {
-			if (jsond.length == 4 | jsond.length == 8 | jsond.length == 12 | jsond.length == 16 | jsond.length == 20 | jsond.length == 24 | jsond.length == 28 | jsond.length == 32 | jsond.length == 36 | jsond.length == 40 | jsond.length == 44 | jsond.length == 48 | jsond.length == 52 | jsond.length == 56) {
-				document.getElementById("chanControls").style = "width:20%;float:left;margin:0;margin-top:24%;margin-left:-24%;"
-			} else {
-				document.getElementById("chanControls").style = "width:20%;float:left;margin:0;";
-			}
 			document.getElementById("nextUpload").setAttribute("disabled", "true");
+			document.getElementById("nextUpload").style.display = "none";
 		}
 	}
 }
