@@ -436,18 +436,6 @@ document.getElementById("audioPlayer").onerror = function(e){
 	}
 };
 
-window.onscroll = function(ev) {
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-		if (document.getElementById("vidViewer").style.display == "" && document.getElementById("loadedC").style.display == "none" && localStorage.getItem("autoLoadComm") == "y") {
-			if (!document.getElementById("token").innerHTML == "none") {
-				getComments(document.getElementById("token").innerHTML, localStorage.getItem("sLoc"));
-			} else {
-				return;
-			}
-		}
-    }
-};
-
 console.log("autoplay: " + localStorage.getItem('autoplay'));
 console.log("smartQual: " + localStorage.getItem('smart'));
 console.log("server: " + localStorage.getItem('sLoc'));
