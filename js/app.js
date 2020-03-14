@@ -3287,6 +3287,7 @@ function openChannelVideos(opt,pg) {
 function cHome() {
 	document.getElementById("recentUploads").style.display = '';
 	document.getElementById("allUploadsPage").style.display = 'none';
+	document.getElementById("aboutPage").style.display = 'none';
 }
 
 function watchOnYoutube() {
