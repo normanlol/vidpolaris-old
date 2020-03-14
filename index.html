@@ -76,12 +76,15 @@
 						<video id="player" oncontextmenu="return false;" controls></video>
 						<audio id="audioPlayer"></audio>
 					</div>
+					<div id="embedContainer" style="display:none;">
+					
+					</div>
 					<div id="loadErr" style="display:none;">
 						<p>it seems that your video cannot be loaded due to an error. would you like to try somewhere else?</p>
 						<button onclick="watchOnYoutube()">watch on youtube</button>
-						<button onclick="watchOnNCYoutube()">watch on youtube (no cookie embed)</button>
+						<button onclick="watchOnNCYoutube()">watch directly without cookies on youtube</button>
+						<button onclick="embedNoCookie()">embed  youtube players without cookies</button>
 						<button onclick="watchOnInvidious()">watch on invidious</button>
-						<button id="rBtn" onclick="retry()">try again</button>
 						<div style="width:100%;height:15px;"></div>
 					</div>
 					<div class="details">
@@ -93,7 +96,7 @@
 							<h3 class="stat" id="qSelector"><span class="material-icons ico">hd</span> <select id="qOptions" oninput="changeQ(localStorage.getItem('sLoc'))"></select></h3>
 							<h3 id="vidDate" class="stat"><span class="material-icons ico">calendar_today</span> <span id="pubM">[Loading]</span>/<span id="pubD">[Loading]</span>/<span id="pubY">[Loading]</span></h3>
 							<h3 id="catCont" class="stat"><span class="material-icons ico">folder</span> <span id="cat"></span></h3>
-							<h3 class="stat"><span class="material-icons ico">speed</span> <select id="speed" oninput="setSpeed()">
+							<h3 id="speedSelector" class="stat"><span class="material-icons ico">speed</span> <select id="speed" oninput="setSpeed()">
 								<option value="p1x">0.1x (very slow)</option>
 								<option value="25x">0.25x (slow)</option>
 								<option value="5x">0.5x</option>
@@ -120,7 +123,10 @@
 							<p id="longDesc"></p>
 						</div>
 						<button id="ldBtn" onclick="longDesc()">see more</button>
-						<button id="theat" onclick="theatre()">theater mode</button>
+						<button id="theat_native" onclick="theatre()">theater mode</button>
+						<button id="theat_embed" style="display:none;" onclick="theatre('embed')">theater mode</button>
+						<button id="embedPlayer" onclick="embedNoCookie()">embed on youtube player</button>
+						<button id="refreshBtn" onclick="location.reload();" style="display:none;">revert to native player</button>
 						<button class="material-icons ico" onclick="share()">link</button>
 						<div id="sharDiv" style="display:none;margin:5px;">
 							<div style="float:left;margin:5px;">
@@ -662,7 +668,7 @@
 				<h2>error</h2>
 				<p id="errorTxt"></p>
 				<a href="#"><button>go home</button></a>
-				<button onclick="location.refresh();">retry</button>
+				<button onclick="location.reload();">retry</button>
 			</div>
 			<div id="channelPage" style="display:none;margin-top:10px;">
 				<div id="chanLoader" class="loader centerMe"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>

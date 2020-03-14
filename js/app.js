@@ -31,6 +31,10 @@ if (sessionStorage.getItem("prvpg")) {
 	sessionStorage.removeItem("prvpg");
 }
 
+if (sessionStorage.getItem("embed")) {
+	sessionStorage.removeItem("embed");
+}
+
 if (!localStorage.getItem("trendCont")) {
 	if (localStorage.getItem("c")) {
 		console.log("country imported from NewsPage")
@@ -132,10 +136,12 @@ document.addEventListener('keydown', function (event) {
 				document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
 			}
 		} else if (key == 'k' || key == 'K' || key == 75) {
-			if (!document.getElementById("player").paused) {
-				document.getElementById('player').pause();
-			} else {
-				document.getElementById('player').play();
+			if (!document.getElementById("embedContainer").style.display == "") {
+				if (!document.getElementById("player").paused) {
+					document.getElementById('player').pause();
+				} else {
+					document.getElementById('player').play();
+				}
 			}
 		} else if (key == 'l' || key == 'L' || key == 76) {
 			document.getElementById("player").currentTime = document.getElementById("player").currentTime + 10;
@@ -143,7 +149,11 @@ document.addEventListener('keydown', function (event) {
 				document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
 			}
 		} else if (key == 't' || key == 'T' || key == 84) {
-			theatre();
+			if (sessionStorage.getItem("embed") == "y") {
+				theatre("embed");
+			} else {
+				theatre();
+			}
 		} else if (key == 'f' || key == 'F' || key == 70) {
 			// credit: https://stackoverflow.com/questions/36672561/how-to-exit-fullscreen-onclick-using-javascript
 			var isInFullScreen = (document.fullscreenElement && document.fullscreenElement !== null) ||
@@ -1131,12 +1141,20 @@ function openVideo(opt,ret) {
 					document.getElementById("settingsPage").style.display = 'none';
 					document.getElementById("channelPage").style.display = 'none';
 					document.getElementById("loadErr").style.display = 'none';
+					document.getElementById("embedContainer").innerHTML = '';
+					document.getElementById("embedContainer").style.display = "none";
 					document.getElementById("vidAuthor").style.display = 'none';
 					document.getElementById("vidViews").style.display = 'none';
+					document.getElementById("refreshBtn").style.display = 'none';
 					document.getElementById("vidRatings").style.display = 'none';
+					document.getElementById("theat_embed").style.display = 'none';
 					document.getElementById("player").pause();
 					document.getElementById("vidPage").style.display = '';
 					document.getElementById("helpOut").style.display = '';
+					document.getElementById("qSelector").style.display = '';
+					document.getElementById("speedSelector").style.display = '';
+					document.getElementById("theat_native").style.display = '';
+					document.getElementById("embedPlayer").style.display = '';
 					document.getElementById("player").innerHTML = '';
 					document.getElementById("vidViewer").style.display = 'none';
 					document.getElementById("vidLoader").style.display = '';
@@ -1149,6 +1167,7 @@ function openVideo(opt,ret) {
 					sessionStorage.removeItem("ewa");
 					sessionStorage.removeItem("ratio");
 					sessionStorage.removeItem("total");
+					sessionStorage.removeItem("embed");
 					sessionStorage.setItem("currentlyOpening", "y");
 					document.getElementById("qOptions").innerHTML = "";
 					if (document.getElementById("ldBtn").innerHTML == "see less") {
@@ -2866,17 +2885,33 @@ function keepProg() {
 	}, 5000)
 }
 
-function theatre() {
-	if (document.getElementById("player").style.width == "60%" | !document.getElementById("player").style.width) {
-		document.getElementById("player").style = "max-height:840px;";
-		document.getElementById("player").style.width = "100%";
-		document.getElementById("theat").innerHTML = "back to normal"
-		localStorage.setItem("theatre" , "y")
+function theatre(mode) {
+	if (!mode){
+		if (document.getElementById("player").style.width == "60%" | !document.getElementById("player").style.width) {
+			document.getElementById("player").style = "max-height:840px;";
+			document.getElementById("player").style.width = "100%";
+			document.getElementById("theat_native").innerHTML = "back to normal"
+			localStorage.setItem("theatre" , "y")
+		} else {
+			document.getElementById("player").style = "max-height:645px;";
+			document.getElementById("player").style.width = "60%";
+			document.getElementById("theat_native").innerHTML = "theater mode"
+			localStorage.setItem("theatre" , "n")
+		}
 	} else {
-		document.getElementById("player").style = "max-height:645px;";
-		document.getElementById("player").style.width = "60%";
-		document.getElementById("theat").innerHTML = "theater mode"
-		localStorage.setItem("theatre" , "n")
+		if (document.getElementById("embedContainer").style.width == "60%" | !document.getElementById("embedContainer").style.width) {
+			document.getElementById("embedContainer").style = "height:860px;";
+			document.getElementById("frame").style = "height:840px;";
+			document.getElementById("embedContainer").style.width = "100%";
+			document.getElementById("theat_embed").innerHTML = "back to normal"
+			localStorage.setItem("theatre" , "y")
+		} else {
+			document.getElementById("embedContainer").style = "height:670px;margin-left:20%;";
+			document.getElementById("frame").style = "height:645px;";
+			document.getElementById("embedContainer").style.width = "60%";
+			document.getElementById("theat_embed").innerHTML = "theater mode"
+			localStorage.setItem("theatre" , "n")
+		}
 	}
 }
 
@@ -3626,4 +3661,26 @@ function openAbout() {
 	document.getElementById("aboutPage").style.display = "";
 	document.getElementById("allUploadsPage").style.display = "none";
 	document.getElementById("recentUploads").style.display = "none";
+}
+
+function embedNoCookie() {
+	document.getElementById("playerContainer").style.display = "none";
+	document.getElementById("player").pause();
+	document.getElementById("embedContainer").style.display = "";
+	document.getElementById("theat_native").style.display = "none";
+	document.getElementById("theat_embed").style.display = "";
+	var iframe = document.createElement("IFRAME");
+	iframe.src = "https://www.youtube-nocookie.com/embed/" + getClickedId(window.location.href, "#w#") + "/?autoplay=true";
+	iframe.allowfullscreen = "allowfullscreen";
+	iframe.style = "height:645px;width:60%";
+	iframe.id = "frame";
+	document.getElementById("embedContainer").appendChild(iframe);
+	var p = document.createElement("P");
+	p.innerHTML = "<b>certain</b> keyboard shortcuts do not work with embeds currently.";
+	p.classList.add("stat");
+	document.getElementById("embedPlayer").style.display = "none";
+	document.getElementById("refreshBtn").style.display = "";
+	document.getElementById("qSelector").style.display = "none";
+	document.getElementById("speedSelector").style.display = "none";
+	document.getElementById("embedContainer").appendChild(p);
 }
