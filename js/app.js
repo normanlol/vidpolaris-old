@@ -2371,7 +2371,6 @@ function dismiss() {
 	document.getElementById("lasaga").style.display = 'none';
 }
 
-
 function getComments(token, opt) {
 	if (!token | token == "none") {
 		document.getElementById("loadedComments").style.display = 'none';
