@@ -7,8 +7,9 @@ if (localStorage.getItem("sLoc")) {
 keepProg();
 if (window.location.href.includes("#c") | window.location.href.includes("#w") | window.location.href.includes("#s")) {
 	refresh();
-} else {
-	// do nothing
+}
+if (localStorage.getItem("proxyVid") == "y") {
+	pingProxy();
 }
 
 document.getElementById("trendingLoader").style.display = "";
@@ -4777,7 +4778,6 @@ function suggest(opt) {
 		document.getElementById("suggest").innerHTML = "";
 		return;
 	}
-	
 	var q = document.getElementById("q").value
 	if (opt == "a" | !opt) {
 		var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?suggest=" + q;
@@ -4832,7 +4832,7 @@ function allowVL() {
 }
 
 function getMeta(opt) {
-	var id = getClickedId(window.location.href);
+	var id = getClickedId(window.location.href, "#w#");
 	var fullUrl = "https://youtube.com/watch?v=" + id;
 	if (opt == "a" | !opt) {
 		var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?md=1&url=" + fullUrl;
@@ -4841,6 +4841,7 @@ function getMeta(opt) {
  	} else if (opt == "c") {
  		var url = "https://vidpolaris-europe.herokuapp.com/?md=1&url=" + fullUrl;
  	}
+	const http = new XMLHttpRequest();
  	http.open("GET", url);
  	http.send();
  	http.timeout = 5000;
@@ -4948,4 +4949,13 @@ function embedNoCookie() {
 	document.getElementById("qSelector").style.display = "none";
 	document.getElementById("speedSelector").style.display = "none";
 	document.getElementById("embedContainer").appendChild(p);
+}
+
+function pingProxy() {
+	setInterval(function () {
+		const http = new XMLHttpRequest();
+		var url = "https://vipoproxy.herokuapp.com/?url=aHR0cHM6Ly9kdWNrZHVja2dvLmNvbQ=="
+		http.open("GET", url);
+		http.send();
+	}, 600000)
 }
