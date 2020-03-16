@@ -519,11 +519,11 @@ function search(opt) {
 	document.getElementById("bannerPfpContainer").style.display = 'none';
 	const http = new XMLHttpRequest();
 	if (opt == "a" | !opt) {
-		var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?search=" + q;
+		var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?search=" + q + "&type=video";
 	} else if (opt == "b"){
-		var url = "https://vidpolaris.herokuapp.com/?search=" + q;
+		var url = "https://vidpolaris.herokuapp.com/?search=" + q + "&type=video";
 	} else if (opt == "c") {
-		var url = "https://vidpolaris-europe.herokuapp.com/?search=" + q;
+		var url = "https://vidpolaris-europe.herokuapp.com/?search=" + q + "&type=video";
 	}
 	http.open("GET", url);
 	http.send();
