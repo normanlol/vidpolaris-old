@@ -963,6 +963,7 @@ function openVideo(opt,ret) {
 					document.getElementById("searchContainer").style.display = 'none';
 					document.getElementById("searchPage").style.display = 'none';
 					document.getElementById("settingsPage").style.display = 'none';
+					document.getElementById("searchTerm").style.display = "none";
 					document.getElementById("channelPage").style.display = 'none';
 					document.getElementById("loadErr").style.display = 'none';
 					document.getElementById("embedContainer").innerHTML = '';
@@ -3969,6 +3970,7 @@ function openChannel(opt) {
 	document.title = "[loading...] vidpolaris";
 	document.getElementById("player").pause();
 	document.getElementById("resultsContainer").style.display = 'none';
+	document.getElementById("searchTerm").style.display = "none";
 	document.getElementById("helpOut").style.display = 'none';
 	document.getElementById("vidPage").style.display = 'none';
 	document.getElementById("searchContainer").style.display = 'none';
