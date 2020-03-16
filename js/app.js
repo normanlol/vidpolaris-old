@@ -1556,120 +1556,24 @@ function openVideo(opt,ret) {
 											document.getElementById("itag").innerHTML = jsond.video[0].itag;
 										}
 									}
-									var length = jsond.video.length;
-									if (length > 5) {
-										var opt1 = document.createElement("option")
-										opt1.value = jsond.video[0].itag;
-										opt1.innerHTML = jsond.video[0].qualityLabel;
-										document.getElementById("qOptions").appendChild(opt1);
-										var opt2 = document.createElement("option");
-										if (!jsond.video[1].qualityLabel == jsond.video[0].qualityLabel ) {
-											opt2.value = jsond.video[1].itag;
-											opt2.innerHTML = jsond.video[1].qualityLabel;
+									for (var c in jsond.video) {
+										if (c == 0) {
+											var option = document.createElement("OPTION");
+											option.value = jsond.video[c].itag;
+											option.innerHTML = jsond.video[c].qualityLabel;
+											document.getElementById("qOptions").appendChild(option);
 										} else {
-											if (!jsond.video[2].qualityLabel == jsond.video[0].qualityLabel) {
-												opt2.value = jsond.video[2].itag;
-												opt2.innerHTML = jsond.video[2].qualityLabel;
+											if (jsond.video[c-1].qualityLabel == jsond.video[c].qualityLabel) {
+												// do nothing
 											} else {
-												opt2.value = jsond.video[3].itag;
-												opt2.innerHTML = jsond.video[3].qualityLabel;
+												var option = document.createElement("OPTION");
+												option.value = jsond.video[c].itag;
+												option.innerHTML = jsond.video[c].qualityLabel;
+												document.getElementById("qOptions").appendChild(option);
 											}
 										}
-										document.getElementById("qOptions").appendChild(opt2);
-										var opt3 = document.createElement("option");
-										if (!jsond.video[2].qualityLabel == jsond.video[1].qualityLabel && !jsond.video[2].qualityLabel == jsond.video[0].qualityLabel) {
-											opt3.value = jsond.video[2].itag;
-											opt3.innerHTML = jsond.video[2].qualityLabel;
-										} else {
-											if (!jsond.video[3].qualityLabel == jsond.video[1].qualityLabel && !jsond.video[3].qualityLabel == jsond.video[0].qualityLabel) {
-												opt3.value = jsond.video[3].itag;
-												opt3.innerHTML = jsond.video[3].qualityLabel;
-											} else {
-												opt3.value = jsond.video[4].itag;
-												opt3.innerHTML = jsond.video[4].qualityLabel;
-											}
-										}
-										document.getElementById("qOptions").appendChild(opt3);
-										var opt4 = document.createElement("option");
-										if (!jsond.video[3].qualityLabel == jsond.video[2].qualityLabel && !jsond.video[3].qualityLabel == jsond.video[1].qualityLabel && !jsond.video[3].qualityLabel == jsond.video[0].qualityLabel) {
-											opt4.value = jsond.video[3].itag;
-											opt4.innerHTML = jsond.video[3].qualityLabel;
-										} else {
-											if (!jsond.video[4].qualityLabel == jsond.video[3].qualityLabel && !jsond.video[4].qualityLabel == jsond.video[2].qualityLabel && !jsond.video[4].qualityLabel == jsond.video[1].qualityLabel && !jsond.video[4].qualityLabel == jsond.video[0].qualityLabel) {
-												opt4.value = jsond.video[4].itag;
-												opt4.innerHTML = jsond.video[4].qualityLabel;
-											} else {
-												opt4.value = jsond.video[5].itag;
-												opt4.innerHTML = jsond.video[5].qualityLabel;
-											}
-										}
-										document.getElementById("qOptions").appendChild(opt4);
-										var opt5 = document.createElement("option");
-										if (!jsond.video[4].qualityLabel == jsond.video[3].qualityLabel && !jsond.video[4].qualityLabel == jsond.video[2].qualityLabel && !jsond.video[4].qualityLabel == jsond.video[1].qualityLabel && !jsond.video[4].qualityLabel == jsond.video[0].qualityLabel) {
-											opt5.value = jsond.video[4].itag;
-											opt5.innerHTML = jsond.video[4].qualityLabel;
-											document.getElementById("qOptions").appendChild(opt5);
-										} else {
-											if (!jsond.video[5].qualityLabel == jsond.video[4].qualityLabel && !jsond.video[5].qualityLabel == jsond.video[3].qualityLabel && !jsond.video[5].qualityLabel == jsond.video[2].qualityLabel && !jsond.video[5].qualityLabel == jsond.video[1].qualityLabel && !jsond.video[5].qualityLabel == jsond.video[0].qualityLabel) {
-												opt5.value = jsond.video[5].itag;
-												opt5.innerHTML = jsond.video[5].qualityLabel;
-											} else {
-												if (!jsond.video[6] == undefined) {
-													opt5.value = jsond.video[6].itag;
-													opt5.innerHTML = jsond.video[6].qualityLabel;
-												}
-											}
-										}
-									} else if (length == 4) {
-										var opt1 = document.createElement("option")
-										opt1.value = jsond.video[0].itag;
-										opt1.innerHTML = jsond.video[0].qualityLabel;
-										document.getElementById("qOptions").appendChild(opt1);
-										var opt2 = document.createElement("option");
-										opt2.value = jsond.video[1].itag;
-										opt2.innerHTML = jsond.video[1].qualityLabel;
-										document.getElementById("qOptions").appendChild(opt2);
-										var opt3 = document.createElement("option");
-										opt3.value = jsond.video[2].itag;
-										opt3.innerHTML = jsond.video[2].qualityLabel;
-										document.getElementById("qOptions").appendChild(opt3);
-										var opt4 = document.createElement("option");
-										opt4.value = jsond.video[3].itag;
-										opt4.innerHTML = jsond.video[3].qualityLabel;
-										document.getElementById("qOptions").appendChild(opt4);
-									} else if (length == 3) {
-										var opt1 = document.createElement("option")
-										opt1.value = jsond.video[0].itag;
-										opt1.innerHTML = jsond.video[0].qualityLabel;
-										document.getElementById("qOptions").appendChild(opt1);
-										var opt2 = document.createElement("option");
-										opt2.value = jsond.video[1].itag;
-										opt2.innerHTML = jsond.video[1].qualityLabel;
-										document.getElementById("qOptions").appendChild(opt2);
-										var opt3 = document.createElement("option");
-										opt3.value = jsond.video[2].itag;
-										opt3.innerHTML = jsond.video[2].qualityLabel;
-									} else if (length == 2) {
-										var opt1 = document.createElement("option")
-										opt1.value = jsond.video[0].itag;
-										opt1.innerHTML = jsond.video[0].qualityLabel;
-										document.getElementById("qOptions").appendChild(opt1);
-										var opt2 = document.createElement("option");
-										opt2.value = jsond.video[1].itag;
-										opt2.innerHTML = jsond.video[1].qualityLabel;
-										document.getElementById("qOptions").appendChild(opt2);
-									} else {
-										document.getElementById("qOptions").disabled = true;
-										var opt1 = document.createElement("option")
-										opt1.value = jsond.video[0].itag;
-										opt1.innerHTML = jsond.video[0].qualityLabel;
-										document.getElementById("qOptions").appendChild(opt1);
 									}
-									if (localStorage.getItem("proxyVid") == "n") {
-										document.getElementById("player").src = videoUrl;
-									} else {
-										document.getElementById("player").src = proxy(videoUrl);
-									}
+									document.getElementById("player").src = videoUrl;
 									document.getElementById("qOptions").value = document.getElementById("itag").innerHTML;
 									document.getElementById("vidLoader").style.display = 'none';
 									if (opt == "a" | !opt) {
@@ -1792,13 +1696,31 @@ function openVideo(opt,ret) {
 								}
 								return;
 							} else {
-								document.getElementById("qSelector").style.display = 'none';
 								document.getElementById("vidViewer").style.display = '';
 								document.getElementById("vidLoader").style.display = 'none';
 								if (localStorage.getItem("proxyVid") == "n") {
 									document.getElementById("player").src = wUrl;
 								} else {
 									document.getElementById("player").src = proxy(wUrl);
+								}
+								for (var c in jsond.info.formats) {
+									if (c == 0) {
+										var option = document.createElement("OPTION");
+										option.value = jsond.info.formats[c].itag;
+										option.innerHTML = jsond.info.formats[c].qualityLabel;
+										document.getElementById("qOptions").appendChild(option);
+									} else {
+										if (jsond.info.formats[c-1].qualityLabel == jsond.info.formats[c].qualityLabel) {
+											// do nothing
+										} else {
+											if (jsond.info.formats[c].audioBitrate && !jsond.info.formats[c].audioBitrate == null && jsond.info.formats[c].qualityLabel && !jsond.info.formats[c].qualityLabel == null) {
+												var option = document.createElement("OPTION");
+												option.value = jsond.info.formats[c].itag;
+												option.innerHTML = jsond.info.formats[c].qualityLabel;
+												document.getElementById("qOptions").appendChild(option);
+											}
+										}
+									}	
 								}
 								if (opt == "a" | !opt) {
 									var tUrl = "http://normandotmp4.electrohaxz.tk:9019/?thumb=" + getClickedId(window.location.href, "#w#");
