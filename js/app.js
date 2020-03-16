@@ -519,11 +519,11 @@ function search(opt) {
 	document.getElementById("bannerPfpContainer").style.display = 'none';
 	const http = new XMLHttpRequest();
 	if (opt == "a" | !opt) {
-		var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?search=" + q + "&type=video";
+		var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?search=" + q;
 	} else if (opt == "b"){
-		var url = "https://vidpolaris.herokuapp.com/?search=" + q + "&type=video";
+		var url = "https://vidpolaris.herokuapp.com/?search=" + q;
 	} else if (opt == "c") {
-		var url = "https://vidpolaris-europe.herokuapp.com/?search=" + q + "&type=video";
+		var url = "https://vidpolaris-europe.herokuapp.com/?search=" + q;
 	}
 	http.open("GET", url);
 	http.send();
@@ -540,305 +540,121 @@ function search(opt) {
 			document.getElementById("bannerPfpContainer").style.display = 'none';
 			return;
 		}
-		if (jsond.searchResults.items[0]) {
-			if (opt == "a" | !opt) {
-				var baseUrl = "http://normandotmp4.electrohaxz.tk:9019/?thumb=";
-			} else if (opt == "b") {
-				var baseUrl = "https://vidpolaris.herokuapp.com/?thumb=";
-			} else if (opt == "c") {
-				var baseUrl = "https://vidpolaris-europe.herokuapp.com/?thumb=";
-			}
-			document.getElementById("re01").style.display = '';
-			var r01L = "#w#" + jsond.searchResults.items[0].link.substring(32);
-			var r01Th = baseUrl + jsond.searchResults.items[0].link.substring(32);
-			var r01Au = jsond.searchResults.items[0].author.name;
-			var r01Ti = jsond.searchResults.items[0].title;
-			var r01Da = jsond.searchResults.items[0].uploaded_at;
-			var r01De = jsond.searchResults.items[0].description;
-			var r01Du = jsond.searchResults.items[0].duration;
-			document.getElementById("re01Du").innerHTML = r01Du;
-			document.getElementById("re01Da").innerHTML = r01Da;
-			document.getElementById("re01De").innerHTML = r01De;
-			if (!jsond.searchResults.items[0].views | jsond.searchResults.items[0].views == null) {
-				var r01Vi = "[Not available]"
-			} else {
-				var r01Vi = jsond.searchResults.items[0].views.toLocaleString();
-			}
-			document.getElementById("re01").href = r01L;
-			document.getElementById("re01Ti").innerHTML = r01Ti;
-			document.getElementById("re01Th").src = r01Th;
-			document.getElementById("re01Au").innerHTML = r01Au;
-			document.getElementById("re01Vi").innerHTML = r01Vi;
-			if (jsond.searchResults.items[1]) {
-				document.getElementById("re02").style.display = '';
-				var r02L = "#w#" + jsond.searchResults.items[1].link.substring(32);
-				var r02Th = baseUrl + jsond.searchResults.items[1].link.substring(32);
-				var r02Au = jsond.searchResults.items[1].author.name;
-				var r02Ti = jsond.searchResults.items[1].title;
-				var r02Da = jsond.searchResults.items[1].uploaded_at;
-				var r02De = jsond.searchResults.items[1].description;
-				var r02Du = jsond.searchResults.items[1].duration;
-				document.getElementById("re02Du").innerHTML = r02Du;
-				document.getElementById("re02Da").innerHTML = r02Da;
-				document.getElementById("re02De").innerHTML = r02De;
-				if (!jsond.searchResults.items[1].views | jsond.searchResults.items[1].views == null) {
-					var r02Vi = "[Not available]"
+		if (opt == "a" | !opt) {
+			var baseUrl = "http://normandotmp4.electrohaxz.tk:9019/?thumb=";
+		} else if (opt == "b") {
+			var baseUrl = "https://vidpolaris.herokuapp.com/?thumb=";
+		} else if (opt == "c") {
+			var baseUrl = "https://vidpolaris-europe.herokuapp.com/?thumb=";
+		}
+		document.getElementById("resultsContainer").innerHTML = "";
+		for (var c in jsond.searchResults.items) {
+			if (jsond.searchResults.items[c].type == "video") {
+				var link = document.createElement("A");
+				link.href = "#w#" + jsond.searchResults.items[c].link.substring(32);
+				link.id = "re" + c;
+				document.getElementById("resultsContainer").appendChild(link); 
+				var div = document.createElement("DIV");
+				div.classList.add("resultVideo");
+				div.id = "re" + c + "Div";
+				document.getElementById("re"+c).appendChild(div);
+				var thumb = document.createElement("IMG");
+				thumb.src = baseUrl + jsond.searchResults.items[c].link.substring(32);
+				thumb.classList.add("smallThumb");
+				document.getElementById("re"+c+"Div").appendChild(thumb);
+				var div2 = document.createElement("DIV");
+				div2.classList.add("resultD");
+				div2.id = "re" + c + "Info";
+				document.getElementById("re"+c+"Div").appendChild(div2);
+				var title = document.createElement("H2");
+				title.innerHTML = jsond.searchResults.items[c].title;
+				title.classList.add("stat");
+				document.getElementById("re"+c+"Info").appendChild(title);
+				var author = document.createElement("H3");
+				author.innerHTML = '<span class="material-icons ico">person</span> ' + jsond.searchResults.items[c].author.name;
+				author.classList.add("stat");
+				document.getElementById("re"+c+"Info").appendChild(author);
+				var stat1 = document.createElement("H3");
+				if (jsond.searchResults.items[c].views == null | !jsond.searchResults.items[c].views) {
+					stat1.innerHTML = '<span class="material-icons ico">remove_red_eye</span> [Unobtainable] views';
 				} else {
-					var r02Vi = jsond.searchResults.items[1].views.toLocaleString();
+					stat1.innerHTML = '<span class="material-icons ico">remove_red_eye</span> ' + jsond.searchResults.items[c].views.toLocaleString() + ' views';
 				}
-				document.getElementById("re02").href = r02L;
-				document.getElementById("re02Ti").innerHTML = r02Ti;
-				document.getElementById("re02Th").src = r02Th;
-				document.getElementById("re02Au").innerHTML = r02Au;
-				document.getElementById("re02Vi").innerHTML = r02Vi;
-				if (jsond.searchResults.items[2]) {
-					document.getElementById("re03").style.display = '';
-					var r03L = "#w#" + jsond.searchResults.items[2].link.substring(32);
-					var r03Th = baseUrl + jsond.searchResults.items[2].link.substring(32);
-					var r03Au = jsond.searchResults.items[2].author.name;
-					var r03Ti = jsond.searchResults.items[2].title;
-					var r03Da = jsond.searchResults.items[2].uploaded_at;
-					var r03De = jsond.searchResults.items[2].description;
-					var r03Du = jsond.searchResults.items[2].duration;
-					document.getElementById("re03Du").innerHTML = r03Du;
-					document.getElementById("re03Da").innerHTML = r03Da;
-					document.getElementById("re03De").innerHTML = r03De;
-					if (!jsond.searchResults.items[2].views | jsond.searchResults.items[2].views == null) {
-						var r03Vi = "[Not available]"
-					} else {
-						var r03Vi = jsond.searchResults.items[2].views.toLocaleString();
-					}
-					document.getElementById("re03").href = r03L;
-					document.getElementById("re03Ti").innerHTML = r03Ti;
-					document.getElementById("re03Th").src = r03Th;
-					document.getElementById("re03Au").innerHTML = r03Au;
-					document.getElementById("re03Vi").innerHTML = r03Vi;
-					if (jsond.searchResults.items[3]) {
-						document.getElementById("re04").style.display = '';
-						var r04L = "#w#" + jsond.searchResults.items[3].link.substring(32);
-						var r04Th = baseUrl + jsond.searchResults.items[3].link.substring(32);
-						var r04Au = jsond.searchResults.items[3].author.name;
-						var r04Ti = jsond.searchResults.items[3].title;
-						var r04Da = jsond.searchResults.items[3].uploaded_at;
-						var r04De = jsond.searchResults.items[3].description;
-						var r04Du = jsond.searchResults.items[3].duration;
-						document.getElementById("re04Du").innerHTML = r04Du;
-						document.getElementById("re04Da").innerHTML = r04Da;
-						document.getElementById("re04De").innerHTML = r04De;
-						if (!jsond.searchResults.items[3].views | jsond.searchResults.items[3].views == null) {
-							var r04Vi = "[Not available]"
-						} else {
-							var r04Vi = jsond.searchResults.items[3].views.toLocaleString();
-						}
-						document.getElementById("re04").href = r04L;
-						document.getElementById("re04Ti").innerHTML = r04Ti;
-						document.getElementById("re04Th").src = r04Th;
-						document.getElementById("re04Au").innerHTML = r04Au;
-						document.getElementById("re04Vi").innerHTML = r04Vi;
-						if (jsond.searchResults.items[4]) {
-							document.getElementById("re05").style.display = '';
-							var r05L = "#w#" + jsond.searchResults.items[4].link.substring(32);
-							var r05Th = baseUrl + jsond.searchResults.items[4].link.substring(32);
-							var r05Au = jsond.searchResults.items[4].author.name;
-							var r05Ti = jsond.searchResults.items[4].title;
-							var r05Da = jsond.searchResults.items[4].uploaded_at;
-							var r05De = jsond.searchResults.items[4].description;
-							var r05Du = jsond.searchResults.items[4].duration;
-							document.getElementById("re05Du").innerHTML = r05Du;
-							document.getElementById("re05Da").innerHTML = r05Da;
-							document.getElementById("re05De").innerHTML = r05De;
-							if (!jsond.searchResults.items[4].views | jsond.searchResults.items[4].views == null) {
-								var r05Vi = "[Not available]"
-							} else {
-								var r05Vi = jsond.searchResults.items[4].views.toLocaleString();
-							}
-							document.getElementById("re05").href = r05L;
-							document.getElementById("re05Ti").innerHTML = r05Ti;
-							document.getElementById("re05Th").src = r05Th;
-							document.getElementById("re05Au").innerHTML = r05Au;
-							document.getElementById("re05Vi").innerHTML = r05Vi;
-							if (jsond.searchResults.items[5]) {
-								document.getElementById("re06").style.display = '';
-								var r06L = "#w#" + jsond.searchResults.items[5].link.substring(32);
-								var r06Th = baseUrl + jsond.searchResults.items[5].link.substring(32);
-								var r06Au = jsond.searchResults.items[5].author.name;
-								var r06Ti = jsond.searchResults.items[5].title;
-								var r06Da = jsond.searchResults.items[5].uploaded_at;
-								var r06De = jsond.searchResults.items[5].description;
-								var r06Du = jsond.searchResults.items[5].duration;
-								document.getElementById("re06Du").innerHTML = r06Du;
-								document.getElementById("re06Da").innerHTML = r06Da;
-								document.getElementById("re06De").innerHTML = r06De;
-								if (!jsond.searchResults.items[5].views | jsond.searchResults.items[5].views == null) {
-									var r06Vi = "[Not available]"
-								} else {
-									var r06Vi = jsond.searchResults.items[5].views.toLocaleString();
-								}
-								document.getElementById("re06").href = r06L;
-								document.getElementById("re06Ti").innerHTML = r06Ti;
-								document.getElementById("re06Th").src = r06Th;
-								document.getElementById("re06Au").innerHTML = r06Au;
-								document.getElementById("re06Vi").innerHTML = r06Vi;
-								if (jsond.searchResults.items[6]) {
-									document.getElementById("re07").style.display = '';
-									var r07L = "#w#" + jsond.searchResults.items[6].link.substring(32);
-									var r07Th = baseUrl + jsond.searchResults.items[6].link.substring(32);
-									var r07Au = jsond.searchResults.items[6].author.name;
-									var r07Ti = jsond.searchResults.items[6].title;
-									var r07Da = jsond.searchResults.items[6].uploaded_at;
-									var r07De = jsond.searchResults.items[6].description;
-									var r07Du = jsond.searchResults.items[6].duration;
-									document.getElementById("re07Du").innerHTML = r07Du;
-									document.getElementById("re07Da").innerHTML = r07Da;
-									document.getElementById("re07De").innerHTML = r07De;
-									if (!jsond.searchResults.items[6].views | jsond.searchResults.items[6].views == null) {
-										var r07Vi = "[Not available]"
-									} else {
-										var r07Vi = jsond.searchResults.items[6].views.toLocaleString();
-									}
-									document.getElementById("re07").href = r07L;
-									document.getElementById("re07Vi").innerHTML = r07Vi;
-									document.getElementById("re07Ti").innerHTML = r07Ti;
-									document.getElementById("re07Th").src = r07Th;
-									document.getElementById("re07Au").innerHTML = r07Au;
-									document.getElementById("re07Vi").innerHTML = r07Vi;
-									if (jsond.searchResults.items[7]) {
-										var r08L = "#w#" + jsond.searchResults.items[7].link.substring(32);
-										var r08Th = baseUrl + jsond.searchResults.items[7].link.substring(32);
-										var r08Au = jsond.searchResults.items[7].author.name;
-										var r08Ti = jsond.searchResults.items[7].title;
-										var r08Da = jsond.searchResults.items[7].uploaded_at;
-										var r08De = jsond.searchResults.items[7].description;
-										var r08Du = jsond.searchResults.items[7].duration;
-										document.getElementById("re08Du").innerHTML = r08Du;
-										document.getElementById("re08Da").innerHTML = r08Da;
-										document.getElementById("re08De").innerHTML = r08De;
-										if (!jsond.searchResults.items[7].views | jsond.searchResults.items[7].views == null) {
-											var r08Vi = "[Not available]"
-										} else {
-											var r08Vi = jsond.searchResults.items[7].views.toLocaleString();
-										}
-										document.getElementById("re08").href = r08L;
-										document.getElementById("re08Ti").innerHTML = r08Ti;
-										document.getElementById("re08Th").src = r08Th;
-										document.getElementById("re08Au").innerHTML = r08Au
-										document.getElementById("re08Vi").innerHTML = r08Vi;
-										if (jsond.searchResults[8]) {
-											document.getElementById("re09").style.display = '';
-											var r09L = "#w#" + jsond.searchResults.items[8].link.substring(32);
-											var r09Th = baseUrl + jsond.searchResults.items[8].link.substring(32);
-											var r09Au = jsond.searchResults.items[8].author.name;
-											var r09Ti = jsond.searchResults.items[8].title;
-											var r09Da = jsond.searchResults.items[8].uploaded_at;
-											var r09De = jsond.searchResults.items[8].description;
-											var r09Du = jsond.searchResults.items[8].duration;
-											document.getElementById("re09Du").innerHTML = r09Du;
-											document.getElementById("re09Da").innerHTML = r09Da;
-											document.getElementById("re09De").innerHTML = r09De;
-											if (!jsond.searchResults.items[8].views | jsond.searchResults.items[8].views == null) {
-												var r09Vi = "[Not available]"
-											} else {
-												var r09Vi = jsond.searchResults.items[8].views.toLocaleString();
-											}
-											document.getElementById("re09").href = r09L;
-											document.getElementById("re09Ti").innerHTML = r09Ti;
-											document.getElementById("re09Th").src = r09Th;
-											document.getElementById("re09Au").innerHTML = r09Au;
-											document.getElementById("re09Vi").innerHTML = r09Vi;
-											if (jsond.searchResults.items[9]) {
-												document.getElementById("re10").style.display = '';
-												var r10L = "#w#" + jsond.searchResults.items[9].link.substring(32);
-												var r10Th = baseUrl + jsond.searchResults.items[9].link.substring(32);
-												var r10Au = jsond.searchResults.items[9].author.name;
-												var r10Ti = jsond.searchResults.items[9].title;
-												var r10Da = jsond.searchResults.items[9].uploaded_at;
-												var r10De = jsond.searchResults.items[9].description;
-												var r10Du = jsond.searchResults.items[9].duration;
-												document.getElementById("re10Du").innerHTML = r10Du;
-												document.getElementById("re10Da").innerHTML = r10Da;
-												document.getElementById("re10De").innerHTML = r10De;
-												if (!jsond.searchResults.items[9].views | jsond.searchResults.items[9].views == null) {
-													var r10Vi = "[Not available]"
-												} else {
-													var r10Vi = jsond.searchResults.items[9].views.toLocaleString();
-												}
-												document.getElementById("re10").href = r10L;
-												document.getElementById("re10Ti").innerHTML = r10Ti;
-												document.getElementById("re10Th").src = r10Th;
-												document.getElementById("re10Au").innerHTML = r10Au;
-												document.getElementById("re10Vi").innerHTML = r10Vi;
-											} else {
-												document.getElementById("re10").style.display = 'none';
-											}
-										} else {
-											document.getElementById("re09").style.display = 'none';
-											document.getElementById("re10").style.display = 'none';
-										}
-									} else {
-										document.getElementById("re08").style.display = 'none';
-										document.getElementById("re09").style.display = 'none';
-										document.getElementById("re10").style.display = 'none';
-									}
-								} else {
-									document.getElementById("re07").style.display = 'none';
-									document.getElementById("re08").style.display = 'none';
-									document.getElementById("re09").style.display = 'none';
-									document.getElementById("re10").style.display = 'none';
-								}
-							} else {
-								document.getElementById("re06").style.display = 'none';
-								document.getElementById("re07").style.display = 'none';
-								document.getElementById("re08").style.display = 'none';
-								document.getElementById("re09").style.display = 'none';
-								document.getElementById("re10").style.display = 'none';
-							}
-						} else {
-							document.getElementById("re05").style.display = 'none';
-							document.getElementById("re06").style.display = 'none';
-							document.getElementById("re07").style.display = 'none';
-							document.getElementById("re08").style.display = 'none';
-							document.getElementById("re09").style.display = 'none';
-							document.getElementById("re10").style.display = 'none';
-						}
-					} else {
-						document.getElementById("re04").style.display = 'none';
-						document.getElementById("re05").style.display = 'none';
-						document.getElementById("re06").style.display = 'none';
-						document.getElementById("re07").style.display = 'none';
-						document.getElementById("re08").style.display = 'none';
-						document.getElementById("re09").style.display = 'none';
-						document.getElementById("re10").style.display = 'none';
-					}
-				} else {
-					document.getElementById("re03").style.display = 'none';
-					document.getElementById("re04").style.display = 'none';
-					document.getElementById("re05").style.display = 'none';
-					document.getElementById("re06").style.display = 'none';
-					document.getElementById("re07").style.display = 'none';
-					document.getElementById("re08").style.display = 'none';
-					document.getElementById("re09").style.display = 'none';
-					document.getElementById("re10").style.display = 'none';
-				}
+				stat1.classList.add("stat");
+				document.getElementById("re"+c+"Info").appendChild(stat1);
+				var stat2 = document.createElement("H3");
+				stat2.innerHTML = '<span class="material-icons ico">calendar_today</span> posted ' + jsond.searchResults.items[c].uploaded_at;
+				stat2.classList.add("stat");
+				document.getElementById("re"+c+"Info").appendChild(stat2);
+				var stat3 = document.createElement("H3");
+				stat3.innerHTML = '<span class="material-icons ico">timer</span> ' + jsond.searchResults.items[c].duration;
+				stat3.classList.add("stat");
+				document.getElementById("re"+c+"Info").appendChild(stat3);
+				var desc = document.createElement("P");
+				desc.innerHTML = jsond.searchResults.items[c].description;
+				desc.classList.add("stat");
+				document.getElementById("re"+c+"Info").appendChild(desc);
+			} else if (jsond.searchResults.items[c].type == "playlist") {
+				var link = document.createElement("A");
+				link.href = jsond.searchResults.items[c].link;
+				link.id = "re" + c
+				document.getElementById("resultsContainer").appendChild(link);
+				var div = document.createElement("DIV");
+				div.classList.add("resultVideo");
+				div.id = "re" + c + "Div"
+				document.getElementById("re"+c).appendChild(div);
+				var thumb = document.createElement("IMG");
+				thumb.src = jsond.searchResults.items[c].thumbnail;
+				thumb.classList.add("smallThumb");
+				document.getElementById("re"+c+"Div").appendChild(thumb);
+				var div2 = document.createElement("DIV");
+				div2.classList.add("resultD");
+				div2.id = "re" + c + "Info";
+				document.getElementById("re"+c+"Div").appendChild(div2);
+				var title = document.createElement("H2");
+				title.innerHTML = jsond.searchResults.items[c].title;
+				title.classList.add("stat");
+				document.getElementById("re"+c+"Info").appendChild(title);
+				var author = document.createElement("H3")
+				author.innerHTML = '<span class="material-icons ico">person</span> ' + jsond.searchResults.items[c].author.name;
+				author.classList.add("stat");
+				document.getElementById("re"+c+"Info").appendChild(author);
+				var playLength = document.createElement("H3");
+				playLength.innerHTML = '<span class="material-icons ico">playlist_play</span> ' + jsond.searchResults.items[c].length;
+				playLength.classList.add("stat")
+				document.getElementById("re"+c+"Info").appendChild(playLength);
+			} else if (jsond.searchResults.items[c].type == "channel") {
+				var link = document.createElement("A");
+				link.href = "#c#" + jsond.searchResults.items[c].channel_id;
+				link.id = "re" + c
+				document.getElementById("resultsContainer").appendChild(link);
+				var div = document.createElement("DIV");
+				div.classList.add("resultVideo");
+				div.id = "re" + c + "Div"
+				document.getElementById("re"+c).appendChild(div);
+				var thumb = document.createElement("IMG");
+				thumb.src = jsond.searchResults.items[c].avatar;
+				thumb.classList.add("smallThumb");
+				document.getElementById("re"+c+"Div").appendChild(thumb);
+				var div2 = document.createElement("DIV");
+				div2.classList.add("resultD");
+				div2.id = "re" + c + "Info";
+				document.getElementById("re"+c+"Div").appendChild(div2);
+				var author = document.createElement("H2");
+				author.innerHTML = jsond.searchResults.items[c].name;
+				author.classList.add("stat");
+				document.getElementById("re"+c+"Info").appendChild(author);
+				var stat1 = document.createElement("H3");
+				stat1.innerHTML = '<span class="material-icons ico">playlist_play</span> ' + jsond.searchResults.items[c].videos.toLocaleString() + ' videos';
+				stat1.classList.add("stat");
+				document.getElementById("re"+c+"Info").appendChild(stat1);
+				var desc = document.createElement("P");
+				desc.innerHTML = jsond.searchResults.items[c].description_short;
+				desc.classList.add("stat");
+				document.getElementById("re"+c+"Info").appendChild(desc);
 			} else {
-				document.getElementById("re02").style.display = 'none';
-				document.getElementById("re03").style.display = 'none';
-				document.getElementById("re04").style.display = 'none';
-				document.getElementById("re05").style.display = 'none';
-				document.getElementById("re06").style.display = 'none';
-				document.getElementById("re07").style.display = 'none';
-				document.getElementById("re08").style.display = 'none';
-				document.getElementById("re09").style.display = 'none';
-				document.getElementById("re10").style.display = 'none';
+				
 			}
-		} else {
-			document.getElementById("errorPage").style.display = '';
-			document.getElementById("errorTxt").innerHTML = "no results were found."
-			document.getElementById("vidPage").style.display = 'none';
-			document.getElementById("nsWarnPage").style.display = 'none';
-			document.getElementById("settingsPage").style.display = 'none';
-			document.getElementById("searchPage").style.display = 'none';
-			document.getElementById("homePage").style.display = 'none';
-			document.getElementById("bannerPfpContainer").style.display = 'none';
 		}
 		document.getElementById("seaLoader").style.display = 'none';
 		document.getElementById("resultsContainer").style.display = '';

@@ -64,6 +64,16 @@ body {
 	object-fit: cover;
 }
 
+.smallThumb {
+	float:left;
+	margin-right:5px;
+}
+
+.resultD {
+	float:left;
+	max-width:54%;
+}
+
 .channelLink {
 	transition:text-decoration .5s;
 	cursor:pointer;
