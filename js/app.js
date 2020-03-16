@@ -1711,9 +1711,6 @@ function openVideo(opt,ret) {
 										document.getElementById("qOptions").appendChild(option);
 									} else {
 										//credit for *more* duplication: https://stackoverflow.com/questions/8069315/create-array-of-all-integers-between-two-numbers-inclusive-in-javascript-jquer
-										function range(start, end) {
-											return Array(end - start + 1).fill().map((_, idx) => start + idx)
-										}
 										var result = range(0, c);
 										for (var cc in result) {
 											if (!jsond.info.formats[c].qualityLabel == jsond.info.formats[cc].qualityLabel) {
@@ -4887,4 +4884,8 @@ function pingProxy() {
 		http.open("GET", url);
 		http.send();
 	}, 600000)
+}
+
+function range(start, end) {
+	return Array(end - start + 1).fill().map((_, idx) => start + idx)
 }
