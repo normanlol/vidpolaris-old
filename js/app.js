@@ -515,6 +515,7 @@ function search(opt) {
 	document.getElementById("searchContainer").style.display = 'none';
 	document.getElementById("homePage").style.display = 'none';
 	document.getElementById("settingsPage").style.display = 'none';
+	document.getElementById("searchTerm").style.display = "none";
 	document.getElementById("player").pause();
 	document.getElementById("bannerPfpContainer").style.display = 'none';
 	const http = new XMLHttpRequest();
@@ -529,6 +530,8 @@ function search(opt) {
 	http.send();
 	http.onreadystatechange=(e)=>{
 		var jsond = JSON.parse(http.responseText);
+		document.getElementById("searchQuery").innerHTML = decodeURIComponent(q);
+		document.getElementById("searchTerm").style.display = "";
 		if (!jsond.searchResults) {
 			document.getElementById("errorPage").style.display = '';
 			document.getElementById("errorTxt").innerHTML = "no results were found."
@@ -634,7 +637,7 @@ function search(opt) {
 				document.getElementById("re"+c).appendChild(div);
 				var thumb = document.createElement("IMG");
 				thumb.src = jsond.searchResults.items[c].avatar;
-				thumb.classList.add("smallThumb");
+				thumb.classList.add("smallIcon");
 				document.getElementById("re"+c+"Div").appendChild(thumb);
 				var div2 = document.createElement("DIV");
 				div2.classList.add("resultD");
