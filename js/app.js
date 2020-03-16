@@ -4111,7 +4111,7 @@ function openChannel(opt) {
 										document.getElementById("up4").style.display = '';
 										document.getElementById("up5").style.display = '';
 										document.getElementById("up6").style.display = '';
-										document.getElementById("up7").style.display = '';
+										document.getElementById("up7").style.display = 'none';
 										document.getElementById("up8").style.display = 'none';
 									}
 								} else {
@@ -4121,7 +4121,7 @@ function openChannel(opt) {
 									document.getElementById("up3").style.display = '';
 									document.getElementById("up4").style.display = '';
 									document.getElementById("up5").style.display = '';
-									document.getElementById("up6").style.display = '';
+									document.getElementById("up6").style.display = 'none';
 									document.getElementById("up7").style.display = 'none';
 									document.getElementById("up8").style.display = 'none';
 								}
@@ -4130,7 +4130,7 @@ function openChannel(opt) {
 								document.getElementById("up1").style.display = '';
 								document.getElementById("up2").style.display = '';
 								document.getElementById("up3").style.display = '';
-								document.getElementById("up4").style.display = '';
+								document.getElementById("up4").style.display = 'none';
 								document.getElementById("up5").style.display = 'none';
 								document.getElementById("up6").style.display = 'none';
 								document.getElementById("up7").style.display = 'none';
@@ -4140,7 +4140,7 @@ function openChannel(opt) {
 							document.getElementById("noUploads").style.display = 'none';
 							document.getElementById("up1").style.display = '';
 							document.getElementById("up2").style.display = '';
-							document.getElementById("up3").style.display = '';
+							document.getElementById("up3").style.display = 'none';
 							document.getElementById("up4").style.display = 'none';
 							document.getElementById("up5").style.display = 'none';
 							document.getElementById("up6").style.display = 'none';
@@ -4150,7 +4150,7 @@ function openChannel(opt) {
 					} else {
 						document.getElementById("noUploads").style.display = 'none';
 						document.getElementById("up1").style.display = '';
-						document.getElementById("up1").style.display = '';
+						document.getElementById("up1").style.display = 'none';
 						document.getElementById("up3").style.display = 'none';
 						document.getElementById("up4").style.display = 'none';
 						document.getElementById("up5").style.display = 'none';
