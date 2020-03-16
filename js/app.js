@@ -9,7 +9,9 @@ if (window.location.href.includes("#c") | window.location.href.includes("#w") | 
 	refresh();
 }
 if (localStorage.getItem("proxyVid") == "y") {
-	pingProxy();
+	setInterval(function () {
+		pingProxy();
+	}, 60000)
 }
 
 document.getElementById("trendingLoader").style.display = "";
@@ -2290,7 +2292,7 @@ function saveSettings() {
 	//}
 	localStorage.setItem("proxyVid", document.getElementById("proxyVideos").value);
 	resize();
-	window.open("#", "_self");
+	window.history.back();
 }
 
 function dismiss() {
@@ -4878,12 +4880,10 @@ function embedNoCookie() {
 }
 
 function pingProxy() {
-	setInterval(function () {
-		const http = new XMLHttpRequest();
-		var url = "https://vipoproxy.herokuapp.com/?url=aHR0cHM6Ly9kdWNrZHVja2dvLmNvbQ=="
-		http.open("GET", url);
-		http.send();
-	}, 600000)
+	const http = new XMLHttpRequest();
+	var url = "https://vipoproxy.herokuapp.com/?url=aHR0cHM6Ly9lbmFibGUtY29ycy5vcmcv"
+	http.open("GET", url);
+	http.send();
 }
 
 function range(start, end) {
