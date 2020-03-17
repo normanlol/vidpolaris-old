@@ -1918,6 +1918,7 @@ function home() {
 	document.getElementById("mainTrending").innerHTML = "";
 	document.getElementById("musicTrending").innerHTML = "";
 	document.getElementById("gamingTrending").innerHTML = "";
+	document.getElementById("embedContainer").innerHTML = "";
 	document.getElementById("trendingLoader").style.display = "";
 	document.getElementById("trending").style.display = "none";
 	document.title = "vidpolaris";
@@ -4567,17 +4568,6 @@ function suggest(opt) {
 			}
 		}
 	}
-}
-
-function hideRec() {
-	localStorage.setItem("homeRec", "n");
-	document.getElementById("reccomendedVideos").style.display = "none";
-}
-
-function allowVL() {
-	localStorage.setItem("homeRec", "y");
-	document.getElementById("rvStart").style.display = "none";
-	document.getElementById("rvWatch").style.display = "";
 }
 
 function getMeta(opt) {
