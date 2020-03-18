@@ -754,7 +754,13 @@ function feelingLucky(opt) {
 				}
 				var wLink = jsond.searchResults.items[0].link;
 				var link2 = wLink.substring(32);
-				window.open("#w#" + link2, "_self");
+				if (jsond.searchResults.items[0].type == "video") {
+					window.open("#w#" + link2, "_self");
+				} else if (jsond.searchResults.items[0].type == "channel") {
+					window.open("#c#" + link2, "_self");
+				} else {
+					notPlayable();
+				}
 			}
 		}
 	}
