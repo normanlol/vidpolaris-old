@@ -655,6 +655,61 @@ function search(opt) {
 				desc.innerHTML = jsond.searchResults.items[c].description_short;
 				desc.classList.add("stat");
 				document.getElementById("re"+c+"Info").appendChild(desc);
+			} else if (jsond.searchResults.items[c].type == "shelf-vertical") {
+				var mDiv = document.createElement("DIV");
+				mDiv.classList.add("verticalShelf");
+				mDiv.id = "re" + c;
+				document.getElementById("resultsContainer").appendChild(mDiv);
+				var shelfTitle = document.createElement("H3");
+				shelfTitle.classList.add("stat");
+				shelfTitle.innerHTML = jsond.searchResults.items[c].title;
+				document.getElementById("re"+c).appendChild(shelfTitle);
+				for (var cc in jsond.searchResults.items[c].items) {
+					var link = document.createElement("A");
+					link.href = "#w#" + jsond.searchResults.items[c].items[cc].link.substring(32);
+					link.id = "sub" + cc;
+					document.getElementById("re"+c).appendChild(link); 
+					var div = document.createElement("DIV");
+					div.classList.add("sResultVideo");
+					div.id = "sub" + cc + "Div";
+					document.getElementById("sub"+cc).appendChild(div);
+					var thumb = document.createElement("IMG");
+					thumb.src = baseUrl + jsond.searchResults.items[c].items[cc].link.substring(32);
+					thumb.classList.add("smallThumb");
+					document.getElementById("sub"+cc+"Div").appendChild(thumb);
+					var div2 = document.createElement("DIV");
+					div2.classList.add("resultD");
+					div2.id = "sub" + cc + "Info";
+					document.getElementById("sub"+cc+"Div").appendChild(div2);
+					var title = document.createElement("H2");
+					title.innerHTML = jsond.searchResults.items[c].items[cc].title;
+					title.classList.add("stat");
+					document.getElementById("sub"+cc+"Info").appendChild(title);
+					var author = document.createElement("H3");
+					author.innerHTML = '<span class="material-icons ico">person</span> ' + jsond.searchResults.items[c].items[cc].author.name;
+					author.classList.add("stat");
+					document.getElementById("sub"+cc+"Info").appendChild(author);
+					var stat1 = document.createElement("H3");
+					if (jsond.searchResults.items[c].items[cc].views == null | !jsond.searchResults.items[c].items[cc].views) {
+						stat1.innerHTML = '<span class="material-icons ico">remove_red_eye</span> [Unobtainable] views';
+					} else {
+						stat1.innerHTML = '<span class="material-icons ico">remove_red_eye</span> ' + jsond.searchResults.items[c].items[cc].views.toLocaleString() + ' views';
+					}
+					stat1.classList.add("stat");
+					document.getElementById("sub"+cc+"Info").appendChild(stat1);
+					var stat2 = document.createElement("H3");
+					stat2.innerHTML = '<span class="material-icons ico">calendar_today</span> posted ' + jsond.searchResults.items[c].items[cc].uploaded_at;
+					stat2.classList.add("stat");
+					document.getElementById("sub"+cc+"Info").appendChild(stat2);
+					var stat3 = document.createElement("H3");
+					stat3.innerHTML = '<span class="material-icons ico">timer</span> ' + jsond.searchResults.items[c].items[cc].duration;
+					stat3.classList.add("stat");
+					document.getElementById("sub"+cc+"Info").appendChild(stat3);
+					var desc = document.createElement("P");
+					desc.innerHTML = jsond.searchResults.items[c].items[cc].description;
+					desc.classList.add("stat");
+					document.getElementById("sub"+cc+"Info").appendChild(desc);
+				}
 			} else {
 				
 			}

@@ -56,6 +56,18 @@ body {
 	background-color:#3c3c3c;
 }
 
+.verticalShelf {
+	width:65%;
+	min-height:153px;
+	background-color:#111;
+}
+
+.sResultVideo {
+	width:98%;
+	min-height:153px;
+	background-color:#3c3c3c;
+}
+
 .smallThumb {
 	width:45%;
 	height:312px;

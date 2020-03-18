@@ -22,6 +22,18 @@ body {
 	max-width:53%;
 }
 
+.verticalShelf {
+	width:90%;
+	min-height:153px;
+	background-color:#888;
+}
+
+.sResultVideo {
+	width:97%;
+	min-height:153px;
+	background-color:#3c3c3c;
+}
+
 .smallVideo {
 	width:94%;
 	height:245px;

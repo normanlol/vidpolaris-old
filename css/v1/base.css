@@ -51,13 +51,13 @@ body {
 	transition:background-color .5s;
 }
 
-.resultVideo {
+.resultVideo, .sResultVideo, .verticalShelf {
 	border-radius:10px;
 	padding:5px;
 	margin:5px;
 	text-align:left;
 	display:inline-block;
-	transition:background-color .5s
+	transition:background-color .5s;
 }
 
 .smallThumb, .largeThumb, .relatedThumb {
