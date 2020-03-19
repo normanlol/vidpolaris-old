@@ -4758,6 +4758,7 @@ function getMeta(opt) {
 			sessionStorage.setItem("ratio", ratio);
 		} else {
 			var ratio = 0;
+			sessionStorage.setItem("ratio", ratio);
 		}
 		if (jsond.meta.unlisted == false) {
 			document.getElementById("ulIco").style.display = "none";
