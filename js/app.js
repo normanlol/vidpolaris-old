@@ -3710,51 +3710,47 @@ function changeQ(opt) {
 }
 
 function changeAQ(opt) {
-	if (document.getElementById("itag").innerHTML == document.getElementById("aqOptions").value) {
-		return;
-	} else {
-		document.getElementById("qOptions").disabled = true;
-		document.getElementById("aqOptions").disabled = true;
-		document.getElementById("player").pause();
-		document.getElementById("playerContainer").style.display = "none";
-		const http = new XMLHttpRequest();
-		var id = getClickedId(window.location.href, '#w#');
-		var fullUrl = "https://youtube.com/watch?v=" + id;
+	document.getElementById("qOptions").disabled = true;
+	document.getElementById("aqOptions").disabled = true;
+	document.getElementById("player").pause();
+	document.getElementById("playerContainer").style.display = "none";
+	const http = new XMLHttpRequest();
+	var id = getClickedId(window.location.href, '#w#');
+	var fullUrl = "https://youtube.com/watch?v=" + id;
+	if (opt == "a" | !opt) {
+		var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?itag=" + document.getElementById("aqOptions").value + "&url=" + fullUrl
+	} else if (opt == "b"){
+		var url = "https://vidpolaris.herokuapp.com/?itag=" + document.getElementById("aqOptions").value + "&url=" + fullUrl
+	} else if (opt == "c") {
+		var url = "https://vidpolaris-europe.herokuapp.com/?itag=" + document.getElementById("aqOptions").value + "&url=" + fullUrl
+	}
+	http.open("GET", url);
+	http.send();
+	http.onreadystatechange=(e)=>{
+		var jsond = JSON.parse(http.responseText);
+		var currentTime = document.getElementById("player").currentTime;
+		document.getElementById("itag").innerHTML = jsond.datainfo.itag;	
+		if (localStorage.getItem("proxyVid") == "n") {
+			document.getElementById("audioPlayer").src = jsond.datainfo.url;
+		} else {
+			document.getElementById("audioPlayer").src = proxy(jsond.datainfo.url);
+		}
+		document.getElementById("audioPlayer").currentTime = currentTime;
+		document.getElementById("audioPlayer").onloadeddata= function () {
+			document.getElementById("player").play();
+			document.getElementById("playerContainer").style.display = "";
+			document.getElementById("qOptions").disabled = false;
+			document.getElementById("aqOptions").disabled = false;
+		}
+	}
+	http.timeout = 3000;
+	http.ontimeout = () => {
 		if (opt == "a" | !opt) {
-			var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?itag=" + document.getElementById("aqOptions").value + "&url=" + fullUrl
+			changeAQ("b");
 		} else if (opt == "b"){
-			var url = "https://vidpolaris.herokuapp.com/?itag=" + document.getElementById("aqOptions").value + "&url=" + fullUrl
+			changeAQ("c");
 		} else if (opt == "c") {
-			var url = "https://vidpolaris-europe.herokuapp.com/?itag=" + document.getElementById("aqOptions").value + "&url=" + fullUrl
-		}
-		http.open("GET", url);
-		http.send();
-		http.onreadystatechange=(e)=>{
-			var jsond = JSON.parse(http.responseText);
-			var currentTime = document.getElementById("player").currentTime;
-			document.getElementById("itag").innerHTML = jsond.datainfo.itag;
-			if (localStorage.getItem("proxyVid") == "n") {
-				document.getElementById("audioPlayer").src = jsond.datainfo.url;
-			} else {
-				document.getElementById("audioPlayer").src = proxy(jsond.datainfo.url);
-			}
-			document.getElementById("audioPlayer").currentTime = currentTime;
-			document.getElementById("audioPlayer").onloadeddata= function () {
-				document.getElementById("player").play();
-				document.getElementById("playerContainer").style.display = "";
-				document.getElementById("qOptions").disabled = false;
-				document.getElementById("aqOptions").disabled = false;
-			}
-		}
-		http.timeout = 3000;
-		http.ontimeout = () => {
-			if (opt == "a" | !opt) {
-				changeQ("b");
-			} else if (opt == "b"){
-				changeQ("c");
-			} else if (opt == "c") {
-				changeQ("a");
-			}
+			changeAQ("a");
 		}
 	}
 }
