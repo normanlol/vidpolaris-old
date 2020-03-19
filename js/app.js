@@ -1508,6 +1508,7 @@ function openVideo(opt,ret) {
 									document.getElementById("pubM").innerHTML = month;
 									document.getElementById("pubY").innerHTML = year;
 									document.getElementById("pubD").innerHTML = day;
+									sessionStorage.removeItem("currentlyOpening");
 									if (opt == "a" | !opt) {
 										var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?md=1&url=" + fullUrl;
 									} else if (opt == "b"){
@@ -1555,16 +1556,18 @@ function openVideo(opt,ret) {
 											document.getElementById("ulIco").style.display = "";
 											document.getElementById("title").style = "margin-top:-27px;margin-left:25px;"
 										}
-										if (jsond.meta.subCount) {
-											document.getElementById("subText").innerHTML = "[" + jsond.meta.subCount + " subscribers]";
+										if (jsond.meta.subText) {
+											document.getElementById("subText").innerHTML = "[" + jsond.meta.subText + " subscribers]";
 										} else {
 											document.getElementById("subText").innerHTML = "";
 										}
-										sessionStorage.removeItem("currentlyOpening");
 										document.getElementById("viewNum").innerHTML = view;
 										document.getElementById("likeNum").innerHTML = like;
 										document.getElementById("dlikNum").innerHTML = dlik;
 										document.getElementById("ldRatio").innerHTML = ratio;
+										document.getElementById("vidViews").style.display = "";
+										document.getElementById("vidRatings").style.display = "";
+										document.getElementById("subText").style.display = "";
 									}
 									document.getElementById("vidViewer").style.display = '';
 									sync();
@@ -1647,6 +1650,7 @@ function openVideo(opt,ret) {
 									document.getElementById("ldDiv").style.display = 'none';
 								}
 								document.getElementById("player").play();
+								sessionStorage.removeItem("currentlyOpening");
 								document.getElementById("author").innerHTML = auth;
 								document.getElementById("searchContainer").style.display = '';
 								document.getElementById("pubM").innerHTML = month;
@@ -1708,16 +1712,18 @@ function openVideo(opt,ret) {
 										document.getElementById("ulIco").style.display = "";
 										document.getElementById("title").style = "margin-top:-27px;margin-left:25px;"
 									}
-									if (jsond.meta.subCount) {
-										document.getElementById("subText").innerHTML = "[" + jsond.meta.subCount + " subscribers]";
+									if (jsond.meta.subText) {
+										document.getElementById("subText").innerHTML = "[" + jsond.meta.subText + " subscribers]";
 									} else {
 										document.getElementById("subText").innerHTML = "";
 									}
-									sessionStorage.removeItem("currentlyOpening");
 									document.getElementById("viewNum").innerHTML = view;
 									document.getElementById("likeNum").innerHTML = like;
 									document.getElementById("dlikNum").innerHTML = dlik;
 									document.getElementById("ldRatio").innerHTML = ratio;
+									document.getElementById("vidViews").style.display = "";
+									document.getElementById("vidRatings").style.display = "";
+									document.getElementById("subText").style.display = "";
 									if (!document.getElementById("vidViewer").style.display == 'none') {
 										document.getElementById("player").play()
 									}
@@ -4738,8 +4744,8 @@ function getMeta(opt) {
  		} else {
  			var like = jsond.meta.likeCount.toLocaleString();
  		}
-		if (jsond.meta.subCount) {
-			document.getElementById("subText").innerHTML = "[" + jsond.meta.subCount + " subscribers]";
+		if (jsond.meta.subText) {
+			document.getElementById("subText").innerHTML = "[" + jsond.meta.subText + " subscribers]";
 		} else {
 			document.getElementById("subText").innerHTML = "";
 		}
@@ -4764,6 +4770,9 @@ function getMeta(opt) {
 		document.getElementById("likeNum").innerHTML = like;
 		document.getElementById("dlikNum").innerHTML = dlik;
 		document.getElementById("ldRatio").innerHTML = ratio;
+		document.getElementById("vidViews").style.display = "";
+		document.getElementById("vidRatings").style.display = "";
+		document.getElementById("subText").style.display = "";
 	}
 }
 
