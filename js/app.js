@@ -1057,6 +1057,7 @@ function openVideo(opt,ret) {
 					sessionStorage.removeItem("embed");
 					sessionStorage.setItem("currentlyOpening", "y");
 					document.getElementById("qOptions").innerHTML = "";
+					document.getElementById("aqOptions").innerHTML = "";
 					if (document.getElementById("ldBtn").innerHTML == "see less") {
 						document.getElementById("ldBtn").click();
 					}
