@@ -1,12 +1,13 @@
 resize();
-if (localStorage.getItem("sLoc")) {
-	getTrending(localStorage.getItem("sLoc"));
-} else {
-	getTrending();
-}
 keepProg();
 if (window.location.href.includes("#c") | window.location.href.includes("#w") | window.location.href.includes("#s")) {
 	refresh();
+} else {
+	if (localStorage.getItem("sLoc")) {
+		getTrending(localStorage.getItem("sLoc"));
+	} else {
+		getTrending();
+	}
 }
 if (localStorage.getItem("proxyVid") == "y") {
 	setInterval(function () {
@@ -1499,7 +1500,6 @@ function openVideo(opt,ret) {
 										document.getElementById("viewNum").innerHTML = "[Error]";
 										document.getElementById("likeNum").innerHTML = "[Error]";
 										document.getElementById("dlikNum").innerHTML = "[Error]";
-										document.getElementById("commNum").innerHTML = "[Error]";
 										document.getElementById("ulIco").style.display = "none";
 										document.getElementById("title").style = "margin:0;"
 									}
@@ -1519,11 +1519,6 @@ function openVideo(opt,ret) {
 										} else {
 											var like = jsond.meta.likeCount.toLocaleString();
 										}
-										if (!jsond.meta.commentCount) {
-											var comm = 0;
-										} else {
-											var comm = jsond.meta.commentCount.toLocaleString();
-										}
 										var totl = jsond.meta.dislikeCount + jsond.meta.likeCount;
 										sessionStorage.setItem("total", totl.toLocaleString());
 										if (!totl == 0){
@@ -1542,12 +1537,16 @@ function openVideo(opt,ret) {
 											document.getElementById("ulIco").style.display = "";
 											document.getElementById("title").style = "margin-top:-27px;margin-left:25px;"
 										}
+										if (jsond.meta.subCount) {
+											document.getElementById("subText").innerHTML = "[" + jsond.meta.subCount + " subscribers]";
+										} else {
+											document.getElementById("subText").innerHTML = "";
+										}
 										document.getElementById("vidViews").style.display = "";
 										document.getElementById("vidRatings").style.display = "";
 										document.getElementById("viewNum").innerHTML = view;
 										document.getElementById("likeNum").innerHTML = like;
 										document.getElementById("dlikNum").innerHTML = dlik;
-										document.getElementById("commNum").innerHTML = comm;
 										document.getElementById("ldRatio").innerHTML = ratio;
 									}
 									document.getElementById("vidViewer").style.display = '';
