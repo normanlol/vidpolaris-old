@@ -1085,10 +1085,15 @@ function openVideo(opt,ret) {
 							document.getElementById("vidAuthor").style.display = "";
 							document.getElementById("authorL").href = aLink;
 							var desc = jsond.info.player_response.videoDetails.shortDescription.replace(/\n/g, "<br>")
-							var pDate = new Date(jsond.info.published);
-							var month = pDate.getMonth() + 1;
-							var day = pDate.getDate();
-							var year = pDate.getFullYear();
+							if (jsond.info.published == null) {
+								document.getElementById("vidDate").style.display = "none";
+							} else {
+								var pDate = new Date(jsond.info.published);
+								var month = pDate.getMonth() + 1;
+								var day = pDate.getDate();
+								var year = pDate.getFullYear();
+								document.getElementById("vidDate").style.display = "";
+							}
 							if (jsond.info.age_restricted == true) {
 								showWarning();
 							}
