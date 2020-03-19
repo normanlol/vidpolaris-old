@@ -54,6 +54,7 @@
 						<p>it seems that your video cannot be loaded due to an error. would you like to try somewhere else?</p>
 						<button onclick="watchOnYoutube()">watch on youtube</button>
 						<button onclick="watchOnNCYoutube()">watch directly without cookies on youtube</button>
+						<button onclick="proxyAV()">proxy the sources</button>
 						<button onclick="embedNoCookie()">embed  youtube players without cookies</button>
 						<button onclick="watchOnInvidious()">watch on invidious</button>
 						<div style="width:100%;height:15px;"></div>
@@ -501,15 +502,8 @@
 						<option value="n">disabled</option>
 					</select>
 				</div>
-				<div style="display:none;" class="setting" title="the video logs and all settings are stored locally, we have no access to them.">
-					<label>allow video logging for home reccomendations?:</label>
-					<select id="homeRec">
-						<option value="n">disabled (default)</option>
-						<option value="y">enabled</option>
-					</select>
-				</div>
 				<div class="setting" title="proxies videos into a US heroku server. this may prevent errors if you are in a school/work enviorment or if you don't live in the united states. may load videos faster.">
-					<label>proxy videos:</label>
+					<label>proxy videos (beta):</label>
 					<select id="proxyVideos">
 						<option value="n">disbaled (default)</option>
 						<option value="y">enabled</option>

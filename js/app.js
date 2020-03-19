@@ -3759,6 +3759,18 @@ function changeAQ(opt) {
 	}
 }
 
+function proxyAV() {
+	if (localStorage.getItem("smart") == "y") {
+		var curUrl = document.getElementById("player").src;
+		var curAUrl = document.getElementById("audioPlayer").src;
+		document.getElementById("player").src = proxy(curUrl);
+		document.getElementById("audioPlayer").src = proxy(curUrl);
+	} else {
+		var curUrl = document.getElementById("player").src;
+		document.getElementById("player").src = proxy(curUrl);
+	}
+}
+
 function translate(elem, opt) {
 	if (!elem) {
 		return;
