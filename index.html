@@ -66,7 +66,7 @@
 							<h3 id="vidViews" class="stat"><span class="material-icons ico">remove_red_eye</span> <span id="viewNum">[Loading]</span> views</h3>
 							<h3 id="vidRatings" class="stat"><span class="material-icons ico">thumb_up</span> <span id="likeNum">[Loading]</span> likes / <span class="material-icons ico">thumb_down</span> <span id="dlikNum">[Loading]</span> dislikes / <span><span onmouseover="swap('over')" onmouseout="swap('off')" class="material-icons ico noCursor">thumbs_up_down</span> <span id="ldRatio">[Loading]</span><span id="ldTail">% ratio</span></span></h3>
 							<h3 class="stat" id="qSelector"><span class="material-icons ico">hd</span> <select id="qOptions" oninput="changeQ(localStorage.getItem('sLoc'))"></select> <select id="aqOptions" onInput="changeAQ(localStorage.getItem('sLoc'))"></select></h3>
-							<h3 id="vidDate" class="stat"><span class="material-icons ico">calendar_today</span> <span id="pubM">[Loading]</span>/<span id="pubD">[Loading]</span>/<span id="pubY">[Loading]</span></h3>
+							<h3 id="vidDate" class="stat"><span class="material-icons ico">calendar_today</span> Published on <span id="pubM"></span> <span id="pubD"></span>, <span id="pubY">[Loading]</span></h3>
 							<h3 id="catCont" class="stat"><span class="material-icons ico">folder</span> <span id="cat"></span></h3>
 							<h3 id="speedSelector" class="stat"><span class="material-icons ico">speed</span> <select id="speed" oninput="setSpeed()">
 								<option value="p1x">0.1x (very slow)</option>
@@ -94,13 +94,15 @@
 						<div id="ldDiv" style="display:none;">
 							<p id="longDesc"></p>
 						</div>
-						<button id="ldBtn" onclick="longDesc()">see more</button>
-						<button id="theat_native" onclick="theatre()">theater mode</button>
-						<button id="theat_embed" style="display:none;" onclick="theatre('embed')">theater mode</button>
-						<button id="embedPlayer" onclick="embedNoCookie()">embed on youtube player</button>
-						<button onclick="openVideo(localStorage.getItem('sLoc'));">reload video data</button>
-						<button id="refreshBtn" onclick="location.reload();" style="display:none;">revert to native player</button>
-						<button class="material-icons ico" onclick="share()">link</button>
+						<div style="margin:5px;">
+							<button id="ldBtn" onclick="longDesc()">see more</button>
+							<button id="theat_native" onclick="theatre()">theater mode</button>
+							<button id="theat_embed" style="display:none;" onclick="theatre('embed')">theater mode</button>
+							<button id="embedPlayer" onclick="embedNoCookie()">embed on youtube player</button>
+							<button onclick="openVideo(localStorage.getItem('sLoc'));">reload video data</button>
+							<button id="refreshBtn" onclick="location.reload();" style="display:none;">revert to native player</button>
+							<button class="material-icons ico" onclick="share()">link</button>
+						</div>
 						<div id="sharDiv" style="display:none;margin:5px;">
 							<div style="float:left;margin:5px;">
 								<p>Full URL:</p>

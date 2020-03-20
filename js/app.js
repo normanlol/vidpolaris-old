@@ -1091,6 +1091,31 @@ function openVideo(opt,ret) {
 							} else {
 								var pDate = new Date(jsond.info.published);
 								var month = pDate.getMonth() + 1;
+								if (month == 1) {
+									var m = "January";
+								} else if (month == 2) {
+									var m = "February";
+								} else if (month == 3) {
+									var m = "March";
+								} else if (month == 4) {
+									var m = "April";
+								} else if (month == 5) {
+									var m = "May";
+								} else if (month == 6) {
+									var m = "June";
+								} else if (month == 7) {
+									var m = "July";
+								} else if (month == 8) {
+									var m = "August";
+								} else if (month == 9) {
+									var m = "September";
+								} else if (month == 10) {
+									var m = "October";
+								} else if (month == 11) {
+									var m = "November";
+								} else if (month == 12) {
+									var m = "December";
+								}
 								var day = pDate.getDate();
 								var year = pDate.getFullYear();
 								document.getElementById("vidDate").style.display = "";
@@ -1507,7 +1532,7 @@ function openVideo(opt,ret) {
 									}
 									document.getElementById("author").innerHTML = auth;
 									document.getElementById("searchContainer").style.display = '';
-									document.getElementById("pubM").innerHTML = month;
+									document.getElementById("pubM").innerHTML = m;
 									document.getElementById("pubY").innerHTML = year;
 									document.getElementById("pubD").innerHTML = day;
 									sessionStorage.removeItem("currentlyOpening");

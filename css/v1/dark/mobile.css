@@ -122,3 +122,7 @@ video {
 .comment {
 	background-color:#3c3c3c;
 }
+
+#sharDiv {
+	height:300px;
+}
