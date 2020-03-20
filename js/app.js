@@ -2275,9 +2275,10 @@ function getComments(token, opt) {
 				}
 			}
 		}
-		http.onreadystatechange=(e)=>{
+		http.onload=()=>{
 			var jsond = JSON.parse(http.responseText);
 			for (var c in jsond.comments) {
+				console.log(c)
 				var div = document.createElement("DIV");
 				div.classList.add("comment");
 				div.id = "c" + c;
@@ -2299,7 +2300,7 @@ function getComments(token, opt) {
 					var cLink = document.createElement("A");
 					cLink.id = "c"+c+"aL";
 					cLink.classList.add("channelLink");
-					cLink.href = jsond.comments[c].authorLink.substring(9);
+					cLink.href = "#c#" + jsond.comments[c].authorLink.substring(9);
 					document.getElementById("c"+c).appendChild(cLink);
 					var h3 = document.createElement("H3");
 					h3.classList.add("cAuthor");
@@ -2332,7 +2333,7 @@ function getComments(token, opt) {
 				var p = document.createElement("P");
 				p.style = "display:none;";
 				p.innerHTML = jsond.npToken;
-				p.id = "cnpToken";
+				p.id = "cnpToken"
 				document.getElementById("loadedComments").appendChild(p);
 			}
 		}
@@ -2441,11 +2442,10 @@ function getComments(token, opt) {
 				p.innerHTML = jsond.npToken;
 				p.id = "cnpToken"
 				document.getElementById("loadedComments").appendChild(p);
-			}
+			}	
 		}
 	}
 }
-
 
 function toggleAuto() {
 	setTimeout( function () {
