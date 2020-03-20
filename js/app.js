@@ -529,7 +529,7 @@ function search(opt) {
 	}
 	http.open("GET", url);
 	http.send();
-	http.onreadystatechange=(e)=>{
+	http.onload=(e)=>{
 		var jsond = JSON.parse(http.responseText);
 		document.getElementById("searchQuery").innerHTML = decodeURIComponent(q);
 		document.getElementById("searchTerm").style.display = "";
@@ -738,7 +738,7 @@ function feelingLucky(opt) {
 		}
 		http.open("GET", url);
 		http.send();
-		http.onreadystatechange=(e)=>{
+		http.onload=(e)=>{
 			var jsond = JSON.parse(http.responseText);
 			if (!jsond) {
 				home();
@@ -789,7 +789,7 @@ function feelingLucky(opt) {
 		console.log(surl)
 		http.open("GET",surl);
 		http.send();
-		http.onreadystatechange=(e)=>{
+		http.onload=(e)=>{
 			var json = JSON.parse(http.responseText);
 			var res = json.results;
 			var q = res[Math.floor(Math.random()*res.length)];
@@ -802,7 +802,7 @@ function feelingLucky(opt) {
 			}
 			http.open("GET", url);
 			http.send();
-			http.onreadystatechange=(e)=>{
+			http.onload=(e)=>{
 				var jsond = JSON.parse(http.responseText);
 				if (!jsond) {
 					home();
@@ -833,7 +833,7 @@ function getTrending(opt) {
 	}
 	http.open("GET", url);
 	http.send();
-	http.onreadystatechange=(e)=>{
+	http.onload=(e)=>{
 		var jsond = JSON.parse(http.responseText);
 		if (!jsond[0]) {
 			if (opt == "a" | !opt) {
@@ -909,7 +909,7 @@ function getTrendingMusic(opt) {
 	}
 	http.open("GET", url);
 	http.send();
-	http.onreadystatechange=(e)=>{
+	http.onload=(e)=>{
 		if (opt == "a" | !opt) {
 			var baseUrl = "http://normandotmp4.electrohaxz.tk:9019/?thumb=";
 		} else if (opt == "b") {
@@ -967,7 +967,7 @@ function getTrendingGaming(opt) {
 	}
 	http.open("GET", url);
 	http.send();
-	http.onreadystatechange=(e)=>{
+	http.onload=(e)=>{
 		if (opt == "a" | !opt) {
 			var baseUrl = "http://normandotmp4.electrohaxz.tk:9019/?thumb=";
 		} else if (opt == "b") {
@@ -1073,7 +1073,7 @@ function openVideo(opt,ret) {
 					}
 					http.open("GET", url);
 					http.send();
-					http.onreadystatechange=(e)=>{
+					http.onload=(e)=>{
 						var jsond = JSON.parse(http.responseText);
 						if (jsond.err) {
 							notPlayable();
@@ -1441,7 +1441,7 @@ function openVideo(opt,ret) {
 								}
 								http.open("GET", url);
 								http.send();
-								http.onreadystatechange=(e)=>{
+								http.onload=(e)=>{
 									document.getElementById("qSelector").style.display = '';
 									var jsond = JSON.parse(http.responseText);
 									if (!jsond.audio) {
@@ -1549,7 +1549,7 @@ function openVideo(opt,ret) {
 									http.ontimeout = () => {
 										getMeta(opt);
 									}
-									http.onreadystatechange=(e)=>{
+									http.onload=(e)=>{
 										var jsond = JSON.parse(http.responseText);
 										if (!jsond.meta) {
 											getMeta(opt);
@@ -1706,7 +1706,7 @@ function openVideo(opt,ret) {
 								http.ontimeout = () => {
 									getMeta(opt);
 								}
-								http.onreadystatechange=(e)=>{
+								http.onload=(e)=>{
 									var jsond = JSON.parse(http.responseText);
 									if (!jsond.meta) {
 										getMeta(opt);
@@ -1808,7 +1808,7 @@ function openVideo(opt,ret) {
 							openVideo("a");
 						}
 					}
-					http.onreadystatechange=(e)=>{
+					http.onload=(e)=>{
 						var jsond = JSON.parse(http.responseText);
 						document.getElementById("playerContainer").style.display = "";
 						if (localStorage.getItem("proxyVid") == "n") {
@@ -1862,7 +1862,7 @@ function openVideo(opt,ret) {
 							openVideo("a");
 						}
 					}
-					http.onreadystatechange=(e)=>{
+					http.onload=(e)=>{
 						var jsond = JSON.parse(http.responseText);
 						if (!jsond.audio) {
 							openVideo(opt);
@@ -2058,7 +2058,7 @@ function share() {
 		})
 		http.setRequestHeader('Content-Type', 'application/json')
 		http.send(params);
-		http.onreadystatechange=(e)=>{
+		http.onload=(e)=>{
 			var jsond = JSON.parse(http.responseText);
 			var shorter = "https://rel.ink/" + jsond.hashid;
 			document.getElementById("sUrlShar").value = shorter
@@ -2104,7 +2104,7 @@ function refresh() {
 		const http = new XMLHttpRequest();
 		http.open("GET", "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/");
 		http.send();
-		http.onreadystatechange=(e)=>{
+		http.onload=(e)=>{
 			var json = JSON.parse(http.responseText);
 			var option1 = document.createElement("OPTION");
 			option1.innerHTML = "server a (us west, electrohaxz) [donated server] (default) {" + json.version + "}" ;
@@ -2115,7 +2115,7 @@ function refresh() {
 			sessionStorage.setItem("sl", "i")
 			http.open("GET", "https://vidpolaris.herokuapp.com/");
 			http.send();
-			http.onreadystatechange=(e)=>{
+			http.onload=(e)=>{
 				if (sessionStorage.getItem("sl").length == 3) {
 					return;
 				} 
@@ -2382,7 +2382,7 @@ function getComments(token, opt) {
 				}
 			}
 		}
-		http.onreadystatechange=(e)=>{
+		http.onload=(e)=>{
 			var jsond = JSON.parse(http.responseText);
 			for (var c in jsond.comments) {
 				var div = document.createElement("DIV");
@@ -2493,7 +2493,7 @@ function changeQ(opt) {
 		}
 		http.open("GET", url);
 		http.send();
-		http.onreadystatechange=(e)=>{
+		http.onload=(e)=>{
 			var jsond = JSON.parse(http.responseText);
 			var currentTime = document.getElementById("player").currentTime;
 			document.getElementById("itag").innerHTML = jsond.datainfo.itag;
@@ -2540,7 +2540,7 @@ function changeAQ(opt) {
 	}
 	http.open("GET", url);
 	http.send();
-	http.onreadystatechange=(e)=>{
+	http.onload=(e)=>{
 		var jsond = JSON.parse(http.responseText);
 		var currentTime = document.getElementById("player").currentTime;
 		document.getElementById("itag").innerHTML = jsond.datainfo.itag;	
@@ -2599,7 +2599,7 @@ function translate(elem, opt) {
 			}
 			http.open("GET", url);
 			http.send();
-			http.onreadystatechange=(e)=>{
+			http.onload=(e)=>{
 				var jsond = JSON.parse(http.responseText);
 				var tTex = jsond.res.text;
 				var f = jsond.res.from.language.iso;
@@ -2937,7 +2937,7 @@ function openChannel(opt) {
 	}
 	http.open("GET", url);
 	http.send();
-	http.onreadystatechange=(e)=>{
+	http.onload=(e)=>{
 		var jsond = JSON.parse(http.responseText);
 		if (jsond.error) {
 			document.getElementById("errorPage").style.display = '';
@@ -3201,7 +3201,7 @@ function openChannelVideos(opt,pg) {
 	}
 	http.open("GET", url);
 	http.send();
-	http.onreadystatechange=(e)=>{
+	http.onload=(e)=>{
 		document.getElementById("allUploads").innerHTML = "";
 		var jsond = JSON.parse(http.responseText);
 		for (var c in jsond) {
@@ -3351,7 +3351,7 @@ function getSubs(opt) {
 	const http = new XMLHttpRequest();
 	http.open("GET", url);
 	http.send();
-	http.onreadystatechange=(e)=>{
+	http.onload=(e)=>{
 		document.getElementById("player").innerHTML = "";
 		var jsond = JSON.parse(http.responseText);
 		var captNum = jsond.captions.length;
@@ -3482,7 +3482,7 @@ function suggest(opt) {
 	const http = new XMLHttpRequest();
 	http.open("GET", url);
 	http.send();
-	http.onreadystatechange=(e)=>{
+	http.onload=(e)=>{
 		var jsond = JSON.parse(http.responseText);
 		if (jsond.results[0]) {
 			var opti = document.createElement("OPTION");
@@ -3530,7 +3530,7 @@ function getMeta(opt) {
  	http.ontimeout = () => {
  		getMeta(opt);
  	}
- 	http.onreadystatechange=(e)=>{
+ 	http.onload=(e)=>{
  		var jsond = JSON.parse(http.responseText);
  		if (!jsond.meta) {
  			getMeta(opt);
