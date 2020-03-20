@@ -1681,7 +1681,7 @@ function openVideo(opt,ret) {
 								sessionStorage.removeItem("currentlyOpening");
 								document.getElementById("author").innerHTML = auth;
 								document.getElementById("searchContainer").style.display = '';
-								document.getElementById("pubM").innerHTML = month;
+								document.getElementById("pubM").innerHTML = m;
 								document.getElementById("pubY").innerHTML = year;
 								document.getElementById("pubD").innerHTML = day;
 								if (!opt) {
@@ -2720,6 +2720,11 @@ function getComments(token, opt) {
 			document.getElementById("loadedC").style.display = '';
 			document.getElementById("loadedComments").style.display = '';
 			document.getElementById("loadinC").style.display = 'none';
+			if (jsond.comments[0].timestamp < jsond.comments[1].timestamp) {
+				document.getElementById("pinnedC").style.display = "";
+			} else {
+				document.getElementById("pinnedC").style.display = "none";
+			}
 			document.getElementById("loadedComm").innerHTML = commentsNum;
 			document.getElementById("c01p").src = jsond.comments[0].authorThumb;
 			document.getElementById("c01c").innerHTML = jsond.comments[0].text.replace(/\n/g, "<br>");
