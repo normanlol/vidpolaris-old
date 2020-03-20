@@ -1479,6 +1479,7 @@ function openVideo(opt,ret) {
 											}
 										}
 									}
+									document.getElementById("aqOptions").style.display = "";
 									document.getElementById("player").src = videoUrl;
 									document.getElementById("qOptions").value = document.getElementById("itag").innerHTML;
 									document.getElementById("vidLoader").style.display = 'none';
@@ -1628,6 +1629,7 @@ function openVideo(opt,ret) {
 										}
 									}	
 								}
+								document.getElementById("aqOptions").style.display = "none";
 								if (opt == "a" | !opt) {
 									var tUrl = "http://normandotmp4.electrohaxz.tk:9019/?thumb=" + getClickedId(window.location.href, "#w#");
 								} else if (opt == "b"){
