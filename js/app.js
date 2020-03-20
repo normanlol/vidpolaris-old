@@ -2278,7 +2278,6 @@ function getComments(token, opt) {
 		http.onload=()=>{
 			var jsond = JSON.parse(http.responseText);
 			for (var c in jsond.comments) {
-				console.log(c)
 				var div = document.createElement("DIV");
 				div.classList.add("comment");
 				div.id = "c" + c;
