@@ -1084,7 +1084,9 @@ function openVideo(opt,ret) {
 							var auth = jsond.info.player_response.videoDetails.author;
 							var aLink = "#c#" + jsond.info.author.id;
 							document.getElementById("vidAuthor").style.display = "";
-							document.getElementById("authorL").href = aLink;
+							if (aLink && !aLink == null && !aLink == undefined) {
+								document.getElementById("authorL").href = aLink;
+							}
 							var desc = jsond.info.player_response.videoDetails.shortDescription.replace(/\n/g, "<br>")
 							if (jsond.info.published == null) {
 								document.getElementById("vidDate").style.display = "none";
