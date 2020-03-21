@@ -1141,136 +1141,77 @@ function openVideo(opt,pxy,ret) {
 								sessionStorage.removeItem("currentlyOpening");
 							}
 							if (!jsond.info.player_response.cards) {
-								document.getElementById("card1").style.display = 'none';
-								document.getElementById("card2").style.display = 'none';
-								document.getElementById("card3").style.display = 'none';
-								document.getElementById("card4").style.display = 'none';
-								document.getElementById("card5").style.display = 'none';
+								document.getElementById("cardContainer").innerHTML = "";
 							} else {
-								if (jsond.info.player_response.cards.cardCollectionRenderer.cards[0]) {
-									if (jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.videoInfoCardContentRenderer) {
-										document.getElementById("card1").style.display = '';
-										if (!jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.videoInfoCardContentRenderer.customMessage) {
-											document.getElementById("cardMessage1").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.videoInfoCardContentRenderer.videoTitle.simpleText || "[No message]";
-											document.getElementById("cardLink1").href = "#w#" + jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.videoInfoCardContentRenderer.action.watchEndpoint.videoId;
+								document.getElementById("cardContainer").innerHTML = "";
+								for (var c in jsond.info.player_response.cards.cardCollectionRenderer.cards) {
+									var card = document.createElement("H3");
+									card.classList.add("stat");
+									card.id = "card"+c;
+									document.getElementById("cardContainer").appendChild(card);
+									var ico = document.createElement("SPAN");
+									ico.classList.add("ico");
+									ico.classList.add("material-icons");
+									ico.innerHTML = "info";
+									document.getElementById("card"+c).appendChild(ico);
+									if (jsond.info.player_response.cards.cardCollectionRenderer.cards[c].cardRenderer.content.videoInfoCardContentRenderer) {
+										var link = document.createElement("A");
+										link.href = "#w#" + jsond.info.player_response.cards.cardCollectionRenderer.cards[c].cardRenderer.content.videoInfoCardContentRenderer.action.watchEndpoint.videoId;
+										link.id = "cardL" + c;
+										link.classList.add("channelLink");
+										document.getElementById("card"+c).appendChild(link);
+										if (jsond.info.player_response.cards.cardCollectionRenderer.cards[c].cardRenderer.content.videoInfoCardContentRenderer.customMessage) {
+											var txt = document.createElement("SPAN");
+											txt.innerHTML = " " + jsond.info.player_response.cards.cardCollectionRenderer.cards[c].cardRenderer.content.videoInfoCardContentRenderer.customMessage.simpleText || "[No message]";
+											document.getElementById("cardL"+c).appendChild(txt);
 										} else {
-											document.getElementById("cardMessage1").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.videoInfoCardContentRenderer.customMessage.simpleText;
-											document.getElementById("cardLink1").href = "#w#" + jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.videoInfoCardContentRenderer.action.watchEndpoint.videoId;
+											var txt = document.createElement("SPAN");
+											txt.innerHTML = " " + jsond.info.player_response.cards.cardCollectionRenderer.cards[c].cardRenderer.content.videoInfoCardContentRenderer.videoTitle.simpleText || "[No message]";
+											document.getElementById("cardL"+c).appendChild(txt);
 										}
-									} else if (jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.playlistInfoCardContentRenderer) {
-										document.getElementById("card1").style.display = '';
-										if (!jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.playlistInfoCardContentRenderer.customMessage) {
-											document.getElementById("cardMessage1").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.playlistInfoCardContentRenderer.playlistTitle.simpleText;
-											document.getElementById("cardLink1").href = "https://youtube.com/playlist?list=" + jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.playlistInfoCardContentRenderer.action.watchEndpoint.playlistId;
+									} else if (jsond.info.player_response.cards.cardCollectionRenderer.cards[c].cardRenderer.content.playlistInfoCardContentRenderer) {
+										var link = document.createElement("A");
+										link.href = "https://youtube.com/playlist?list=" + jsond.info.player_response.cards.cardCollectionRenderer.cards[c].cardRenderer.content.playlistInfoCardContentRenderer.action.watchEndpoint.playlistId;
+										link.id = "cardL" + c;
+										link.classList.add("channelLink");
+										document.getElementById("card"+c).appendChild(link);
+										if (!jsond.info.player_response.cards.cardCollectionRenderer.cards[c].cardRenderer.content.playlistInfoCardContentRenderer.customMessage) {
+											var txt = document.createElement("SPAN");
+											txt.innerHTML = " " + jsond.info.player_response.cards.cardCollectionRenderer.cards[c].cardRenderer.content.playlistInfoCardContentRenderer.playlistTitle.simpleText || "[No message]";
+											document.getElementById("cardL"+c).appendChild(txt);
 										} else {
-											document.getElementById("cardMessage1").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.playlistInfoCardContentRenderer.customMessage.simpleText;
-											document.getElementById("cardLink1").href = "https://youtube.com/playlist?list=" + jsond.info.player_response.cards.cardCollectionRenderer.cards[0].cardRenderer.content.playlistInfoCardContentRenderer.action.watchEndpoint.playlistId;
+											var txt = document.createElement("SPAN");
+											txt.innerHTML = " " + jsond.info.player_response.cards.cardCollectionRenderer.cards[c].cardRenderer.content.playlistInfoCardContentRenderer.customMessage.simpleText || "[No message]";
+											document.getElementById("cardL"+c).appendChild(txt);
 										}
-									}
-								} else {
-									document.getElementById("card1").style.display = 'none';
-									document.getElementById("card2").style.display = 'none';
-									document.getElementById("card3").style.display = 'none';
-									document.getElementById("card4").style.display = 'none';
-									document.getElementById("card5").style.display = 'none';
-								}
-								if (jsond.info.player_response.cards.cardCollectionRenderer.cards[1]) {
-									if (jsond.info.player_response.cards.cardCollectionRenderer.cards[1].cardRenderer.content.videoInfoCardContentRenderer) {
-										document.getElementById("card2").style.display = '';
-										if (!jsond.info.player_response.cards.cardCollectionRenderer.cards[1].cardRenderer.content.videoInfoCardContentRenderer.customMessage) {
-											document.getElementById("cardMessage2").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[1].cardRenderer.content.videoInfoCardContentRenderer.videoTitle.simpleText || "[No message]";
-											document.getElementById("cardLink2").href = "#w#" + jsond.info.player_response.cards.cardCollectionRenderer.cards[1].cardRenderer.content.videoInfoCardContentRenderer.action.watchEndpoint.videoId;
-										} else {
-											document.getElementById("cardMessage2").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[1].cardRenderer.content.videoInfoCardContentRenderer.customMessage.simpleText;
-											document.getElementById("cardLink2").href = "#w#" + jsond.info.player_response.cards.cardCollectionRenderer.cards[1].cardRenderer.content.videoInfoCardContentRenderer.action.watchEndpoint.videoId;
+									} else if (jsond.info.player_response.cards.cardCollectionRenderer.cards[c].cardRenderer.content.collaboratorInfoCardContentRenderer) {
+										var link = document.createElement("A");
+										link.href = "#c#" + jsond.info.player_response.cards.cardCollectionRenderer.cards[c].cardRenderer.content.collaboratorInfoCardContentRenderer.endpoint.browseEndpoint.browseId;
+										link.id = "cardL" + c;
+										link.classList.add("channelLink");
+										document.getElementById("card"+c).appendChild(link);
+										if (jsond.info.player_response.cards.cardCollectionRenderer.cards[c].cardRenderer.teaser.simpleCardTeaserRenderer.message) {
+											var txt = document.createElement("SPAN");
+											txt.innerHTML = " " + jsond.info.player_response.cards.cardCollectionRenderer.cards[c].cardRenderer.teaser.simpleCardTeaserRenderer.message.simpleText || "[No message]";
+											document.getElementById("cardL"+c).appendChild(txt);
 										}
-									} else if (jsond.info.player_response.cards.cardCollectionRenderer.cards[1].cardRenderer.content.playlistInfoCardContentRenderer) {
-										document.getElementById("card2").style.display = '';
-										if (!jsond.info.player_response.cards.cardCollectionRenderer.cards[1].cardRenderer.content.playlistInfoCardContentRenderer.customMessage) {
-											document.getElementById("cardMessage2").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[1].cardRenderer.content.playlistInfoCardContentRenderer.playlistTitle.simpleText;
-											document.getElementById("cardLink2").href = "https://youtube.com/playlist?list=" + jsond.info.player_response.cards.cardCollectionRenderer.cards[1].cardRenderer.content.playlistInfoCardContentRenderer.action.watchEndpoint.playlistId;
-										} else {
-											document.getElementById("cardMessage2").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[1].cardRenderer.content.playlistInfoCardContentRenderer.customMessage.simpleText;
-											document.getElementById("cardLink2").href = "https://youtube.com/playlist?list=" + jsond.info.player_response.cards.cardCollectionRenderer.cards[1].cardRenderer.content.playlistInfoCardContentRenderer.action.watchEndpoint.playlistId;
-										}
-									}
-								} else {
-									document.getElementById("card2").style.display = 'none';
-									document.getElementById("card3").style.display = 'none';
-									document.getElementById("card4").style.display = 'none';
-									document.getElementById("card5").style.display = 'none';
-								}
-								if (jsond.info.player_response.cards.cardCollectionRenderer.cards[2]) {
-									if (jsond.info.player_response.cards.cardCollectionRenderer.cards[2].cardRenderer.content.videoInfoCardContentRenderer) {
-										document.getElementById("card3").style.display = '';
-										if (!jsond.info.player_response.cards.cardCollectionRenderer.cards[2].cardRenderer.content.videoInfoCardContentRenderer.customMessage) {
-											document.getElementById("cardMessage3").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[2].cardRenderer.content.videoInfoCardContentRenderer.videoTitle.simpleText || "[No message]";
-											document.getElementById("cardLink3").href = "#w#" + jsond.info.player_response.cards.cardCollectionRenderer.cards[2].cardRenderer.content.videoInfoCardContentRenderer.action.watchEndpoint.videoId;
-										} else {
-											document.getElementById("cardMessage3").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[2].cardRenderer.content.videoInfoCardContentRenderer.customMessage.simpleText;
-											document.getElementById("cardLink3").href = "#w#" + jsond.info.player_response.cards.cardCollectionRenderer.cards[2].cardRenderer.content.videoInfoCardContentRenderer.action.watchEndpoint.videoId;
-										}
-									} else if (jsond.info.player_response.cards.cardCollectionRenderer.cards[2].cardRenderer.content.playlistInfoCardContentRenderer) {
-										document.getElementById("card3").style.display = '';
-										if (!jsond.info.player_response.cards.cardCollectionRenderer.cards[2].cardRenderer.content.playlistInfoCardContentRenderer.customMessage) {
-											document.getElementById("cardMessage3").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[2].cardRenderer.content.playlistInfoCardContentRenderer.playlistTitle.simpleText;
-											document.getElementById("cardLink3").href = "https://youtube.com/playlist?list=" + jsond.info.player_response.cards.cardCollectionRenderer.cards[2].cardRenderer.content.playlistInfoCardContentRenderer.action.watchEndpoint.playlistId;
-										} else {
-											document.getElementById("cardMessage3").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[2].cardRenderer.content.playlistInfoCardContentRenderer.customMessage.simpleText;
-											document.getElementById("cardLink3").href = "https://youtube.com/playlist?list=" + jsond.info.player_response.cards.cardCollectionRenderer.cards[2].cardRenderer.content.playlistInfoCardContentRenderer.action.watchEndpoint.playlistId;
+									} else if (jsond.info.player_response.cards.cardCollectionRenderer.cards[c].cardRenderer.content.pollRenderer) {
+										var q = document.createElement("H4");
+										q.classList.add("stat");
+										q.innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[c].cardRenderer.content.pollRenderer.question.simpleText;
+										q.style = "margin-left:25px;margin-top:-23px;";
+										document.getElementById("card"+c).appendChild(q);
+										var div = document.createElement("DIV");
+										div.classList.add("sResultVideo");
+										div.id = "cardPoll"+c;
+										document.getElementById("card"+c).appendChild(div)
+										for (var cc in jsond.info.player_response.cards.cardCollectionRenderer.cards[c].cardRenderer.content.pollRenderer.choices) {
+											var choice = document.createElement("P");
+											choice.classList.add("stat");
+											choice.innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[c].cardRenderer.content.pollRenderer.choices[cc].text.simpleText + " [" + jsond.info.player_response.cards.cardCollectionRenderer.cards[c].cardRenderer.content.pollRenderer.choices[cc].numVotes.toLocaleString() + " votes]";
+											document.getElementById("cardPoll"+c).appendChild(choice);
 										}
 									}
-								} else {
-									document.getElementById("card3").style.display = 'none';
-									document.getElementById("card4").style.display = 'none';
-									document.getElementById("card5").style.display = 'none';
-								}
-								if (jsond.info.player_response.cards.cardCollectionRenderer.cards[3]) {
-									if (jsond.info.player_response.cards.cardCollectionRenderer.cards[3].cardRenderer.content.videoInfoCardContentRenderer) {
-										document.getElementById("card4").style.display = '';
-										if (!jsond.info.player_response.cards.cardCollectionRenderer.cards[3].cardRenderer.content.videoInfoCardContentRenderer.customMessage) {
-											document.getElementById("cardMessage4").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[3].cardRenderer.content.videoInfoCardContentRenderer.videoTitle.simpleText || "[No message]";
-											document.getElementById("cardLink4").href = "#w#" + jsond.info.player_response.cards.cardCollectionRenderer.cards[3].cardRenderer.content.videoInfoCardContentRenderer.action.watchEndpoint.videoId;
-										} else {
-											document.getElementById("cardMessage4").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[3].cardRenderer.content.videoInfoCardContentRenderer.customMessage.simpleText;
-											document.getElementById("cardLink4").href = "#w#" + jsond.info.player_response.cards.cardCollectionRenderer.cards[3].cardRenderer.content.videoInfoCardContentRenderer.action.watchEndpoint.videoId;
-										}
-									} else if (jsond.info.player_response.cards.cardCollectionRenderer.cards[3].cardRenderer.content.playlistInfoCardContentRenderer) {
-										document.getElementById("card4").style.display = '';
-										if (!jsond.info.player_response.cards.cardCollectionRenderer.cards[3].cardRenderer.content.playlistInfoCardContentRenderer.customMessage) {
-											document.getElementById("cardMessage4").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[3].cardRenderer.content.playlistInfoCardContentRenderer.playlistTitle.simpleText;
-											document.getElementById("cardLink4").href = "https://youtube.com/playlist?list=" + jsond.info.player_response.cards.cardCollectionRenderer.cards[3].cardRenderer.content.playlistInfoCardContentRenderer.action.watchEndpoint.playlistId;
-										} else {
-											document.getElementById("cardMessage4").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[3].cardRenderer.content.playlistInfoCardContentRenderer.customMessage.simpleText;
-											document.getElementById("cardLink4").href = "https://youtube.com/playlist?list=" + jsond.info.player_response.cards.cardCollectionRenderer.cards[3].cardRenderer.content.playlistInfoCardContentRenderer.action.watchEndpoint.playlistId;
-										}
-									}
-								} else {
-									document.getElementById("card4").style.display = 'none';
-									document.getElementById("card5").style.display = 'none';
-								}
-								if (jsond.info.player_response.cards.cardCollectionRenderer.cards[4]) {
-									if (jsond.info.player_response.cards.cardCollectionRenderer.cards[4].cardRenderer.content.videoInfoCardContentRenderer) {
-										document.getElementById("card5").style.display = '';
-										if (!jsond.info.player_response.cards.cardCollectionRenderer.cards[4].cardRenderer.content.videoInfoCardContentRenderer.customMessage) {
-											document.getElementById("cardMessage5").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[4].cardRenderer.content.videoInfoCardContentRenderer.videoTitle.simpleText || "[No message]";
-											document.getElementById("cardLink5").href = "#w#" + jsond.info.player_response.cards.cardCollectionRenderer.cards[4].cardRenderer.content.videoInfoCardContentRenderer.action.watchEndpoint.videoId;
-										} else {
-											document.getElementById("cardMessage5").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[4].cardRenderer.content.videoInfoCardContentRenderer.customMessage.simpleText;
-											document.getElementById("cardLink5").href = "#w#" + jsond.info.player_response.cards.cardCollectionRenderer.cards[4].cardRenderer.content.videoInfoCardContentRenderer.action.watchEndpoint.videoId;
-										}
-									} else if (jsond.info.player_response.cards.cardCollectionRenderer.cards[4].cardRenderer.content.playlistInfoCardContentRenderer) {
-										document.getElementById("card5").style.display = '';
-										if (!jsond.info.player_response.cards.cardCollectionRenderer.cards[4].cardRenderer.content.playlistInfoCardContentRenderer.customMessage) {
-											document.getElementById("cardMessage5").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[4].cardRenderer.content.playlistInfoCardContentRenderer.playlistTitle.simpleText;
-											document.getElementById("cardLink5").href = "https://youtube.com/playlist?list=" + jsond.info.player_response.cards.cardCollectionRenderer.cards[4].cardRenderer.content.playlistInfoCardContentRenderer.action.watchEndpoint.playlistId;
-										} else {
-											document.getElementById("cardMessage5").innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[4].cardRenderer.content.playlistInfoCardContentRenderer.customMessage.simpleText;
-											document.getElementById("cardLink5").href = "https://youtube.com/playlist?list=" + jsond.info.player_response.cards.cardCollectionRenderer.cards[4].cardRenderer.content.playlistInfoCardContentRenderer.action.watchEndpoint.playlistId;
-										}
-									}
-								} else {
-									document.getElementById("card5").style.display = 'none';
 								}
 							}
 							var cat = jsond.info.media.category;
@@ -1462,13 +1403,13 @@ function openVideo(opt,pxy,ret) {
 										return;
 									}
 									var audioUrl = jsond.audio[0].url;
-									if (localStorage.getItem("proxyVid") == "n" && !pxy == "y") {
+									if (localStorage.getItem("proxyVid") == "n" ) {
 										document.getElementById("audioPlayer").src = audioUrl;
 									} else {
 										document.getElementById("audioPlayer").src = proxy(audioUrl);
 									}
 									if (jsond.video[0].isHls == true | jsond.video[0].isLive == true | jsond.video[0].isDashMPD == true) {
-										if (localStorage.getItem("proxyVid") == "n" && !pxy == "y") {
+										if (localStorage.getItem("proxyVid") == "n" ) {
 											var videoUrl = jsond.video[1].url;
 											document.getElementById("itag").innerHTML = jsond.video[1].itag;
 										} else {
@@ -1476,7 +1417,7 @@ function openVideo(opt,pxy,ret) {
 											document.getElementById("itag").innerHTML = jsond.video[1].itag;
 										}
 									} else {
-										if (localStorage.getItem("proxyVid") == "n" && !pxy == "y") {
+										if (localStorage.getItem("proxyVid") == "n" ) {
 											var videoUrl = jsond.video[0].url;
 											document.getElementById("itag").innerHTML = jsond.video[0].itag;
 										} else {
@@ -1491,6 +1432,7 @@ function openVideo(opt,pxy,ret) {
 											option.innerHTML = jsond.video[c].qualityLabel;
 											document.getElementById("qOptions").appendChild(option);
 										} else {
+											for (var cc in range)
 											if (jsond.video[c-1].qualityLabel == jsond.video[c].qualityLabel) {
 												// do nothing
 											} else {
@@ -1594,7 +1536,7 @@ function openVideo(opt,pxy,ret) {
 											document.getElementById("title").style = "margin:0;"
 										} else {
 											document.getElementById("ulIco").style.display = "";
-											document.getElementById("title").style = "margin-top:-27px;margin-left:25px;"
+											document.getElementById("title").style = "margin-top:-27px;"
 										}
 										if (jsond.meta.subText) {
 											document.getElementById("subText").innerHTML = "[" + jsond.meta.subText + " subscribers]";
@@ -1640,7 +1582,7 @@ function openVideo(opt,pxy,ret) {
 							} else {
 								document.getElementById("vidViewer").style.display = '';
 								document.getElementById("vidLoader").style.display = 'none';
-								if (localStorage.getItem("proxyVid") == "n" && !pxy == "y") {
+								if (localStorage.getItem("proxyVid") == "n" ) {
 									document.getElementById("player").src = wUrl;
 								} else {
 									document.getElementById("player").src = proxy(wUrl);
@@ -1824,7 +1766,7 @@ function openVideo(opt,pxy,ret) {
 					http.onload=(e)=>{
 						var jsond = JSON.parse(http.responseText);
 						document.getElementById("playerContainer").style.display = "";
-						if (localStorage.getItem("proxyVid") == "n" && !pxy == "y") {
+						if (localStorage.getItem("proxyVid") == "n" ) {
 							document.getElementById("player").src = jsond.datainfo[0].url;
 						} else {
 							document.getElementById("player").src = proxy(jsond.datainfo[0].url);
@@ -1882,7 +1824,7 @@ function openVideo(opt,pxy,ret) {
 							return;
 						}
 						var audioUrl = jsond.audio[0].url;
-						if (localStorage.getItem("proxyVid") == "n" && !pxy == "y") {
+						if (localStorage.getItem("proxyVid") == "n" ) {
 							document.getElementById("audioPlayer").src = audioUrl;
 						} else {
 							document.getElementById("audioPlayer").src = proxy(audioUrl);
@@ -1998,7 +1940,7 @@ function openVideo(opt,pxy,ret) {
 							opt1.innerHTML = jsond.video[0].qualityLabel;
 							document.getElementById("qOptions").appendChild(opt1);
 						}
-						if (localStorage.getItem("proxyVid") == "n" && !pxy == "y") {
+						if (localStorage.getItem("proxyVid") == "n" ) {
 							document.getElementById("player").src = videoUrl;
 						} else {
 							document.getElementById("player").src = proxy(videoUrl);
