@@ -2405,15 +2405,6 @@ function getComments(token, opt) {
 				div.classList.add("comment");
 				div.id = "c" + c;
 				document.getElementById("loadedComments").appendChild(div);
-				if (c == 0 && jsond.comments[0].timestamp && jsond.comments[1].timestamp) {
-					if (jsond.comments[0].timestamp < jsond.comments[1].timestamp) {
-						var pinned = document.createElement("P");
-						pinned.classList.add("stat");
-						pinned.innerHTML = "<span class='ico material-icons'>announcement</span> Pinned comment";
-						pinned.style = "margin-bottom:5px;";
-						document.getElementById("c"+c).appendChild(pinned);
-					}
-				}
 				var img = document.createElement("IMG");
 				img.src = jsond.comments[c].authorThumb;
 				img.classList.add("smallPfp");
