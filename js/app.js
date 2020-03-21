@@ -1084,7 +1084,9 @@ function openVideo(opt,ret) {
 							var auth = jsond.info.player_response.videoDetails.author;
 							var aLink = "#c#" + jsond.info.author.id;
 							document.getElementById("vidAuthor").style.display = "";
-							if (aLink && !aLink == null && !aLink == undefined) {
+							if (!aLink && !aLink == null && !aLink == undefined) {
+								// do nothing
+							} else {
 								document.getElementById("authorL").href = aLink;
 							}
 							var desc = jsond.info.player_response.videoDetails.shortDescription.replace(/\n/g, "<br>")
@@ -1553,7 +1555,7 @@ function openVideo(opt,ret) {
 									}
 									http.onload=(e)=>{
 										var jsond = JSON.parse(http.responseText);
-										if (!jsond.meta) {
+										if (!jsond.meta.views) {
 											getMeta(opt);
 										}
 										var view = jsond.meta.views.toLocaleString();
@@ -2324,18 +2326,20 @@ function getComments(token, opt) {
 				} else {
 					var rep = jsond.comments[c].numReplies;
 				}
-				stats.innerHTML = "<span class='material-icons ico'>comment</span> " + rep + " replies • <span class='material-icons ico'>thumb_up</span> " + jsond.comments[c].likes.toLocaleString() + " likes • <span>posted " + jsond.comments[c].time + "</span>";
+			var tFunction = `translate('c` + c + `T')`
+				stats.innerHTML = "<span class='material-icons ico'>comment</span> " + rep + " replies • <span class='material-icons ico'>thumb_up</span> " + jsond.comments[c].likes.toLocaleString() + " likes • <span onclick=" + tFunction + " style='cursor:pointer'><span class='material-icons ico'>translate</span> translate this comment</span> • <span>posted " + jsond.comments[c].time + "</span>";
 				document.getElementById("c"+c).appendChild(stats);
 			}
 			document.getElementById("loadinC").style.display = "none";
 			document.getElementById("loadedC").style.display = "";
 			document.getElementById("loadedComments").style.display = "";
 			if (jsond.npToken) {
-				var p = document.createElement("P");
-				p.style = "display:none;";
-				p.innerHTML = jsond.npToken;
-				p.id = "cnpToken"
-				document.getElementById("loadedComments").appendChild(p);
+				var button = document.createElement("BUTTON");
+				button.onclick = function() {
+					getComments(jsond.npToken, localStorage.getItem("sLoc"));
+				}
+				button.innerHTML = "load more comments"
+				document.getElementById("loadedComments").appendChild(button)
 			}
 		}
 	} else {
@@ -2344,6 +2348,7 @@ function getComments(token, opt) {
 		document.getElementById("errorC").style.display = 'none';
 		document.getElementById("loadC").style.display = 'none';
 		document.getElementById("loadinC").style.display = '';
+		document.getElementById("loadedComments").innerHTML = '';
 		var id = getClickedId(window.location.href, '#w#');
 		var fullUrl = "https://youtube.com/watch?v=" + id;
 		const http = new XMLHttpRequest();
@@ -2408,7 +2413,7 @@ function getComments(token, opt) {
 					var cLink = document.createElement("A");
 					cLink.id = "c"+c+"aL";
 					cLink.classList.add("channelLink");
-					cLink.href = jsond.comments[c].authorLink.substring(9);
+					cLink.href = "#c#" + jsond.comments[c].authorLink.substring(9);
 					document.getElementById("c"+c).appendChild(cLink);
 					var h3 = document.createElement("H3");
 					h3.classList.add("cAuthor");
@@ -2431,19 +2436,21 @@ function getComments(token, opt) {
 				} else {
 					var rep = jsond.comments[c].numReplies;
 				}
-				stats.innerHTML = "<span class='material-icons ico'>comment</span> " + rep + " replies • <span class='material-icons ico'>thumb_up</span> " + jsond.comments[c].likes.toLocaleString() + " likes • <span>posted " + jsond.comments[c].time + "</span>";
+			var tFunction = `translate('c` + c + `T')`
+				stats.innerHTML = "<span class='material-icons ico'>comment</span> " + rep + " replies • <span class='material-icons ico'>thumb_up</span> " + jsond.comments[c].likes.toLocaleString() + " likes • <span onclick=" + tFunction + " style='cursor:pointer'><span class='material-icons ico'>translate</span> translate this comment</span> • <span>posted " + jsond.comments[c].time + "</span>";
 				document.getElementById("c"+c).appendChild(stats);
 			}
 			document.getElementById("loadinC").style.display = "none";
 			document.getElementById("loadedC").style.display = "";
 			document.getElementById("loadedComments").style.display = "";
 			if (jsond.npToken) {
-				var p = document.createElement("P");
-				p.style = "display:none;";
-				p.innerHTML = jsond.npToken;
-				p.id = "cnpToken"
-				document.getElementById("loadedComments").appendChild(p);
-			}	
+				var button = document.createElement("BUTTON");
+				button.onclick = function() {
+					getComments(jsond.npToken, localStorage.getItem("sLoc"));
+				}
+				button.innerHTML = "load more comments"
+				document.getElementById("loadedComments").appendChild(button)
+			}
 		}
 	}
 }
@@ -2583,7 +2590,7 @@ function proxyAV() {
 	}
 }
 
-function translate(elem, opt) {
+function translate(elem) {
 	if (!elem) {
 		return;
 	} else {
@@ -2592,11 +2599,11 @@ function translate(elem, opt) {
 		if (!sessionStorage.getItem("currentlyRunningT") | sessionStorage.getItem("currentlyRunningT") == "n") {
 			sessionStorage.setItem("currentlyRunningT", "y");
 			const http = new XMLHttpRequest();
-			if (opt == "a" | !opt) {
+			if (localStorage.getItem("sLoc") == "a" | !localStorage.getItem("sLoc")) {
 				var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?to=en&translate=" + encodeURIComponent(tex);
-			} else if (opt == "b"){
+			} else if (localStorage.getItem("sLoc") == "b"){
 				var url = "https://vidpolaris.herokuapp.com/?to=en&translate=" + encodeURIComponent(tex);
-			} else if (opt == "c") {
+			} else if (localStorage.getItem("sLoc") == "c") {
 				var url = "https://vidpolaris-europe.herokuapp.com/?to=en&translate=" + encodeURIComponent(tex);
 			}
 			http.open("GET", url);
@@ -3534,7 +3541,7 @@ function getMeta(opt) {
  	}
  	http.onload=(e)=>{
  		var jsond = JSON.parse(http.responseText);
- 		if (!jsond.meta) {
+ 		if (!jsond.meta.views) {
  			getMeta(opt);
  			return;
  		}
