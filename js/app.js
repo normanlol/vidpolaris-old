@@ -1,3 +1,6 @@
+console.log("script loaded.");
+console.log("==================");
+
 resize();
 keepProg();
 if (window.location.href.includes("#c") | window.location.href.includes("#w") | window.location.href.includes("#s")) {
@@ -18,30 +21,31 @@ if (localStorage.getItem("proxyVid") == "y") {
 document.getElementById("trendingLoader").style.display = "";
 
 // settings checkers
+console.log("- removing unnecessary sessionStorage items...");
 
 if (sessionStorage.getItem("currentlyRunningT")) {
 	sessionStorage.removeItem("currentlyRunningT");
+	console.log("-- removed 'currentlyRunningT' item");
 }
 
 if (sessionStorage.getItem("currentlyOpening")) {
 	sessionStorage.removeItem("currentlyOpening");
+	console.log("-- removed 'currentlyOpening' item");
 }
 
 if (sessionStorage.getItem("nxtpg")) {
 	sessionStorage.removeItem("nxtpg");
-}
-
-if (sessionStorage.getItem("prvpg")) {
-	sessionStorage.removeItem("prvpg");
+	console.log("-- removed 'nxtpg' item");
 }
 
 if (sessionStorage.getItem("embed")) {
 	sessionStorage.removeItem("embed");
+	console.log("-- removed 'embed' item");
 }
 
 if (!localStorage.getItem("trendCont")) {
 	if (localStorage.getItem("c")) {
-		console.log("country imported from NewsPage")
+		console.log("--- country imported from NewsPage")
 		localStorage.setItem("trendCont", localStorage.getItem("c"))
 	} else {
 		localStorage.setItem("trendCont", "us");
@@ -49,6 +53,8 @@ if (!localStorage.getItem("trendCont")) {
 } else {
 	document.getElementById("country").value = localStorage.getItem("trendingCont");
 }
+
+console.log("- checking and setting localStorage items")
 
 if (!localStorage.getItem("proxyVid")) {
 	localStorage.setItem("proxyVid", "n");
@@ -117,6 +123,9 @@ if (!localStorage.getItem("theatre")) {
 		theatre();
 	}
 }
+
+console.log("ended onclick functions");
+console.log("==================");
 
 // end setting checkers
 // listeners
@@ -435,7 +444,7 @@ document.addEventListener('keydown', function (event) {
 document.getElementById("player").onerror = function(e){
 	sessionStorage.setItem("ewv", "y");
 	if (!sessionStorage.getItem("ewa")) {
-		openVideo(localStorage.getItem("sLoc"), "y");
+		openVideo(localStorage.getItem("sLoc"), "n", "y");
 	} else {
 		document.getElementById("loadErr").style.display = "";
 		return;
@@ -445,7 +454,7 @@ document.getElementById("player").onerror = function(e){
 document.getElementById("audioPlayer").onerror = function(e){
 	sessionStorage.setItem("ewa", "y");
 	if (!sessionStorage.getItem("ewv")) {
-		openVideo(localStorage.getItem("sLoc"), "y");
+		openVideo(localStorage.getItem("sLoc"), "n", "y");
 	} else {
 		document.getElementById("loadErr").style.display = "";
 		return;
@@ -1013,7 +1022,7 @@ function getTrendingGaming(opt) {
 	}
 }
 
-function openVideo(opt,ret) {
+function openVideo(opt,pxy,ret) {
 	setTimeout(function () {
 		if (!window.location.href.includes("#w#")) {
 			return;
@@ -1453,13 +1462,13 @@ function openVideo(opt,ret) {
 										return;
 									}
 									var audioUrl = jsond.audio[0].url;
-									if (localStorage.getItem("proxyVid") == "n") {
+									if (localStorage.getItem("proxyVid") == "n" && !pxy == "y") {
 										document.getElementById("audioPlayer").src = audioUrl;
 									} else {
 										document.getElementById("audioPlayer").src = proxy(audioUrl);
 									}
 									if (jsond.video[0].isHls == true | jsond.video[0].isLive == true | jsond.video[0].isDashMPD == true) {
-										if (localStorage.getItem("proxyVid") == "n") {
+										if (localStorage.getItem("proxyVid") == "n" && !pxy == "y") {
 											var videoUrl = jsond.video[1].url;
 											document.getElementById("itag").innerHTML = jsond.video[1].itag;
 										} else {
@@ -1467,7 +1476,7 @@ function openVideo(opt,ret) {
 											document.getElementById("itag").innerHTML = jsond.video[1].itag;
 										}
 									} else {
-										if (localStorage.getItem("proxyVid") == "n") {
+										if (localStorage.getItem("proxyVid") == "n" && !pxy == "y") {
 											var videoUrl = jsond.video[0].url;
 											document.getElementById("itag").innerHTML = jsond.video[0].itag;
 										} else {
@@ -1631,7 +1640,7 @@ function openVideo(opt,ret) {
 							} else {
 								document.getElementById("vidViewer").style.display = '';
 								document.getElementById("vidLoader").style.display = 'none';
-								if (localStorage.getItem("proxyVid") == "n") {
+								if (localStorage.getItem("proxyVid") == "n" && !pxy == "y") {
 									document.getElementById("player").src = wUrl;
 								} else {
 									document.getElementById("player").src = proxy(wUrl);
@@ -1815,7 +1824,7 @@ function openVideo(opt,ret) {
 					http.onload=(e)=>{
 						var jsond = JSON.parse(http.responseText);
 						document.getElementById("playerContainer").style.display = "";
-						if (localStorage.getItem("proxyVid") == "n") {
+						if (localStorage.getItem("proxyVid") == "n" && !pxy == "y") {
 							document.getElementById("player").src = jsond.datainfo[0].url;
 						} else {
 							document.getElementById("player").src = proxy(jsond.datainfo[0].url);
@@ -1873,7 +1882,7 @@ function openVideo(opt,ret) {
 							return;
 						}
 						var audioUrl = jsond.audio[0].url;
-						if (localStorage.getItem("proxyVid") == "n") {
+						if (localStorage.getItem("proxyVid") == "n" && !pxy == "y") {
 							document.getElementById("audioPlayer").src = audioUrl;
 						} else {
 							document.getElementById("audioPlayer").src = proxy(audioUrl);
@@ -1989,7 +1998,7 @@ function openVideo(opt,ret) {
 							opt1.innerHTML = jsond.video[0].qualityLabel;
 							document.getElementById("qOptions").appendChild(opt1);
 						}
-						if (localStorage.getItem("proxyVid") == "n") {
+						if (localStorage.getItem("proxyVid") == "n" && !pxy == "y") {
 							document.getElementById("player").src = videoUrl;
 						} else {
 							document.getElementById("player").src = proxy(videoUrl);
@@ -2579,15 +2588,8 @@ function changeAQ(opt) {
 }
 
 function proxyAV() {
-	if (localStorage.getItem("smart") == "y") {
-		var curUrl = document.getElementById("player").src;
-		var curAUrl = document.getElementById("audioPlayer").src;
-		document.getElementById("player").src = proxy(curUrl);
-		document.getElementById("audioPlayer").src = proxy(curUrl);
-	} else {
-		var curUrl = document.getElementById("player").src;
-		document.getElementById("player").src = proxy(curUrl);
-	}
+	openVideo(localStorage.getItem("sLoc"), "y");
+	document.getElementById("loadErr").style.display = "none";
 }
 
 function translate(elem) {
