@@ -1402,6 +1402,10 @@ function openVideo(opt,pxy,ret) {
 										openVideo(opt);
 										return;
 									}
+									if (json.datainfo) {
+										openVideo(opt);
+										return;
+									}
 									var audioUrl = jsond.audio[0].url;
 									if (localStorage.getItem("proxyVid") == "n" ) {
 										document.getElementById("audioPlayer").src = audioUrl;
