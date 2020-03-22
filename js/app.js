@@ -1208,7 +1208,7 @@ function openVideo(opt,pxy,ret) {
 										for (var cc in jsond.info.player_response.cards.cardCollectionRenderer.cards[c].cardRenderer.content.pollRenderer.choices) {
 											var choice = document.createElement("P");
 											choice.classList.add("stat");
-											choice.innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[c].cardRenderer.content.pollRenderer.choices[cc].text.simpleText + " [" + jsond.info.player_response.cards.cardCollectionRenderer.cards[c].cardRenderer.content.pollRenderer.choices[cc].numVotes.toLocaleString() + " votes]";
+											choice.innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[c].cardRenderer.content.pollRenderer.choices[cc].text.simpleText + " [" + parseFloat(jsond.info.player_response.cards.cardCollectionRenderer.cards[c].cardRenderer.content.pollRenderer.choices[cc].numVotes).toLocaleString() + " votes]";
 											document.getElementById("cardPoll"+c).appendChild(choice);
 										}
 									}
