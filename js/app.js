@@ -2047,8 +2047,6 @@ function refresh() {
 		}
 	} else if (window.location.href.includes("#settings")) {
 		document.getElementById("player").pause();
-		document.getElementById("saveB").setAttribute("disabled", "true");
-		document.getElementById("server").innerHTML = "<option>please wait...</option>";
 		document.getElementById("homePage").style.display = 'none';
 		document.getElementById("vidPage").style.display = 'none';
 		document.getElementById("channelPage").style.display = 'none';
@@ -2056,44 +2054,6 @@ function refresh() {
 		document.getElementById("settingsPage").style.display = '';
 		document.getElementById("helpOut").style.display = '';
 		document.title = "settings | vidpolaris";
-		const http = new XMLHttpRequest();
-		http.open("GET", "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/");
-		http.send();
-		http.onload=(e)=>{
-			var json = JSON.parse(http.responseText);
-			var option1 = document.createElement("OPTION");
-			option1.innerHTML = "server a (us west, electrohaxz) [donated server] (default) {" + json.version + "}" ;
-			option1.value = "a";
-			document.getElementById("server").innerHTML = "";
-			document.getElementById("server").appendChild(option1);
-			console.log("option 1 added");
-			sessionStorage.setItem("sl", "i")
-			http.open("GET", "https://vidpolaris.herokuapp.com/");
-			http.send();
-			http.onload=(e)=>{
-				if (sessionStorage.getItem("sl").length == 3) {
-					return;
-				} 
-				var json = JSON.parse(http.responseText);
-				var option2 = document.createElement("OPTION");
-				option2.innerHTML = "server b (us east, heroku) {" + json.version + "}";
-				option2.value = "b";
-				document.getElementById("server").appendChild(option2);
-				console.log("option 2 added");
-				sessionStorage.setItem("sl", "ii")
-				var option3 = document.createElement("OPTION");
-				option3.innerHTML = "server c (eu west, heroku) {" + json.version + "}";
-				option3.value = "c";
-				document.getElementById("server").appendChild(option3);
-				console.log("option 3 added");
-				sessionStorage.setItem("sl", "iii")
-				document.getElementById("saveB").removeAttribute("disabled");
-				document.getElementById("server").value = localStorage.getItem("sLoc");
-				setTimeout(function() {
-					sessionStorage.removeItem("sl");
-				},5000)
-			}
-		}
 	} else if (window.location.href.includes("#c#")){
 		openChannel(localStorage.getItem("sLoc"));
 	} else if (window.location.href.includes("#")) {
