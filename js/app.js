@@ -1402,7 +1402,7 @@ function openVideo(opt,pxy,ret) {
 										openVideo(opt);
 										return;
 									}
-									if (json.datainfo) {
+									if (jsond.datainfo) {
 										openVideo(opt);
 										return;
 									}
