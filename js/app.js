@@ -12,11 +12,6 @@ if (window.location.href.includes("#c") | window.location.href.includes("#w") | 
 		getTrending();
 	}
 }
-if (localStorage.getItem("proxyVid") == "y") {
-	setInterval(function () {
-		pingProxy();
-	}, 60000)
-}
 
 document.getElementById("trendingLoader").style.display = "";
 
@@ -56,11 +51,16 @@ if (!localStorage.getItem("trendCont")) {
 
 console.log("- checking and setting localStorage items")
 
-if (!localStorage.getItem("proxyVid")) {
-	localStorage.setItem("proxyVid", "n");
-	document.getElementById("proxyVideos").value = "n";
+if (!localStorage.getItem("disableCards")) {
+	localStorage.setItem("disableCards", "n");
+	document.getElementById("disableCards").value = "n";
 } else {
-	document.getElementById("proxyVideos").value = localStorage.getItem("proxyVid");
+	if (localStorage.getItem("disableCards") == "y") {
+		document.getElementById("disableCards").value = "y";
+		document.getElementById("cardsContainer").style.display = "none";
+	} else {
+		document.getElementById("disableCards").value = "n";
+	}
 }
 
 if (!localStorage.getItem("loadComm")) {
@@ -444,7 +444,7 @@ document.addEventListener('keydown', function (event) {
 document.getElementById("player").onerror = function(e){
 	sessionStorage.setItem("ewv", "y");
 	if (!sessionStorage.getItem("ewa")) {
-		openVideo(localStorage.getItem("sLoc"), "n", "y");
+		openVideo(localStorage.getItem("sLoc"), "y");
 	} else {
 		document.getElementById("loadErr").style.display = "";
 		return;
@@ -454,7 +454,7 @@ document.getElementById("player").onerror = function(e){
 document.getElementById("audioPlayer").onerror = function(e){
 	sessionStorage.setItem("ewa", "y");
 	if (!sessionStorage.getItem("ewv")) {
-		openVideo(localStorage.getItem("sLoc"), "n", "y");
+		openVideo(localStorage.getItem("sLoc"), "y");
 	} else {
 		document.getElementById("loadErr").style.display = "";
 		return;
@@ -1022,7 +1022,7 @@ function getTrendingGaming(opt) {
 	}
 }
 
-function openVideo(opt,pxy,ret) {
+function openVideo(opt,ret) {
 	setTimeout(function () {
 		if (!window.location.href.includes("#w#")) {
 			return;
@@ -1140,7 +1140,7 @@ function openVideo(opt,pxy,ret) {
 								notPlayable();
 								sessionStorage.removeItem("currentlyOpening");
 							}
-							if (!jsond.info.player_response.cards) {
+							if (!jsond.info.player_response.cards | localStorage.getItem("disableCards") == "y") {
 								document.getElementById("cardContainer").innerHTML = "";
 							} else {
 								document.getElementById("cardContainer").innerHTML = "";
@@ -1407,27 +1407,13 @@ function openVideo(opt,pxy,ret) {
 										return;
 									}
 									var audioUrl = jsond.audio[0].url;
-									if (localStorage.getItem("proxyVid") == "n" ) {
-										document.getElementById("audioPlayer").src = audioUrl;
-									} else {
-										document.getElementById("audioPlayer").src = proxy(audioUrl);
-									}
+									document.getElementById("audioPlayer").src = audioUrl;
 									if (jsond.video[0].isHls == true | jsond.video[0].isLive == true | jsond.video[0].isDashMPD == true) {
-										if (localStorage.getItem("proxyVid") == "n" ) {
-											var videoUrl = jsond.video[1].url;
-											document.getElementById("itag").innerHTML = jsond.video[1].itag;
-										} else {
-											var videoUrl = proxy(jsond.video[1].url);
-											document.getElementById("itag").innerHTML = jsond.video[1].itag;
-										}
+										var videoUrl = jsond.video[1].url;
+										document.getElementById("itag").innerHTML = jsond.video[1].itag;
 									} else {
-										if (localStorage.getItem("proxyVid") == "n" ) {
-											var videoUrl = jsond.video[0].url;
-											document.getElementById("itag").innerHTML = jsond.video[0].itag;
-										} else {
-											var videoUrl = proxy(jsond.video[0].url);
-											document.getElementById("itag").innerHTML = jsond.video[0].itag;
-										}
+										var videoUrl = jsond.video[0].url;
+										document.getElementById("itag").innerHTML = jsond.video[0].itag;
 									}
 									for (var c in jsond.video) {
 										if (c == 0) {
@@ -1586,11 +1572,7 @@ function openVideo(opt,pxy,ret) {
 							} else {
 								document.getElementById("vidViewer").style.display = '';
 								document.getElementById("vidLoader").style.display = 'none';
-								if (localStorage.getItem("proxyVid") == "n" ) {
-									document.getElementById("player").src = wUrl;
-								} else {
-									document.getElementById("player").src = proxy(wUrl);
-								}
+								document.getElementById("player").src = wUrl;
 								for (var c in jsond.info.formats) {
 									if (c == 0) {
 										var option = document.createElement("OPTION");
@@ -1770,11 +1752,7 @@ function openVideo(opt,pxy,ret) {
 					http.onload=(e)=>{
 						var jsond = JSON.parse(http.responseText);
 						document.getElementById("playerContainer").style.display = "";
-						if (localStorage.getItem("proxyVid") == "n" ) {
-							document.getElementById("player").src = jsond.datainfo[0].url;
-						} else {
-							document.getElementById("player").src = proxy(jsond.datainfo[0].url);
-						}
+						document.getElementById("player").src = jsond.datainfo[0].url;
 						document.getElementById("player").play();
 						document.getElementById("qSelector").style.display = "none";
 						document.getElementById("loadErr").style.display = "none";
@@ -1828,11 +1806,7 @@ function openVideo(opt,pxy,ret) {
 							return;
 						}
 						var audioUrl = jsond.audio[0].url;
-						if (localStorage.getItem("proxyVid") == "n" ) {
-							document.getElementById("audioPlayer").src = audioUrl;
-						} else {
-							document.getElementById("audioPlayer").src = proxy(audioUrl);
-						}
+						document.getElementById("audioPlayer").src = audioUrl;
 						var videoUrl = jsond.video[0].url;
 						document.getElementById("itag").innerHTML = jsond.video[0].itag;
 						var length = jsond.video.length;
@@ -1944,11 +1918,7 @@ function openVideo(opt,pxy,ret) {
 							opt1.innerHTML = jsond.video[0].qualityLabel;
 							document.getElementById("qOptions").appendChild(opt1);
 						}
-						if (localStorage.getItem("proxyVid") == "n" ) {
-							document.getElementById("player").src = videoUrl;
-						} else {
-							document.getElementById("player").src = proxy(videoUrl);
-						}
+						document.getElementById("player").src = videoUrl;
 						document.getElementById("player").play();
 						document.getElementById("playerContainer").style.display = "";
 						document.getElementById("qOptions").value = document.getElementById("itag").innerHTML;
@@ -2128,15 +2098,7 @@ function saveSettings() {
 	localStorage.setItem("suggest", document.getElementById("suggest").value);
 	localStorage.setItem("trendingCont", document.getElementById("country").value);
 	localStorage.setItem("loadComm", document.getElementById("autoComm").value);
-	//localStorage.setItem("homeRec", document.getElementById("homeRec").value);
-	//if (localStorage.getItem("homeRec") == "n") {
-	//	document.getElementById("reccomendedVideos").style.display = "none";
-	//} else if (localStorage.getItem("homeRec") == "y") {
-	//	document.getElementById("reccomendedVideos").style.display = "";
-	//	document.getElementById("rvStart").style.display = "none";
-	//	document.getElementById("rvWatch").style.display = "";
-	//}
-	localStorage.setItem("proxyVid", document.getElementById("proxyVideos").value);
+	localStorage.setItem("disableCards", document.getElementById("disableCards").value);
 	resize();
 	window.history.back();
 }
@@ -2412,11 +2374,7 @@ function changeQ(opt) {
 			var jsond = JSON.parse(http.responseText);
 			var currentTime = document.getElementById("player").currentTime;
 			document.getElementById("itag").innerHTML = jsond.datainfo.itag;
-			if (localStorage.getItem("proxyVid") == "n") {
-				document.getElementById("player").src = jsond.datainfo.url;
-			} else {
-				document.getElementById("player").src = proxy(jsond.datainfo.url);
-			}
+			document.getElementById("player").src = jsond.datainfo.url;
 			document.getElementById("player").currentTime = currentTime;
 			document.getElementById("player").onloadeddata = function () {
 				document.getElementById("player").play();
@@ -2459,11 +2417,7 @@ function changeAQ(opt) {
 		var jsond = JSON.parse(http.responseText);
 		var currentTime = document.getElementById("player").currentTime;
 		document.getElementById("itag").innerHTML = jsond.datainfo.itag;	
-		if (localStorage.getItem("proxyVid") == "n") {
-			document.getElementById("audioPlayer").src = jsond.datainfo.url;
-		} else {
-			document.getElementById("audioPlayer").src = proxy(jsond.datainfo.url);
-		}
+		document.getElementById("audioPlayer").src = jsond.datainfo.url;
 		document.getElementById("audioPlayer").currentTime = currentTime;
 		document.getElementById("audioPlayer").onloadeddata= function () {
 			document.getElementById("player").play();
@@ -3506,10 +3460,6 @@ function swap(intent) {
 	}
 }
 
-function proxy(url) {
-	return ("https://vipoproxy.herokuapp.com/?url="+btoa(url));
-}
-
 function openAbout() {
 	document.getElementById("aboutPage").style.display = "";
 	document.getElementById("allUploadsPage").style.display = "none";
@@ -3539,13 +3489,32 @@ function embedNoCookie() {
 	document.getElementById("embedContainer").appendChild(p);
 }
 
-function pingProxy() {
-	const http = new XMLHttpRequest();
-	var url = "https://vipoproxy.herokuapp.com/?url=aHR0cHM6Ly9lbmFibGUtY29ycy5vcmcv"
-	http.open("GET", url);
-	http.send();
-}
-
 function range(start, end) {
 	return Array(end - start + 1).fill().map((_, idx) => start + idx)
+}
+
+function preset(d) {
+	if (!d) {
+		return;
+	} else {
+		if (d == "preformance") {
+			document.getElementById("sq").value = "n";
+			document.getElementById("suggest").value = "n";
+			document.getElementById("autoComm").value = "n";
+			document.getElementById("disableCards").value = "y";
+		} else if (d == "dataHeavy") {
+			document.getElementById("sq").value = "y";
+			document.getElementById("suggest").value = "y";
+			document.getElementById("autoComm").value = "y";
+			document.getElementById("disableCards").value = "n";
+		} else if (d == "default") {
+			document.getElementById("sq").value = "y";
+			document.getElementById("theme").value = "d_v1";
+			document.getElementById("server").value = "a";
+			document.getElementById("suggest").value = "y";
+			document.getElementById("country").value = "us";
+			document.getElementById("autoComm").value = "y";
+			document.getElementById("disableCards").value = "n";
+		}
+	}
 }

@@ -228,7 +228,7 @@
 				</div>
 				<div class="setting" title="self explanitory.">
 					<label>show search suggestions:</label>
-					<select id="server">
+					<select id="suggest">
 						<option value="y">enabled (default)</option>
 						<option value="n">disabled</option>
 					</select>
@@ -299,15 +299,21 @@
 						<option value="n">disabled</option>
 					</select>
 				</div>
-				<div class="setting" title="proxies videos into a US heroku server. this may prevent errors if you are in a school/work enviorment or if you don't live in the united states. may load videos faster.">
-					<label>proxy videos (beta):</label>
-					<select id="proxyVideos">
-						<option value="n">disbaled (default)</option>
+				<div class="setting" title="if this is enabled, cards will be hidden. this will also save a small ammount of time when loading a video.">
+					<label>disable cards:</label>
+					<select id="disableCards">
+						<option value="n">disabled (default)</option>
 						<option value="y">enabled</option>
 					</select>
 				</div>
+				<div class="setting" title="presets do not affect theme/country/server settings, unless you reset settings to the default state.">
+					<label>setting presets:</label>
+					<button onclick="preset('preformance')">preformance/faster loading times</button>
+					<button onclick="preset('dataHeavy')">data heavy</button>
+					<button onclick="preset('default')">reset settings</button>
+				</div>
 				<div style="width:1px; height:10px;"></div>
-				<button id="saveB" onclick="saveSettings()"><span class="material-icons ico">save</span> save settings</button>
+				<button id="saveB" onclick="saveSettings()"><span class="material-icons ico">save</span> save settings</button> <p></p>
 			</div>
 			<div id="nsWarnPage" style="display:none;width:50%;margin-left:17.5%" class="noCenter">
 				<h1 class="material-icons ico" style="font-size:72px; margin:0;">warning</h1>
@@ -429,7 +435,7 @@
 		<div id="helpOut" style="display:none;">
 			<div style="width:100%; height:15px;"></div>
 			<div class="centerMe">
-				<p>no videos are hosted on our servers • <a href="github.com/n0rmancodes/vidpolaris" class="channelLink">github repo</a></p>
+				<p>no videos are hosted on our servers • <a href="https://github.com/n0rmancodes/vidpolaris" class="channelLink">github repo</a></p>
 			</div>
 		</div>
 		<link id="theme" href="css/v1/dark/style.css" rel="stylesheet">
