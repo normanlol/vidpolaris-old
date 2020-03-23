@@ -1194,6 +1194,10 @@ function openVideo(opt,ret) {
 											var txt = document.createElement("SPAN");
 											txt.innerHTML = " " + jsond.info.player_response.cards.cardCollectionRenderer.cards[c].cardRenderer.teaser.simpleCardTeaserRenderer.message.simpleText || "[No message]";
 											document.getElementById("cardL"+c).appendChild(txt);
+										} else {
+											var txt = document.createElement("SPAN");
+											txt.innerHTML = " [No message]";
+											document.getElementById("cardL"+c).appendChild(txt);
 										}
 									} else if (jsond.info.player_response.cards.cardCollectionRenderer.cards[c].cardRenderer.content.pollRenderer) {
 										var q = document.createElement("H4");
@@ -1211,6 +1215,15 @@ function openVideo(opt,ret) {
 											choice.innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[c].cardRenderer.content.pollRenderer.choices[cc].text.simpleText + " [" + parseFloat(jsond.info.player_response.cards.cardCollectionRenderer.cards[c].cardRenderer.content.pollRenderer.choices[cc].numVotes).toLocaleString() + " votes]";
 											document.getElementById("cardPoll"+c).appendChild(choice);
 										}
+									} else if (jsond.info.player_response.cards.cardCollectionRenderer.cards[c].cardRenderer.content.simpleCardContentRenderer) {
+										var link = document.createElement("A");
+										link.href = decodeURIComponent(getClickedId(jsond.info.player_response.cards.cardCollectionRenderer.cards[c].cardRenderer.content.simpleCardContentRenderer.command.urlEndpoint.url, "&q="))
+										link.id = "cardL" + c;
+										link.classList.add("channelLink");
+										document.getElementById("card"+c).appendChild(link);
+										var txt = document.createElement("SPAN");
+									txt.innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[c].cardRenderer.content.simpleCardContentRenderer.title.simpleText + " [" + jsond.info.player_response.cards.cardCollectionRenderer.cards[c].cardRenderer.content.simpleCardContentRenderer.displayDomain.simpleText + "]";
+										document.getElementById("cardL"+c).appendChild(txt);
 									}
 								}
 							}
