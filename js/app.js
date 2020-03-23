@@ -1435,7 +1435,6 @@ function openVideo(opt,ret) {
 											option.innerHTML = jsond.video[c].qualityLabel;
 											document.getElementById("qOptions").appendChild(option);
 										} else {
-											for (var cc in range)
 											if (jsond.video[c-1].qualityLabel == jsond.video[c].qualityLabel) {
 												// do nothing
 											} else {
