@@ -122,13 +122,6 @@ if (!localStorage.getItem("smart")) {
 	document.getElementById("sq").value = localStorage.getItem("smart");
 }
 
-if (!localStorage.getItem("infoDisp")) {
-	localStorage.setItem("infoDisp" , "co");
-	document.getElementById("infoDisp").value = "co";
-} else {
-	document.getElementById("infoDisp").value = localStorage.getItem("infoDisp");
-}
-
 if (!localStorage.getItem("theatre")) {
 	localStorage.setItem("theatre" , "n");
 } else {
