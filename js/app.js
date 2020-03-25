@@ -63,6 +63,13 @@ if (!localStorage.getItem("disableCards")) {
 	}
 }
 
+if (!localStorage.getItem("sLoc")) {
+	document.getElementById("server").value = "a";
+	localStorage.setItem("sLoc", "a");
+} else {
+	document.getElementById("server").value = localStorage.getItem("sLoc");
+}
+
 if (!localStorage.getItem("loadComm")) {
 	localStorage.setItem("loadComm", "y");
 	document.getElementById("autoComm").value = "y";
@@ -110,8 +117,16 @@ if (!localStorage.getItem("theme")) {
 
 if (!localStorage.getItem("smart")) {
 	localStorage.setItem("smart" , "y");
+	document.getElementById("sq").value = "y";
 } else {
 	document.getElementById("sq").value = localStorage.getItem("smart");
+}
+
+if (!localStorage.getItem("infoDisp")) {
+	localStorage.setItem("infoDisp" , "co");
+	document.getElementById("infoDisp").value = "co";
+} else {
+	document.getElementById("infoDisp").value = localStorage.getItem("infoDisp");
 }
 
 if (!localStorage.getItem("theatre")) {
@@ -2111,6 +2126,7 @@ function saveSettings() {
 	localStorage.setItem("trendingCont", document.getElementById("country").value);
 	localStorage.setItem("loadComm", document.getElementById("autoComm").value);
 	localStorage.setItem("disableCards", document.getElementById("disableCards").value);
+	localStorage.setItem("infoDisp", document.getElementById("infoDisp").value);
 	resize();
 	window.history.back();
 }
