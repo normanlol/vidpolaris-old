@@ -182,7 +182,6 @@ document.addEventListener('keydown', function (event) {
 					(document.webkitFullscreenElement && document.webkitFullscreenElement !== null) ||
 					(document.mozFullScreenElement && document.mozFullScreenElement !== null) ||
 					(document.msFullscreenElement && document.msFullscreenElement !== null);
-
 				if (!isInFullScreen) {
 					if (document.getElementById("player").requestFullscreen) {
 						document.getElementById("player").requestFullscreen();
@@ -2119,7 +2118,6 @@ function saveSettings() {
 	localStorage.setItem("trendingCont", document.getElementById("country").value);
 	localStorage.setItem("loadComm", document.getElementById("autoComm").value);
 	localStorage.setItem("disableCards", document.getElementById("disableCards").value);
-	localStorage.setItem("infoDisp", document.getElementById("infoDisp").value);
 	resize();
 	window.history.back();
 }
