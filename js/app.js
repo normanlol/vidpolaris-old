@@ -2924,6 +2924,7 @@ function openChannel(opt) {
 			document.getElementById("viewCount").innerHTML = jsond.totalViews.toLocaleString();
 			document.getElementById("chanName").innerHTML = jsond.author;
 			document.getElementById("channelDesc").innerHTML = jsond.description;
+			document.getElementById("recentUploads").innerHTML = "";
 			document.title = jsond.author + " | vidpolaris";
 			for (var c in jsond.latestVideos) {
 				var link = document.createElement("A");
