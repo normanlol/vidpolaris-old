@@ -2925,6 +2925,7 @@ function openChannel(opt) {
 			document.getElementById("chanName").innerHTML = jsond.author;
 			document.getElementById("channelDesc").innerHTML = jsond.description;
 			document.getElementById("recentUploads").innerHTML = "";
+			document.getElementById("newUps").style.display = "";
 			document.title = jsond.author + " | vidpolaris";
 			for (var c in jsond.latestVideos) {
 				var link = document.createElement("A");
@@ -2997,6 +2998,7 @@ function openChannel(opt) {
 function openChannelVideos(opt,pg) {
 	document.getElementById("recentUploads").style.display = 'none';
 	document.getElementById("allUploadsPage").style.display = '';
+	document.getElementById("newUps").style.display = "none";
 	document.getElementById("aboutPage").style.display = 'none';
 	document.getElementById("pwChannel").style.display = '';
 	const http = new XMLHttpRequest();
@@ -3075,6 +3077,7 @@ function openChannelVideos(opt,pg) {
 
 function cHome() {
 	document.getElementById("recentUploads").style.display = '';
+	document.getElementById("newUps").style.display = "";
 	document.getElementById("allUploadsPage").style.display = 'none';
 	document.getElementById("aboutPage").style.display = 'none';
 }
@@ -3431,6 +3434,7 @@ function swap(intent) {
 
 function openAbout() {
 	document.getElementById("aboutPage").style.display = "";
+	document.getElementById("newUps").style.display = "none";
 	document.getElementById("allUploadsPage").style.display = "none";
 	document.getElementById("recentUploads").style.display = "none";
 }
