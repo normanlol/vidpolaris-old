@@ -2916,7 +2916,7 @@ function openChannel(opt) {
 				document.getElementById("subCount").innerHTML = jsond.subCount.toLocaleString();
 			} else {
 				if (jsond.totalViews > 5000) {
-					document.getElementById("subCount").innerHTML = "[Disabled]";
+					document.getElementById("subCount").innerHTML = "[disabled]";
 				} else {
 					document.getElementById("subCount").innerHTML = 0;
 				}
@@ -2925,175 +2925,59 @@ function openChannel(opt) {
 			document.getElementById("chanName").innerHTML = jsond.author;
 			document.getElementById("channelDesc").innerHTML = jsond.description;
 			document.title = jsond.author + " | vidpolaris";
-			if (jsond.latestVideos[0]) {
-				document.getElementById("up1Th").src = baseUrl + jsond.latestVideos[0].videoId;
-				document.getElementById("up1Ti").innerHTML = jsond.latestVideos[0].title;
-				document.getElementById("up1Da").innerHTML = jsond.latestVideos[0].publishedText;
-				document.getElementById("up1Vi").innerHTML = jsond.latestVideos[0].viewCount.toLocaleString();
-				document.getElementById("up1").href = "#w#" + jsond.latestVideos[0].videoId;
-				if (jsond.latestVideos[1]) {
-					document.getElementById("up2Th").src = baseUrl + jsond.latestVideos[1].videoId;
-					document.getElementById("up2Ti").innerHTML = jsond.latestVideos[1].title;
-					document.getElementById("up2Da").innerHTML = jsond.latestVideos[1].publishedText;
-					document.getElementById("up2Vi").innerHTML = jsond.latestVideos[1].viewCount.toLocaleString();
-					document.getElementById("up2").href = "#w#" + jsond.latestVideos[1].videoId;
-					if (jsond.latestVideos[2]) {
-						document.getElementById("up3Th").src = baseUrl + jsond.latestVideos[2].videoId;
-						document.getElementById("up3Ti").innerHTML = jsond.latestVideos[2].title;
-						document.getElementById("up3Da").innerHTML = jsond.latestVideos[2].publishedText;
-						document.getElementById("up3Vi").innerHTML = jsond.latestVideos[2].viewCount.toLocaleString();
-						document.getElementById("up3").href = "#w#" + jsond.latestVideos[2].videoId;
-						if (jsond.latestVideos[3]) {
-							document.getElementById("up4Th").src = baseUrl + jsond.latestVideos[3].videoId;
-							document.getElementById("up4Ti").innerHTML = jsond.latestVideos[3].title;
-							document.getElementById("up4Da").innerHTML = jsond.latestVideos[3].publishedText;
-							document.getElementById("up4Vi").innerHTML = jsond.latestVideos[3].viewCount.toLocaleString();
-							document.getElementById("up4").href = "#w#" + jsond.latestVideos[3].videoId;
-							if (jsond.latestVideos[4]) {
-								document.getElementById("up5Th").src = baseUrl + jsond.latestVideos[4].videoId;
-								document.getElementById("up5Ti").innerHTML = jsond.latestVideos[4].title;
-								document.getElementById("up5Da").innerHTML = jsond.latestVideos[4].publishedText;
-								document.getElementById("up5Vi").innerHTML = jsond.latestVideos[4].viewCount.toLocaleString();
-								document.getElementById("up5").href = "#w#" + jsond.latestVideos[4].videoId;
-								if (jsond.latestVideos[5]) {
-									document.getElementById("up6Th").src = baseUrl + jsond.latestVideos[5].videoId;
-									document.getElementById("up6Ti").innerHTML = jsond.latestVideos[5].title;
-									document.getElementById("up6Da").innerHTML = jsond.latestVideos[5].publishedText;
-									document.getElementById("up6Vi").innerHTML = jsond.latestVideos[5].viewCount.toLocaleString();
-									document.getElementById("up6").href = "#w#" + jsond.latestVideos[5].videoId;
-									if (jsond.latestVideos[6]) {
-										document.getElementById("up7Th").src = baseUrl + jsond.latestVideos[6].videoId;
-										document.getElementById("up7Ti").innerHTML = jsond.latestVideos[6].title;
-										document.getElementById("up7Da").innerHTML = jsond.latestVideos[6].publishedText;
-										document.getElementById("up7Vi").innerHTML = jsond.latestVideos[6].viewCount.toLocaleString();
-										document.getElementById("up7").href = "#w#" + jsond.latestVideos[6].videoId;
-										if (jsond.latestVideos[7]) {
-											document.getElementById("up8Th").src = baseUrl + jsond.latestVideos[7].videoId;
-											document.getElementById("up8Ti").innerHTML = jsond.latestVideos[7].title;
-											document.getElementById("up8Da").innerHTML = jsond.latestVideos[7].publishedText;
-											document.getElementById("up8Vi").innerHTML = jsond.latestVideos[7].viewCount.toLocaleString();
-											document.getElementById("up8").href = "#w#" + jsond.latestVideos[7].videoId;
-											document.getElementById("noUploads").style.display = 'none';
-											document.getElementById("up1").style.display = '';
-											document.getElementById("up2").style.display = '';
-											document.getElementById("up3").style.display = '';
-											document.getElementById("up4").style.display = '';
-											document.getElementById("up5").style.display = '';
-											document.getElementById("up6").style.display = '';
-											document.getElementById("up7").style.display = '';
-											document.getElementById("up8").style.display = '';
-										} else {
-											document.getElementById("noUploads").style.display = 'none';
-											document.getElementById("up1").style.display = '';
-											document.getElementById("up2").style.display = '';
-											document.getElementById("up3").style.display = '';
-											document.getElementById("up4").style.display = '';
-											document.getElementById("up5").style.display = '';
-											document.getElementById("up6").style.display = '';
-											document.getElementById("up7").style.display = '';
-											document.getElementById("up8").style.display = '';
-										}
-									} else {
-										document.getElementById("noUploads").style.display = 'none';
-										document.getElementById("up1").style.display = '';
-										document.getElementById("up2").style.display = '';
-										document.getElementById("up3").style.display = '';
-										document.getElementById("up4").style.display = '';
-										document.getElementById("up5").style.display = '';
-										document.getElementById("up6").style.display = '';
-										document.getElementById("up7").style.display = 'none';
-										document.getElementById("up8").style.display = 'none';
-									}
-								} else {
-									document.getElementById("noUploads").style.display = 'none';
-									document.getElementById("up1").style.display = '';
-									document.getElementById("up2").style.display = '';
-									document.getElementById("up3").style.display = '';
-									document.getElementById("up4").style.display = '';
-									document.getElementById("up5").style.display = '';
-									document.getElementById("up6").style.display = 'none';
-									document.getElementById("up7").style.display = 'none';
-									document.getElementById("up8").style.display = 'none';
-								}
-							} else {
-								document.getElementById("noUploads").style.display = 'none';
-								document.getElementById("up1").style.display = '';
-								document.getElementById("up2").style.display = '';
-								document.getElementById("up3").style.display = '';
-								document.getElementById("up4").style.display = 'none';
-								document.getElementById("up5").style.display = 'none';
-								document.getElementById("up6").style.display = 'none';
-								document.getElementById("up7").style.display = 'none';
-								document.getElementById("up8").style.display = 'none';
-							}
-						} else {
-							document.getElementById("noUploads").style.display = 'none';
-							document.getElementById("up1").style.display = '';
-							document.getElementById("up2").style.display = '';
-							document.getElementById("up3").style.display = 'none';
-							document.getElementById("up4").style.display = 'none';
-							document.getElementById("up5").style.display = 'none';
-							document.getElementById("up6").style.display = 'none';
-							document.getElementById("up7").style.display = 'none';
-							document.getElementById("up8").style.display = 'none';
-						}
-					} else {
-						document.getElementById("noUploads").style.display = 'none';
-						document.getElementById("up1").style.display = '';
-						document.getElementById("up1").style.display = 'none';
-						document.getElementById("up3").style.display = 'none';
-						document.getElementById("up4").style.display = 'none';
-						document.getElementById("up5").style.display = 'none';
-						document.getElementById("up6").style.display = 'none';
-						document.getElementById("up7").style.display = 'none';
-						document.getElementById("up8").style.display = 'none';
-					}
-				} else {
-					document.getElementById("noUploads").style.display = 'none';
-					document.getElementById("up1").style.display = '';
-					document.getElementById("up2").style.display = 'none';
-					document.getElementById("up3").style.display = 'none';
-					document.getElementById("up4").style.display = 'none';
-					document.getElementById("up5").style.display = 'none';
-					document.getElementById("up6").style.display = 'none';
-					document.getElementById("up7").style.display = 'none';
-					document.getElementById("up8").style.display = 'none';
-				}
-			} else {
-				document.getElementById("noUploads").style.display = '';
-				document.getElementById("up1").style.display = 'none';
-				document.getElementById("up2").style.display = 'none';
-				document.getElementById("up3").style.display = 'none';
-				document.getElementById("up4").style.display = 'none';
-				document.getElementById("up5").style.display = 'none';
-				document.getElementById("up6").style.display = 'none';
-				document.getElementById("up7").style.display = 'none';
-				document.getElementById("up8").style.display = 'none';
-			}
-			document.getElementById("chanLoader").style.display = 'none';
-			document.getElementById("chanViewer").style.display = '';
-			document.getElementById("recentUploads").style.display = '';
-			document.getElementById("searchContainer").style.display = '';
-			document.getElementById("bannerPfpContainer").style.display = '';
-			document.getElementById("relatedChannels").innerHTML = "";
-			for (c in jsond.relatedChannels) {
+			for (var c in jsond.latestVideos) {
 				var link = document.createElement("A");
-				link.href = "#c#" + jsond.relatedChannels[c].authorId;
-				link.id = "reCh" + c;
-				document.getElementById("relatedChannels").appendChild(link);
+				link.href = "#w#" + jsond.latestVideos[c].videoId;
+				link.id = "up" + c;
+				document.getElementById("recentUploads").appendChild(link);
 				var div = document.createElement("DIV");
-				div.classList.add("relatedChannel");
-				div.id = "reChDiv" + c;
-				document.getElementById("reCh"+c).appendChild(div);
+				div.classList.add("altSmallVideo");
+				div.id = "up" + c + "Div"
+				document.getElementById("up"+c).appendChild(div);
 				var img = document.createElement("IMG");
-				var url = jsond.relatedChannels[c].authorThumbnails[0].url
-				img.src = url.split('=s')[0];
-				img.classList.add("profilePics");
-				document.getElementById("reChDiv"+c).appendChild(img);
-				var name = document.createElement("H2");
-				name.innerHTML = jsond.relatedChannels[c].author;
-				name.classList.add("stat");
-				document.getElementById("reChDiv"+c).appendChild(name);
+				img.classList.add("relatedThumb");
+				img.src = baseUrl + jsond.latestVideos[c].videoId;
+				document.getElementById("up"+c+"Div").appendChild(img);
+				var h3 = document.createElement("H4");
+				h3.classList.add("stat");
+				h3.innerHTML = jsond.latestVideos[c].title;
+				document.getElementById("up"+c+"Div").appendChild(h3);
+				var stat1 = document.createElement("H5");
+				stat1.innerHTML = '<span class="material-icons ico">calendar_today</span> posted ' + jsond.latestVideos[c].publishedText;
+				stat1.classList.add("stat")
+				document.getElementById("up"+c+"Div").appendChild(stat1);
+				var stat2 = document.createElement("H5");
+				stat2.innerHTML = '<span class="material-icons ico">remove_red_eye</span> ' + jsond.latestVideos[c].viewCount.toLocaleString() + ' views'
+				stat2.classList.add("stat");
+				document.getElementById("up"+c+"Div").appendChild(stat2);
+				if (c == 11) {
+					document.getElementById("chanLoader").style.display = 'none';
+					document.getElementById("chanViewer").style.display = '';
+					document.getElementById("recentUploads").style.display = '';
+					document.getElementById("searchContainer").style.display = '';
+					document.getElementById("bannerPfpContainer").style.display = '';
+					document.getElementById("relatedChannels").innerHTML = "";
+					for (c in jsond.relatedChannels) {
+						var link = document.createElement("A");
+						link.href = "#c#" + jsond.relatedChannels[c].authorId;
+						link.id = "reCh" + c;
+						document.getElementById("relatedChannels").appendChild(link);
+						var div = document.createElement("DIV");
+						div.classList.add("relatedChannel");
+						div.id = "reChDiv" + c;
+						document.getElementById("reCh"+c).appendChild(div);
+						var img = document.createElement("IMG");
+						var url = jsond.relatedChannels[c].authorThumbnails[0].url
+						img.src = url.split('=s')[0];
+						img.classList.add("profilePics");
+						document.getElementById("reChDiv"+c).appendChild(img);
+						var name = document.createElement("H2");
+						name.innerHTML = jsond.relatedChannels[c].author;
+						name.classList.add("stat");
+						document.getElementById("reChDiv"+c).appendChild(name);
+					}
+					return;
+				}
 			}
 		}
 	}
