@@ -2871,6 +2871,8 @@ function openChannel(opt) {
 		window.open("#c#" + id.replace("/community", ""), "_self")
 	} else if (id.includes("/about")) {
 		window.open("#c#" + id.replace("/about", ""), "_self")
+	} else if (id.includes("/featured")) {
+		window.open("#c#" + id.replace("/featured", ""), "_self")
 	}
 	if (opt == "a" | !opt) {
 		var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?channelId=" + id;
