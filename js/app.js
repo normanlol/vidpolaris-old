@@ -2049,14 +2049,55 @@ function refresh() {
 		document.title = "settings | vidpolaris";
 	} else if (window.location.href.includes("#c#")){
 		openChannel(localStorage.getItem("sLoc"));
+	} else if (window.location.href.includes("#adapt#")){
+		adaptBookmark();
 	} else if (window.location.href.includes("#")) {
-		if (window.location.href.includes("#c") | window.location.href.includes("#w") | window.location.href.includes("#s")) {
+		if (window.location.href.includes("#c") | window.location.href.includes("#w") | window.location.href.includes("#s") | window.location.href.includes("#adapt")) {
 			return;
 		} else {
 			home();
 		}
+	}
+}
+
+function adaptBookmark() {
+	var url = getClickedId(window.location.href, "#adapt#");
+	if (!url.includes("youtu")) {
+		window.open("#", "_self");
+		console.log("failed to detect valid URL.");
 	} else {
-		return;
+		if (url.includes("v=") | url.includes("youtu.be")) {
+			console.log("detected watch URL...")
+			if (url.includes("v=")) {
+				var id = getClickedId(url, "v=");
+				var fId = id.substring(0,11);
+				window.open("#w#" + fId, "_self");
+				console.log("redirecting...");
+			} else if (url.includes("youtu.be")) {
+				var id = getClickedId(url, "/");
+				var fId = id.substring(0,11);
+				window.open("#w#" + fId, "_self");
+				console.log("redirecting...");
+			}
+		} else if (url.includes("?search_query=")) {
+			var query = decodeURIComponent(getClickedId(url, "?search_query="));
+			if (query.includes("&")) {
+				var rQuery = "&" + getClickedId(query, "&");
+				var fullQuery = query.replace(rQuery, "");
+				window.open("#s#" + fullQuery.replace("+", " "), "_self");
+			} else {
+				window.open("#s#" + query.replace("+", " "), "_self");
+			}
+		} else if (url.includes("/c/") | url.includes("/channel/") | url.includes("/user/")){
+			if (url.includes("/channel/")) {
+				var cId = getClickedId(url, "/channel/");
+				window.open("#c#" + cId, "_self")
+			} else if (url.includes("/c/").replace(removeId,"")) {
+				
+			}
+		} else {
+			window.open("#", "_self")
+		}
 	}
 }
 
@@ -2809,6 +2850,17 @@ function openChannel(opt) {
 	document.getElementById("allUploadsPage").style.display = "none";
 	const http = new XMLHttpRequest();
 	var id = getClickedId(window.location.href, '#c#');
+	if (id.includes("/videos")) {
+		window.open("#c#" + id.replace("/videos", ""), "_self")
+	} else if (id.includes("/channels")) {
+		window.open("#c#" + id.replace("/channels", ""), "_self")
+	} else if (id.includes("/playlists")) {
+		window.open("#c#" + id.replace("/playlists", ""), "_self")
+	} else if (id.includes("/community")) {
+		window.open("#c#" + id.replace("/community", ""), "_self")
+	} else if (id.includes("/about")) {
+		window.open("#c#" + id.replace("/about", ""), "_self")
+	}
 	if (opt == "a" | !opt) {
 		var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?channelId=" + id;
 	} else if (opt == "b"){
