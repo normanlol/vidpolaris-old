@@ -2063,7 +2063,14 @@ function refresh() {
 function adaptBookmark() {
 	var url = getClickedId(window.location.href, "#adapt#");
 	if (!url.includes("youtu")) {
-		window.open("#", "_self");
+		document.getElementById("errorPage").style.display = '';
+		document.getElementById("errorTxt").innerHTML = "invalid url used with the bookmark!"
+		document.getElementById("vidPage").style.display = 'none';
+		document.getElementById("nsWarnPage").style.display = 'none';
+		document.getElementById("settingsPage").style.display = 'none';
+		document.getElementById("searchPage").style.display = 'none';
+		document.getElementById("homePage").style.display = 'none';
+		document.getElementById("bannerPfpContainer").style.display = 'none';
 		console.log("failed to detect valid URL.");
 	} else {
 		if (url.includes("v=") | url.includes("youtu.be")) {
@@ -2092,8 +2099,12 @@ function adaptBookmark() {
 			if (url.includes("/channel/")) {
 				var cId = getClickedId(url, "/channel/");
 				window.open("#c#" + cId, "_self")
-			} else if (url.includes("/c/").replace(removeId,"")) {
-				
+			} else if (url.includes("/c/")) {
+				var cId = getClickedId(url, "/c/");
+				window.open("#c#" + cId, "_self")
+			} else if (url.includes("/user/")) {
+				var cId = getClickedId(url, "/user/");
+				window.open("#c#" + cId, "_self")
 			}
 		} else {
 			window.open("#", "_self")
