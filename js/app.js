@@ -1576,7 +1576,6 @@ function openVideo(opt,ret) {
 										sessionStorage.removeItem("currentlyOpening");
 									}
 									setSpeed();
-									getSubs(opt);
 									document.getElementById("player").play();
 									if (sessionStorage.getItem("id") == id) {
 										document.getElementById("player").currentTime = sessionStorage.getItem("time");
@@ -1659,7 +1658,6 @@ function openVideo(opt,ret) {
 									document.getElementById("errorC").style.display = 'none';
 								}
 								setSpeed();
-								getSubs(opt);
 								http.open("GET", url);
 								http.send();
 								http.timeout = 7000;
@@ -3171,133 +3169,6 @@ function setSpeed() {
 		}
 	}
 	localStorage.setItem("pbSpeed", document.getElementById("speed").value);
-}
-
-function getSubs(opt) {
-	var id = getClickedId(window.location.href, "#w#");
-	if (opt == "a" | !opt) {
-		var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?subs=" + id;
-	} else if (opt == "b"){
-		var url = "https://vidpolaris.herokuapp.com/?subs=" + id;
-	} else if (opt == "c") {
-		var url = "https://vidpolaris-europe.herokuapp.com/?subs=" + id;
-	}
-	const http = new XMLHttpRequest();
-	http.open("GET", url);
-	http.send();
-	http.onload=(e)=>{
-		document.getElementById("player").innerHTML = "";
-		var jsond = JSON.parse(http.responseText);
-		var captNum = jsond.captions.length;
-		if (captNum > 1) {
-			// do nothing
-		} else if (captNum == 1) {
-			var capt = document.createElement("TRACK");
-			capt.label = jsond.captions[0].label;
-			capt.kind = 'captions';
-			capt.srclang = jsond.captions[0].languageCode;
-			capt.src = url + "&label=" + jsond.captions[0].label;
-			document.getElementById("player").appendChild(capt);
-		} else if (captNum == 2) {
-			var capt = document.createElement("TRACK");
-			capt.label = jsond.captions[0].label;
-			capt.kind = 'captions';
-			capt.srclang = jsond.captions[0].languageCode;
-			capt.src = url + "&label=" + jsond.captions[0].label;
-			document.getElementById("player").appendChild(capt);
-			var capt = document.createElement("TRACK");
-			capt.label = jsond.captions[1].label;
-			capt.kind = 'captions';
-			capt.srclang = jsond.captions[1].languageCode;
-			capt.src = url + "&label=" + jsond.captions[1].label;
-			document.getElementById("player").appendChild(capt);
-		} else if (captNum == 3) {
-			var capt = document.createElement("TRACK");
-			capt.label = jsond.captions[0].label;
-			capt.kind = 'captions';
-			capt.srclang = jsond.captions[0].languageCode;
-			capt.src = url + "&label=" + jsond.captions[0].label;
-			document.getElementById("player").appendChild(capt);
-			var capt = document.createElement("TRACK");
-			capt.label = jsond.captions[1].label;
-			capt.kind = 'captions';
-			capt.srclang = jsond.captions[1].languageCode;
-			capt.src = url + "&label=" + jsond.captions[1].label;
-			document.getElementById("player").appendChild(capt);
-			var capt = document.createElement("TRACK");
-			capt.label = jsond.captions[2].label;
-			capt.kind = 'captions';
-			capt.srclang = jsond.captions[2].languageCode;
-			capt.src = url + "&label=" + jsond.captions[1].label;
-			document.getElementById("player").appendChild(capt);
-		} else if (captNum == 4) {
-			var capt = document.createElement("TRACK");
-			capt.label = jsond.captions[0].label;
-			capt.kind = 'captions';
-			capt.srclang = jsond.captions[0].languageCode;
-			capt.src = url + "&label=" + jsond.captions[0].label;
-			document.getElementById("player").appendChild(capt);
-			var capt = document.createElement("TRACK");
-			capt.label = jsond.captions[1].label;
-			capt.kind = 'captions';
-			capt.srclang = jsond.captions[1].languageCode;
-			capt.src = url + "&label=" + jsond.captions[1].label;
-			document.getElementById("player").appendChild(capt);
-			var capt = document.createElement("TRACK");
-			capt.label = jsond.captions[2].label;
-			capt.kind = 'captions';
-			capt.srclang = jsond.captions[2].languageCode;
-			capt.src = url + "&label=" + jsond.captions[2].label;
-			document.getElementById("player").appendChild(capt);
-			var capt = document.createElement("TRACK");
-			capt.label = jsond.captions[3].label;
-			capt.kind = 'captions';
-			capt.srclang = jsond.captions[3].languageCode;
-			capt.src = url + "&label=" + jsond.captions[3].label;
-			document.getElementById("player").appendChild(capt);
-		} else if (captNum == 5) {
-			var capt = document.createElement("TRACK");
-			capt.label = jsond.captions[0].label;
-			capt.kind = 'captions';
-			capt.srclang = jsond.captions[0].languageCode;
-			capt.src = url + "&label=" + jsond.captions[0].label;
-			document.getElementById("player").appendChild(capt);
-			var capt = document.createElement("TRACK");
-			capt.label = jsond.captions[1].label;
-			capt.kind = 'captions';
-			capt.srclang = jsond.captions[1].languageCode;
-			capt.src = url + "&label=" + jsond.captions[1].label;
-			document.getElementById("player").appendChild(capt);
-			var capt = document.createElement("TRACK");
-			capt.label = jsond.captions[2].label;
-			capt.kind = 'captions';
-			capt.srclang = jsond.captions[2].languageCode;
-			capt.src = url + "&label=" + jsond.captions[2].label;
-			document.getElementById("player").appendChild(capt);
-			var capt = document.createElement("TRACK");
-			capt.label = jsond.captions[3].label;
-			capt.kind = 'captions';
-			capt.srclang = jsond.captions[3].languageCode;
-			capt.src = url + "&label=" + jsond.captions[3].label;
-			document.getElementById("player").appendChild(capt);
-			var capt = document.createElement("TRACK");
-			capt.label = jsond.captions[4].label;
-			capt.kind = 'captions';
-			capt.srclang = jsond.captions[4].languageCode;
-			capt.src = url + "&label=" + jsond.captions[4].label;
-			document.getElementById("player").appendChild(capt);
-		}
-	}
-	http.timeout = 10000;
-	http.ontimeout = () => {
-		if (opt == "a" | !opt) {
-			getSubs("b");
-		} else if (opt == "b"){
-			getSubs("c");
-		} else if (opt == "c") {
-			getSubs("a");
-		}
-	}
 }
 
 function suggest(opt) {
