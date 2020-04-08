@@ -512,6 +512,28 @@ function resize() {
 		} else {
 			document.getElementById("theme").href = "css/v1/black/style.css";
 		}
+	} else if (localStorage.getItem("theme") == "m_v1") {
+		if (w < 1200) {
+			document.getElementById("theme").href = "css/v1/maroon/mobile.css";
+			if (localStorage.getItem("theater") == "n") {
+				theatre();
+			}
+		} else if (w < 1430) {
+			document.getElementById("theme").href = "css/v1/maroon/smaller.css";
+		} else {
+			document.getElementById("theme").href = "css/v1/maroon/style.css";
+		}
+	} else if (localStorage.getItem("theme") == "v_v1") {
+		if (w < 1200) {
+			document.getElementById("theme").href = "css/v1/velvet/mobile.css";
+			if (localStorage.getItem("theater") == "n") {
+				theatre();
+			}
+		} else if (w < 1430) {
+			document.getElementById("theme").href = "css/v1/velvet/smaller.css";
+		} else {
+			document.getElementById("theme").href = "css/v1/velvet/style.css";
+		}
 	}
 }
 
