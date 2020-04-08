@@ -11,7 +11,7 @@ body {
 .video {
 	width:94%;
 	height:415px;
-	background-color:#400000;
+	background-color:#260000;
 }
 
 .video:hover {
@@ -25,7 +25,7 @@ body {
 .smallVideo {
 	width:94%;
 	height:350px;
-	background-color:#400000;
+	background-color:#260000;
 }
 
 .smallVideo:hover {
@@ -43,7 +43,7 @@ body {
 .altSmallVideo {
 	width:94%;
 	height:245px;
-	background-color:#400000;
+	background-color:#260000;
 }
 
 .altSmallVideo:hover {
@@ -53,7 +53,7 @@ body {
 .resultVideo {
 	width:90%;
 	min-height:153px;
-	background-color:#400000;
+	background-color:#260000;
 }
 
 .resultVideo:hover {
@@ -63,7 +63,7 @@ body {
 .verticalShelf {
 	width:90%;
 	min-height:160px;
-	background-color:#400000;
+	background-color:#260000;
 	text-align:left;
 }
 
@@ -107,7 +107,7 @@ button:hover {
 }
 
 .loader div::after {
-	background-color:#282828;
+	background-color:white;
 }
 
 video {

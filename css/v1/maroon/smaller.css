@@ -108,7 +108,7 @@ button:hover {
 }
 
 .loader div::after {
-	background-color:#282828;
+	background-color:white;
 }
 
 video {

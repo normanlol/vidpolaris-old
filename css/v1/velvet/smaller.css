@@ -12,7 +12,7 @@ body {
 .video {
 	width:280px;
 	height:305px;
-	background-color:#400000;
+	background-color:#260000;
 }
 
 .video:hover {
@@ -40,7 +40,7 @@ body {
 .altSmallVideo {
 	width:23%;
 	height:285px;
-	background-color:#400000;
+	background-color:#260000;
 }
 
 .altSmallVideo:hover {
@@ -108,7 +108,7 @@ button:hover {
 }
 
 .loader div::after {
-	background-color:#282828;
+	background-color:white;
 }
 
 video {
