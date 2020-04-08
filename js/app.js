@@ -2973,33 +2973,33 @@ function openChannel(opt) {
 				stat2.classList.add("stat");
 				document.getElementById("up"+c+"Div").appendChild(stat2);
 				if (c == 11) {
-					document.getElementById("chanLoader").style.display = 'none';
-					document.getElementById("chanViewer").style.display = '';
-					document.getElementById("recentUploads").style.display = '';
-					document.getElementById("searchContainer").style.display = '';
-					document.getElementById("bannerPfpContainer").style.display = '';
-					document.getElementById("relatedChannels").innerHTML = "";
-					for (c in jsond.relatedChannels) {
-						var link = document.createElement("A");
-						link.href = "#c#" + jsond.relatedChannels[c].authorId;
-						link.id = "reCh" + c;
-						document.getElementById("relatedChannels").appendChild(link);
-						var div = document.createElement("DIV");
-						div.classList.add("relatedChannel");
-						div.id = "reChDiv" + c;
-						document.getElementById("reCh"+c).appendChild(div);
-						var img = document.createElement("IMG");
-						var url = jsond.relatedChannels[c].authorThumbnails[0].url
-						img.src = url.split('=s')[0];
-						img.classList.add("profilePics");
-						document.getElementById("reChDiv"+c).appendChild(img);
-						var name = document.createElement("H2");
-						name.innerHTML = jsond.relatedChannels[c].author;
-						name.classList.add("stat");
-						document.getElementById("reChDiv"+c).appendChild(name);
-					}
 					return;
 				}
+			}
+			document.getElementById("chanLoader").style.display = 'none';
+			document.getElementById("chanViewer").style.display = '';
+			document.getElementById("recentUploads").style.display = '';
+			document.getElementById("searchContainer").style.display = '';
+			document.getElementById("bannerPfpContainer").style.display = '';
+			document.getElementById("relatedChannels").innerHTML = "";
+			for (c in jsond.relatedChannels) {
+				var link = document.createElement("A");
+				link.href = "#c#" + jsond.relatedChannels[c].authorId;
+				link.id = "reCh" + c;
+				document.getElementById("relatedChannels").appendChild(link);
+				var div = document.createElement("DIV");
+				div.classList.add("relatedChannel");
+				div.id = "reChDiv" + c;
+				document.getElementById("reCh"+c).appendChild(div);
+				var img = document.createElement("IMG");
+				var url = jsond.relatedChannels[c].authorThumbnails[0].url
+				img.src = url.split('=s')[0];
+				img.classList.add("profilePics");
+				document.getElementById("reChDiv"+c).appendChild(img);
+				var name = document.createElement("H2");
+				name.innerHTML = jsond.relatedChannels[c].author;
+				name.classList.add("stat");
+				document.getElementById("reChDiv"+c).appendChild(name);
 			}
 		}
 	}
