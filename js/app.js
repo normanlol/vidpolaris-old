@@ -3,7 +3,7 @@ console.log("==================");
 
 resize();
 keepProg();
-if (window.location.href.includes("#c") | window.location.href.includes("#w") | window.location.href.includes("#s")) {
+if (window.location.href.includes("#c") | window.location.href.includes("#adapt#") | window.location.href.includes("#w") | window.location.href.includes("#s")) {
 	refresh();
 } else {
 	if (localStorage.getItem("sLoc")) {
