@@ -2972,7 +2972,7 @@ function openChannel(opt) {
 				stat2.innerHTML = '<span class="material-icons ico">remove_red_eye</span> ' + jsond.latestVideos[c].viewCount.toLocaleString() + ' views'
 				stat2.classList.add("stat");
 				document.getElementById("up"+c+"Div").appendChild(stat2);
-				if (c == 11 | !(c + 1) ) {
+				if (!c + 1) {
 					document.getElementById("chanLoader").style.display = 'none';
 					document.getElementById("chanViewer").style.display = '';
 					document.getElementById("recentUploads").style.display = '';
