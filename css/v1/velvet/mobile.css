@@ -98,12 +98,13 @@ input {
 }
 
 button {
-	color:black;
+	color:white;
 	background-color:#a00000;
 }
 
 button:hover {
 	background-color:#f0f0f0;
+	color:black;
 }
 
 .loader div::after {

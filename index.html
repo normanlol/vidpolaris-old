@@ -15,7 +15,7 @@
 		<meta property="og:description" content="a simpler, faster loading, slicker youtube" />
 		<link href="css/v1/base.css" rel="stylesheet">
 	</head>
-	<body id="b" onhashchange="refresh()" onresize="resize()">
+	<body id="b" onhashchange="refresh()" onresize="resize('auto')">
 		<div class="centerMe">
 			<a href="#" class="invisibleLink" style="width:151px;"><h1>vidpolaris</h1></a>
 			<div id="searchContainer">
@@ -32,12 +32,18 @@
 					<h2>loading home page...</h2>
 				</div>
 				<div id="trending" style="display:none;">
-					<h2 class="noCenter homeTitle"><span class="material-icons ico">trending_up</span> trending right now</h2>
-					<div id="mainTrending" style="display:none;"></div><br>
-					<h2 class="noCenter homeTitle"><span class="material-icons ico">music_note</span> popular music</h2>
-					<div id="musicTrending" style="display:none;"></div><br>
-					<h2 class="noCenter homeTitle"><span class="material-icons ico">videogame_asset</span> popular gaming videos</h2>
-					<div id="gamingTrending" style="display:none;"></div><br>
+					<div class="pack">
+						<h2 class="noCenter homeTitle"><span class="material-icons ico">trending_up</span> trending right now</h2>
+						<div id="mainTrending" style="display:none;"></div><br>
+					</div>
+					<div class="pack">
+						<h2 class="noCenter homeTitle"><span class="material-icons ico">music_note</span> popular music</h2>
+						<div id="musicTrending" style="display:none;"></div><br>
+					</div>
+					<div class="pack">
+						<h2 class="noCenter homeTitle"><span class="material-icons ico">videogame_asset</span> popular gaming videos</h2>
+						<div id="gamingTrending" style="display:none;"></div><br>
+					</div>
 				</div>
 			</div>
 			<div id="vidPage" style="display:none;">
@@ -313,6 +319,18 @@
 					<select id="showReddit">
 						<option value="n">disabled (default)</option>
 						<option value="y">enabled</option>
+					</select>
+				</div>
+				<div class="setting" title="if this is enabled, automatic scaling will choose a stylesheet it thinks best for you.">
+					<label>auto scale:</label>
+					<select id="aas" oninput="toggleManual()">
+						<option value="y">enabled (default)</option>
+						<option value="n">disabled</option>
+					</select>
+					<select id="mScale">
+						<option value="f">FHD</option>
+						<option value="s">smaller screens</option>
+						<option value="m">mobile</option>
 					</select>
 				</div>
 				<div class="setting" title="presets do not affect theme/country/server settings, unless you reset settings to the default state.">

@@ -105,7 +105,7 @@ button {
 	border:none;
 	border-radius:10px;
 	cursor:pointer;
-	transition:background-color .5s;
+	transition:background-color .5s, color .5s;
 }
 
 .loader {
@@ -427,4 +427,10 @@ iframe {
 #embedContainer {
 	margin-bottom:16px;
 	margin-top:16px;
+}
+
+.pack {
+	min-width:100%;
+	min-height:700px;
+	max-height:1030px;
 }
