@@ -47,9 +47,7 @@
 						<video id="player" oncontextmenu="return false;" controls></video>
 						<audio id="audioPlayer"></audio>
 					</div>
-					<div id="embedContainer" style="display:none;">
-					
-					</div>
+					<div id="embedContainer" style="display:none;"></div>
 					<div id="loadErr" style="display:none;">
 						<p>it seems that your video cannot be loaded due to an error. would you like to try somewhere else?</p>
 						<button onclick="watchOnYoutube()">watch on youtube</button>
@@ -89,14 +87,15 @@
 						<div id="ldDiv" style="display:none;">
 							<p id="longDesc"></p>
 						</div>
-						<div style="margin:5px;">
+						<div>
 							<button id="ldBtn" onclick="longDesc()">see more</button>
 							<button id="theat_native" onclick="theatre()">theater mode</button>
 							<button id="theat_embed" style="display:none;" onclick="theatre('embed')">theater mode</button>
 							<button id="embedPlayer" onclick="embedNoCookie()">embed on youtube player</button>
 							<button id="refreshBtn" onclick="location.reload();" style="display:none;">revert to native player</button>
 							<button onclick="openVideo(localStorage.getItem('sLoc'));">reload video data</button>
-							<button class="material-icons ico" onclick="share()">link</button>
+							<button id="redditBtn" onclick="rSearch(localStorage.getItem('sLoc'),'y')">load reddit posts</button>
+							<button class="material-icons ico" onclick="share()">share</button>
 						</div>
 						<div id="sharDiv" style="display:none;margin:5px;">
 							<div style="float:left;margin:5px;">
@@ -112,6 +111,7 @@
 								<input id="youtubeLink" onclick="this.select()">
 							</div>
 						</div>
+						<div id="rPosts"></div>
 						<div id="autoPlayBlock">
 							<label onclick="toggleAuto()" class="switch">
 								<input id="apSwitch" type="checkbox" checked>
@@ -204,7 +204,7 @@
 			</div>
 			<div id="settingsPage" style="display:none;" class="noCenter">
 				<div class="setting" title="smartquality syncs up the highest quality audio and video, rather than the highest quality video/audio itag. only reccomended for those with a strong connection. this may cause slowdown if you have a weaker computer.">
-					<label>smartquality (beta):</label>
+					<label>smartquality:</label>
 					<select id="sq">
 						<option value="y">enabled (default)</option>
 						<option value="n">disabled</option>
@@ -304,6 +304,13 @@
 				<div class="setting" title="if this is enabled, cards will be hidden. this will also save a small ammount of time when loading a video.">
 					<label>disable cards:</label>
 					<select id="disableCards">
+						<option value="n">disabled (default)</option>
+						<option value="y">enabled</option>
+					</select>
+				</div>
+				<div class="setting" title="if this is enabled, reddit will be scanned for any posts reguarding any video you watch.">
+					<label>show reddit posts:</label>
+					<select id="showReddit">
 						<option value="n">disabled (default)</option>
 						<option value="y">enabled</option>
 					</select>

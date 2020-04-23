@@ -1598,14 +1598,8 @@ function openVideo(opt,ret) {
 										sessionStorage.removeItem("currentlyOpening");
 									}
 									setSpeed();
+									rSearch(opt);
 									document.getElementById("player").play();
-									if (sessionStorage.getItem("id") == id) {
-										document.getElementById("player").currentTime = sessionStorage.getItem("time");
-										document.getElementById("audioPlayer").currentTime = sessionStorage.getItem("time");
-									} else {
-										sessionStorage.setItem("id", id);
-										sessionStorage.setItem("time", document.getElementById("player").currentTime);
-									}
 									return;
 								}
 								return;
@@ -2190,6 +2184,7 @@ function saveSettings() {
 	localStorage.setItem("trendingCont", document.getElementById("country").value);
 	localStorage.setItem("loadComm", document.getElementById("autoComm").value);
 	localStorage.setItem("disableCards", document.getElementById("disableCards").value);
+	localStorage.setItem("showReddit", document.getElementById("showReddit").value);
 	resize();
 	window.history.back();
 }
@@ -3382,5 +3377,55 @@ function preset(d) {
 			document.getElementById("autoComm").value = "y";
 			document.getElementById("disableCards").value = "n";
 		}
+	}
+}
+
+function rSearch(opt, f) {
+	document.getElementById("redditBtn").style.display = "none";
+	document.getElementById("rPosts").innerHTML = "";
+	if (f == "y" | localStorage.getItem("showReddit") == "y") {
+		var id = getClickedId(window.location.href, "#w#");
+		if (opt == "a" | !opt) {
+			var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?redditSearch=" + id;
+		} else if (opt == "b"){
+			var url = "https://vidpolaris.herokuapp.com/?redditSearch=" + id;
+		} else if (opt == "c") {
+			var url = "https://vidpolaris-europe.herokuapp.com/?redditSearch=" + id;
+		}
+		const http = new XMLHttpRequest();
+		http.open("GET", url);
+		http.send();
+		http.onload=(e)=>{
+			document.getElementById("rPosts").innerHTML = "";
+			var jsond = JSON.parse(http.responseText);
+			if (jsond.err) {
+				document.getElementById("redditBtn").style.display = "none";
+				return;
+			}
+			document.getElementById("redditBtn").style.display = "none";
+			for (var c in jsond) {
+				var linkTP = document.createElement("A");
+				linkTP.href = jsond[c].postLink;
+				linkTP.classList.add("channelLink");
+				linkTP.id = "rePoLi" + c;
+				var div = document.createElement("DIV");
+				div.classList.add("comment");
+				div.id = "rePo" + c;
+				var tit = document.createElement("H3");
+				tit.innerHTML = jsond[c].postTitle;
+				tit.classList.add("cText");
+				tit.classList.add("stat");
+				var stats = document.createElement("P");
+				stats.innerHTML = jsond[c].postScore.toLocaleString() + " upvotes • posted on /" + jsond[c].postSub + " by " + jsond[c].postAuthor;
+				stats.classList.add("cText");
+				stats.classList.add("stat");
+				document.getElementById("rPosts").appendChild(linkTP);
+				linkTP.appendChild(div);
+				div.appendChild(tit);
+				div.appendChild(stats);
+			}
+		}
+	} else {
+		document.getElementById("redditBtn").style.display = "";
 	}
 }
