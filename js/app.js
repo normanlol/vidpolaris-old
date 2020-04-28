@@ -11,7 +11,11 @@ if (window.location.href.includes("#c") | window.location.href.includes("#adapt#
 	refresh();
 } else {
 	if (localStorage.getItem("sLoc")) {
-		getTrending(localStorage.getItem("sLoc"));
+		if (localStorage.getItem("invIns")) {
+			getTrending(localStorage.getItem("sLoc"), localStorage.getItem("invIns"))
+		} else {
+			getTrending(localStorage.getItem("sLoc"));
+		}
 	} else {
 		getTrending();
 	}
@@ -65,6 +69,13 @@ if (!localStorage.getItem("disableCards")) {
 	} else {
 		document.getElementById("disableCards").value = "n";
 	}
+}
+
+if (!localStorage.getItem("invIns")) {
+	localStorage.setItem("invIns", "o");
+	document.getElementById("invIns").value = "o";
+} else {
+	document.getElementById("invIns").value = localStorage.getItem("invIns");
 }
 
 if (!localStorage.getItem("sLoc")) {
@@ -695,13 +706,6 @@ function search(opt) {
 			document.getElementById("bannerPfpContainer").style.display = 'none';
 			return;
 		}
-		if (opt == "a" | !opt) {
-			var baseUrl = "http://normandotmp4.electrohaxz.tk:9019/?thumb=";
-		} else if (opt == "b") {
-			var baseUrl = "https://vidpolaris.herokuapp.com/?thumb=";
-		} else if (opt == "c") {
-			var baseUrl = "https://vidpolaris-europe.herokuapp.com/?thumb=";
-		}
 		document.getElementById("resultsContainer").innerHTML = "";
 		for (var c in jsond.searchResults.items) {
 			if (jsond.searchResults.items[c].type == "video") {
@@ -714,7 +718,7 @@ function search(opt) {
 				div.id = "re" + c + "Div";
 				document.getElementById("re"+c).appendChild(div);
 				var thumb = document.createElement("IMG");
-				thumb.src = baseUrl + jsond.searchResults.items[c].link.substring(32);
+				thumb.src = "https://img.youtube.com/vi/" + jsond.searchResults.items[c].link.substring(32) + "/hqdefault.jpg";
 				thumb.classList.add("smallThumb");
 				document.getElementById("re"+c+"Div").appendChild(thumb);
 				var div2 = document.createElement("DIV");
@@ -826,7 +830,7 @@ function search(opt) {
 					div.id = "sub" + cc + "Div";
 					document.getElementById("sub"+cc).appendChild(div);
 					var thumb = document.createElement("IMG");
-					thumb.src = baseUrl + jsond.searchResults.items[c].items[cc].link.substring(32);
+					thumb.src = "https://img.youtube.com/vi/" + jsond.searchResults.items[c].items[cc].link.substring(32) + "/hqdefault.jpg";
 					thumb.classList.add("smallThumb");
 					document.getElementById("sub"+cc+"Div").appendChild(thumb);
 					var div2 = document.createElement("DIV");
@@ -973,45 +977,65 @@ function feelingLucky(opt) {
 	}
 }
 
-function getTrending(opt) {
+function getTrending(opt,inst) {
 	const http = new XMLHttpRequest();
-	if (opt == "a" | !opt) {
-		var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?trending=" + localStorage.getItem("trendingCont")
-	} else if (opt == "b") {
-		var url = "https://vidpolaris.herokuapp.com/?trending=" + localStorage.getItem("trendingCont");
-	} else if (opt == "c") {
-		var url = "https://vidpolaris-europe.herokuapp.com/?trending=" + localStorage.getItem("trendingCont");
+	if (!inst | inst == "o") {
+		if (opt == "a" | !opt) {
+			var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?trending=" + localStorage.getItem("trendingCont")
+		} else if (opt == "b") {
+			var url = "https://vidpolaris.herokuapp.com/?trending=" + localStorage.getItem("trendingCont");
+		} else if (opt == "c") {
+			var url = "https://vidpolaris-europe.herokuapp.com/?trending=" + localStorage.getItem("trendingCont");
+		}
+	} else {
+		if (opt == "a" | !opt) {
+			var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?trending=" + localStorage.getItem("trendingCont") + "&inst=" + inst
+		} else if (opt == "b") {
+			var url = "https://vidpolaris.herokuapp.com/?trending=" + localStorage.getItem("trendingCont") + "&inst=" + inst;
+		} else if (opt == "c") {
+			var url = "https://vidpolaris-europe.herokuapp.com/?trending=" + localStorage.getItem("trendingCont") + "&inst=" + inst;
+		}
 	}
 	http.open("GET", url);
 	http.send();
 	http.onload=(e)=>{
 		var jsond = JSON.parse(http.responseText);
 		if (!jsond[0]) {
-			if (opt == "a" | !opt) {
-				getTrending("b");
-				return;
-			} else if (opt == "b") {
-				getTrending("c");
-				return;
-			} else if (opt == "c") {
-				getTrending("a");
-				return;
+			if (inst) {
+				if (opt == "a" | !opt) {
+					getTrending("b", inst);
+					return;
+				} else if (opt == "b") {
+					getTrending("c", inst);
+					return;
+				} else if (opt == "c") {
+					getTrending("a", inst);
+					return;
+				}
+			} else {
+				if (opt == "a" | !opt) {
+					getTrending("b");
+					return;
+				} else if (opt == "b") {
+					getTrending("c");
+					return;
+				} else if (opt == "c") {
+					getTrending("a");
+					return;
+				}
 			}
 		}
-		if (opt == "a" | !opt) {
-			var baseUrl = "http://normandotmp4.electrohaxz.tk:9019/?thumb=";
-		} else if (opt == "b") {
-			var baseUrl = "https://vidpolaris.herokuapp.com/?thumb=";
-		} else if (opt == "c") {
-			var baseUrl = "https://vidpolaris-europe.herokuapp.com/?thumb=";
-		}	
 		var jsond = JSON.parse(http.responseText);
 		for (var c in jsond) {
 			if (c > 17) {
 				document.getElementById("trendingLoader").style.display = 'none';
 				document.getElementById("trending").style.display = '';
 				document.getElementById("mainTrending").style.display = '';
-				getTrendingMusic(opt)
+				if (!inst) {
+					getTrendingMusic(opt);
+				} else {
+					getTrendingMusic(opt,inst);
+				}
 				return;
 			}
 			var link = document.createElement("A");
@@ -1024,7 +1048,7 @@ function getTrending(opt) {
 			document.getElementById("l"+c).appendChild(div);
 			var img = document.createElement("IMG");
 			img.classList.add("largeThumb");
-			img.src = baseUrl + jsond[c].videoId;
+			img.src = "https://img.youtube.com/vi/" + jsond[c].videoId + "/hqdefault.jpg";
 			document.getElementById("div"+c).appendChild(img);
 			var div2 = document.createElement("DIV");
 			div2.classList.add("td");
@@ -1045,34 +1069,41 @@ function getTrending(opt) {
 		}
 	}
 	http.onerror = function (error) {
-		getTrending(opt);
+		getTrending(opt,inst);
 	}
 }
 
-function getTrendingMusic(opt) {
+function getTrendingMusic(opt, inst) {
 	const http = new XMLHttpRequest();
-	if (opt == "a" | !opt) {
-		var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?trending=" + localStorage.getItem("trendingCont") + "&type=music";
-	} else if (opt == "b") {
-		var url = "https://vidpolaris.herokuapp.com/?trending=" + localStorage.getItem("trendingCont") + "&type=music";
-	} else if (opt == "c") {
-		var url = "https://vidpolaris-europe.herokuapp.com/?trending=" + localStorage.getItem("trendingCont") + "&type=music";
+	if (!inst | inst == "o") {
+		if (opt == "a" | !opt) {
+			var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?trending=" + localStorage.getItem("trendingCont") + "&type=music";
+		} else if (opt == "b") {
+			var url = "https://vidpolaris.herokuapp.com/?trending=" + localStorage.getItem("trendingCont") + "&type=music";
+		} else if (opt == "c") {
+			var url = "https://vidpolaris-europe.herokuapp.com/?trending=" + localStorage.getItem("trendingCont") + "&type=music";
+		}
+	} else {
+		if (opt == "a" | !opt) {
+			var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?trending=" + localStorage.getItem("trendingCont") + "&type=music&inst=" + inst;
+		} else if (opt == "b") {
+			var url = "https://vidpolaris.herokuapp.com/?trending=" + localStorage.getItem("trendingCont") + "&type=music&inst=" + inst;
+		} else if (opt == "c") {
+			var url = "https://vidpolaris-europe.herokuapp.com/?trending=" + localStorage.getItem("trendingCont") + "&type=music&inst=" + inst;
+		}
 	}
 	http.open("GET", url);
 	http.send();
 	http.onload=(e)=>{
-		if (opt == "a" | !opt) {
-			var baseUrl = "http://normandotmp4.electrohaxz.tk:9019/?thumb=";
-		} else if (opt == "b") {
-			var baseUrl = "https://vidpolaris.herokuapp.com/?thumb=";
-		} else if (opt == "c") {
-			var baseUrl = "https://vidpolaris-europe.herokuapp.com/?thumb=";
-		}	
 		var jsond = JSON.parse(http.responseText);
 		for (var c in jsond) {
 			if (c > 11) {
 				document.getElementById("musicTrending").style.display = '';
-				getTrendingGaming(opt)
+				if (!inst) {
+					getTrendingGaming(opt);
+				} else {
+					getTrendingGaming(opt, inst);
+				}
 				return;
 			}
 			var link = document.createElement("A");
@@ -1085,7 +1116,7 @@ function getTrendingMusic(opt) {
 			document.getElementById("ml"+c).appendChild(div);
 			var img = document.createElement("IMG");
 			img.classList.add("largeThumb");
-			img.src = baseUrl + jsond[c].videoId;
+			img.src = "https://img.youtube.com/vi/" + jsond[c].videoId + "/hqdefault.jpg";
 			document.getElementById("mDiv"+c).appendChild(img);
 			var div2 = document.createElement("DIV");
 			div2.classList.add("td");
@@ -1107,25 +1138,28 @@ function getTrendingMusic(opt) {
 	}
 }
 
-function getTrendingGaming(opt) {
+function getTrendingGaming(opt,inst) {
 	const http = new XMLHttpRequest();
-	if (opt == "a" | !opt) {
-		var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?trending=" + localStorage.getItem("trendingCont") + "&type=gaming";
-	} else if (opt == "b") {
-		var url = "https://vidpolaris.herokuapp.com/?trending=" + localStorage.getItem("trendingCont") + "&type=gaming";
-	} else if (opt == "c") {
-		var url = "https://vidpolaris-europe.herokuapp.com/?trending=" + localStorage.getItem("trendingCont") + "&type=gaming";
+	if (!inst | inst == "o") {
+		if (opt == "a" | !opt) {
+			var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?trending=" + localStorage.getItem("trendingCont") + "&type=gaming";
+		} else if (opt == "b") {
+			var url = "https://vidpolaris.herokuapp.com/?trending=" + localStorage.getItem("trendingCont") + "&type=gaming";
+		} else if (opt == "c") {
+			var url = "https://vidpolaris-europe.herokuapp.com/?trending=" + localStorage.getItem("trendingCont") + "&type=gaming";
+		}
+	} else {
+		if (opt == "a" | !opt) {
+			var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?trending=" + localStorage.getItem("trendingCont") + "&type=gaming&inst=" + inst;
+		} else if (opt == "b") {
+			var url = "https://vidpolaris.herokuapp.com/?trending=" + localStorage.getItem("trendingCont") + "&type=gaming&inst=" + inst;
+		} else if (opt == "c") {
+			var url = "https://vidpolaris-europe.herokuapp.com/?trending=" + localStorage.getItem("trendingCont") + "&type=gaming&inst=" + inst;
+		}
 	}
 	http.open("GET", url);
 	http.send();
 	http.onload=(e)=>{
-		if (opt == "a" | !opt) {
-			var baseUrl = "http://normandotmp4.electrohaxz.tk:9019/?thumb=";
-		} else if (opt == "b") {
-			var baseUrl = "https://vidpolaris.herokuapp.com/?thumb=";
-		} else if (opt == "c") {
-			var baseUrl = "https://vidpolaris-europe.herokuapp.com/?thumb=";
-		}	
 		var jsond = JSON.parse(http.responseText);
 		for (var c in jsond) {
 			if (c > 11) {
@@ -1142,7 +1176,7 @@ function getTrendingGaming(opt) {
 			document.getElementById("gl"+c).appendChild(div);
 			var img = document.createElement("IMG");
 			img.classList.add("largeThumb");
-			img.src = baseUrl + jsond[c].videoId;
+			img.src = "https://img.youtube.com/vi/" + jsond[c].videoId + "/hqdefault.jpg";
 			document.getElementById("gDiv"+c).appendChild(img);
 			var div2 = document.createElement("DIV");
 			div2.classList.add("td");
@@ -1380,18 +1414,11 @@ function openVideo(opt,ret) {
 								document.getElementById("relatedVideos").style.display = 'none';
 								document.getElementById("autoPlayBlock").style.display = 'none';
 							} else {
-								if (localStorage.getItem("sLoc") == "a") {
-									var baseUrl = "http://normandotmp4.electrohaxz.tk:9019/?thumb=";
-								} else if (localStorage.getItem("sLoc") == "b") {
-									var baseUrl = "https://vidpolaris.herokuapp.com/?thumb=";
-								} else if (localStorage.getItem("sLoc") == "c") {
-									var baseUrl = "https://vidpolaris-europe.herokuapp.com/?thumb=";
-								}
 								document.getElementById("relatedVideos").style.display = '';
 								document.getElementById("autoPlayBlock").style.display = '';
 								var r1L = "#w#" + jsond.info.related_videos[0].id;
 								var r1T = jsond.info.related_videos[0].title;
-								var r1A = baseUrl + jsond.info.related_videos[0].id;
+								var r1A = "https://img.youtube.com/vi/" + jsond.info.related_videos[0].id + "/hqdefault.jpg";
 								var r1Au = jsond.info.related_videos[0].author;
 								var r1V = jsond.info.related_videos[0].short_view_count_text;
 								document.getElementById("rv1").href = r1L;
@@ -1402,7 +1429,7 @@ function openVideo(opt,ret) {
 								if (jsond.info.related_videos[1]) {
 									var r2L = "#w#" + jsond.info.related_videos[1].id;
 									var r2T = jsond.info.related_videos[1].title;
-									var r2A = baseUrl + jsond.info.related_videos[1].id;
+									var r2A = "https://img.youtube.com/vi/" + jsond.info.related_videos[1].id + "/hqdefault.jpg";
 									var r2Au = jsond.info.related_videos[1].author;
 									var r2V = jsond.info.related_videos[1].short_view_count_text;
 									document.getElementById("rv2").href = r2L;
@@ -1413,7 +1440,7 @@ function openVideo(opt,ret) {
 									if (jsond.info.related_videos[2]) {
 										var r3L = "#w#" + jsond.info.related_videos[2].id;
 										var r3T = jsond.info.related_videos[2].title;
-										var r3A = baseUrl + jsond.info.related_videos[2].id;
+										var r3A = "https://img.youtube.com/vi/" + jsond.info.related_videos[2].id + "/hqdefault.jpg";
 										var r3Au = jsond.info.related_videos[2].author;
 										var r3V = jsond.info.related_videos[2].short_view_count_text;
 										document.getElementById("rv3").href = r3L;
@@ -1424,7 +1451,7 @@ function openVideo(opt,ret) {
 										if (jsond.info.related_videos[3]) {
 											var r4L = "#w#" + jsond.info.related_videos[3].id;
 											var r4T = jsond.info.related_videos[3].title;
-											var r4A = baseUrl + jsond.info.related_videos[3].id;
+											var r4A = "https://img.youtube.com/vi/" + jsond.info.related_videos[3].id + "/hqdefault.jpg";
 											var r4Au = jsond.info.related_videos[3].author;
 											var r4V = jsond.info.related_videos[3].short_view_count_text;
 											document.getElementById("rv4").href = r4L;
@@ -1435,7 +1462,7 @@ function openVideo(opt,ret) {
 											if (jsond.info.related_videos[4]) {
 												var r5L = "#w#" + jsond.info.related_videos[4].id;
 												var r5T = jsond.info.related_videos[4].title;
-												var r5A = baseUrl + jsond.info.related_videos[4].id;
+												var r5A = "https://img.youtube.com/vi/" + jsond.info.related_videos[4].id + "/hqdefault.jpg";
 												var r5Au = jsond.info.related_videos[4].author;
 												var r5V = jsond.info.related_videos[4].short_view_count_text;
 												document.getElementById("rv5").href = r5L;
@@ -1446,7 +1473,7 @@ function openVideo(opt,ret) {
 												if (jsond.info.related_videos[5]) {
 													var r6L = "#w#" + jsond.info.related_videos[5].id;
 													var r6T = jsond.info.related_videos[5].title;
-													var r6A = baseUrl + jsond.info.related_videos[5].id;
+													var r6A = "https://img.youtube.com/vi/" + jsond.info.related_videos[5].id + "/hqdefault.jpg";
 													var r6Au = jsond.info.related_videos[5].author;
 													var r6V = jsond.info.related_videos[5].short_view_count_text;
 													document.getElementById("rv6").href = r6L;
@@ -1457,7 +1484,7 @@ function openVideo(opt,ret) {
 													if  (jsond.info.related_videos[6]) {
 														var r7L = "#w#" + jsond.info.related_videos[6].id;
 														var r7T = jsond.info.related_videos[6].title;
-														var r7A = baseUrl + jsond.info.related_videos[6].id;
+														var r7A = "https://img.youtube.com/vi/" + jsond.info.related_videos[6].id + "/hqdefault.jpg";
 														var r7Au = jsond.info.related_videos[6].author;
 														var r7V = jsond.info.related_videos[6].short_view_count_text;
 														document.getElementById("rv7").href = r7L;
@@ -1468,7 +1495,7 @@ function openVideo(opt,ret) {
 														if (jsond.info.related_videos[7]) {
 															var r8L = "#w#" + jsond.info.related_videos[7].id;
 															var r8T = jsond.info.related_videos[7].title;
-															var r8A = baseUrl + jsond.info.related_videos[7].id;
+															var r8A = "https://img.youtube.com/vi/" + jsond.info.related_videos[7].id + "/hqdefault.jpg";
 															var r8Au = jsond.info.related_videos[7].author;
 															var r8V = jsond.info.related_videos[7].short_view_count_text;
 															document.getElementById("rv8").href = r8L;
@@ -1478,7 +1505,7 @@ function openVideo(opt,ret) {
 															document.getElementById("rVie8").innerHTML = r8V;
 															if (jsond.info.related_videos[8]) {
 																var r9T = jsond.info.related_videos[8].title;
-																var r9A = baseUrl + jsond.info.related_videos[8].id;
+																var r9A = "https://img.youtube.com/vi/" + jsond.info.related_videos[8].id + "/hqdefault.jpg";
 																var r9Au = jsond.info.related_videos[8].author;
 																var r9V = jsond.info.related_videos[8].short_view_count_text;
 																var r9L = "#w#" + jsond.info.related_videos[8].id;
@@ -1608,14 +1635,7 @@ function openVideo(opt,ret) {
 									document.getElementById("player").src = videoUrl;
 									document.getElementById("qOptions").value = document.getElementById("itag").innerHTML;
 									document.getElementById("vidLoader").style.display = 'none';
-									if (opt == "a" | !opt) {
-										var tUrl = "http://normandotmp4.electrohaxz.tk:9019/?thumb=" + getClickedId(window.location.href, "#w#");
-									} else if (opt == "b"){
-										var tUrl = "https://vidpolaris.herokuapp.com/?thumb=" + getClickedId(window.location.href, "#w#");
-									} else if (opt == "c") {
-										var tUrl = "https://vidpolaris-europe.herokuapp.com/?thumb=" + getClickedId(window.location.href, "#w#");
-									}
-									document.getElementById("player").poster = tUrl;
+									document.getElementById("player").poster = "https://img.youtube.com/vi/" + jsond.info.related_videos[7].id + "/hqdefault.jpg";;
 									document.getElementById("title").innerHTML = titl;
 									document.title = titl +  " | vidpolaris";
 									if (desc.length > 300) {
@@ -1744,14 +1764,6 @@ function openVideo(opt,ret) {
 									}	
 								}
 								document.getElementById("aqOptions").style.display = "none";
-								if (opt == "a" | !opt) {
-									var tUrl = "http://normandotmp4.electrohaxz.tk:9019/?thumb=" + getClickedId(window.location.href, "#w#");
-								} else if (opt == "b"){
-									var tUrl = "https://vidpolaris.herokuapp.com/?thumb=" + getClickedId(window.location.href, "#w#");
-								} else if (opt == "c") {
-									var tUrl = "https://vidpolaris-europe.herokuapp.com/?thumb=" + getClickedId(window.location.href, "#w#");
-								}
-								document.getElementById("player").poster = tUrl;
 								document.getElementById("title").innerHTML = titl;
 								document.title = titl +  " | vidpolaris";
 								if (desc.length > 300) {
@@ -1900,7 +1912,6 @@ function openVideo(opt,ret) {
 						document.getElementById("playerContainer").style.display = "";
 						document.getElementById("player").src = jsond.datainfo[0].url;
 						document.getElementById("player").play();
-						document.getElementById("qSelector").style.display = "none";
 						document.getElementById("loadErr").style.display = "none";
 						sessionStorage.setItem("tried2", "y");
 					}
@@ -2103,7 +2114,11 @@ function home() {
 	document.getElementById("trendingLoader").style.display = "";
 	document.getElementById("trending").style.display = "none";
 	document.title = "vidpolaris";
-	getTrending(localStorage.getItem("sLoc"));
+	if (localStorage.getItem("invIns")) {
+		getTrending(localStorage.getItem("sLoc"));
+	} else {
+		getTrending(localStorage.getItem("sLoc"),localStorage.getItem("invIns"));
+	}
 }
 
 function longDesc() {
@@ -2175,7 +2190,11 @@ function refresh() {
 		document.getElementById("helpOut").style.display = '';
 		document.title = "settings | vidpolaris";
 	} else if (window.location.href.includes("#c#")){
-		openChannel(localStorage.getItem("sLoc"));
+		if (!localStorage.getItem("invIns") | localStorage.getItem("invIns") == "o") {
+			openChannel(localStorage.getItem("sLoc"));
+		} else {
+			openChannel(localStorage.getItem("sLoc"), localStorage.getItem("invIns"));
+		}
 	} else if (window.location.href.includes("#adapt#")){
 		adaptBookmark();
 	} else if (window.location.href.includes("#")) {
@@ -2299,6 +2318,7 @@ function saveSettings() {
 	localStorage.setItem("disableCards", document.getElementById("disableCards").value);
 	localStorage.setItem("showReddit", document.getElementById("showReddit").value);
 	localStorage.setItem("allowAutoScale", document.getElementById("aas").value);
+	localStorage.setItem("invIns", document.getElementById("invIns").value);
 	if (document.getElementById("aas").value == "n") {
 		localStorage.setItem("mScale", document.getElementById("mScale").value);
 		resize("manual", localStorage.getItem("mScale"));
@@ -2985,7 +3005,7 @@ function notPlayable() {
 	document.getElementById("bannerPfpContainer").style.display = 'none';
 }
 
-function openChannel(opt) {
+function openChannel(opt,inst) {
 	document.title = "[loading...] vidpolaris";
 	document.getElementById("player").pause();
 	document.getElementById("resultsContainer").style.display = 'none';
@@ -3016,12 +3036,22 @@ function openChannel(opt) {
 	} else if (id.includes("/featured")) {
 		window.open("#c#" + id.replace("/featured", ""), "_self")
 	}
-	if (opt == "a" | !opt) {
-		var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?channelId=" + id;
-	} else if (opt == "b"){
-		var url = "https://vidpolaris.herokuapp.com/?channelId=" + id;
-	} else if (opt == "c") {
-		var url = "https://vidpolaris-europe.herokuapp.com/?channelId=" + id;
+	if (!inst | inst == "o") {
+		if (opt == "a" | !opt) {
+			var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?channelId=" + id;
+		} else if (opt == "b"){
+			var url = "https://vidpolaris.herokuapp.com/?channelId=" + id;
+		} else if (opt == "c") {
+			var url = "https://vidpolaris-europe.herokuapp.com/?channelId=" + id;
+		}
+	} else {
+		if (opt == "a" | !opt) {
+			var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?channelId=" + id;
+		} else if (opt == "b"){
+			var url = "https://vidpolaris.herokuapp.com/?channelId=" + id;
+		} else if (opt == "c") {
+			var url = "https://vidpolaris-europe.herokuapp.com/?channelId=" + id;
+		}
 	}
 	http.open("GET", url);
 	http.send();
@@ -3046,12 +3076,22 @@ function openChannel(opt) {
 			} else {
 				document.getElementById("banner").src = "img/banner.png";
 			}
-			if (opt == "a" | !opt) {
-				var baseUrl = "http://normandotmp4.electrohaxz.tk:9019/?thumb=";
-			} else if (opt == "b") {
-				var baseUrl = "https://vidpolaris.herokuapp.com/?thumb=";
-			} else if (opt == "c") {
-				var baseUrl = "https://vidpolaris-europe.herokuapp.com/?thumb=";
+			if (!localStorage.getItem("invIns") | localStorage.getItem("invIns") == "o") {
+				if (localStorage.getItem("sLoc") == "a") {
+					var baseUrl = "http://normandotmp4.electrohaxz.tk:9019/?thumb=";
+				} else if (localStorage.getItem("sLoc") == "b") {
+					var baseUrl = "https://vidpolaris.herokuapp.com/?thumb=";
+				} else if (localStorage.getItem("sLoc") == "c") {
+					var baseUrl = "https://vidpolaris-europe.herokuapp.com/?thumb=";
+				}
+			} else {
+				if (localStorage.getItem("sLoc") == "a") {
+					var baseUrl = "http://normandotmp4.electrohaxz.tk:9019/?inst=" + localStorage.getItem("invIns") + "&thumb=";
+				} else if (localStorage.getItem("sLoc") == "b") {
+					var baseUrl = "https://vidpolaris.herokuapp.com/?inst=" + localStorage.getItem("invIns") + "&thumb=";
+				} else if (localStorage.getItem("sLoc") == "c") {
+					var baseUrl = "https://vidpolaris-europe.herokuapp.com/?inst=" + localStorage.getItem("invIns") + "&thumb=";
+				}
 			}
 			document.getElementById("profilePic").src = jsond.authorThumbnails[0].url.split('=s')[0];
 			if (!jsond.subCount == 0) {
@@ -3174,6 +3214,23 @@ function openChannelVideos(opt,pg) {
 			var url = "https://vidpolaris-europe.herokuapp.com/?channelVideos=" + id + "&sortBy=" + document.getElementById("sortBy").value + "&page="+ pageNum;
 		}
 	}
+	if (!localStorage.getItem("invIns") | localStorage.getItem("invIns") == "o") {
+		if (localStorage.getItem("sLoc") == "a") {
+			var baseUrl = "http://normandotmp4.electrohaxz.tk:9019/?thumb=";
+		} else if (localStorage.getItem("sLoc") == "b") {
+			var baseUrl = "https://vidpolaris.herokuapp.com/?thumb=";
+		} else if (localStorage.getItem("sLoc") == "c") {
+			var baseUrl = "https://vidpolaris-europe.herokuapp.com/?thumb=";
+		}
+	} else {
+		if (localStorage.getItem("sLoc") == "a") {
+			var baseUrl = "http://normandotmp4.electrohaxz.tk:9019/?inst=" + localStorage.getItem("invIns") + "&thumb=";
+		} else if (localStorage.getItem("sLoc") == "b") {
+			var baseUrl = "https://vidpolaris.herokuapp.com/?inst=" + localStorage.getItem("invIns") + "&thumb=";
+		} else if (localStorage.getItem("sLoc") == "c") {
+			var baseUrl = "https://vidpolaris-europe.herokuapp.com/?inst=" + localStorage.getItem("invIns") + "&thumb=";
+		}
+	}
 	http.open("GET", url);
 	http.send();
 	http.onload=(e)=>{
@@ -3190,7 +3247,7 @@ function openChannelVideos(opt,pg) {
 			document.getElementById("au"+c).appendChild(div);
 			var img = document.createElement("IMG");
 			img.classList.add("relatedThumb");
-			img.src = "https://vidpolaris.herokuapp.com/?thumb=" + jsond[c].videoId;
+			img.src = baseUrl + jsond[c].videoId;
 			document.getElementById("au"+c+"Div").appendChild(img);
 			var h3 = document.createElement("H4");
 			h3.classList.add("stat");
