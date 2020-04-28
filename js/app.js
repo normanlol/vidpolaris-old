@@ -1635,7 +1635,7 @@ function openVideo(opt,ret) {
 									document.getElementById("player").src = videoUrl;
 									document.getElementById("qOptions").value = document.getElementById("itag").innerHTML;
 									document.getElementById("vidLoader").style.display = 'none';
-									document.getElementById("player").poster = "https://img.youtube.com/vi/" + jsond.info.related_videos[7].id + "/hqdefault.jpg";;
+									document.getElementById("player").poster = "https://img.youtube.com/vi/" + id + "/hqdefault.jpg";;
 									document.getElementById("title").innerHTML = titl;
 									document.title = titl +  " | vidpolaris";
 									if (desc.length > 300) {
