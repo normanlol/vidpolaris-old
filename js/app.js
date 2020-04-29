@@ -1399,7 +1399,7 @@ function openVideo(opt,ret) {
 										link.classList.add("channelLink");
 										document.getElementById("card"+c).appendChild(link);
 										var txt = document.createElement("SPAN");
-									txt.innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[c].cardRenderer.content.simpleCardContentRenderer.title.simpleText + " [" + jsond.info.player_response.cards.cardCollectionRenderer.cards[c].cardRenderer.content.simpleCardContentRenderer.displayDomain.simpleText + "]";
+										txt.innerHTML = jsond.info.player_response.cards.cardCollectionRenderer.cards[c].cardRenderer.content.simpleCardContentRenderer.title.simpleText + " [" + jsond.info.player_response.cards.cardCollectionRenderer.cards[c].cardRenderer.content.simpleCardContentRenderer.displayDomain.simpleText + "]";
 										document.getElementById("cardL"+c).appendChild(txt);
 									}
 								}
