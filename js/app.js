@@ -1743,10 +1743,10 @@ function openVideo(opt,ret) {
 								document.getElementById("player").src = wUrl;
 								for (var c in jsond.info.formats) {
 									if (c == 0) {
-										var option = document.createElement("OPTION");
-										option.value = jsond.info.formats[c].itag;
-										option.innerHTML = jsond.info.formats[c].qualityLabel;
-										document.getElementById("qOptions").appendChild(option);
+										var opt = document.createElement("OPTION");
+										opt.innerHTML = jsond.info.formats[c].qualityLabel + " (video) - " + jsond.info.formats[c].audioBitrate + "kpbs (audio)";
+										opt.value = jsond.info.formats[c].itag;
+										document.getElementById("qOptions").appendChild(opt);
 									} else {
 										//credit for *more* duplication: https://stackoverflow.com/questions/8069315/create-array-of-all-integers-between-two-numbers-inclusive-in-javascript-jquer
 										var result = range(0, c);
@@ -1755,10 +1755,10 @@ function openVideo(opt,ret) {
 												// do nothing
 											} else {
 												if (jsond.info.formats[c].audioBitrate && !jsond.info.formats[c].audioBitrate == null && jsond.info.formats[c].qualityLabel && !jsond.info.formats[c].qualityLabel == null) {
-													var option = document.createElement("OPTION");
-													option.value = jsond.info.formats[c].itag;
-													option.innerHTML = jsond.info.formats[c].qualityLabel;
-													document.getElementById("qOptions").appendChild(option);
+													var opt = document.createElement("OPTION");
+													opt.innerHTML = jsond.info.formats[c].qualityLabel + " (video) - " + jsond.info.formats[c].audioBitrate + "kpbs (audio)";
+													opt.value = jsond.info.formats[c].itag;
+													document.getElementById("qOptions").appendChild(opt);
 												}
 											}
 										}
