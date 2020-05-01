@@ -2047,12 +2047,7 @@ function home() {
 	document.getElementById("embedContainer").innerHTML = "";
 	document.getElementById("trendingLoader").style.display = "";
 	document.getElementById("trending").style.display = "none";
-	document.title = "vidpolaris";
-	if (localStorage.getItem("invIns")) {
-		getTrending(localStorage.getItem("sLoc"));
-	} else {
-		getTrending(localStorage.getItem("sLoc"),localStorage.getItem("invIns"));
-	}
+	getTrending(localStorage.getItem("sLoc"),localStorage.getItem("invIns"));
 }
 
 function longDesc() {
