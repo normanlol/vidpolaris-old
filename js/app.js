@@ -1569,6 +1569,7 @@ function openVideo(opt,ret) {
 								}
 							}
 							if (localStorage.getItem("smart") == "y") {
+								console.log(opt);
 								if (opt == "a" | !opt) {
 									var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?smart=1&url=" + fullUrl;
 								} else if (opt == "b"){
@@ -1743,10 +1744,10 @@ function openVideo(opt,ret) {
 								document.getElementById("player").src = wUrl;
 								for (var c in jsond.info.formats) {
 									if (c == 0) {
-										var opt = document.createElement("OPTION");
-										opt.innerHTML = jsond.info.formats[c].qualityLabel + " (video) - " + jsond.info.formats[c].audioBitrate + "kpbs (audio)";
-										opt.value = jsond.info.formats[c].itag;
-										document.getElementById("qOptions").appendChild(opt);
+										var option = document.createElement("OPTION");
+										option.innerHTML = jsond.info.formats[c].qualityLabel + " (video) - " + jsond.info.formats[c].audioBitrate + "kpbs (audio)";
+										option.value = jsond.info.formats[c].itag;
+										document.getElementById("qOptions").appendChild(option);
 									} else {
 										//credit for *more* duplication: https://stackoverflow.com/questions/8069315/create-array-of-all-integers-between-two-numbers-inclusive-in-javascript-jquer
 										var result = range(0, c);
@@ -1755,10 +1756,10 @@ function openVideo(opt,ret) {
 												// do nothing
 											} else {
 												if (jsond.info.formats[c].audioBitrate && !jsond.info.formats[c].audioBitrate == null && jsond.info.formats[c].qualityLabel && !jsond.info.formats[c].qualityLabel == null) {
-													var opt = document.createElement("OPTION");
-													opt.innerHTML = jsond.info.formats[c].qualityLabel + " (video) - " + jsond.info.formats[c].audioBitrate + "kpbs (audio)";
-													opt.value = jsond.info.formats[c].itag;
-													document.getElementById("qOptions").appendChild(opt);
+													var option = document.createElement("OPTION");
+													option.innerHTML = jsond.info.formats[c].qualityLabel + " (video) - " + jsond.info.formats[c].audioBitrate + "kpbs (audio)";
+													option.value = jsond.info.formats[c].itag;
+													document.getElementById("qOptions").appendChild(option);
 												}
 											}
 										}
@@ -1914,10 +1915,10 @@ function openVideo(opt,ret) {
 						document.getElementById("aqOptions").style.display = "none";
 						document.getElementById("qOptions").innerHTML = ""
 						for (var c in jsond.datainfo) {
-							var opt = document.createElement("OPTION");
-							opt.innerHTML = jsond.datainfo[c].qualityLabel + " (video) - " + jsond.datainfo[c].audioBitrate + "kpbs (audio)";
-							opt.value = jsond.datainfo[c].itag;
-							document.getElementById("qOptions").appendChild(opt);
+							var option = document.createElement("OPTION");
+							option.innerHTML = jsond.datainfo[c].qualityLabel + " (video) - " + jsond.datainfo[c].audioBitrate + "kpbs (audio)";
+							option.value = jsond.datainfo[c].itag;
+							document.getElementById("qOptions").appendChild(option);
 						}
 						document.getElementById("player").src = jsond.datainfo[0].url;
 						document.getElementById("player").play();
