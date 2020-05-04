@@ -814,7 +814,7 @@ function search(opt) {
 			} else if (jsond.searchResults.items[c].type == "shelf-vertical") {
 				var mDiv = document.createElement("DIV");
 				mDiv.classList.add("verticalShelf");
-				mDiv.id = "re" + c;
+				mDiv.id = "re" + c + "Div";
 				document.getElementById("resultsContainer").appendChild(mDiv);
 				var shelfTitle = document.createElement("H3");
 				shelfTitle.classList.add("stat");
@@ -823,12 +823,12 @@ function search(opt) {
 				for (var cc in jsond.searchResults.items[c].items) {
 					var link = document.createElement("A");
 					link.href = "#w#" + jsond.searchResults.items[c].items[cc].link.substring(32);
-					link.id = "sub" + cc;
-					document.getElementById("re"+c).appendChild(link); 
+					link.id = "sub" + cc + "Link";
+					document.getElementById("re"+c+"Div").appendChild(link); 
 					var div = document.createElement("DIV");
 					div.classList.add("sResultVideo");
 					div.id = "sub" + cc + "Div";
-					document.getElementById("sub"+cc).appendChild(div);
+					document.getElementById("sub"+cc+"Link").appendChild(div);
 					var thumb = document.createElement("IMG");
 					thumb.src = "https://img.youtube.com/vi/" + jsond.searchResults.items[c].items[cc].link.substring(32) + "/hqdefault.jpg";
 					thumb.classList.add("smallThumb");
