@@ -819,7 +819,7 @@ function search(opt) {
 				var shelfTitle = document.createElement("H3");
 				shelfTitle.classList.add("stat");
 				shelfTitle.innerHTML = jsond.searchResults.items[c].title;
-				document.getElementById("re"+c).appendChild(shelfTitle);
+				document.getElementById("re"+c+"Div").appendChild(shelfTitle);
 				for (var cc in jsond.searchResults.items[c].items) {
 					var link = document.createElement("A");
 					link.href = "#w#" + jsond.searchResults.items[c].items[cc].link.substring(32);
