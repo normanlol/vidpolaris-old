@@ -23,10 +23,13 @@
 				<datalist id="suggest"></datalist>
 				<button onclick="getSLink()">search</button>
 				<button onclick="feelingLucky(localStorage.getItem('sLoc'))">i'm feeling lucky</button>
-				<a href="#settings"><button>settings</button></a>
+				<a href="#settings"><button class="material-icons ico">settings</button></a>
 			</div>
 			<div id="homePage" class="centerMe">
-				<noscript>vidpolaris requires javascript to function. we log no information or anything like that.</noscript>
+				<div id="noscript">
+					<h1 class="material-icons ico">priority_high</h1>
+					<p>please enable javascript. vidpolaris does not log any private information or your viewing activities.</p>
+				</div>
 				<div id="trendingLoader" style="display:none;">
 					<div style="margin-top:20px;" class="loader centerMe"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 					<h2>loading home page...</h2>
@@ -389,11 +392,12 @@
 						</div>
 					</div>
 					<div class="centerMe">
-						<button onclick="cHome()"><span class="material-icons ico">home</span> home</button>
-						<button onclick="openChannelVideos(localStorage.getItem('sLoc'))"><span class="material-icons ico">live_tv</span> videos</button>
-						<button onclick="openAbout()"><span class="material-icons ico">person</span> about</button>
+						<button id="hBtn" onclick="cHome()"><span class="material-icons ico">home</span> home</button>
+						<button id="vidBtn" onclick="openChannelVideos(localStorage.getItem('sLoc'))"><span class="material-icons ico">live_tv</span> videos</button>
+						<button id="aBtn" onclick="openAbout()"><span class="material-icons ico">person</span> about</button>
 					</div>
 					<h2 id="newUps" style="margin-left:15%;margin-right:15%;"><span class="material-icons ico">new_releases</span> new uploads from this channel</h2>
+					<h2 id="noUps" style="margin-left:15%;margin-right:15%;display:none;text-align:center;">no uploads are visible on this channel.</h2>
 					<div id="recentUploads" style="margin-left:15%;margin-right:15%;"></div>
 					<div id="allUploadsPage" style="display:none;margin-left:15%;margin-right:15%;">
 						<span id="pageNumChan" style="display:none;"></span>

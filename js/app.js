@@ -1,3 +1,4 @@
+document.getElementById("noscript").style.display = "none";
 console.log("script loaded.");
 console.log("==================");
 if (localStorage.getItem("allowAutoScale") == "y") {
@@ -34,6 +35,11 @@ if (sessionStorage.getItem("currentlyRunningT")) {
 if (sessionStorage.getItem("currentlyOpening")) {
 	sessionStorage.removeItem("currentlyOpening");
 	console.log("-- removed 'currentlyOpening' item");
+}
+
+if (sessionStorage.getItem("noUploads")) {
+	sessionStorage.removeItem("noUploads");
+	console.log("-- removed 'noUploads' item")
 }
 
 if (sessionStorage.getItem("nxtpg")) {
@@ -2955,6 +2961,9 @@ function openChannel(opt,inst) {
 	document.getElementById("bannerPfpContainer").style.display = 'none';
 	document.getElementById("aboutPage").style.display = 'none';
 	document.getElementById("allUploadsPage").style.display = "none";
+	if (sessionStorage.getItem("noUploads")) {
+		sessionStorage.removeItem("noUploads");
+	}
 	const http = new XMLHttpRequest();
 	var id = getClickedId(window.location.href, '#c#');
 	if (id.includes("/videos")) {
@@ -3024,62 +3033,93 @@ function openChannel(opt,inst) {
 			document.getElementById("chanName").innerHTML = jsond.author;
 			document.getElementById("channelDesc").innerHTML = jsond.description;
 			document.getElementById("recentUploads").innerHTML = "";
+			document.getElementById("recentUploads").style.display = "";
 			document.getElementById("newUps").style.display = "";
+			document.getElementById("chanLoader").style.display = 'none';
+			document.getElementById("chanViewer").style.display = '';
+			document.getElementById("searchContainer").style.display = '';
+			document.getElementById("bannerPfpContainer").style.display = '';
+			document.getElementById("relatedChannels").innerHTML = "";
 			document.title = jsond.author + " | vidpolaris";
-			for (var c in jsond.latestVideos) {
-				var link = document.createElement("A");
-				link.href = "#w#" + jsond.latestVideos[c].videoId;
-				link.id = "up" + c;
-				document.getElementById("recentUploads").appendChild(link);
-				var div = document.createElement("DIV");
-				div.classList.add("altSmallVideo");
-				div.id = "up" + c + "Div"
-				document.getElementById("up"+c).appendChild(div);
-				var img = document.createElement("IMG");
-				img.classList.add("relatedThumb");
-				img.src = "https://img.youtube.com/vi/" + jsond.latestVideos[c].videoId + "/hqdefault.jpg";
-				document.getElementById("up"+c+"Div").appendChild(img);
-				var h3 = document.createElement("H4");
-				h3.classList.add("stat");
-				h3.innerHTML = jsond.latestVideos[c].title;
-				document.getElementById("up"+c+"Div").appendChild(h3);
-				var stat1 = document.createElement("H5");
-				stat1.innerHTML = '<span class="material-icons ico">calendar_today</span> posted ' + jsond.latestVideos[c].publishedText;
-				stat1.classList.add("stat")
-				document.getElementById("up"+c+"Div").appendChild(stat1);
-				var stat2 = document.createElement("H5");
-				stat2.innerHTML = '<span class="material-icons ico">remove_red_eye</span> ' + jsond.latestVideos[c].viewCount.toLocaleString() + ' views'
-				stat2.classList.add("stat");
-				document.getElementById("up"+c+"Div").appendChild(stat2);
-				if (!c + 1) {
-					document.getElementById("chanLoader").style.display = 'none';
-					document.getElementById("chanViewer").style.display = '';
-					document.getElementById("recentUploads").style.display = '';
-					document.getElementById("searchContainer").style.display = '';
-					document.getElementById("bannerPfpContainer").style.display = '';
-					document.getElementById("relatedChannels").innerHTML = "";
-					for (c in jsond.relatedChannels) {
-						var link = document.createElement("A");
-						link.href = "#c#" + jsond.relatedChannels[c].authorId;
-						link.id = "reCh" + c;
-						document.getElementById("relatedChannels").appendChild(link);
-						var div = document.createElement("DIV");
-						div.classList.add("relatedChannel");
-						div.id = "reChDiv" + c;
-						document.getElementById("reCh"+c).appendChild(div);
-						var img = document.createElement("IMG");
-						var url = jsond.relatedChannels[c].authorThumbnails[0].url
-						img.src = url.split('=s')[0];
-						img.classList.add("profilePics");
-						document.getElementById("reChDiv"+c).appendChild(img);
-						var name = document.createElement("H2");
-						name.innerHTML = jsond.relatedChannels[c].author;
-						name.classList.add("stat");
-						document.getElementById("reChDiv"+c).appendChild(name);
+			if (jsond.latestVideos[0]){
+				for (var c in jsond.latestVideos) {
+					var link = document.createElement("A");
+					link.href = "#w#" + jsond.latestVideos[c].videoId;
+					link.id = "up" + c;
+					document.getElementById("recentUploads").appendChild(link);
+					var div = document.createElement("DIV");
+					div.classList.add("altSmallVideo");
+					div.id = "up" + c + "Div"
+					document.getElementById("up"+c).appendChild(div);
+					var img = document.createElement("IMG");
+					img.classList.add("relatedThumb");
+					img.src = "https://img.youtube.com/vi/" + jsond.latestVideos[c].videoId + "/hqdefault.jpg";
+					document.getElementById("up"+c+"Div").appendChild(img);
+					var h3 = document.createElement("H4");
+					h3.classList.add("stat");
+					h3.innerHTML = jsond.latestVideos[c].title;
+					document.getElementById("up"+c+"Div").appendChild(h3);
+					var stat1 = document.createElement("H5");
+					stat1.innerHTML = '<span class="material-icons ico">calendar_today</span> posted ' + jsond.latestVideos[c].publishedText;
+					stat1.classList.add("stat")
+					document.getElementById("up"+c+"Div").appendChild(stat1);
+					var stat2 = document.createElement("H5");
+					stat2.innerHTML = '<span class="material-icons ico">remove_red_eye</span> ' + jsond.latestVideos[c].viewCount.toLocaleString() + ' views'
+					stat2.classList.add("stat");
+					document.getElementById("up"+c+"Div").appendChild(stat2);
+					if (!c + 1) {
+						for (c in jsond.relatedChannels) {
+							var link = document.createElement("A");
+							link.href = "#c#" + jsond.relatedChannels[c].authorId;
+							link.id = "reCh" + c;
+							document.getElementById("relatedChannels").appendChild(link);
+							var div = document.createElement("DIV");
+							div.classList.add("relatedChannel");
+							div.id = "reChDiv" + c;
+							document.getElementById("reCh"+c).appendChild(div);
+							var img = document.createElement("IMG");
+							var url = jsond.relatedChannels[c].authorThumbnails[0].url
+							img.src = url.split('=s')[0];
+							img.classList.add("profilePics");
+							document.getElementById("reChDiv"+c).appendChild(img);
+							var name = document.createElement("H2");
+							name.innerHTML = jsond.relatedChannels[c].author;
+							name.classList.add("stat");
+							document.getElementById("reChDiv"+c).appendChild(name);
+						}
+						document.getElementById("newUps").style.display = "";
+						document.getElementById("noUps").style.display = "none";
+						document.getElementById("vidBtn").style.display = "";
+						if (sessionStorage.getItem("noUploads")) {
+							sessionStorage.removeItem("noUploads");
+						}
 					}
 				}
+			} else {
+				for (c in jsond.relatedChannels) {
+					var link = document.createElement("A");
+					link.href = "#c#" + jsond.relatedChannels[c].authorId;
+					link.id = "reCh" + c;
+					document.getElementById("relatedChannels").appendChild(link);
+					var div = document.createElement("DIV");
+					div.classList.add("relatedChannel");
+					div.id = "reChDiv" + c;
+					document.getElementById("reCh"+c).appendChild(div);
+					var img = document.createElement("IMG");
+					var url = jsond.relatedChannels[c].authorThumbnails[0].url
+					img.src = url.split('=s')[0];
+					img.classList.add("profilePics");
+					document.getElementById("reChDiv"+c).appendChild(img);
+					var name = document.createElement("H2");
+					name.innerHTML = jsond.relatedChannels[c].author;
+					name.classList.add("stat");
+					document.getElementById("reChDiv"+c).appendChild(name);
+				}
+				document.getElementById("newUps").style.display = "none";
+				document.getElementById("noUps").style.display = "";
+				document.getElementById("vidBtn").style.display = "none";
+				sessionStorage.setItem("noUploads", "y");
 			}
-			
 		}
 	}
 	http.timeout = 7000;
@@ -3092,6 +3132,14 @@ function openChannel(opt,inst) {
 			openChannel("a");
 		}
 	}
+}
+
+function openAbout() {
+	document.getElementById("aboutPage").style.display = "";
+	document.getElementById("newUps").style.display = "none";
+	document.getElementById("noUps").style.display = "none";
+	document.getElementById("allUploadsPage").style.display = "none";
+	document.getElementById("recentUploads").style.display = "none";
 }
 
 function openChannelVideos(opt,pg) {
@@ -3176,7 +3224,13 @@ function openChannelVideos(opt,pg) {
 
 function cHome() {
 	document.getElementById("recentUploads").style.display = '';
-	document.getElementById("newUps").style.display = "";
+	if (!sessionStorage.getItem("noUploads")) {
+		document.getElementById("newUps").style.display = "";
+		document.getElementById("noUps").style.display = "none";
+	} else {
+		document.getElementById("newUps").style.display = "none";
+		document.getElementById("noUps").style.display = "";
+	}
 	document.getElementById("allUploadsPage").style.display = 'none';
 	document.getElementById("aboutPage").style.display = 'none';
 }
@@ -3402,13 +3456,6 @@ function swap(intent) {
 			return;
 		}
 	}
-}
-
-function openAbout() {
-	document.getElementById("aboutPage").style.display = "";
-	document.getElementById("newUps").style.display = "none";
-	document.getElementById("allUploadsPage").style.display = "none";
-	document.getElementById("recentUploads").style.display = "none";
 }
 
 function embedNoCookie() {
