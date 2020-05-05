@@ -3443,11 +3443,13 @@ function preset(d) {
 			document.getElementById("suggest").value = "n";
 			document.getElementById("autoComm").value = "n";
 			document.getElementById("disableCards").value = "y";
+			document.getElementById("showReddit").value = "n";
 		} else if (d == "dataHeavy") {
 			document.getElementById("sq").value = "y";
 			document.getElementById("suggest").value = "y";
 			document.getElementById("autoComm").value = "y";
 			document.getElementById("disableCards").value = "n";
+			document.getElementById("showReddit").value = "y";
 		} else if (d == "default") {
 			document.getElementById("sq").value = "y";
 			document.getElementById("theme").value = "d_v1";
@@ -3456,6 +3458,9 @@ function preset(d) {
 			document.getElementById("country").value = "us";
 			document.getElementById("autoComm").value = "y";
 			document.getElementById("disableCards").value = "n";
+			document.getElementById("showReddit").value = "y";
+			document.getElementById("aas").value = "y";
+			document.getElementById("invIns").value = "o";
 		}
 	}
 }
