@@ -823,28 +823,28 @@ function search(opt) {
 				for (var cc in jsond.searchResults.items[c].items) {
 					var link = document.createElement("A");
 					link.href = "#w#" + jsond.searchResults.items[c].items[cc].link.substring(32);
-					link.id = "sub" + cc + "Link";
+					link.id = c + "sub" + cc + "Link";
 					document.getElementById("re"+c+"Div").appendChild(link); 
 					var div = document.createElement("DIV");
 					div.classList.add("sResultVideo");
-					div.id = "sub" + cc + "Div";
-					document.getElementById("sub"+cc+"Link").appendChild(div);
+					div.id = c + "sub" + cc + "Div";
+					document.getElementById(c+"sub"+cc+"Link").appendChild(div);
 					var thumb = document.createElement("IMG");
 					thumb.src = "https://img.youtube.com/vi/" + jsond.searchResults.items[c].items[cc].link.substring(32) + "/hqdefault.jpg";
 					thumb.classList.add("smallThumb");
-					document.getElementById("sub"+cc+"Div").appendChild(thumb);
+					document.getElementById(c+"sub"+cc+"Div").appendChild(thumb);
 					var div2 = document.createElement("DIV");
 					div2.classList.add("resultD");
-					div2.id = "sub" + cc + "Info";
-					document.getElementById("sub"+cc+"Div").appendChild(div2);
+					div2.id = c + "sub" + cc + "Info";
+					document.getElementById(c+"sub"+cc+"Div").appendChild(div2);
 					var title = document.createElement("H2");
 					title.innerHTML = jsond.searchResults.items[c].items[cc].title;
 					title.classList.add("stat");
-					document.getElementById("sub"+cc+"Info").appendChild(title);
+					document.getElementById(c+"sub"+cc+"Info").appendChild(title);
 					var author = document.createElement("H3");
 					author.innerHTML = '<span class="material-icons ico">person</span> ' + jsond.searchResults.items[c].items[cc].author.name;
 					author.classList.add("stat");
-					document.getElementById("sub"+cc+"Info").appendChild(author);
+					document.getElementById(c+"sub"+cc+"Info").appendChild(author);
 					var stat1 = document.createElement("H3");
 					if (jsond.searchResults.items[c].items[cc].views == null | !jsond.searchResults.items[c].items[cc].views) {
 						stat1.innerHTML = '<span class="material-icons ico">remove_red_eye</span> [Unobtainable] views';
@@ -852,19 +852,19 @@ function search(opt) {
 						stat1.innerHTML = '<span class="material-icons ico">remove_red_eye</span> ' + jsond.searchResults.items[c].items[cc].views.toLocaleString() + ' views';
 					}
 					stat1.classList.add("stat");
-					document.getElementById("sub"+cc+"Info").appendChild(stat1);
+					document.getElementById(c+"sub"+cc+"Info").appendChild(stat1);
 					var stat2 = document.createElement("H3");
 					stat2.innerHTML = '<span class="material-icons ico">calendar_today</span> posted ' + jsond.searchResults.items[c].items[cc].uploaded_at;
 					stat2.classList.add("stat");
-					document.getElementById("sub"+cc+"Info").appendChild(stat2);
+					document.getElementById(c+"sub"+cc+"Info").appendChild(stat2);
 					var stat3 = document.createElement("H3");
 					stat3.innerHTML = '<span class="material-icons ico">timer</span> ' + jsond.searchResults.items[c].items[cc].duration;
 					stat3.classList.add("stat");
-					document.getElementById("sub"+cc+"Info").appendChild(stat3);
+					document.getElementById(c+"sub"+cc+"Info").appendChild(stat3);
 					var desc = document.createElement("P");
 					desc.innerHTML = jsond.searchResults.items[c].items[cc].description;
 					desc.classList.add("stat");
-					document.getElementById("sub"+cc+"Info").appendChild(desc);
+					document.getElementById(c+"sub"+cc+"Info").appendChild(desc);
 				}
 			} else {
 				
