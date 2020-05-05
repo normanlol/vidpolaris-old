@@ -1582,11 +1582,11 @@ function openVideo(opt,ret) {
 								http.onload=(e)=>{
 									document.getElementById("qSelector").style.display = '';
 									var jsond = JSON.parse(http.responseText);
-									if (!jsond.audio) {
+									if (jsond.datainfo) {
 										openVideo(opt);
 										return;
 									}
-									if (jsond.datainfo) {
+									if (!jsond.audio) {
 										openVideo(opt);
 										return;
 									}
@@ -2030,6 +2030,7 @@ function getClickedId(parentString, substring) {
 
 function home() {
 	document.getElementById("player").pause();
+	document.title = "vidpolaris"
 	document.getElementById("vidViewer").style.display = 'none';
 	document.getElementById("vidPage").style.display = 'none';
 	document.getElementById("searchPage").style.display = 'none';
@@ -2330,7 +2331,7 @@ function getComments(token, opt) {
 					if (jsond.comments[0].timestamp < jsond.comments[1].timestamp) {
 						var pinned = document.createElement("P");
 						pinned.classList.add("stat");
-						pinned.innerHTML = "<span class='ico material-icons'>announcement</span> Pinned comment";
+						pinned.innerHTML = "<span class='ico material-icons'>announcement</span> pinned comment";
 						pinned.style = "margin-bottom:5px;";
 						document.getElementById("c"+c).appendChild(pinned);
 					}
@@ -2366,7 +2367,7 @@ function getComments(token, opt) {
 				} else {
 					var rep = jsond.comments[c].numReplies;
 				}
-			var tFunction = `translate('c` + c + `T')`
+				var tFunction = `translate('c` + c + `T')`
 				stats.innerHTML = "<span class='material-icons ico'>comment</span> " + rep + " replies • <span class='material-icons ico'>thumb_up</span> " + jsond.comments[c].likes.toLocaleString() + " likes • <span onclick=" + tFunction + " style='cursor:pointer'><span class='material-icons ico'>translate</span> translate this comment</span> • <span>posted " + jsond.comments[c].time + "</span>";
 				document.getElementById("c"+c).appendChild(stats);
 			}
@@ -2903,7 +2904,10 @@ function showWarning() {
 	if (localStorage.getItem("ageR") == "n" | !localStorage.getItem("ageR")) {
 		document.getElementById("nsWarnPage").style.display = '';
 		document.getElementById("vidPage").style.display = 'none';
-		document.getElementById("player").pause();
+		setTimeout(function() {
+			document.getElementById("player").pause();
+			document.getElementById("player").currentTime = 0;
+		}, 5000)
 	} else {
 		return;
 	}
