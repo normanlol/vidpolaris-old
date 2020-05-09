@@ -7,7 +7,7 @@ _**this project is in no way affiliated with google or youtube.**_
 
 ## screenshots
 ![A screenshot of VidPolaris](https://i.ibb.co/RjmP5wZ/image.png)
-*The original video was only available in 720p.*
+*the original video was only available in 720p.*
 
 ![Home screen preview](https://i.ibb.co/0tKk2hS/image.png)
 *screenshots taken on may 9, 2020 at (around) 7:20pm*
