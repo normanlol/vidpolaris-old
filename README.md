@@ -6,10 +6,11 @@ _**this project is in no way affiliated with google or youtube.**_
 [use it right now](https://n0rmancodes.github.io/vidpolaris/#w#2nBzs_4HdLA) - [api](https://github.com/n0rmancodes/vidpolarisAPI)
 
 ## screenshots
-![A screenshot of VidPolaris](https://i.ibb.co/8K957N1/image.png)
-*The original video was only available in 360p.*
+![A screenshot of VidPolaris](https://i.ibb.co/RjmP5wZ/image.png)
+*The original video was only available in 720p.*
 
-![Home screen preview](https://i.ibb.co/rGK4DXr/image.png)
+![Home screen preview](https://i.ibb.co/0tKk2hS/image.png)
+*screenshots taken on may 9, 2020 at (around) 7:20pm*
 
 ## powered by
 see [here](https://github.com/n0rmancodes/vidpolarisAPI/blob/master/README.md#sources) for all sources that run this site.
