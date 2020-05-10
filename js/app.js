@@ -1589,11 +1589,11 @@ function openVideo(opt,ret) {
 									document.getElementById("qSelector").style.display = '';
 									var jsond = JSON.parse(http.responseText);
 									if (jsond.datainfo) {
-										openVideo(opt);
+										window.location.reload(); 
 										return;
 									}
 									if (!jsond.audio) {
-										openVideo(opt);
+										window.location.reload(); 
 										return;
 									}
 									var audioUrl = jsond.audio[0].url;
