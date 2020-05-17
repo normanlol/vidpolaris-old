@@ -1053,7 +1053,6 @@ function getTrending(opt,inst) {
 				}
 			}
 		}
-		var jsond = JSON.parse(http.responseText);
 		for (var c in jsond) {
 			if (c > 17) {
 				document.getElementById("trendingLoader").style.display = 'none';
@@ -1620,10 +1619,12 @@ function openVideo(opt,ret) {
 									document.getElementById("qSelector").style.display = '';
 									var jsond = JSON.parse(http.responseText);
 									if (jsond.datainfo) {
+										document.getElementById("vidLoaderTxt").innerHTML = "improper response, refreshing page.";
 										window.location.reload(); 
 										return;
 									}
 									if (!jsond.audio) {
+										document.getElementById("vidLoaderTxt").innerHTML = "improper response, refreshing page.";
 										window.location.reload(); 
 										return;
 									}
