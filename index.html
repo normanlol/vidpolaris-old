@@ -18,7 +18,7 @@
 	<body id="b" onhashchange="refresh()" onresize="resize('auto')">
 		<div class="centerMe">
 			<h1><a href="#" class="invisibleLink" style="width:151px;">vidpolaris</a></h1>
-			<div id="searchContainer">
+			<div id="searchContainer" style="display:none;">
 				<input id="q" autocomplete="off" list="suggest" oninput="suggest(localStorage.getItem('sLoc'))">
 				<datalist id="suggest"></datalist>
 				<button onclick="getSLink()">search</button>
@@ -32,7 +32,7 @@
 				</div>
 				<div id="trendingLoader" style="display:none;">
 					<div style="margin-top:20px;" class="loader centerMe"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-					<h2>loading home page...</h2>
+					<h2 id="homeLoadDeet">loading home page...</h2>
 				</div>
 				<div id="trending" style="display:none;">
 					<div class="pack">
@@ -50,7 +50,10 @@
 				</div>
 			</div>
 			<div id="vidPage" style="display:none;">
-				<div id="vidLoader" class="loader centerMe"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+				<div id="vidLoader">
+					<div class="loader centerMe"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+					<h2 id="vidLoaderTxt">loading video...</h2>
+				</div>
 				<div id="vidViewer" style="display:none;" class="centerMe">
 					<div id="playerContainer">
 						<video id="player" oncontextmenu="return false;" controls></video>

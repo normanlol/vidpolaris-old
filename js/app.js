@@ -8,18 +8,40 @@ if (localStorage.getItem("allowAutoScale") == "y") {
 	resize("manual", localStorage.getItem("mScale"));
 }
 keepProg();
-if (window.location.href.includes("#c") | window.location.href.includes("#adapt#") | window.location.href.includes("#w") | window.location.href.includes("#s")) {
-	refresh();
-} else {
-	if (localStorage.getItem("sLoc")) {
-		if (localStorage.getItem("invIns")) {
-			getTrending(localStorage.getItem("sLoc"), localStorage.getItem("invIns"))
+const http = new XMLHttpRequest();
+document.getElementById("homeLoadDeet").innerHTML = "waking server..."
+if (localStorage.getItem("sLoc") == "a" | !localStorage.getItem("sLoc")) {
+	var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/"
+} else if (localStorage.getItem("sLoc") == "b"){
+	var url = "https://vidpolaris.herokuapp.com"
+} else if (localStorage.getItem("sLoc") == "c") {
+	var url = "https://vidpolaris-europe.herokuapp.com/"
+}
+http.open("GET", url);
+http.send();
+http.onload=(e)=>{
+	if (http.status == 404) {
+		document.getElementById("homeLoadDeet").innerHTML = "loading home page...";
+		if (window.location.href.includes("#c") | window.location.href.includes("#adapt#") | window.location.href.includes("#w") | window.location.href.includes("#s")) {
+			refresh();
 		} else {
-			getTrending(localStorage.getItem("sLoc"));
+			document.getElementById("searchContainer").style.display = "";
+			if (localStorage.getItem("sLoc")) {
+				if (localStorage.getItem("invIns")) {
+					getTrending(localStorage.getItem("sLoc"), localStorage.getItem("invIns"))
+				} else {
+					getTrending(localStorage.getItem("sLoc"));
+				}
+			} else {
+				getTrending();
+			}
 		}
 	} else {
-		getTrending();
+		document.getElementById("homeLoadDeet").innerHTML = "server is down. please change your server on the <a class='channelLink' href='#settings'>settings</a> page";
 	}
+}
+http.onerror=(e)=>{
+	document.getElementById("homeLoadDeet").innerHTML = "server is down. please change your server on the <a class='channelLink' href='#settings'>settings</a> page";
 }
 
 document.getElementById("trendingLoader").style.display = "";
@@ -1210,6 +1232,7 @@ function openVideo(opt,ret) {
 			return;
 		} else {
 			if (!ret) {
+				document.getElementById("vidLoaderTxt").innerHTML = "getting ready...";
 				if (!sessionStorage.getItem("currentlyOpening")) {
 					document.title = "[loading...] vidpolaris";
 					document.getElementById("homePage").style.display = 'none';
@@ -1253,6 +1276,7 @@ function openVideo(opt,ret) {
 					if (document.getElementById("ldBtn").innerHTML == "see less") {
 						document.getElementById("ldBtn").click();
 					}
+					document.getElementById("vidLoaderTxt").innerHTML = "parsing url...";
 					var id = getClickedId(window.location.href, '#w#');
 					var fullUrl = "https://youtube.com/watch?v=" + id;
 					const http = new XMLHttpRequest();
@@ -1263,14 +1287,17 @@ function openVideo(opt,ret) {
 					} else if (opt == "c") {
 						var url = "https://vidpolaris-europe.herokuapp.com/?info=1&url=" + fullUrl;
 					}
+					document.getElementById("vidLoaderTxt").innerHTML = "generating first request...";
 					http.open("GET", url);
 					http.send();
 					http.onload=(e)=>{
 						var jsond = JSON.parse(http.responseText);
+						document.getElementById("vidLoaderTxt").innerHTML = "parsing request...";
 						if (jsond.err) {
 							notPlayable();
 							sessionStorage.removeItem("currentlyOpening");
 						} else {
+							document.getElementById("vidLoaderTxt").innerHTML = "defining basic video information...";
 							var wUrl = jsond.info.formats[0].url;
 							var titl = jsond.info.player_response.videoDetails.title;
 							var auth = jsond.info.player_response.videoDetails.author;
@@ -1323,6 +1350,7 @@ function openVideo(opt,ret) {
 								notPlayable();
 								sessionStorage.removeItem("currentlyOpening");
 							}
+							document.getElementById("vidLoaderTxt").innerHTML = "adding cards...";
 							if (!jsond.info.player_response.cards | localStorage.getItem("disableCards") == "y") {
 								document.getElementById("cardContainer").innerHTML = "";
 							} else {
@@ -1410,6 +1438,7 @@ function openVideo(opt,ret) {
 									}
 								}
 							}
+							document.getElementById("vidLoaderTxt").innerHTML = "defining more things...";
 							var cat = jsond.info.media.category;
 							if (cat == undefined) {
 								document.getElementById("catCont").style.display = "none";
@@ -1417,6 +1446,7 @@ function openVideo(opt,ret) {
 								document.getElementById("catCont").style.display = "";
 								document.getElementById("cat").innerHTML = cat;
 							}
+							document.getElementById("vidLoaderTxt").innerHTML = "embedding related videos...";
 							if (!jsond.info.related_videos[0]) {
 								document.getElementById("relatedVideos").style.display = 'none';
 								document.getElementById("autoPlayBlock").style.display = 'none';
@@ -1575,6 +1605,7 @@ function openVideo(opt,ret) {
 								}
 							}
 							if (localStorage.getItem("smart") == "y") {
+								document.getElementById("vidLoaderTxt").innerHTML = "getting HQ audio and video...";
 								console.log(opt);
 								if (opt == "a" | !opt) {
 									var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?smart=1&url=" + fullUrl;
@@ -1640,6 +1671,7 @@ function openVideo(opt,ret) {
 										}
 									}
 									document.getElementById("aqOptions").style.display = "";
+									document.getElementById("vidLoaderTxt").innerHTML = "readying up...";
 									document.getElementById("player").src = videoUrl;
 									document.getElementById("qOptions").value = document.getElementById("itag").innerHTML;
 									document.getElementById("vidLoader").style.display = 'none';
@@ -1745,6 +1777,7 @@ function openVideo(opt,ret) {
 								}
 								return;
 							} else {
+								document.getElementById("vidLoaderTxt").innerHTML = "parsing compatible qualities...";
 								document.getElementById("vidViewer").style.display = '';
 								document.getElementById("vidLoader").style.display = 'none';
 								document.getElementById("player").src = wUrl;
