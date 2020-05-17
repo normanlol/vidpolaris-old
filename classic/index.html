@@ -1,0 +1,41 @@
+<html>
+	<head>
+		<title>VidPolaris - Watch Better.</title>
+		<link href="css/base.css" rel="stylesheet">
+	</head>
+	<body>
+		<div class="head">
+			<div class="logo"></div>
+			<div class="searchbox">
+				<input id="search" onInput="suggest(localStorage.getItem('sLoc'));" list="suggest" autocomplete="off">
+				<datalist id="suggest"></datalist>
+				<button>Search</button>
+			</div>
+			<div class="navbar">
+				<a href="#">Home</a>
+				<a href="settings">Settings</a>
+				<a href="../">Back to Modern Design</a>
+			</div>
+		</div>
+		<div class="base">
+			<div class="homepage">
+				<div class="homepageInner">
+					<div class="anchor" id="ancTrend">
+						<div class="anchorTitle">
+							<img src="img/rocket.png">
+							<span>Trending in the US</span>
+						</div>
+						<div id="trendingDiv" class="aContainer">
+							<a href="watch#waefop"><div class="vidCase">
+								<img src="http://i4.ytimg.com/vi/w7wJ4l0rHzQ/default.jpg" class="homeThumb">
+								<p class="hvidTitle">Best of Nancy Grace</p>
+							</div></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="js/home.js"></script>
+		<script src="js/all.js"></script>
+	</body>
+</html>

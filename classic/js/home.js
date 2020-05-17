@@ -1,0 +1,1 @@
+getTrending(localStorage.getItem("sLoc"))

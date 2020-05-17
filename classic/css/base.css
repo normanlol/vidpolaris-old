@@ -1,0 +1,192 @@
+body {
+	color:black;
+	background:white;
+	font-size:12px;
+	font-family:Arial,Helvetica,sans-serif;
+}
+
+.head {
+	width:960px;
+	margin:0 auto .83em;
+	border:1px #ccc;
+	height:54px;
+}
+
+.logo {
+	width:110px;
+	height:54px;
+	float:left;
+	margin-right:18px;
+	background: url('../img/vid-polaris.png')
+}
+
+.searchbox {
+	background:#eaeaea;
+	border:1px #ccc;
+	border-radius:3px;
+	float:left;
+	width:385px;
+	height:27px;
+	padding:0.15385em 0.23077em;
+	white-space:nowrap;
+	line-height:2.07692em;
+}
+
+.searchbox #search {
+	padding-left:2px;
+	padding-right:2px;
+	margin-top:1px;
+	margin-bottom:1px;
+	border-color:#666;
+	font-size:100% !important;
+	padding:4px 1px 1px 1px;
+	width:325px;
+	vertical-align:top;
+}
+
+.searchbox #search:focus {
+	border:2px solid #bbdafd !important;
+	padding-left:1px;
+	padding-right:1px;
+}
+
+.searchbox button {
+	white-space:normal;
+	font-family:Arial,Helvetica,sans-serif;
+	height:24px;
+	display:inline-block;
+	color:#039;
+	font-weight:bold;
+	cursor:pointer;
+	vertical-align:top;
+	font-size:0.92308em;
+	text-decoration:none;
+	background:linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(205,222,248,1) 100%);
+	border:1px solid #999;
+	border-radius:3px;
+	cursor:pointer;
+}
+
+.searchbox button:hover{
+	text-decoration:underline;
+	background:linear-gradient(0deg, rgba(205,222,248,1) 0%, rgba(248,250,253,1) 49%);
+}
+
+.navbar {
+	padding-left:0.23077em;
+	line-height:1.53846em;
+	font-weight:bold;
+	margin:0;
+	font-size:100%;
+	padding-top:35px;
+}
+
+.navbar a {
+	margin:0 1em 0 0;
+	color:#03C;
+	text-decoration:none;
+	float:left;
+}
+
+.navbar p {
+	margin:0 1em 0 0;
+	color:black;
+	text-decoration:none;
+	float:left;
+}
+
+.navbar a:hover {
+	text-decoration:underline;
+}
+
+.base {
+	width:960px;
+	position:relative;
+	margin-left:auto;
+	margin-right:auto;
+	padding: 0 5px 25px 5px;
+}
+
+.homepage {
+	float:left;
+	clear:left;
+	width:640px;
+	margin-top:5px;
+}
+
+.homepageInner {
+	overflow:hidden;
+	clear:both;
+	position:relative;
+	width:100%;
+}
+
+.anchor {
+	margin-bottom:10px;
+	padding:0;
+	background:white;
+	height:392px;
+	border:2px solid #ccc;
+	border-radius:15px;
+}
+
+.anchor a {
+	text-decoration:none;
+}
+
+.anchor a:hover {
+	text-decoration:underline;
+}
+
+.anchorTitle {
+	background:#eaeaea;
+	height:23px;
+	padding:6px 6px 0 10px;
+	border-top-left-radius:15px;
+	border-top-right-radius:15px;
+}
+
+.anchorTitle img {
+	float:left;
+	margin-right:5px;
+}
+
+.anchorTitle span {
+	vertical-align:top;
+	font-weight:bold;
+	float:left;
+	font-size:16px;
+}
+
+.pageTitle {
+	font-weight:bold;
+	float:left;
+	font-size:16px;
+}
+
+.aContainer {
+	padding-top:5px;
+	padding-bottom:5px;
+	padding-left:13px;
+	padding-right:13px;
+	width:100%;
+	height:90%;
+	vertical-align:top;
+	display:inline-block;
+}
+
+.homeThumbnail {
+	margin-top:-10px;
+	width:120px;
+	height:90px;
+	border:3px double #999;
+}
+
+.vidCase {
+	width:24.5%;
+}
+
+.hvidTitle {
+	font-weight:bold;
+	margin:0;
+}
