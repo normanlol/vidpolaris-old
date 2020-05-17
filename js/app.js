@@ -3427,10 +3427,10 @@ function getMeta(opt) {
  	http.onload=(e)=>{
  		var jsond = JSON.parse(http.responseText);
  		if (!jsond.meta.views) {
- 			getMeta(opt);
- 			return;
+ 			var view = 0;
+ 		} else {
+ 			var view = jsond.meta.views.toLocaleString();
  		}
- 		var view = jsond.meta.views.toLocaleString();
  		if (!jsond.meta.dislikeCount) {
  			var dlik = 0;
  		} else {
