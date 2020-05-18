@@ -1,12 +1,7 @@
 document.getElementById("noscript").style.display = "none";
 console.log("script loaded.");
 console.log("==================");
-if (localStorage.getItem("allowAutoScale") == "y") {
-	resize("auto");
-	document.getElementById("mScale").disabled = true;
-} else {
-	resize("manual", localStorage.getItem("mScale"));
-}
+resize();
 keepProg();
 const http = new XMLHttpRequest();
 document.getElementById("homeLoadDeet").innerHTML = "waking server..."
