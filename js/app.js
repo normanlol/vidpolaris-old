@@ -1,7 +1,8 @@
 document.getElementById("noscript").style.display = "none";
 console.log("script loaded.");
 console.log("==================");
-resize();
+resize("auto");
+resize("manual");
 keepProg();
 const http = new XMLHttpRequest();
 document.getElementById("homeLoadDeet").innerHTML = "waking server..."
