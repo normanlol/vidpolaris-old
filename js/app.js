@@ -2,7 +2,6 @@ document.getElementById("noscript").style.display = "none";
 console.log("script loaded.");
 console.log("==================");
 resize("auto");
-resize("manual");
 keepProg();
 const http = new XMLHttpRequest();
 document.getElementById("homeLoadDeet").innerHTML = "waking server..."
@@ -168,6 +167,13 @@ if (!localStorage.getItem("showReddit")) {
 	document.getElementById("showReddit").value = localStorage.getItem("showReddit");
 }
 
+if (!localStorage.getItem("showSize")) {
+	localStorage.setItem("showSize" , "n");
+	document.getElementById("showSize").value = "n";
+} else {
+	document.getElementById("showSize").value = localStorage.getItem("showSize");
+}
+
 if (!localStorage.getItem("allowAutoScale")) {
 	localStorage.setItem("allowAutoScale" , "y");
 	document.getElementById("aas").value = "y";
@@ -188,7 +194,7 @@ if (!localStorage.getItem("theatre")) {
 	}
 }
 
-console.log("ended onclick functions");
+console.log("ended onload functions");
 console.log("==================");
 
 // end setting checkers
@@ -1637,7 +1643,15 @@ function openVideo(opt,ret) {
 										if (c == 0) {
 											var option = document.createElement("OPTION");
 											option.value = jsond.video[c].itag;
-											option.innerHTML = jsond.video[c].qualityLabel;
+											if (localStorage.getItem("showSize")) {
+												if (localStorage.getItem("showSize") == "y") {
+													option.innerHTML = jsond.video[c].qualityLabel + " [" + formatBytes(parseInt(jsond.video[c].contentLength)) + "]";
+												} else {
+													option.innerHTML = jsond.video[c].qualityLabel;
+												} 
+											} else {
+												option.innerHTML = jsond.video[c].qualityLabel;
+											}
 											document.getElementById("qOptions").appendChild(option);
 										} else {
 											if (jsond.video[c-1].qualityLabel == jsond.video[c].qualityLabel) {
@@ -1645,7 +1659,15 @@ function openVideo(opt,ret) {
 											} else {
 												var option = document.createElement("OPTION");
 												option.value = jsond.video[c].itag;
-												option.innerHTML = jsond.video[c].qualityLabel;
+												if (localStorage.getItem("showSize")) {
+													if (localStorage.getItem("showSize") == "y") {
+														option.innerHTML = jsond.video[c].qualityLabel + " [" + formatBytes(parseInt(jsond.video[c].contentLength)) + "]";
+													} else {
+														option.innerHTML = jsond.video[c].qualityLabel;
+													} 
+												} else {
+													option.innerHTML = jsond.video[c].qualityLabel;
+												}
 												document.getElementById("qOptions").appendChild(option);
 											}
 										}
@@ -1654,7 +1676,15 @@ function openVideo(opt,ret) {
 										if (c == 0) {
 											var option = document.createElement("OPTION");
 											option.value = jsond.audio[c].itag;
-											option.innerHTML = jsond.audio[c].audioBitrate + "kbps";
+											if (localStorage.getItem("showSize")) {
+												if (localStorage.getItem("showSize") == "y") {
+													option.innerHTML = jsond.audio[c].audioBitrate + "kbps" + " [" + formatBytes(parseInt(jsond.audio[c].contentLength)) + "]";
+												} else {
+													option.innerHTML = jsond.audio[c].audioBitrate + "kbps";
+												} 
+											} else {
+												option.innerHTML = jsond.audio[c].audioBitrate + "kbps";
+											}
 											document.getElementById("aqOptions").appendChild(option);
 										} else {
 											if (jsond.audio[c-1].audioBitrate == jsond.audio[c].audioBitrate) {
@@ -1662,7 +1692,15 @@ function openVideo(opt,ret) {
 											} else {
 												var option = document.createElement("OPTION");
 												option.value = jsond.audio[c].itag;
-												option.innerHTML = jsond.audio[c].audioBitrate + "kbps";
+												if (localStorage.getItem("showSize")) {
+													if (localStorage.getItem("showSize") == "y") {
+														option.innerHTML = jsond.audio[c].audioBitrate + "kbps" + " [" + formatBytes(parseInt(jsond.audio[c].contentLength)) + "]";
+													} else {
+														option.innerHTML = jsond.audio[c].audioBitrate + "kbps";
+													} 
+												} else {
+													option.innerHTML = jsond.audio[c].audioBitrate + "kbps";
+												}
 												document.getElementById("aqOptions").appendChild(option);
 											}
 										}
@@ -1793,7 +1831,7 @@ function openVideo(opt,ret) {
 											} else {
 												if (jsond.info.formats[c].audioBitrate && !jsond.info.formats[c].audioBitrate == null && jsond.info.formats[c].qualityLabel && !jsond.info.formats[c].qualityLabel == null) {
 													var option = document.createElement("OPTION");
-													option.innerHTML = jsond.info.formats[c].qualityLabel + " (video) - " + jsond.info.formats[c].audioBitrate + "kpbs (audio)";
+													option.innerHTML = jsond.info.formats[c].qualityLabel + " (video) - " + jsond.info.formats[c].audioBitrate + "kpbs (audio) [" + formatBytes(parseInt(jsond.info.formats[c].contentLength)) + "]";
 													option.value = jsond.info.formats[c].itag;
 													document.getElementById("qOptions").appendChild(option);
 												}
@@ -2016,7 +2054,15 @@ function openVideo(opt,ret) {
 							if (c == 0) {
 								var option = document.createElement("OPTION");
 								option.value = jsond.video[c].itag;
-								option.innerHTML = jsond.video[c].qualityLabel;
+								if (localStorage.getItem("showSize")) {
+									if (localStorage.getItem("showSize") == "y") {
+										option.innerHTML = jsond.video[c].qualityLabel + " [" + formatBytes(parseInt(jsond.video[c].contentLength)) + "]";
+									} else {
+										option.innerHTML = jsond.video[c].qualityLabel;
+									} 
+								} else {
+									option.innerHTML = jsond.video[c].qualityLabel;
+								}
 								document.getElementById("qOptions").appendChild(option);
 							} else {
 								if (jsond.video[c-1].qualityLabel == jsond.video[c].qualityLabel) {
@@ -2024,7 +2070,15 @@ function openVideo(opt,ret) {
 								} else {
 									var option = document.createElement("OPTION");
 									option.value = jsond.video[c].itag;
-									option.innerHTML = jsond.video[c].qualityLabel;
+									if (localStorage.getItem("showSize")) {
+										if (localStorage.getItem("showSize") == "y") {
+											option.innerHTML = jsond.video[c].qualityLabel + " [" + formatBytes(parseInt(jsond.video[c].contentLength)) + "]";
+										} else {
+											option.innerHTML = jsond.video[c].qualityLabel;
+										} 
+									} else {
+										option.innerHTML = jsond.video[c].qualityLabel;
+									}
 									document.getElementById("qOptions").appendChild(option);
 								}
 							}
@@ -2033,7 +2087,15 @@ function openVideo(opt,ret) {
 							if (c == 0) {
 								var option = document.createElement("OPTION");
 								option.value = jsond.audio[c].itag;
-								option.innerHTML = jsond.audio[c].audioBitrate + "kbps";
+								if (localStorage.getItem("showSize")) {
+									if (localStorage.getItem("showSize") == "y") {
+										option.innerHTML = jsond.audio[c].audioBitrate + "kbps" + " [" + formatBytes(parseInt(jsond.audio[c].contentLength)) + "]";
+									} else {
+										option.innerHTML = jsond.audio[c].audioBitrate + "kbps";
+									} 
+								} else {
+									option.innerHTML = jsond.audio[c].audioBitrate + "kbps";
+								}
 								document.getElementById("aqOptions").appendChild(option);
 							} else {
 								if (jsond.audio[c-1].audioBitrate == jsond.audio[c].audioBitrate) {
@@ -2041,7 +2103,15 @@ function openVideo(opt,ret) {
 								} else {
 									var option = document.createElement("OPTION");
 									option.value = jsond.audio[c].itag;
-									option.innerHTML = jsond.audio[c].audioBitrate + "kbps";
+									if (localStorage.getItem("showSize")) {
+										if (localStorage.getItem("showSize") == "y") {
+											option.innerHTML = jsond.audio[c].audioBitrate + "kbps" + " [" + formatBytes(parseInt(jsond.audio[c].contentLength)) + "]";
+										} else {
+											option.innerHTML = jsond.audio[c].audioBitrate + "kbps";
+										} 
+										} else {
+											option.innerHTML = jsond.audio[c].audioBitrate + "kbps";
+										}
 									document.getElementById("aqOptions").appendChild(option);
 								}
 							}
@@ -2286,6 +2356,7 @@ function saveSettings() {
 	localStorage.setItem("showReddit", document.getElementById("showReddit").value);
 	localStorage.setItem("allowAutoScale", document.getElementById("aas").value);
 	localStorage.setItem("invIns", document.getElementById("invIns").value);
+	localStorage.setItem("showSize", document.getElementById("showSize").value);
 	if (document.getElementById("aas").value == "n") {
 		localStorage.setItem("mScale", document.getElementById("mScale").value);
 		resize("manual", localStorage.getItem("mScale"));
@@ -3594,4 +3665,13 @@ function rSearch(opt, f) {
 	} else {
 		document.getElementById("redditBtn").style.display = "";
 	}
+}
+
+function formatBytes(bytes, decimals = 2) {
+	if (bytes === 0) return '0 Bytes';
+    const k = 1024;
+    const dm = decimals < 0 ? 0 : decimals;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
 }
