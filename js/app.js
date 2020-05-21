@@ -1831,7 +1831,15 @@ function openVideo(opt,ret) {
 											} else {
 												if (jsond.info.formats[c].audioBitrate && !jsond.info.formats[c].audioBitrate == null && jsond.info.formats[c].qualityLabel && !jsond.info.formats[c].qualityLabel == null) {
 													var option = document.createElement("OPTION");
-													option.innerHTML = jsond.info.formats[c].qualityLabel + " (video) - " + jsond.info.formats[c].audioBitrate + "kpbs (audio) [" + formatBytes(parseInt(jsond.info.formats[c].contentLength)) + "]";
+													if (localStorage.getItem("showSize")) {
+														if (localStorage.getItem("showSize") == "y") {
+															option.innerHTML = jsond.audio[c].audioBitrate + "kbps" + " [" + formatBytes(parseInt(jsond.audio[c].contentLength)) + "]";
+														} else {
+															option.innerHTML = jsond.audio[c].audioBitrate + "kbps";
+														} 
+													} else {
+														option.innerHTML = jsond.audio[c].audioBitrate + "kbps";
+													}
 													option.value = jsond.info.formats[c].itag;
 													document.getElementById("qOptions").appendChild(option);
 												}
@@ -1990,7 +1998,15 @@ function openVideo(opt,ret) {
 						document.getElementById("qOptions").innerHTML = ""
 						for (var c in jsond.datainfo) {
 							var option = document.createElement("OPTION");
-							option.innerHTML = jsond.datainfo[c].qualityLabel + " (video) - " + jsond.datainfo[c].audioBitrate + "kpbs (audio)";
+							if (localStorage.getItem("showSize")) {
+								if (localStorage.getItem("showSize") == "y") {
+									option.innerHTML = jsond.audio[c].audioBitrate + "kbps" + " [" + formatBytes(parseInt(jsond.audio[c].contentLength)) + "]";
+								} else {
+									option.innerHTML = jsond.audio[c].audioBitrate + "kbps";
+								} 
+							} else {
+								option.innerHTML = jsond.audio[c].audioBitrate + "kbps";
+							}
 							option.value = jsond.datainfo[c].itag;
 							document.getElementById("qOptions").appendChild(option);
 						}
