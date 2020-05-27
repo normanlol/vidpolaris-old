@@ -3,7 +3,7 @@ body {
 	color:black;
 }
 
-#trending {
+#trending, #redditTrending {
 	margin-left:12.5%;
 	margin-right:12.5%;
 }

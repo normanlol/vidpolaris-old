@@ -30,6 +30,14 @@
 					<h1 class="material-icons ico">priority_high</h1>
 					<p>please enable javascript. vidpolaris does not log any private information or your viewing activities.</p>
 				</div>
+				<div id="serverdown" style="display:none;">
+					<h1 class="material-icons ico">report_problem</h1>
+					<p>the server is down. change your server <a href="#settings">here!</a></p>
+				</div>
+				<div id="serverdown" style="display:none;">
+					<h1 class="material-icons ico">report_problem</h1>
+					<p>the server is down. change your server <a href="#settings">here!</a></p>
+				</div>
 				<div id="trendingLoader" style="display:none;">
 					<div style="margin-top:20px;" class="loader centerMe"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 					<h2 id="homeLoadDeet">loading home page...</h2>
@@ -48,6 +56,16 @@
 						<div id="gamingTrending" style="display:none;"></div><br>
 					</div>
 				</div>
+				<div id="redditTrending" style="display:none;">
+					<div class="pack">
+						<h2 class="noCenter homeTitle"><span class="material-icons ico">trending_up</span> trending on reddit (/r/videos)</h2>
+						<div id="redTrending" style="display:none;"></div><br>
+					</div>
+					<div class="pack">
+						<h2 class="noCenter homeTitle"><span class="material-icons ico">music_note</span> popular music on reddit (/r/music)</h2>
+						<div id="redmuTrending" style="display:none;"></div><br>
+					</div>
+				</div>
 			</div>
 			<div id="vidPage" style="display:none;">
 				<div id="vidLoader">
@@ -60,14 +78,14 @@
 						<audio id="audioPlayer"></audio>
 					</div>
 					<div id="embedContainer" style="display:none;"></div>
-					<div id="loadErr" style="display:none;">
+					<div id="loadErr" style="display:none;"><div id="leInner">
 						<p>it seems that your video cannot be loaded due to an error. would you like to try somewhere else?</p>
 						<button onclick="watchOnYoutube()">watch on youtube</button>
 						<button onclick="watchOnNCYoutube()">watch directly without cookies on youtube</button>
 						<button onclick="embedNoCookie()">embed youtube players without cookies</button>
 						<button onclick="watchOnInvidious()">watch on invidious</button>
 						<div style="width:100%;height:15px;"></div>
-					</div>
+					</div></div>
 					<div class="details">
 						<div class="maindetails">
 							<h2 class="stat"><span style="display:none;" id="ulIco" class="material-icons ico">lock_open</span> <span id="title"></span></h2>
@@ -247,7 +265,14 @@
 						<option value="n">disabled</option>
 					</select>
 				</div>
-				<div class="setting" title="what country do you want your trending data to come from?">
+				<div class="setting" title="self explanitory.">
+					<label>home page data:</label>
+					<select id="home" onInput="hideCountry()">
+						<option value="inv">invidious (official trending data) [default]</option>
+						<option value="red">reddit (trending videos on various subreddits)</option>
+					</select>
+				</div>
+				<div id="country" class="setting" title="what country do you want your trending data to come from?">
 					<label>trending data location:</label>
 					<select id="country">
 						<option value="us">united states (default)</option>
@@ -340,7 +365,7 @@
 						<option value="y">enabled (default)</option>
 						<option value="n">disabled</option>
 					</select>
-					<select id="mScale">
+					<select id="mScale" disabled>
 						<option value="f">FHD</option>
 						<option value="s">smaller screens</option>
 						<option value="m">mobile</option>
@@ -352,7 +377,7 @@
 						<option value="o">official (default)</option>
 						<option value="snopyta">snopyta</option>
 						<option value="13ad">13ad</option>
-						<option value="yew">yewtube</option>
+						<option value="yew" disabled>yewtube</option>
 						<option value="gcc">gcc project</option>
 					</select>
 				</div>

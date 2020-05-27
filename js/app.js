@@ -18,25 +18,42 @@ http.onload=(e)=>{
 	if (http.status == 404) {
 		document.getElementById("homeLoadDeet").innerHTML = "loading home page...";
 		if (window.location.href.includes("#c") | window.location.href.includes("#adapt#") | window.location.href.includes("#w") | window.location.href.includes("#s")) {
+			document.getElementById("searchContainer").style.display = "";
 			refresh();
 		} else {
 			document.getElementById("searchContainer").style.display = "";
-			if (localStorage.getItem("sLoc")) {
-				if (localStorage.getItem("invIns")) {
-					getTrending(localStorage.getItem("sLoc"), localStorage.getItem("invIns"))
+			if (!localStorage.getItem("homePage") | localStorage.getItem("homePage") == "inv") {
+				if (!localStorage.getItem("trendCont")) {
+					localStorage.setItem("trendCont", "us");
+					document.getElementById("country").value = localStorage.getItem("trendingCont");
 				} else {
-					getTrending(localStorage.getItem("sLoc"));
+					document.getElementById("country").value = localStorage.getItem("trendingCont");
+				}
+				if (localStorage.getItem("sLoc")) {
+					if (localStorage.getItem("invIns")) {
+						getTrending(localStorage.getItem("sLoc"), localStorage.getItem("invIns"))
+					} else {
+						getTrending(localStorage.getItem("sLoc"));
+					}
+				} else {
+					getTrending()
 				}
 			} else {
-				getTrending();
+				if (localStorage.getItem("sLoc")) {
+					redditTrending(localStorage.getItem("sLoc"));
+				} else {
+					redditTrending();
+				}
 			}
 		}
 	} else {
-		document.getElementById("homeLoadDeet").innerHTML = "server is down. please change your server on the <a class='channelLink' href='#settings'>settings</a> page";
+		document.getElementById("serverdown").style.display = "";
+		document.getElementById("trendingLoader").style.display = "none";
 	}
 }
 http.onerror=(e)=>{
-	document.getElementById("homeLoadDeet").innerHTML = "server is down. please change your server on the <a class='channelLink' href='#settings'>settings</a> page";
+	document.getElementById("serverdown").style.display = "";
+	document.getElementById("trendingLoader").style.display = "none";
 }
 
 document.getElementById("trendingLoader").style.display = "";
@@ -69,17 +86,6 @@ if (sessionStorage.getItem("embed")) {
 	console.log("-- removed 'embed' item");
 }
 
-if (!localStorage.getItem("trendCont")) {
-	if (localStorage.getItem("c")) {
-		console.log("--- country imported from NewsPage")
-		localStorage.setItem("trendCont", localStorage.getItem("c"))
-	} else {
-		localStorage.setItem("trendCont", "us");
-	}
-} else {
-	document.getElementById("country").value = localStorage.getItem("trendingCont");
-}
-
 console.log("- checking and setting localStorage items")
 
 if (!localStorage.getItem("disableCards")) {
@@ -98,7 +104,20 @@ if (!localStorage.getItem("invIns")) {
 	localStorage.setItem("invIns", "o");
 	document.getElementById("invIns").value = "o";
 } else {
-	document.getElementById("invIns").value = localStorage.getItem("invIns");
+	if (localStorage.getItem("invIns") == "yew") {
+		localStorage.setItem("invIns", "o");
+		console.log("-- reset invidious instance setting!")
+		document.getElementById("invIns").value = localStorage.getItem("invIns");
+	} else {
+		document.getElementById("invIns").value = localStorage.getItem("invIns");
+	}
+}
+
+if (!localStorage.getItem("homePage")) {
+	localStorage.setItem("homePage", "inv");
+	document.getElementById("home").value = "inv";
+} else {
+	document.getElementById("home").value = localStorage.getItem("homePage");
 }
 
 if (!localStorage.getItem("sLoc")) {
@@ -529,6 +548,19 @@ document.getElementById("audioPlayer").onerror = function(e){
 		return;
 	}
 };
+
+var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutationRecord) {
+        if (document.getElementById("loadErr").style.display == "") {
+			document.getElementById("player").style.display = "none";
+		} else {
+			document.getElementById("player").style.display = "";
+		}
+    });    
+});
+
+var target = document.getElementById('loadErr');
+observer.observe(target, { attributes : true, attributeFilter : ['style'] });
 
 console.log("autoplay: " + localStorage.getItem('autoplay'));
 console.log("smartQual: " + localStorage.getItem('smart'));
@@ -1031,29 +1063,7 @@ function getTrending(opt,inst) {
 	http.onload=(e)=>{
 		var jsond = JSON.parse(http.responseText);
 		if (!jsond[0]) {
-			if (inst) {
-				if (opt == "a" | !opt) {
-					getTrending("b", inst);
-					return;
-				} else if (opt == "b") {
-					getTrending("c", inst);
-					return;
-				} else if (opt == "c") {
-					getTrending("a", inst);
-					return;
-				}
-			} else {
-				if (opt == "a" | !opt) {
-					getTrending("b");
-					return;
-				} else if (opt == "b") {
-					getTrending("c");
-					return;
-				} else if (opt == "c") {
-					getTrending("a");
-					return;
-				}
-			}
+			redditTrending(opt);
 		}
 		for (var c in jsond) {
 			if (c > 17) {
@@ -1125,6 +1135,9 @@ function getTrendingMusic(opt, inst) {
 	http.send();
 	http.onload=(e)=>{
 		var jsond = JSON.parse(http.responseText);
+		if (!jsond[0]) {
+			redditTrending(opt);
+		}
 		for (var c in jsond) {
 			if (c > 11) {
 				document.getElementById("musicTrending").style.display = '';
@@ -1190,6 +1203,9 @@ function getTrendingGaming(opt,inst) {
 	http.send();
 	http.onload=(e)=>{
 		var jsond = JSON.parse(http.responseText);
+		if (!jsond[0]) {
+			redditTrending(opt);
+		}
 		for (var c in jsond) {
 			if (c > 11) {
 				document.getElementById("gamingTrending").style.display = '';
@@ -1223,6 +1239,103 @@ function getTrendingGaming(opt,inst) {
 			stat2.innerHTML = 'posted ' + jsond[c].publishedText;
 			stat2.classList.add("stat");
 			document.getElementById("gtdDiv"+c).appendChild(stat2);
+		}
+	}
+}
+
+function redditTrending(opt) {
+	const http = new XMLHttpRequest();
+	if (opt == "a" | !opt) {
+		var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?reddit=1";
+	} else if (opt == "b") {
+		var url = "https://vidpolaris.herokuapp.com/?reddit=1";
+	} else if (opt == "c") {
+		var url = "https://vidpolaris-europe.herokuapp.com/?reddit=1";
+	}
+	http.open("GET", url);
+	http.send();
+	http.onload=(e)=>{
+		var jsond = JSON.parse(http.responseText);
+		for (var c in jsond) {
+			if (c > 17) {
+				document.getElementById("redditTrending").style.display = "";
+				document.getElementById("redTrending").style.display = "";
+				document.getElementById("trendingLoader").style.display = "none";
+				redditmusicTrending(opt)
+				return;
+			} 
+			var link = document.createElement("A");
+			link.href = "#w#" + jsond[c].id;
+			var div = document.createElement("DIV");
+			div.classList.add("video");
+			link.appendChild(div);
+			var img = document.createElement("IMG");
+			img.classList.add("largeThumb");
+			img.src = "https://img.youtube.com/vi/" + jsond[c].id + "/hqdefault.jpg";
+			div.appendChild(img);
+			var div2 = document.createElement("DIV");
+			div2.classList.add("td");
+			div.appendChild(div2);
+			var h3 = document.createElement("H3");
+			h3.classList.add("stat");
+			h3.innerHTML = jsond[c].title;
+			div2.appendChild(h3);
+			var stat1 = document.createElement("H4");
+			stat1.innerHTML = 'by ' + jsond[c].author;
+			stat1.classList.add("stat")
+			div2.appendChild(stat1);
+			var stat2 = document.createElement("H4");
+			stat2.innerHTML = jsond[c].score.toLocaleString() + ' upvotes';
+			stat2.classList.add("stat");
+			div2.appendChild(stat2);
+			document.getElementById("redTrending").appendChild(link);
+		}
+	}
+}
+
+function redditmusicTrending(opt) {
+	const http = new XMLHttpRequest();
+	if (opt == "a" | !opt) {
+		var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?reddit=1&type=music";
+	} else if (opt == "b") {
+		var url = "https://vidpolaris.herokuapp.com/?reddit=1&type=music";
+	} else if (opt == "c") {
+		var url = "https://vidpolaris-europe.herokuapp.com/?reddit=1&type=music";
+	}
+	http.open("GET", url);
+	http.send();
+	http.onload=(e)=>{
+		var jsond = JSON.parse(http.responseText);
+		for (var c in jsond) {
+			if (c > 17) {
+				document.getElementById("redmuTrending").style.display = "";
+				return;
+			} 
+			var link = document.createElement("A");
+			link.href = "#w#" + jsond[c].id;
+			var div = document.createElement("DIV");
+			div.classList.add("video");
+			link.appendChild(div);
+			var img = document.createElement("IMG");
+			img.classList.add("largeThumb");
+			img.src = "https://img.youtube.com/vi/" + jsond[c].id + "/hqdefault.jpg";
+			div.appendChild(img);
+			var div2 = document.createElement("DIV");
+			div2.classList.add("td");
+			div.appendChild(div2);
+			var h3 = document.createElement("H3");
+			h3.classList.add("stat");
+			h3.innerHTML = jsond[c].title;
+			div2.appendChild(h3);
+			var stat1 = document.createElement("H4");
+			stat1.innerHTML = 'by ' + jsond[c].author;
+			stat1.classList.add("stat")
+			div2.appendChild(stat1);
+			var stat2 = document.createElement("H4");
+			stat2.innerHTML = jsond[c].score.toLocaleString() + ' upvotes';
+			stat2.classList.add("stat");
+			div2.appendChild(stat2);
+			document.getElementById("redmuTrending").appendChild(link);
 		}
 	}
 }
@@ -2196,12 +2309,29 @@ function home() {
 	document.getElementById("helpOut").style.display = 'none';
 	document.getElementById("bannerPfpContainer").style.display = 'none';
 	document.getElementById("mainTrending").innerHTML = "";
+	document.getElementById("redTrending").innerHTML = "";
 	document.getElementById("musicTrending").innerHTML = "";
 	document.getElementById("gamingTrending").innerHTML = "";
 	document.getElementById("embedContainer").innerHTML = "";
 	document.getElementById("trendingLoader").style.display = "";
 	document.getElementById("trending").style.display = "none";
-	getTrending(localStorage.getItem("sLoc"),localStorage.getItem("invIns"));
+	if (!localStorage.getItem("homePage") | localStorage.getItem("homePage") == "inv") {
+		if (localStorage.getItem("sLoc")) {
+			if (localStorage.getItem("invIns")) {
+				getTrending(localStorage.getItem("sLoc"), localStorage.getItem("invIns"))
+			} else {
+				getTrending(localStorage.getItem("sLoc"));
+			}
+		} else {
+			getTrending()
+		}
+	} else {
+		if (localStorage.getItem("sLoc")) {
+			redditTrending(localStorage.getItem("sLoc"));
+		} else {
+			redditTrending();
+		}
+	}
 }
 
 function longDesc() {
@@ -2271,6 +2401,8 @@ function refresh() {
 		document.getElementById("searchPage").style.display = 'none';
 		document.getElementById("settingsPage").style.display = '';
 		document.getElementById("helpOut").style.display = '';
+		toggleManual();
+		hideCountry();
 		document.title = "settings | vidpolaris";
 	} else if (window.location.href.includes("#c#")){
 		if (!localStorage.getItem("invIns") | localStorage.getItem("invIns") == "o") {
@@ -2400,6 +2532,7 @@ function saveSettings() {
 	localStorage.setItem("loadComm", document.getElementById("autoComm").value);
 	localStorage.setItem("disableCards", document.getElementById("disableCards").value);
 	localStorage.setItem("showReddit", document.getElementById("showReddit").value);
+	localStorage.setItem("homePage", document.getElementById("home").value);
 	localStorage.setItem("allowAutoScale", document.getElementById("aas").value);
 	localStorage.setItem("invIns", document.getElementById("invIns").value);
 	localStorage.setItem("showSize", document.getElementById("showSize").value);
@@ -2410,6 +2543,14 @@ function saveSettings() {
 		resize("auto");
 	}
 	window.history.back();
+}
+
+function hideCountry() {
+	if (document.getElementById("home").value == "inv") {
+		document.getElementById("country").style.display = "";
+	} else {
+		document.getElementById("country").style.display = "none";
+	}
 }
 
 function toggleManual() {
@@ -2753,11 +2894,6 @@ function changeAQ(opt) {
 			changeAQ("a");
 		}
 	}
-}
-
-function proxyAV() {
-	openVideo(localStorage.getItem("sLoc"), "y");
-	document.getElementById("loadErr").style.display = "none";
 }
 
 function translate(elem) {
@@ -3716,7 +3852,7 @@ function rSearch(opt, f) {
 				tit.classList.add("cText");
 				tit.classList.add("stat");
 				var stats = document.createElement("P");
-				stats.innerHTML = jsond[c].postScore.toLocaleString() + " upvotes • posted on /" + jsond[c].postSub + " by " + jsond[c].postAuthor;
+				stats.innerHTML = jsond[c].postScore.toLocaleString() + " upvotes and " + jsond[c].postComNum.toLocaleString() + " comments • posted on /" + jsond[c].postSub + " by " + jsond[c].postAuthor;
 				stats.classList.add("cText");
 				stats.classList.add("stat");
 				document.getElementById("rPosts").appendChild(linkTP);
