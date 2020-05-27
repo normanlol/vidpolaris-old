@@ -1755,7 +1755,7 @@ function openVideo(opt,ret) {
 									}
 									http.onload=(e)=>{
 										var jsond = JSON.parse(http.responseText);
-										if (!jsond.meta.views && !jsond.meta.dislikeCount && !jsond.meta.likeCount) {
+										if (!jsond.meta.views && !jsond.meta.dislikeCount && !jsond.meta.likeCount && !localStorage.getItem("invIns") == "13ad") {
 											getMeta(opt, "13ad");
 											return;
 										}
@@ -1917,6 +1917,10 @@ function openVideo(opt,ret) {
 								}
 								http.onload=(e)=>{
 									var jsond = JSON.parse(http.responseText);
+									if (!jsond.meta.views && !jsond.meta.dislikeCount && !jsond.meta.likeCount && !localStorage.getItem("invIns") == "13ad") {
+										getMeta(opt, "13ad");
+										return;
+									}
 									if (!jsond.meta) {
 										getMeta(opt);
 									}
@@ -3545,7 +3549,7 @@ function getMeta(opt,inst) {
  	}
  	http.onload=(e)=>{
  		var jsond = JSON.parse(http.responseText);
-		if (!jsond.meta.views && !jsond.meta.dislikeCount && !jsond.meta.likeCount) {
+		if (!jsond.meta.views && !jsond.meta.dislikeCount && !jsond.meta.likeCount && !localStorage.getItem("invIns") == "13ad") {
 			getMeta(opt, "13ad");
 			return;
 		}
