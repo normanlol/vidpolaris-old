@@ -2315,6 +2315,7 @@ function home() {
 	document.getElementById("embedContainer").innerHTML = "";
 	document.getElementById("trendingLoader").style.display = "";
 	document.getElementById("trending").style.display = "none";
+	document.getElementById("redditTrending").style.display = "none";
 	if (!localStorage.getItem("homePage") | localStorage.getItem("homePage") == "inv") {
 		if (localStorage.getItem("sLoc")) {
 			if (localStorage.getItem("invIns")) {
