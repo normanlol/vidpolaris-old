@@ -1755,6 +1755,10 @@ function openVideo(opt,ret) {
 									}
 									http.onload=(e)=>{
 										var jsond = JSON.parse(http.responseText);
+										if (!jsond.meta.views && !jsond.meta.dislikeCount && !jsond.meta.likeCount) {
+											getMeta(opt, "13ad");
+											return;
+										}
 										if (!jsond.meta.views) {
 											getMeta(opt);
 										}
@@ -3512,10 +3516,10 @@ function suggest(opt) {
 	}
 }
 
-function getMeta(opt) {
+function getMeta(opt,inst) {
 	var id = getClickedId(window.location.href, "#w#");
 	var fullUrl = "https://youtube.com/watch?v=" + id;
-	if (localStorage.getItem("invIns") == "o" | !localStorage.getItem("invIns")) {
+	if (localStorage.getItem("invIns") == "o" | !localStorage.getItem("invIns") && !inst) {
 		if (opt == "a" | !opt) {
 			var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?md=1&url=" + fullUrl;
 		} else if (opt == "b") {
@@ -3541,6 +3545,10 @@ function getMeta(opt) {
  	}
  	http.onload=(e)=>{
  		var jsond = JSON.parse(http.responseText);
+		if (!jsond.meta.views && !jsond.meta.dislikeCount && !jsond.meta.likeCount) {
+			getMeta(opt, "13ad");
+			return;
+		}
  		if (!jsond.meta.views) {
  			var view = 0;
  		} else {
