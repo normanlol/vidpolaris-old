@@ -1309,6 +1309,7 @@ function redditmusicTrending(opt) {
 		for (var c in jsond) {
 			if (c > 17) {
 				document.getElementById("redmuTrending").style.display = "";
+				redditdeepTrending(opt);
 				return;
 			} 
 			var link = document.createElement("A");
@@ -1336,6 +1337,53 @@ function redditmusicTrending(opt) {
 			stat2.classList.add("stat");
 			div2.appendChild(stat2);
 			document.getElementById("redmuTrending").appendChild(link);
+		}
+	}
+}
+
+function redditdeepTrending(opt) {
+	const http = new XMLHttpRequest();
+	if (opt == "a" | !opt) {
+		var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?reddit=1&type=deep";
+	} else if (opt == "b") {
+		var url = "https://vidpolaris.herokuapp.com/?reddit=1&type=deep";
+	} else if (opt == "c") {
+		var url = "https://vidpolaris-europe.herokuapp.com/?reddit=1&type=deep";
+	}
+	http.open("GET", url);
+	http.send();
+	http.onload=(e)=>{
+		var jsond = JSON.parse(http.responseText);
+		for (var c in jsond) {
+			if (c > 17) {
+				document.getElementById("redobTrending").style.display = "";
+				return;
+			} 
+			var link = document.createElement("A");
+			link.href = "#w#" + jsond[c].id;
+			var div = document.createElement("DIV");
+			div.classList.add("video");
+			link.appendChild(div);
+			var img = document.createElement("IMG");
+			img.classList.add("largeThumb");
+			img.src = "https://img.youtube.com/vi/" + jsond[c].id + "/hqdefault.jpg";
+			div.appendChild(img);
+			var div2 = document.createElement("DIV");
+			div2.classList.add("td");
+			div.appendChild(div2);
+			var h3 = document.createElement("H3");
+			h3.classList.add("stat");
+			h3.innerHTML = jsond[c].title;
+			div2.appendChild(h3);
+			var stat1 = document.createElement("H4");
+			stat1.innerHTML = 'by ' + jsond[c].author;
+			stat1.classList.add("stat")
+			div2.appendChild(stat1);
+			var stat2 = document.createElement("H4");
+			stat2.innerHTML = jsond[c].score.toLocaleString() + ' upvotes';
+			stat2.classList.add("stat");
+			div2.appendChild(stat2);
+			document.getElementById("redobTrending").appendChild(link);
 		}
 	}
 }
