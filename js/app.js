@@ -3262,7 +3262,7 @@ function notPlayable() {
 	document.getElementById("searchPage").style.display = 'none';
 	document.getElementById("homePage").style.display = 'none';
 	document.getElementById("bannerPfpContainer").style.display = 'none';
-	document.title = "[!] vidpolaris"
+	document.title = "[!] vidpolaris";
 }
 
 function openChannel(opt,inst) {
@@ -3387,33 +3387,31 @@ function openChannel(opt,inst) {
 					stat2.innerHTML = '<span class="material-icons ico">remove_red_eye</span> ' + jsond.latestVideos[c].viewCount.toLocaleString() + ' views'
 					stat2.classList.add("stat");
 					document.getElementById("up"+c+"Div").appendChild(stat2);
-					if (!c + 1) {
-						for (c in jsond.relatedChannels) {
-							var link = document.createElement("A");
-							link.href = "#c#" + jsond.relatedChannels[c].authorId;
-							link.id = "reCh" + c;
-							document.getElementById("relatedChannels").appendChild(link);
-							var div = document.createElement("DIV");
-							div.classList.add("relatedChannel");
-							div.id = "reChDiv" + c;
-							document.getElementById("reCh"+c).appendChild(div);
-							var img = document.createElement("IMG");
-							var url = jsond.relatedChannels[c].authorThumbnails[0].url
-							img.src = url.split('=s')[0];
-							img.classList.add("profilePics");
-							document.getElementById("reChDiv"+c).appendChild(img);
-							var name = document.createElement("H2");
-							name.innerHTML = jsond.relatedChannels[c].author;
-							name.classList.add("stat");
-							document.getElementById("reChDiv"+c).appendChild(name);
-						}
-						document.getElementById("newUps").style.display = "";
-						document.getElementById("noUps").style.display = "none";
-						document.getElementById("vidBtn").style.display = "";
-						if (sessionStorage.getItem("noUploads")) {
-							sessionStorage.removeItem("noUploads");
-						}
-					}
+				}
+				for (c in jsond.relatedChannels) {
+					var link = document.createElement("A");
+					link.href = "#c#" + jsond.relatedChannels[c].authorId;
+					link.id = "reCh" + c;
+					document.getElementById("relatedChannels").appendChild(link);
+					var div = document.createElement("DIV");
+					div.classList.add("relatedChannel");
+					div.id = "reChDiv" + c;
+					document.getElementById("reCh"+c).appendChild(div);
+					var img = document.createElement("IMG");
+					var url = jsond.relatedChannels[c].authorThumbnails[0].url
+					img.src = url.split('=s')[0];
+					img.classList.add("profilePics");
+					document.getElementById("reChDiv"+c).appendChild(img);
+					var name = document.createElement("H2");
+					name.innerHTML = jsond.relatedChannels[c].author;
+					name.classList.add("stat");
+					document.getElementById("reChDiv"+c).appendChild(name);
+				}
+				document.getElementById("newUps").style.display = "";
+				document.getElementById("noUps").style.display = "none";
+				document.getElementById("vidBtn").style.display = "";
+				if (sessionStorage.getItem("noUploads")) {
+					sessionStorage.removeItem("noUploads");
 				}
 			} else {
 				for (c in jsond.relatedChannels) {
