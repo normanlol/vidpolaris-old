@@ -35,15 +35,14 @@
 					<h1 class="material-icons ico">report_problem</h1>
 					<p>the server is down. change your server <a href="#settings">here!</a></p>
 				</div>
-				<div id="serverdown" style="display:none;">
-					<h1 class="material-icons ico">report_problem</h1>
-					<p>the server is down. change your server <a href="#settings">here!</a></p>
-				</div>
 				<div id="trendingLoader" style="display:none;">
 					<div style="margin-top:20px;" class="loader centerMe"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 					<h2 id="homeLoadDeet">loading home page...</h2>
 				</div>
 				<div id="trending" style="display:none;">
+					<div id="fallbacktoInv" style="display:none;">
+						<p class="noCenter homeTitle"><span class="material-icons ico">report_problem</span> reddit seems to be down! we fell back to invidious to provide a homepage for you!</p>
+					</div>
 					<div class="pack">
 						<h2 class="noCenter homeTitle"><span class="material-icons ico">trending_up</span> trending right now</h2>
 						<div id="mainTrending" style="display:none;"></div><br>
@@ -58,6 +57,9 @@
 					</div>
 				</div>
 				<div id="redditTrending" style="display:none;">
+					<div id="fallbacktoRed" style="display:none;">
+						<p class="noCenter homeTitle"><span class="material-icons ico">report_problem</span> invidious seems to be down! we fell back to reddit to provide a homepage for you! try changing instances in the <a href="#settings">settings</a> menu.</p>
+					</div>
 					<div class="pack">
 						<h2 class="noCenter homeTitle"><span class="material-icons ico">trending_up</span> trending on reddit (/r/videos)</h2>
 						<div id="redTrending" style="display:none;"></div><br>
@@ -270,7 +272,7 @@
 						<option value="n">disabled</option>
 					</select>
 				</div>
-				<div class="setting" title="self explanitory.">
+				<div class="setting" title="self explanitory. falls back to the opposite if the first fails.">
 					<label>home page data:</label>
 					<select id="home" onInput="hideCountry()">
 						<option value="inv">invidious (official trending data) [default]</option>

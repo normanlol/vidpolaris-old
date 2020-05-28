@@ -1064,6 +1064,8 @@ function getTrending(opt,inst) {
 		var jsond = JSON.parse(http.responseText);
 		if (!jsond[0]) {
 			redditTrending(opt);
+			document.getElementById("fallbacktoRed").style.display = "";
+			return;
 		}
 		for (var c in jsond) {
 			if (c > 17) {
@@ -1108,7 +1110,9 @@ function getTrending(opt,inst) {
 		}
 	}
 	http.onerror = function (error) {
-		getTrending(opt,inst);
+		redditTrending(opt);
+		document.getElementById("fallbacktoRed").style.display = "";
+		return;
 	}
 }
 
@@ -1137,6 +1141,8 @@ function getTrendingMusic(opt, inst) {
 		var jsond = JSON.parse(http.responseText);
 		if (!jsond[0]) {
 			redditTrending(opt);
+			document.getElementById("fallbacktoRed").style.display = "";
+			return;
 		}
 		for (var c in jsond) {
 			if (c > 11) {
@@ -1205,6 +1211,8 @@ function getTrendingGaming(opt,inst) {
 		var jsond = JSON.parse(http.responseText);
 		if (!jsond[0]) {
 			redditTrending(opt);
+			document.getElementById("fallbacktoRed").style.display = "";
+			return;
 		}
 		for (var c in jsond) {
 			if (c > 11) {
@@ -1256,6 +1264,11 @@ function redditTrending(opt) {
 	http.send();
 	http.onload=(e)=>{
 		var jsond = JSON.parse(http.responseText);
+		if (!jsond[0]) {
+			getTrending(opt,localStorage.getItem("invIns"));
+			document.getElementById("fallbacktoInv").style.display = "none";
+			return;
+		}
 		for (var c in jsond) {
 			if (c > 17) {
 				document.getElementById("redditTrending").style.display = "";
@@ -1306,6 +1319,11 @@ function redditmusicTrending(opt) {
 	http.send();
 	http.onload=(e)=>{
 		var jsond = JSON.parse(http.responseText);
+		if (!jsond[0]) {
+			getTrending(opt,localStorage.getItem("invIns"));
+			document.getElementById("fallbacktoInv").style.display = "none";
+			return;
+		}
 		for (var c in jsond) {
 			if (c > 17) {
 				document.getElementById("redmuTrending").style.display = "";
@@ -1354,6 +1372,11 @@ function redditdeepTrending(opt) {
 	http.send();
 	http.onload=(e)=>{
 		var jsond = JSON.parse(http.responseText);
+		if (!jsond[0]) {
+			getTrending(opt,localStorage.getItem("invIns"));
+			document.getElementById("fallbacktoInv").style.display = "none";
+			return;
+		}
 		for (var c in jsond) {
 			if (c > 17) {
 				document.getElementById("redobTrending").style.display = "";
