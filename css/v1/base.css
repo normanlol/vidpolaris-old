@@ -456,3 +456,23 @@ iframe {
 	min-height:700px;
 	max-height:1030px;
 }
+
+#playlistThumb {
+	min-width:40%;
+	max-width:40%;
+	display:inline-block;
+	object-fit:cover;
+	transition:filter 1s;
+	float:left;
+	padding-right:1%;
+}
+
+#playlistThumb:hover {
+	filter:brightness(50%);
+	cursor:pointer;
+}
+
+#playlistInfo {
+	min-width:59%;
+	max-width:59%;
+}

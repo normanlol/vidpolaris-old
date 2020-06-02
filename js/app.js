@@ -2,7 +2,6 @@ document.getElementById("noscript").style.display = "none";
 console.log("script loaded.");
 console.log("==================");
 resize("auto");
-keepProg();
 const http = new XMLHttpRequest();
 document.getElementById("homeLoadDeet").innerHTML = "waking server..."
 if (localStorage.getItem("sLoc") == "a" | !localStorage.getItem("sLoc")) {
@@ -17,7 +16,7 @@ http.send();
 http.onload=(e)=>{
 	if (http.status == 404) {
 		document.getElementById("homeLoadDeet").innerHTML = "loading home page...";
-		if (window.location.href.includes("#c") | window.location.href.includes("#adapt#") | window.location.href.includes("#w") | window.location.href.includes("#s")) {
+		if (window.location.href.includes("#c") | window.location.href.includes("#adapt#") | window.location.href.includes("#w") | window.location.href.includes("#s") | window.location.href.includes("#p")) {
 			document.getElementById("searchContainer").style.display = "";
 			refresh();
 		} else {
@@ -566,7 +565,6 @@ var observer = new MutationObserver(function(mutations) {
 		}
     });    
 });
-
 var target = document.getElementById('loadErr');
 observer.observe(target, { attributes : true, attributeFilter : ['style'] });
 
@@ -743,6 +741,7 @@ function search(opt) {
 	document.getElementById("seaLoader").style.display = '';
 	document.getElementById("helpOut").style.display = '';
 	document.getElementById("resultsContainer").style.display = 'none';
+	document.getElementById("playlistPage").style.display = 'none';
 	document.getElementById("vidPage").style.display = 'none';
 	document.getElementById("channelPage").style.display = 'none';
 	document.getElementById("searchContainer").style.display = 'none';
@@ -825,7 +824,7 @@ function search(opt) {
 				document.getElementById("re"+c+"Info").appendChild(desc);
 			} else if (jsond.searchResults.items[c].type == "playlist") {
 				var link = document.createElement("A");
-				link.href = jsond.searchResults.items[c].link;
+				link.href = "#p#" + getClickedId(jsond.searchResults.items[c].link, "?list=");
 				link.id = "re" + c
 				document.getElementById("resultsContainer").appendChild(link);
 				var div = document.createElement("DIV");
@@ -1272,7 +1271,12 @@ function redditTrending(opt) {
 	http.send();
 	http.onload=(e)=>{
 		var jsond = JSON.parse(http.responseText);
-		if (!jsond[0]) {
+		if (!jsond[0] && !jsond.err) {
+			getTrending(opt,localStorage.getItem("invIns"));
+			document.getElementById("fallbacktoInv").style.display = "none";
+			return;
+		}
+		if (jsond.err) {
 			getTrending(opt,localStorage.getItem("invIns"));
 			document.getElementById("fallbacktoInv").style.display = "none";
 			return;
@@ -1332,6 +1336,11 @@ function redditmusicTrending(opt) {
 			document.getElementById("fallbacktoInv").style.display = "none";
 			return;
 		}
+		if (jsond.err) {
+			getTrending(opt,localStorage.getItem("invIns"));
+			document.getElementById("fallbacktoInv").style.display = "none";
+			return;
+		}
 		for (var c in jsond) {
 			if (c > 17) {
 				document.getElementById("redmuTrending").style.display = "";
@@ -1381,6 +1390,11 @@ function redditdeepTrending(opt) {
 	http.onload=(e)=>{
 		var jsond = JSON.parse(http.responseText);
 		if (!jsond[0]) {
+			getTrending(opt,localStorage.getItem("invIns"));
+			document.getElementById("fallbacktoInv").style.display = "none";
+			return;
+		}
+		if (jsond.err) {
 			getTrending(opt,localStorage.getItem("invIns"));
 			document.getElementById("fallbacktoInv").style.display = "none";
 			return;
@@ -1443,6 +1457,7 @@ function openVideo(opt,ret) {
 					document.getElementById("refreshBtn").style.display = 'none';
 					document.getElementById("vidRatings").style.display = 'none';
 					document.getElementById("theat_embed").style.display = 'none';
+					document.getElementById("playlistPage").style.display = 'none';
 					document.getElementById("player").pause();
 					document.getElementById("vidPage").style.display = '';
 					document.getElementById("helpOut").style.display = '';
@@ -1584,7 +1599,7 @@ function openVideo(opt,ret) {
 										}
 									} else if (jsond.info.player_response.cards.cardCollectionRenderer.cards[c].cardRenderer.content.playlistInfoCardContentRenderer) {
 										var link = document.createElement("A");
-										link.href = "https://youtube.com/playlist?list=" + jsond.info.player_response.cards.cardCollectionRenderer.cards[c].cardRenderer.content.playlistInfoCardContentRenderer.action.watchEndpoint.playlistId;
+										link.href = "#p#" + jsond.info.player_response.cards.cardCollectionRenderer.cards[c].cardRenderer.content.playlistInfoCardContentRenderer.action.watchEndpoint.playlistId;
 										link.id = "cardL" + c;
 										link.classList.add("channelLink");
 										document.getElementById("card"+c).appendChild(link);
@@ -1859,7 +1874,7 @@ function openVideo(opt,ret) {
 											var option = document.createElement("OPTION");
 											option.value = jsond.video[c].itag;
 											if (localStorage.getItem("showSize")) {
-												if (localStorage.getItem("showSize") == "y") {
+												if (localStorage.getItem("showSize") == "y" | !jsond.video[c].contentLength) {
 													option.innerHTML = jsond.video[c].qualityLabel + " [" + formatBytes(parseInt(jsond.video[c].contentLength)) + "]";
 												} else {
 													option.innerHTML = jsond.video[c].qualityLabel;
@@ -1875,7 +1890,7 @@ function openVideo(opt,ret) {
 												var option = document.createElement("OPTION");
 												option.value = jsond.video[c].itag;
 												if (localStorage.getItem("showSize")) {
-													if (localStorage.getItem("showSize") == "y") {
+													if (localStorage.getItem("showSize") == "y" | !jsond.video[c].contentLength) {
 														option.innerHTML = jsond.video[c].qualityLabel + " [" + formatBytes(parseInt(jsond.video[c].contentLength)) + "]";
 													} else {
 														option.innerHTML = jsond.video[c].qualityLabel;
@@ -1891,8 +1906,8 @@ function openVideo(opt,ret) {
 										if (c == 0) {
 											var option = document.createElement("OPTION");
 											option.value = jsond.audio[c].itag;
-											if (localStorage.getItem("showSize")) {
-												if (localStorage.getItem("showSize") == "y") {
+											if (localStorage.getItem("showSize") | !jsond.audio[c].contentLength) {
+												if (localStorage.getItem("showSize") == "y" | !jsond.audio[c].contentLength) {
 													option.innerHTML = jsond.audio[c].audioBitrate + "kbps" + " [" + formatBytes(parseInt(jsond.audio[c].contentLength)) + "]";
 												} else {
 													option.innerHTML = jsond.audio[c].audioBitrate + "kbps";
@@ -1907,8 +1922,8 @@ function openVideo(opt,ret) {
 											} else {
 												var option = document.createElement("OPTION");
 												option.value = jsond.audio[c].itag;
-												if (localStorage.getItem("showSize")) {
-													if (localStorage.getItem("showSize") == "y") {
+												if (localStorage.getItem("showSize") | !jsond.audio[c].contentLength) {
+													if (localStorage.getItem("showSize") == "y" | !jsond.audio[c].contentLength) {
 														option.innerHTML = jsond.audio[c].audioBitrate + "kbps" + " [" + formatBytes(parseInt(jsond.audio[c].contentLength)) + "]";
 													} else {
 														option.innerHTML = jsond.audio[c].audioBitrate + "kbps";
@@ -2019,7 +2034,7 @@ function openVideo(opt,ret) {
 								for (var c in jsond.info.formats) {
 									if (c == 0) {
 										var option = document.createElement("OPTION");
-										if (localStorage.getItem("showSize") == "y") { 
+										if (localStorage.getItem("showSize") == "y" | !jsond.info.formats[c].contentLength) { 
 											option.innerHTML = jsond.info.formats[c].qualityLabel + " (video) - " + jsond.info.formats[c].audioBitrate + "kpbs (audio) [" + formatBytes(jsond.info.formats[c].contentLength) + "]";
 										} else {
 											option.innerHTML = jsond.info.formats[c].qualityLabel + " (video) - " + jsond.info.formats[c].audioBitrate + "kpbs (audio)";
@@ -2035,7 +2050,7 @@ function openVideo(opt,ret) {
 											} else {
 												if (jsond.info.formats[c].audioBitrate && !jsond.info.formats[c].audioBitrate == null && jsond.info.formats[c].qualityLabel && !jsond.info.formats[c].qualityLabel == null) {
 													var option = document.createElement("OPTION");
-													if (localStorage.getItem("showSize")) {
+													if (localStorage.getItem("showSize") | !jsond.info.formats[c].contentLength) {
 														if (localStorage.getItem("showSize") == "y") {
 															option.innerHTML = jsond.info.formats[c].qualityLabel + " (video) - " + jsond.audio[c].audioBitrate + "kbps (audio) [" + formatBytes(parseInt(jsond.audio[c].contentLength)) + "]";
 														} else {
@@ -2170,7 +2185,7 @@ function openVideo(opt,ret) {
 						document.getElementById("qOptions").innerHTML = ""
 						for (var c in jsond.datainfo) {
 							var option = document.createElement("OPTION");
-							if (localStorage.getItem("showSize") == "y") { 
+							if (localStorage.getItem("showSize") == "y" | !jsond.datainfo[c].contentLength) { 
 								option.innerHTML = jsond.datainfo[c].qualityLabel + " (video) - " + jsond.datainfo[c].audioBitrate + "kpbs (audio) [" + formatBytes(jsond.datainfo[c].contentLength) + "]";
 							} else {
 								option.innerHTML = jsond.datainfo[c].qualityLabel + " (video) - " + jsond.datainfo[c].audioBitrate + "kpbs (audio)";
@@ -2249,7 +2264,7 @@ function openVideo(opt,ret) {
 								var option = document.createElement("OPTION");
 								option.value = jsond.video[c].itag;
 								if (localStorage.getItem("showSize")) {
-									if (localStorage.getItem("showSize") == "y") {
+									if (localStorage.getItem("showSize") == "y" | !jsond.video[c].contentLength) {
 										option.innerHTML = jsond.video[c].qualityLabel + " [" + formatBytes(parseInt(jsond.video[c].contentLength)) + "]";
 									} else {
 										option.innerHTML = jsond.video[c].qualityLabel;
@@ -2265,7 +2280,7 @@ function openVideo(opt,ret) {
 									var option = document.createElement("OPTION");
 									option.value = jsond.video[c].itag;
 									if (localStorage.getItem("showSize")) {
-										if (localStorage.getItem("showSize") == "y") {
+										if (localStorage.getItem("showSize") == "y" | !jsond.video[c].contentLength) {
 											option.innerHTML = jsond.video[c].qualityLabel + " [" + formatBytes(parseInt(jsond.video[c].contentLength)) + "]";
 										} else {
 											option.innerHTML = jsond.video[c].qualityLabel;
@@ -2282,7 +2297,7 @@ function openVideo(opt,ret) {
 								var option = document.createElement("OPTION");
 								option.value = jsond.audio[c].itag;
 								if (localStorage.getItem("showSize")) {
-									if (localStorage.getItem("showSize") == "y") {
+									if (localStorage.getItem("showSize") == "y" | !jsond.audio[c].contentLength) {
 										option.innerHTML = jsond.audio[c].audioBitrate + "kbps" + " [" + formatBytes(parseInt(jsond.audio[c].contentLength)) + "]";
 									} else {
 										option.innerHTML = jsond.audio[c].audioBitrate + "kbps";
@@ -2298,7 +2313,7 @@ function openVideo(opt,ret) {
 									var option = document.createElement("OPTION");
 									option.value = jsond.audio[c].itag;
 									if (localStorage.getItem("showSize")) {
-										if (localStorage.getItem("showSize") == "y") {
+										if (localStorage.getItem("showSize") == "y" | !jsond.audio[c].contentLength) {
 											option.innerHTML = jsond.audio[c].audioBitrate + "kbps" + " [" + formatBytes(parseInt(jsond.audio[c].contentLength)) + "]";
 										} else {
 											option.innerHTML = jsond.audio[c].audioBitrate + "kbps";
@@ -2343,6 +2358,7 @@ function home(connections) {
 	document.getElementById("settingsPage").style.display = 'none';
 	document.getElementById("helpOut").style.display = 'none';
 	document.getElementById("bannerPfpContainer").style.display = 'none';
+	document.getElementById("playlistPage").style.display = 'none';
 	document.getElementById("mainTrending").innerHTML = "";
 	document.getElementById("redTrending").innerHTML = "";
 	document.getElementById("musicTrending").innerHTML = "";
@@ -2438,6 +2454,8 @@ function refresh() {
 		document.getElementById("homePage").style.display = 'none';
 		document.getElementById("vidPage").style.display = 'none';
 		document.getElementById("channelPage").style.display = 'none';
+		document.getElementById("playlistPage").style.display = 'none';
+		document.getElementById("errorPage").style.display = 'none';
 		document.getElementById("searchPage").style.display = 'none';
 		document.getElementById("settingsPage").style.display = '';
 		document.getElementById("helpOut").style.display = '';
@@ -2452,11 +2470,68 @@ function refresh() {
 		}
 	} else if (window.location.href.includes("#adapt#")){
 		adaptBookmark();
+	} else if (window.location.href.includes("#p")){
+		openPlaylist(localStorage.getItem("sLoc"))
 	} else if (window.location.href.includes("#")) {
-		if (window.location.href.includes("#c") | window.location.href.includes("#w") | window.location.href.includes("#s") | window.location.href.includes("#adapt")) {
+		if (window.location.href.includes("#c") | window.location.href.includes("#w") | window.location.href.includes("#s") | window.location.href.includes("#adapt") | window.location.href.includes("#p")) {
 			return;
 		} else {
 			home();
+		}
+	}
+}
+
+function openPlaylist(opt) {
+	document.getElementById("playlistPage").style.display = "";
+	document.getElementById("playLoader").style.display = "";
+	document.getElementById("playlistViewer").style.display = "none";
+	document.getElementById("homePage").style.display = 'none';
+	document.getElementById("vidPage").style.display = 'none';
+	document.getElementById("channelPage").style.display = 'none';
+	document.getElementById("searchPage").style.display = 'none';
+	document.getElementById("player").pause();
+	document.title = "[loading...] vidpolaris"
+	const http = new XMLHttpRequest();
+	var id = getClickedId(window.location.href, "#p#");
+	if (!opt | opt == "a") {
+		var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?playlistId=" + id;
+	} else if (opt == "b") {
+		var url = "https://vidpolaris.herokuapp.com/?playlistId=" + id;
+	} else if (opt == "c") {
+		var url = "https://vidpolaris-europe.herokuapp.com/?playlistId=" + id;
+	}
+	http.open("GET", url);
+	http.send();
+	http.onload=(e)=>{
+		document.getElementById("playLoader").style.display = 'none';
+		document.getElementById("playlistViewer").style.display = '';
+		document.getElementById("playlistViewer").style = "margin-left:17.5%;margin-right:17.5%;margin-top:20px;";
+		var jsond = JSON.parse(http.responseText);
+		if (!jsond.err) {
+			document.title = jsond.playlist.title + " | vidpolaris";
+			document.getElementById("playlistName").innerHTML = jsond.playlist.title;
+			document.getElementById("playlistAuthor").innerHTML = jsond.playlist.author.name;
+			document.getElementById("playlistViews").innerHTML = jsond.playlist.views.toLocaleString() + " views";
+			document.getElementById("playlistLength").innerHTML = jsond.playlist.total_items.toLocaleString() + " videos";
+			document.getElementById("playlistUpdated").innerHTML = jsond.playlist.last_updated;
+			document.getElementById("playlistDesc").innerHTML = jsond.playlist.description;
+			if (jsond.playlist.visibility == "everyone" ) {
+				document.getElementById("unlistedIco").style.display = "none";
+			} else {
+				document.getElementById("unlistedIco").style.display = "";
+			}
+			document.getElementById("playlistThumb").style = "height:" + document.getElementById("playlistInfo").clientHeight + "px;"; 
+			document.getElementById("plAuLink").href = "#c#" + getClickedId(jsond.playlist.author.channel_url, "/channel/");
+			document.getElementById("playlistThumb").src = jsond.playlist.items[0].thumbnail;
+			
+			for (var c in jsond.playlist.items) {
+				var a = document.createElement("A");
+				a.href = "#w#" + jsond.playlist.items[c].id;
+				var div = document.createElement("DIV");
+			}
+		} else {
+			playlistErr();
+			return;
 		}
 	}
 }
@@ -2475,7 +2550,6 @@ function adaptBookmark() {
 		console.log("failed to detect valid URL.");
 	} else {
 		if (url.includes("v=") | url.includes("youtu.be")) {
-			console.log("detected watch URL...")
 			if (url.includes("v=")) {
 				var id = getClickedId(url, "v=");
 				var fId = id.substring(0,11);
@@ -2507,6 +2581,9 @@ function adaptBookmark() {
 				var cId = getClickedId(url, "/user/");
 				window.open("#c#" + cId, "_self")
 			}
+		} else if (url.includes("list=")) {
+			var pId = getClickedId(url, "list=");
+			window.open("#p#"+pId);
 		} else {
 			window.open("#", "_self")
 		}
@@ -2551,16 +2628,6 @@ function sync() {
 			document.getElementById("audioPlayer").pause();
 		}
 	};
-	document.getElementById("audioPlayer").onwaiting = function(){
-		if (localStorage.getItem("smart") == 'y') {
-			document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
-		}
-	};
-	document.getElementById("audioPlayer").addEventListener("playing", function() {
-		if (localStorage.getItem("smart") == 'y') {
-			document.getElementById("player").play();
-		}
-	});
 }
 
 function saveSettings() {
@@ -3180,21 +3247,6 @@ function translate(elem) {
 	}
 }
 
-
-function keepProg() { 
-	if (document.getElementById('player').playing == true) {
-		sessionStorage.setItem('time', document.getElementById("player").currentTime);
-		var id = getClickedId(window.location.href, '#w#');
-		sessionStorage.setItem('id', id);
-	} else {
-		sessionStorage.removeItem('id');
-		sessionStorage.removeItem('time');
-	}
-	setTimeout( function () {
-		keepProg()
-	}, 5000)
-}
-
 function theatre(mode) {
 	if (!mode){
 		if (document.getElementById("player").style.width == "60%" | !document.getElementById("player").style.width) {
@@ -3260,7 +3312,21 @@ function notPlayable() {
 	document.getElementById("nsWarnPage").style.display = 'none';
 	document.getElementById("settingsPage").style.display = 'none';
 	document.getElementById("searchPage").style.display = 'none';
+	document.getElementById("playlistPage").style.display = 'none';
 	document.getElementById("homePage").style.display = 'none';
+	document.getElementById("bannerPfpContainer").style.display = 'none';
+	document.title = "[!] vidpolaris";
+}
+
+function playlistErr() {
+	document.getElementById("errorPage").style.display = '';
+	document.getElementById("errorTxt").innerHTML = "the playlist could not be retrieved. is it private?"
+	document.getElementById("vidPage").style.display = 'none';
+	document.getElementById("nsWarnPage").style.display = 'none';
+	document.getElementById("settingsPage").style.display = 'none';
+	document.getElementById("searchPage").style.display = 'none';
+	document.getElementById("homePage").style.display = 'none';
+	document.getElementById("playlistPage").style.display = 'none';
 	document.getElementById("bannerPfpContainer").style.display = 'none';
 	document.title = "[!] vidpolaris";
 }
@@ -3271,6 +3337,7 @@ function openChannel(opt,inst) {
 	document.getElementById("resultsContainer").style.display = 'none';
 	document.getElementById("searchTerm").style.display = "none";
 	document.getElementById("helpOut").style.display = 'none';
+	document.getElementById("playlistPage").style.display = 'none';
 	document.getElementById("vidPage").style.display = 'none';
 	document.getElementById("searchContainer").style.display = 'none';
 	document.getElementById("homePage").style.display = 'none';
