@@ -2525,11 +2525,34 @@ function openPlaylist(opt) {
 			document.getElementById("playlistThumb").style = "height:" + document.getElementById("playlistInfo").clientHeight + "px;"; 
 			document.getElementById("plAuLink").href = "#c#" + getClickedId(jsond.playlist.author.channel_url, "/channel/");
 			document.getElementById("playlistThumb").src = jsond.playlist.items[0].thumbnail;
-			
+			document.getElementById("playlistItems").innerHTML = "";
 			for (var c in jsond.playlist.items) {
-				var a = document.createElement("A");
-				a.href = "#w#" + jsond.playlist.items[c].id;
-				var div = document.createElement("DIV");
+				if (jsond.playlist.items[c].title == "[Deleted video]") {
+					
+				} else {
+					var a = document.createElement("A");
+					a.href = "#w#" + jsond.playlist.items[c].id;
+					var div = document.createElement("DIV");
+					div.classList.add("sResultVideo");
+					var thu = document.createElement("IMG");
+					thu.src = jsond.playlist.items[c].thumbnail;
+					thu.classList.add("smallThumb");
+					div.appendChild(thu);
+					var tit = document.createElement("H2");
+					tit.innerHTML = jsond.playlist.items[c].title;
+					tit.classList.add("stat");
+					div.appendChild(tit);
+					var auth = document.createElement("H3");
+					auth.innerHTML = "<span class='material-icons ico'>person</span> " + jsond.playlist.items[c].author.name;
+					auth.classList.add("stat");
+					div.appendChild(auth);
+					var dur = document.createElement("H3");
+					dur.classList.add("stat");
+					dur.innerHTML = "<span class='material-icons ico'>timer</span> " + jsond.playlist.items[c].duration;
+					div.appendChild(dur);
+					a.appendChild(div);
+					document.getElementById("playlistItems").appendChild(a);
+				}
 			}
 		} else {
 			playlistErr();
