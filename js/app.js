@@ -1079,6 +1079,7 @@ function getTrending(opt,inst) {
 				document.getElementById("trendingLoader").style.display = 'none';
 				document.getElementById("trending").style.display = '';
 				document.getElementById("mainTrending").style.display = '';
+				document.getElementById("redditTrending").style.display = 'none';
 				if (!inst) {
 					getTrendingMusic(opt);
 				} else {
@@ -1285,6 +1286,7 @@ function redditTrending(opt) {
 			if (c > 17) {
 				document.getElementById("redditTrending").style.display = "";
 				document.getElementById("redTrending").style.display = "";
+				document.getElementById("mainTrending").style.display = "none";
 				document.getElementById("trendingLoader").style.display = "none";
 				redditmusicTrending(opt)
 				return;
