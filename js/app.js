@@ -2784,6 +2784,7 @@ function getComments(token, opt) {
 					div.appendChild(h3);
 				}
 				var cText = document.createElement("P");
+				cText.id = jsond.comments[c].id + "_text";
 				cText.innerHTML = jsond.comments[c].text.replace(/\n/g, "<br>");
 				cText.classList.add("cText");
 				var stats = document.createElement("P");
@@ -2793,7 +2794,7 @@ function getComments(token, opt) {
 				} else {
 					var rep = jsond.comments[c].numReplies;
 				}
-				var tFunction = `translate('c` + c + `T')`
+				var tFunction = `translate('` +  + `_text')`
 				stats.innerHTML = "<span class='material-icons ico'>comment</span> " + rep + " replies • <span class='material-icons ico'>thumb_up</span> " + jsond.comments[c].likes.toLocaleString() + " likes • <span onclick=" + tFunction + " style='cursor:pointer'><span class='material-icons ico'>translate</span> translate this comment</span> • <span>posted " + jsond.comments[c].time + "</span>";
 				div.appendChild(cText);
 				div.appendChild(stats);
@@ -2880,6 +2881,7 @@ function getComments(token, opt) {
 					div.appendChild(h3);
 				}
 				var cText = document.createElement("P");
+				cText.id = jsond.comments[c].id + "_text";
 				cText.innerHTML = jsond.comments[c].text.replace(/\n/g, "<br>");
 				cText.classList.add("cText");
 				var stats = document.createElement("P");
@@ -2889,7 +2891,7 @@ function getComments(token, opt) {
 				} else {
 					var rep = jsond.comments[c].numReplies;
 				}
-				var tFunction = `translate('c` + c + `T')`
+				var tFunction = `translate('` +  + `_text')`
 				stats.innerHTML = "<span class='material-icons ico'>comment</span> " + rep + " replies • <span class='material-icons ico'>thumb_up</span> " + jsond.comments[c].likes.toLocaleString() + " likes • <span onclick=" + tFunction + " style='cursor:pointer'><span class='material-icons ico'>translate</span> translate this comment</span> • <span>posted " + jsond.comments[c].time + "</span>";
 				div.appendChild(cText);
 				div.appendChild(stats);
