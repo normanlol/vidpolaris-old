@@ -2198,6 +2198,7 @@ function openVideo(opt,ret) {
 						document.getElementById("player").src = jsond.datainfo[0].url;
 						document.getElementById("player").play();
 						document.getElementById("vidViewer").style.display = "";
+						document.getElementById("searchContainer").style.display = "";
 						document.getElementById("vidLoader").style.display = "none";
 						document.getElementById("loadErr").style.display = "none";
 						if (document.getElementById("vidLoaderTxt").innerHTML.includes("improper")) {
