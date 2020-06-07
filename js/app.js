@@ -1905,7 +1905,7 @@ function openVideo(opt,ret) {
 											if (c == 0) {
 												var option = document.createElement("OPTION");
 												option.value = jsond.audio[c].itag;
-												if (localStorage.getItem("showSize") | !jsond.audio[c].contentLength) {
+												if (localStorage.getItem("showSize")) {
 													if (localStorage.getItem("showSize") == "y" | !jsond.audio[c].contentLength) {
 														option.innerHTML = jsond.audio[c].audioBitrate + "kbps" + " [" + formatBytes(parseInt(jsond.audio[c].contentLength)) + "]";
 													} else {
@@ -1921,7 +1921,7 @@ function openVideo(opt,ret) {
 												} else {
 													var option = document.createElement("OPTION");
 													option.value = jsond.audio[c].itag;
-													if (localStorage.getItem("showSize") | !jsond.audio[c].contentLength) {
+													if (localStorage.getItem("showSize")) {
 														if (localStorage.getItem("showSize") == "y" | !jsond.audio[c].contentLength) {
 															option.innerHTML = jsond.audio[c].audioBitrate + "kbps" + " [" + formatBytes(parseInt(jsond.audio[c].contentLength)) + "]";
 														} else {
