@@ -2808,6 +2808,12 @@ function getComments(token, opt) {
 			document.getElementById("loadinC").style.display = "none";
 			document.getElementById("loadedC").style.display = "";
 			document.getElementById("loadedComments").style.display = "";
+			var button = document.getElementsByTagName("button");
+			for (var c in button) {
+				if (button[c].innerHTML == "load more comments") {
+					button[c].style = "display:none;"
+				}
+			}
 			if (jsond.npToken) {
 				var button = document.createElement("BUTTON");
 				button.onclick = function() {
@@ -2905,6 +2911,12 @@ function getComments(token, opt) {
 			document.getElementById("loadinC").style.display = "none";
 			document.getElementById("loadedC").style.display = "";
 			document.getElementById("loadedComments").style.display = "";
+			var button = document.getElementsByTagName("button");
+			for (var c in button) {
+				if (button[c].innerHTML == "load more comments") {
+					button[c].style = "display:none;"
+				}
+			}
 			if (jsond.npToken) {
 				var button = document.createElement("BUTTON");
 				button.onclick = function() {
