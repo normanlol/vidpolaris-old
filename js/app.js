@@ -1851,6 +1851,7 @@ function openVideo(opt,ret) {
 											return;
 										} else {
 											window.location.reload();
+											return;
 										}
 									}
 									if (!jsond.audio) {
@@ -1860,6 +1861,7 @@ function openVideo(opt,ret) {
 											return;
 										} else {
 											window.location.reload();
+											return;
 										}
 									}
 									if (!jsond.audio[0].isMPDDash == true | !jsond.video[0].isMPDDash == true) {
