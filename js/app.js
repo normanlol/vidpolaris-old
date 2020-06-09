@@ -2198,12 +2198,12 @@ function openVideo(opt,ret) {
 							var option = document.createElement("OPTION");
 							if (localStorage.getItem("showSize")) {
 								if (localStorage.getItem("showSize") == "y") {
-									option.innerHTML = jsond.info.formats[c].qualityLabel + " (video) - " + jsond.audio[c].audioBitrate + "kbps (audio) [" + formatBytes(parseInt(jsond.audio[c].contentLength)) + "]";
+									option.innerHTML = jsond.datainfo[c].qualityLabel + " (video) - " + jsond.datainfo[c].audioBitrate + "kbps (audio) [" + formatBytes(parseInt(jsond.audio[c].contentLength)) + "]";
 								} else {
-									option.innerHTML = jsond.info.formats[c].qualityLabel + " (video) - " + jsond.audio[c].audioBitrate + "kbps (audio) [size not avaliable]";
+									option.innerHTML = jsond.datainfo[c].qualityLabel + " (video) - " + jsond.datainfo[c].audioBitrate + "kbps (audio) [size not avaliable]";
 								} 
 							} else {
-								option.innerHTML = jsond.info.formats[c].qualityLabel + " (video) - " + jsond.audio[c].audioBitrate + "kbps (audio)";
+								option.innerHTML = jsond.datainfo[c].qualityLabel + " (video) - " + jsond.datainfo[c].audioBitrate + "kbps (audio)";
 							}
 							option.value = jsond.datainfo[c].itag;
 							document.getElementById("qOptions").appendChild(option)
