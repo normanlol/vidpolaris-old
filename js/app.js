@@ -2198,7 +2198,7 @@ function openVideo(opt,ret) {
 							var option = document.createElement("OPTION");
 							if (localStorage.getItem("showSize")) {
 								if (localStorage.getItem("showSize") == "y") {
-									option.innerHTML = jsond.datainfo[c].qualityLabel + " (video) - " + jsond.datainfo[c].audioBitrate + "kbps (audio) [" + formatBytes(parseInt(jsond.audio[c].contentLength)) + "]";
+									option.innerHTML = jsond.datainfo[c].qualityLabel + " (video) - " + jsond.datainfo[c].audioBitrate + "kbps (audio) [" + formatBytes(parseInt(jsond.datainfo[c].contentLength)) + "]";
 								} else {
 									option.innerHTML = jsond.datainfo[c].qualityLabel + " (video) - " + jsond.datainfo[c].audioBitrate + "kbps (audio) [size not avaliable]";
 								} 
