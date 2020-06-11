@@ -3485,7 +3485,7 @@ function openChannel(opt,inst) {
 			}
 			document.getElementById("viewCount").innerHTML = jsond.totalViews.toLocaleString();
 			document.getElementById("chanName").innerHTML = jsond.author;
-			document.getElementById("channelDesc").innerHTML = jsond.description.varLink();
+			document.getElementById("channelDesc").innerHTML = varLinks(jsond.description);
 			document.getElementById("recentUploads").innerHTML = "";
 			document.getElementById("recentUploads").style.display = "";
 			document.getElementById("newUps").style.display = "";
