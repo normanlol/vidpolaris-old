@@ -3411,6 +3411,7 @@ function openChannel(opt,inst) {
 	document.getElementById("settingsPage").style.display = 'none';
 	document.getElementById("channelPage").style.display = '';
 	document.getElementById("chanLoader").style.display = '';
+	document.getElementById("dependButtons").innerHTML = '';
 	document.getElementById("chanViewer").style.display = 'none';
 	document.getElementById("bannerPfpContainer").style.display = 'none';
 	document.getElementById("aboutPage").style.display = 'none';
@@ -3474,6 +3475,7 @@ function openChannel(opt,inst) {
 				document.getElementById("banner").src = "img/banner.png";
 			}
 			document.getElementById("profilePic").src = jsond.authorThumbnails[0].url.split('=s')[0];
+			document.getElementById("profilePic").src = jsond.authorThumbnails[0].url.split('=s')[0];
 			if (!jsond.subCount == 0) {
 				document.getElementById("subCount").innerHTML = jsond.subCount.toLocaleString();
 			} else {
@@ -3485,7 +3487,108 @@ function openChannel(opt,inst) {
 			}
 			document.getElementById("viewCount").innerHTML = jsond.totalViews.toLocaleString();
 			document.getElementById("chanName").innerHTML = jsond.author;
-			document.getElementById("channelDesc").innerHTML = varLinks(jsond.description);
+			document.getElementById("channelDesc").innerHTML = varLinks(jsond.description.replace(/\n/g, "<br>"));
+			var emails = jsond.description.match(/[\w-\.]+@[\w]+\.+[a-zA-Z]{2,4}/g);
+			for (var c in emails) {
+				var a = document.createElement("A");
+				a.href = "mailto:" + emails[c];
+				var b = document.createElement("BUTTON");
+				b.innerHTML = "<span class='material-icons ico'>email</span> " + emails[c];
+				a.appendChild(b);
+				document.getElementById("dependButtons").appendChild(a);
+			}
+			var links = document.getElementById("channelDesc").querySelectorAll("a");
+			for (var c in links) {
+				console.log(links[c].href)
+				if (links[c].href) {
+					// support
+					if (links[c].href.includes("https://www.patreon.com/join") | links[c].href.includes("https://patreon.com/join")) {
+						var a = document.createElement("A");
+						a.href = links[c].href;
+						var b = document.createElement("BUTTON");
+						b.style = "margin:3px;";
+						b.innerHTML = "<span class='material-icons ico'>attach_money</span> donate (patreon)";
+						a.appendChild(b);
+						document.getElementById("dependButtons").appendChild(a);
+					} else if (links[c].href.includes("https://www.cameo.com") | links[c].href.includes("https://cameo.com")){
+						var a = document.createElement("A");
+						a.href = links[c].href;
+						var b = document.createElement("BUTTON");
+						b.style = "margin:3px;";
+						b.innerHTML = "<span class='material-icons ico'>attach_money</span> donate (cameo)";
+						a.appendChild(b);
+						document.getElementById("dependButtons").appendChild(a);
+					} else if (links[c].href.includes("https://www.streamlabs.com/") | links[c].href.includes("https://streamlabs.com/")) {
+						var a = document.createElement("A");
+						a.href = links[c].href;
+						var b = document.createElement("BUTTON");
+						b.style = "margin:3px;";
+						b.innerHTML = "<span class='material-icons ico'>attach_money</span> donate (streamlabs)";
+						a.appendChild(b);
+						document.getElementById("dependButtons").appendChild(a);
+					}
+					// socials
+					if (links[c].href.includes("https://www.twitter.com") | links[c].href.includes("https://twitter.com/")) {
+						var a = document.createElement("A");
+						a.href = links[c].href;
+						var b = document.createElement("BUTTON");
+						b.style = "margin:3px;";
+						b.innerHTML = "<span class='material-icons ico'>people</span> twitter";
+						a.appendChild(b);
+						document.getElementById("dependButtons").appendChild(a);
+					} else if (links[c].href.includes("https://www.facebook.com") | links[c].href.includes("https://facebook.com/")) {
+						var a = document.createElement("A");
+						a.href = links[c].href;
+						var b = document.createElement("BUTTON");
+						b.style = "margin:3px;";
+						b.innerHTML = "<span class='material-icons ico'>people</span> facebook";
+						a.appendChild(b);
+						document.getElementById("dependButtons").appendChild(a);
+					} else if (links[c].href.includes("https://www.instagram.com") | links[c].href.includes("https://instagram.com/")) {
+						var a = document.createElement("A");
+						a.href = links[c].href;
+						var b = document.createElement("BUTTON");
+						b.style = "margin:3px;";
+						b.innerHTML = "<span class='material-icons ico'>photo_camera</span> instagram";
+						a.appendChild(b);
+						document.getElementById("dependButtons").appendChild(a);
+					} else if (links[c].href.includes("https://www.twitch.tv") | links[c].href.includes("https://twitch.tv/")) {
+						var a = document.createElement("A");
+						a.href = links[c].href;
+						var b = document.createElement("BUTTON");
+						b.style = "margin:3px;";
+						b.innerHTML = "<span class='material-icons ico'>live_tv</span> twitch";
+						a.appendChild(b);
+						document.getElementById("dependButtons").appendChild(a);
+					}
+					// storefronts
+					if (links[c].href.includes("https://www.teespring.com") | links[c].href.includes("https://teespring.com/")) {
+						var a = document.createElement("A");
+						a.href = links[c].href;
+						var b = document.createElement("BUTTON");
+						b.style = "margin:3px;";
+						b.innerHTML = "<span class='material-icons ico'>storefront</span> teespring";
+						a.appendChild(b);
+						document.getElementById("dependButtons").appendChild(a);
+					} else if (links[c].href.includes("https://store.spreadshirt.com")) {
+						var a = document.createElement("A");
+						a.href = links[c].href;
+						var b = document.createElement("BUTTON");
+						b.style = "margin:3px;";
+						b.innerHTML = "<span class='material-icons ico'>storefront</span> spreadshirt";
+						a.appendChild(b);
+						document.getElementById("dependButtons").appendChild(a);
+					} else if (links[c].href.includes("https://www.etsy.com") | links[c].href.includes("https://etsy.com")) {
+						var a = document.createElement("A");
+						a.href = links[c].href;
+						var b = document.createElement("BUTTON");
+						b.style = "margin:3px;";
+						b.innerHTML = "<span class='material-icons ico'>storefront</span> etsy";
+						a.appendChild(b);
+						document.getElementById("dependButtons").appendChild(a);
+					}
+				}
+			}
 			document.getElementById("recentUploads").innerHTML = "";
 			document.getElementById("recentUploads").style.display = "";
 			document.getElementById("newUps").style.display = "";

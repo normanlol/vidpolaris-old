@@ -459,11 +459,12 @@
 							<h3 class="stat"><span id="viewCount">[Loading]</span> total views</h3>
 						</div>
 					</div>
-					<div class="centerMe">
+					<div id="chanButtons" class="centerMe" style="margin-bottom:5px;">
 						<button id="hBtn" onclick="cHome()"><span class="material-icons ico">home</span> home</button>
 						<button id="vidBtn" onclick="openChannelVideos(localStorage.getItem('sLoc'))"><span class="material-icons ico">live_tv</span> videos</button>
 						<button id="aBtn" onclick="openAbout()"><span class="material-icons ico">person</span> about</button>
 					</div>
+					<div id="dependButtons" class="centerMe"></div>
 					<h2 id="newUps" style="margin-left:15%;margin-right:15%;"><span class="material-icons ico">new_releases</span> new uploads from this channel</h2>
 					<h2 id="noUps" style="margin-left:15%;margin-right:15%;display:none;text-align:center;">no uploads are visible on this channel.</h2>
 					<div id="recentUploads" style="margin-left:15%;margin-right:15%;"></div>
