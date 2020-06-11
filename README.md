@@ -12,7 +12,7 @@ a screenshot of vidpolaris. using the default dark theme.
 ![A screenshot of VidPolaris - Light Theme](https://i.ibb.co/nMwmcZB/image.png)
 Light theme.
 
-![A screenshot of VidPolaris - Velvet Theme](https://i.ibb.co/tBQJg4Q/image.png)
+![A screenshot of VidPolaris - Velvet Theme](https://i.ibb.co/qB7rKd7/image.png)
 Velvet theme.
 
 *screenshots taken on june 11, 2020 at (around) 6:50pm*
