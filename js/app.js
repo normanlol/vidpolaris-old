@@ -24,9 +24,9 @@ http.onload=(e)=>{
 			if (!localStorage.getItem("homePage") | localStorage.getItem("homePage") == "inv") {
 				if (!localStorage.getItem("trendCont")) {
 					localStorage.setItem("trendCont", "us");
-					document.getElementById("country").value = localStorage.getItem("trendingCont");
+					document.getElementById("country").value = localStorage.getItem("country");
 				} else {
-					document.getElementById("country").value = localStorage.getItem("trendingCont");
+					document.getElementById("country").value = localStorage.getItem("country");
 				}
 				if (localStorage.getItem("sLoc")) {
 					if (localStorage.getItem("invIns")) {
@@ -117,6 +117,18 @@ if (!localStorage.getItem("homePage")) {
 	document.getElementById("home").value = "inv";
 } else {
 	document.getElementById("home").value = localStorage.getItem("homePage");
+}
+
+if (!localStorage.getItem("country")) {
+	localStorage.setItem("country", "us");
+	document.getElementById("country").value = "us";
+} else {
+	document.getElementById("country").value = localStorage.getItem("country");
+}
+
+if (localStorage.getItem("trendCont")) {
+	localStorage.setItem("country", localStorage.getItem("trendCont"));
+	localStorage.removeItem("trendCont");
 }
 
 if (!localStorage.getItem("sLoc")) {
@@ -1050,19 +1062,19 @@ function getTrending(opt,inst) {
 	const http = new XMLHttpRequest();
 	if (!inst | inst == "o") {
 		if (opt == "a" | !opt) {
-			var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?trending=" + localStorage.getItem("trendingCont")
+			var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?trending=" + localStorage.getItem("country")
 		} else if (opt == "b") {
-			var url = "https://vidpolaris.herokuapp.com/?trending=" + localStorage.getItem("trendingCont");
+			var url = "https://vidpolaris.herokuapp.com/?trending=" + localStorage.getItem("country");
 		} else if (opt == "c") {
-			var url = "https://vidpolaris-europe.herokuapp.com/?trending=" + localStorage.getItem("trendingCont");
+			var url = "https://vidpolaris-europe.herokuapp.com/?trending=" + localStorage.getItem("country");
 		}
 	} else {
 		if (opt == "a" | !opt) {
-			var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?trending=" + localStorage.getItem("trendingCont") + "&inst=" + inst
+			var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?trending=" + localStorage.getItem("country") + "&inst=" + inst
 		} else if (opt == "b") {
-			var url = "https://vidpolaris.herokuapp.com/?trending=" + localStorage.getItem("trendingCont") + "&inst=" + inst;
+			var url = "https://vidpolaris.herokuapp.com/?trending=" + localStorage.getItem("country") + "&inst=" + inst;
 		} else if (opt == "c") {
-			var url = "https://vidpolaris-europe.herokuapp.com/?trending=" + localStorage.getItem("trendingCont") + "&inst=" + inst;
+			var url = "https://vidpolaris-europe.herokuapp.com/?trending=" + localStorage.getItem("country") + "&inst=" + inst;
 		}
 	}
 	http.open("GET", url);
@@ -1128,19 +1140,19 @@ function getTrendingMusic(opt, inst) {
 	const http = new XMLHttpRequest();
 	if (!inst | inst == "o") {
 		if (opt == "a" | !opt) {
-			var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?trending=" + localStorage.getItem("trendingCont") + "&type=music";
+			var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?trending=" + localStorage.getItem("country") + "&type=music";
 		} else if (opt == "b") {
-			var url = "https://vidpolaris.herokuapp.com/?trending=" + localStorage.getItem("trendingCont") + "&type=music";
+			var url = "https://vidpolaris.herokuapp.com/?trending=" + localStorage.getItem("country") + "&type=music";
 		} else if (opt == "c") {
-			var url = "https://vidpolaris-europe.herokuapp.com/?trending=" + localStorage.getItem("trendingCont") + "&type=music";
+			var url = "https://vidpolaris-europe.herokuapp.com/?trending=" + localStorage.getItem("country") + "&type=music";
 		}
 	} else {
 		if (opt == "a" | !opt) {
-			var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?trending=" + localStorage.getItem("trendingCont") + "&type=music&inst=" + inst;
+			var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?trending=" + localStorage.getItem("country") + "&type=music&inst=" + inst;
 		} else if (opt == "b") {
-			var url = "https://vidpolaris.herokuapp.com/?trending=" + localStorage.getItem("trendingCont") + "&type=music&inst=" + inst;
+			var url = "https://vidpolaris.herokuapp.com/?trending=" + localStorage.getItem("country") + "&type=music&inst=" + inst;
 		} else if (opt == "c") {
-			var url = "https://vidpolaris-europe.herokuapp.com/?trending=" + localStorage.getItem("trendingCont") + "&type=music&inst=" + inst;
+			var url = "https://vidpolaris-europe.herokuapp.com/?trending=" + localStorage.getItem("country") + "&type=music&inst=" + inst;
 		}
 	}
 	http.open("GET", url);
@@ -1198,19 +1210,19 @@ function getTrendingGaming(opt,inst) {
 	const http = new XMLHttpRequest();
 	if (!inst | inst == "o") {
 		if (opt == "a" | !opt) {
-			var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?trending=" + localStorage.getItem("trendingCont") + "&type=gaming";
+			var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?trending=" + localStorage.getItem("country") + "&type=gaming";
 		} else if (opt == "b") {
-			var url = "https://vidpolaris.herokuapp.com/?trending=" + localStorage.getItem("trendingCont") + "&type=gaming";
+			var url = "https://vidpolaris.herokuapp.com/?trending=" + localStorage.getItem("country") + "&type=gaming";
 		} else if (opt == "c") {
-			var url = "https://vidpolaris-europe.herokuapp.com/?trending=" + localStorage.getItem("trendingCont") + "&type=gaming";
+			var url = "https://vidpolaris-europe.herokuapp.com/?trending=" + localStorage.getItem("country") + "&type=gaming";
 		}
 	} else {
 		if (opt == "a" | !opt) {
-			var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?trending=" + localStorage.getItem("trendingCont") + "&type=gaming&inst=" + inst;
+			var url = "https://coorsproxyunlimited.herokuapp.com/http://normandotmp4.electrohaxz.tk:9019/?trending=" + localStorage.getItem("country") + "&type=gaming&inst=" + inst;
 		} else if (opt == "b") {
-			var url = "https://vidpolaris.herokuapp.com/?trending=" + localStorage.getItem("trendingCont") + "&type=gaming&inst=" + inst;
+			var url = "https://vidpolaris.herokuapp.com/?trending=" + localStorage.getItem("country") + "&type=gaming&inst=" + inst;
 		} else if (opt == "c") {
-			var url = "https://vidpolaris-europe.herokuapp.com/?trending=" + localStorage.getItem("trendingCont") + "&type=gaming&inst=" + inst;
+			var url = "https://vidpolaris-europe.herokuapp.com/?trending=" + localStorage.getItem("country") + "&type=gaming&inst=" + inst;
 		}
 	}
 	http.open("GET", url);
@@ -2676,7 +2688,7 @@ function saveSettings() {
 	localStorage.setItem("theme", document.getElementById("wTheme").value);
 	localStorage.setItem("sLoc", document.getElementById("server").value);
 	localStorage.setItem("suggest", document.getElementById("suggest").value);
-	localStorage.setItem("trendingCont", document.getElementById("country").value);
+	localStorage.setItem("country", document.getElementById("country").value);
 	localStorage.setItem("loadComm", document.getElementById("autoComm").value);
 	localStorage.setItem("disableCards", document.getElementById("disableCards").value);
 	localStorage.setItem("showReddit", document.getElementById("showReddit").value);
@@ -3895,7 +3907,7 @@ function embedNoCookie() {
 	document.getElementById("theat_embed").style.display = "";
 	var iframe = document.createElement("IFRAME");
 	iframe.src = "https://www.youtube-nocookie.com/embed/" + getClickedId(window.location.href, "#w#") + "/?autoplay=true";
-	iframe.allowfullscreen = "allowfullscreen";
+	iframe.setAttribute("allowfullscreen", "true");
 	iframe.style = "height:645px;width:60%";
 	iframe.id = "frame";
 	document.getElementById("embedContainer").appendChild(iframe);
