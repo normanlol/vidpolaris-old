@@ -2431,9 +2431,6 @@ function home() {
 			redditTrending();
 		}
 	}
-	} else {
-		console.log("skipped loading of trending due to request.");
-	}
 }
 
 function longDesc() {
