@@ -17,6 +17,7 @@ if (localStorage.getItem("sLoc") == "b" | localStorage.getItem("sLoc") == "c") {
 			document.getElementById("homeLoadDeet").innerHTML = "loading home page...";
 			if (window.location.href.includes("#c") | window.location.href.includes("#adapt#") | window.location.href.includes("#w") | window.location.href.includes("#s") | window.location.href.includes("#p")) {
 				document.getElementById("searchContainer").style.display = "";
+				refresh();
 			} else {
 				document.getElementById("searchContainer").style.display = "";
 				if (!localStorage.getItem("homePage") | localStorage.getItem("homePage") == "inv") {
@@ -46,6 +47,7 @@ if (localStorage.getItem("sLoc") == "b" | localStorage.getItem("sLoc") == "c") {
 	}
 } else if (!localStorage.getItem("sLoc") | localStorage.getItem("sLoc") == "a"){
 	if (window.location.href.includes("#c") | window.location.href.includes("#adapt#") | window.location.href.includes("#w") | window.location.href.includes("#s") | window.location.href.includes("#p")) {
+		document.getElementById("searchContainer").style.display = "";
 		refresh();
 	} else {
 		document.getElementById("searchContainer").style.display = "";
