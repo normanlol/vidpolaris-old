@@ -287,7 +287,7 @@ document.addEventListener('keydown', function (event) {
 				document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
 			}
 		} else if (key == 't' || key == 'T' || key == 84) {
-			if (!document.getElementById("vidPage").style.display == "") {
+			if (document.getElementById("vidPage").style.display == "") {
 				if (document.getElementById("embedContainer").style.display == "") {
 					theatre("embed");
 				} else {
