@@ -2522,22 +2522,7 @@ function refresh() {
 		if (window.location.href.includes("#c") | window.location.href.includes("#w") | window.location.href.includes("#s") | window.location.href.includes("#adapt") | window.location.href.includes("#p")) {
 			return;
 		} else {
-			document.getElementById("searchContainer").style.display = "";
-			if (!localStorage.getItem("homePage") | localStorage.getItem("homePage") == "inv") {
-				if (!localStorage.getItem("country")) {
-					localStorage.setItem("country", "us");
-					document.getElementById("country").value = localStorage.getItem("country");
-				} else {
-					document.getElementById("country").value = localStorage.getItem("country");
-				}
-				if (localStorage.getItem("invIns")) {
-					getTrending(localStorage.getItem("sLoc"), localStorage.getItem("invIns"))
-				} else {
-					getTrending(localStorage.getItem("sLoc"));
-				}
-			} else {
-				redditTrending(localStorage.getItem("sLoc"));
-			}
+			home()
 		}
 	}
 }
