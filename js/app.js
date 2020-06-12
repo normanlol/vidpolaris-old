@@ -2,6 +2,7 @@ document.getElementById("noscript").style.display = "none";
 console.log("script loaded.");
 console.log("==================");
 resize("auto");
+refresh();
 const http = new XMLHttpRequest();
 if (localStorage.getItem("sLoc") == "b" | localStorage.getItem("sLoc") == "c") {
 	document.getElementById("homeLoadDeet").innerHTML = "waking server...";
