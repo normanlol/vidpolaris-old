@@ -2,7 +2,6 @@ document.getElementById("noscript").style.display = "none";
 console.log("script loaded.");
 console.log("==================");
 resize("auto");
-refresh();
 const http = new XMLHttpRequest();
 if (localStorage.getItem("sLoc") == "b" | localStorage.getItem("sLoc") == "c") {
 	document.getElementById("homeLoadDeet").innerHTML = "waking server...";
@@ -18,7 +17,6 @@ if (localStorage.getItem("sLoc") == "b" | localStorage.getItem("sLoc") == "c") {
 			document.getElementById("homeLoadDeet").innerHTML = "loading home page...";
 			if (window.location.href.includes("#c") | window.location.href.includes("#adapt#") | window.location.href.includes("#w") | window.location.href.includes("#s") | window.location.href.includes("#p")) {
 				document.getElementById("searchContainer").style.display = "";
-				refresh();
 			} else {
 				document.getElementById("searchContainer").style.display = "";
 				if (!localStorage.getItem("homePage") | localStorage.getItem("homePage") == "inv") {
@@ -47,6 +45,7 @@ if (localStorage.getItem("sLoc") == "b" | localStorage.getItem("sLoc") == "c") {
 		document.getElementById("trendingLoader").style.display = "none";
 	}
 } else if (!localStorage.getItem("sLoc") | localStorage.getItem("sLoc") == "a"){
+	refresh();
 	document.getElementById("searchContainer").style.display = "";
 	if (!localStorage.getItem("homePage") | localStorage.getItem("homePage") == "inv") {
 		if (!localStorage.getItem("country")) {
@@ -1982,14 +1981,21 @@ function openVideo(opt,ret) {
 									document.getElementById("vidLoader").style.display = 'none';
 									document.getElementById("title").innerHTML = titl;
 									document.title = titl +  " | vidpolaris";
-									if (desc.length > 300) {
-										var shortDesc = desc.substring(0,300) + "..."
-										document.getElementById("desc").innerHTML = varLinks(shortDesc);
-										document.getElementById("longDesc").innerHTML = varLinks(desc);
-										document.getElementById("ldBtn").style.display = '';
-										document.getElementById("ldDiv").style.display = 'none';
+									if (desc) {
+										if (desc.length > 300) {
+											var shortDesc = desc.substring(0,300) + "..."
+											document.getElementById("desc").innerHTML = varLinks(shortDesc);
+											document.getElementById("longDesc").innerHTML = varLinks(desc);
+											document.getElementById("ldBtn").style.display = '';
+											document.getElementById("ldDiv").style.display = 'none';
+										} else {
+											document.getElementById("desc").innerHTML = varLinks(desc);
+											document.getElementById("ldBtn").style.display = 'none';
+											document.getElementById("ldDiv").style.display = 'none';
+										}
 									} else {
-										document.getElementById("desc").innerHTML = varLinks(desc);
+										document.getElementById("desc").innerHTML = "";
+										document.getElementById("longDesc").innerHTML = "";
 										document.getElementById("ldBtn").style.display = 'none';
 										document.getElementById("ldDiv").style.display = 'none';
 									}
