@@ -14,7 +14,11 @@ if (localStorage.getItem("sLoc") == "b" | localStorage.getItem("sLoc") == "c") {
 	http.send();
 	http.onload=(e)=>{
 		if (http.status == 404) {
-			refresh();
+			if (window.location.href.includes("#c") | window.location.href.includes("#w") | window.location.href.includes("#s") | window.location.href.includes("#adapt") | window.location.href.includes("#p")) {
+				refresh();
+			} else {
+				home();
+			}
 		} else {
 			document.getElementById("serverdown").style.display = "";
 			document.getElementById("trendingLoader").style.display = "none";
@@ -25,13 +29,11 @@ if (localStorage.getItem("sLoc") == "b" | localStorage.getItem("sLoc") == "c") {
 		document.getElementById("trendingLoader").style.display = "none";
 	}
 } else if (!localStorage.getItem("sLoc") | localStorage.getItem("sLoc") == "a"){
-	if (window.location.href.includes("#c") | window.location.href.includes("#adapt#") | window.location.href.includes("#w") | window.location.href.includes("#s") | window.location.href.includes("#p")) {
-		document.getElementById("searchContainer").style.display = "";
+	if (window.location.href.includes("#c") | window.location.href.includes("#w") | window.location.href.includes("#s") | window.location.href.includes("#adapt") | window.location.href.includes("#p")) {
 		refresh();
 	} else {
-		refresh();
+		home();
 	}
-	
 }
 
 document.getElementById("trendingLoader").style.display = "";
@@ -2519,11 +2521,7 @@ function refresh() {
 	} else if (window.location.href.includes("#p")){
 		openPlaylist(localStorage.getItem("sLoc"))
 	} else if (window.location.href.includes("#")) {
-		if (window.location.href.includes("#c") | window.location.href.includes("#w") | window.location.href.includes("#s") | window.location.href.includes("#adapt") | window.location.href.includes("#p")) {
-			return;
-		} else {
-			home()
-		}
+
 	}
 }
 
