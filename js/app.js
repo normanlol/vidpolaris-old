@@ -2226,10 +2226,10 @@ function openVideo(opt,ret) {
 							if (localStorage.getItem("showSize")) {
 								if (localStorage.getItem("showSize") == "y") {
 									if (jsond.datainfo[c].contentLength) {
-											option.innerHTML = jsond.datainfo[c].qualityLabel + " (video) - " + jsond.datainfo[c].audioBitrate + "kbps (audio) [" + formatBytes(parseInt(jsond.datainfo[c].contentLength)) + "]";
-										} else {
-											option.innerHTML = jsond.datainfo[c].qualityLabel + " (video) - " + jsond.datainfo[c].audioBitrate + "kbps (audio) [size not avaliable]";	
-										}
+										option.innerHTML = jsond.datainfo[c].qualityLabel + " (video) - " + jsond.datainfo[c].audioBitrate + "kbps (audio) [" + formatBytes(parseInt(jsond.datainfo[c].contentLength)) + "]";
+									} else {
+										option.innerHTML = jsond.datainfo[c].qualityLabel + " (video) - " + jsond.datainfo[c].audioBitrate + "kbps (audio) [size not avaliable]";	
+									}
 								} else {
 									option.innerHTML = jsond.datainfo[c].qualityLabel + " (video) - " + jsond.datainfo[c].audioBitrate + "kbps (audio) [size not avaliable]";
 								} 
