@@ -3,56 +3,73 @@ console.log("script loaded.");
 console.log("==================");
 resize("auto");
 const http = new XMLHttpRequest();
-document.getElementById("homeLoadDeet").innerHTML = "waking server..."
-if (localStorage.getItem("sLoc") == "a" | !localStorage.getItem("sLoc")) {
-	var url = "https://normandotmp4.electrohaxz.tk:9019/"
-} else if (localStorage.getItem("sLoc") == "b"){
-	var url = "https://vidpolaris.herokuapp.com"
-} else if (localStorage.getItem("sLoc") == "c") {
-	var url = "https://vidpolaris-europe.herokuapp.com/"
-}
-http.open("GET", url);
-http.send();
-http.onload=(e)=>{
-	if (http.status == 404) {
-		document.getElementById("homeLoadDeet").innerHTML = "loading home page...";
-		if (window.location.href.includes("#c") | window.location.href.includes("#adapt#") | window.location.href.includes("#w") | window.location.href.includes("#s") | window.location.href.includes("#p")) {
-			document.getElementById("searchContainer").style.display = "";
-			refresh();
-		} else {
-			document.getElementById("searchContainer").style.display = "";
-			if (!localStorage.getItem("homePage") | localStorage.getItem("homePage") == "inv") {
-				if (!localStorage.getItem("trendCont")) {
-					localStorage.setItem("trendCont", "us");
-					document.getElementById("country").value = localStorage.getItem("country");
-				} else {
-					document.getElementById("country").value = localStorage.getItem("country");
-				}
-				if (localStorage.getItem("sLoc")) {
+if (!localStorage.getItem("sLoc") | !localStorage.getItem("sLoc")  == "a") {
+	document.getElementById("homeLoadDeet").innerHTML = "waking server...";
+	if (localStorage.getItem("sLoc") == "b"){
+		var url = "https://vidpolaris.herokuapp.com"
+	} else if (localStorage.getItem("sLoc") == "c") {
+		var url = "https://vidpolaris-europe.herokuapp.com/"
+	}
+	http.open("GET", url);
+	http.send();
+	http.onload=(e)=>{
+		if (http.status == 404) {
+			document.getElementById("homeLoadDeet").innerHTML = "loading home page...";
+			if (window.location.href.includes("#c") | window.location.href.includes("#adapt#") | window.location.href.includes("#w") | window.location.href.includes("#s") | window.location.href.includes("#p")) {
+				document.getElementById("searchContainer").style.display = "";
+				refresh();
+			} else {
+				document.getElementById("searchContainer").style.display = "";
+				if (!localStorage.getItem("homePage") | localStorage.getItem("homePage") == "inv") {
+					if (!localStorage.getItem("country")) {
+						localStorage.setItem("country", "us");
+						document.getElementById("country").value = localStorage.getItem("country");
+					} else {
+						document.getElementById("country").value = localStorage.getItem("country");
+					}
 					if (localStorage.getItem("invIns")) {
 						getTrending(localStorage.getItem("sLoc"), localStorage.getItem("invIns"))
 					} else {
 						getTrending(localStorage.getItem("sLoc"));
 					}
 				} else {
-					getTrending()
-				}
-			} else {
-				if (localStorage.getItem("sLoc")) {
 					redditTrending(localStorage.getItem("sLoc"));
-				} else {
-					redditTrending();
 				}
 			}
+		} else {
+			document.getElementById("serverdown").style.display = "";
+			document.getElementById("trendingLoader").style.display = "none";
 		}
-	} else {
+	}
+	http.onerror=(e)=>{
 		document.getElementById("serverdown").style.display = "";
 		document.getElementById("trendingLoader").style.display = "none";
 	}
-}
-http.onerror=(e)=>{
-	document.getElementById("serverdown").style.display = "";
-	document.getElementById("trendingLoader").style.display = "none";
+} else {
+	document.getElementById("searchContainer").style.display = "";
+	if (!localStorage.getItem("homePage") | localStorage.getItem("homePage") == "inv") {
+		if (!localStorage.getItem("country")) {
+			localStorage.setItem("country", "us");
+			document.getElementById("country").value = localStorage.getItem("country");
+		} else {
+			document.getElementById("country").value = localStorage.getItem("country");
+		}
+		if (localStorage.getItem("sLoc")) {
+			if (localStorage.getItem("invIns")) {
+				getTrending(localStorage.getItem("sLoc"), localStorage.getItem("invIns"))
+			} else {
+				getTrending(localStorage.getItem("sLoc"));
+			}
+		} else {
+			getTrending()
+		}
+	} else {
+		if (localStorage.getItem("sLoc")) {
+			redditTrending(localStorage.getItem("sLoc"));
+		} else {
+			redditTrending();
+		}
+	}
 }
 
 document.getElementById("trendingLoader").style.display = "";
