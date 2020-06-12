@@ -12,6 +12,30 @@
 	text-align:center;
 }
 
+.alert {
+	border-radius:5px;
+	margin-top:5px;
+	margin-bottom:5px;
+	max-width:100%;
+	min-height:55px;
+	text-align:left;
+	padding-left:52px;
+	padding-right:52px;
+}
+
+.alert p {
+	margin-left:25px;
+	margin-right:0;
+	margin-top:0;
+	margin-bottom:0;
+	float:left;
+}
+
+.alert span {
+	font-size:53px;
+	float:left;
+}
+
 body {
 	font-family:'Lato',sans-serif;
 	overflow-y:none;

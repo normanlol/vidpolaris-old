@@ -129,3 +129,8 @@ video {
 #sharDiv {
 	height:300px;
 }
+
+.alert {
+	background-color:#f0f0f0;
+	color:white;
+}

@@ -124,3 +124,8 @@ select {
 	color:#999;
 	border-color:#282828;
 }
+
+.alert {
+	background:#2d2d2d;
+	color:#999;
+}

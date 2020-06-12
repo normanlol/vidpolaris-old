@@ -128,3 +128,8 @@ video {
 #sharDiv {
 	height:300px;
 }
+
+.alert {
+	background-color:#3c0000;
+	color:white;
+}

@@ -2498,6 +2498,11 @@ function refresh() {
 			search(localStorage.getItem("sLoc"));
 		}
 	} else if (window.location.href.includes("#settings")) {
+		if (window.location.href.includes("#settings#")) {
+			document.getElementById("importSettings").style.display = "";
+			home();
+			return;
+		}
 		document.getElementById("player").pause();
 		document.getElementById("homePage").style.display = 'none';
 		document.getElementById("vidPage").style.display = 'none';

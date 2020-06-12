@@ -134,3 +134,8 @@ select {
 #sharDiv {
 	height:300px;
 }
+
+.alert {
+	background:#2d2d2d;
+	color:#999;
+}

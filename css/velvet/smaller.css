@@ -125,3 +125,8 @@ video {
 .comment {
 	background-color:#800000;
 }
+
+.alert {
+	background-color:#f0f0f0;
+	color:white;
+}
