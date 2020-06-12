@@ -2231,7 +2231,7 @@ function openVideo(opt,ret) {
 										option.innerHTML = jsond.datainfo[c].qualityLabel + " (video) - " + jsond.datainfo[c].audioBitrate + "kbps (audio) [size not avaliable]";	
 									}
 								} else {
-									option.innerHTML = jsond.datainfo[c].qualityLabel + " (video) - " + jsond.datainfo[c].audioBitrate + "kbps (audio) [size not avaliable]";
+									option.innerHTML = jsond.datainfo[c].qualityLabel + " (video) - " + jsond.datainfo[c].audioBitrate + "kbps (audio)";
 								} 
 							} else {
 								option.innerHTML = jsond.datainfo[c].qualityLabel + " (video) - " + jsond.datainfo[c].audioBitrate + "kbps (audio)";
@@ -2365,9 +2365,9 @@ function openVideo(opt,ret) {
 										} else {
 											option.innerHTML = jsond.audio[c].audioBitrate + "kbps";
 										} 
-										} else {
-											option.innerHTML = jsond.audio[c].audioBitrate + "kbps";
-										}
+									} else {
+										option.innerHTML = jsond.audio[c].audioBitrate + "kbps";
+									}
 									document.getElementById("aqOptions").appendChild(option);
 								}
 							}
