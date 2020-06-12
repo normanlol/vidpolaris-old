@@ -2071,7 +2071,7 @@ function openVideo(opt,ret) {
 												option.innerHTML = jsond.datainfo[c].qualityLabel + " (video) - " + jsond.datainfo[c].audioBitrate + "kbps (audio)";
 											} 
 										} else {
-											option.innerHTML = jsond.info.formats[c].qualityLabel + " (video) - " + jsond.info.formats[c].audioBitrate + "kbps (audio)";
+											option.innerHTML = jsond.datainfo[c].qualityLabel + " (video) - " + jsond.datainfo[c].audioBitrate + "kbps (audio)";
 										}
 										option.value = jsond.info.formats[c].itag;
 										document.getElementById("qOptions").appendChild(option);
@@ -2085,17 +2085,17 @@ function openVideo(opt,ret) {
 												if (jsond.info.formats[c].audioBitrate && !jsond.info.formats[c].audioBitrate == null && jsond.info.formats[c].qualityLabel && !jsond.info.formats[c].qualityLabel == null) {
 													var option = document.createElement("OPTION");
 													if (localStorage.getItem("showSize")) {
-														if (localStorage.getItem("showSize") == "y" && jsond.info.formats[c].contentLength) {
-															if (jsond.info.formats[c].contentLength) {
-																option.innerHTML = jsond.info.formats[c].qualityLabel + " (video) - " + jsond.info.formats[c].audioBitrate + "kbps (audio) [" + formatBytes(parseInt(jsond.info.formats[c].contentLength)) + "]";
+														if (localStorage.getItem("showSize") == "y") {
+															if (jsond.datainfo[c].contentLength) {
+																option.innerHTML = jsond.datainfo[c].qualityLabel + " (video) - " + jsond.datainfo[c].audioBitrate + "kbps (audio) [" + formatBytes(parseInt(jsond.datainfo[c].contentLength)) + "]";
 															} else {
-																option.innerHTML = jsond.info.formats[c].qualityLabel + " (video) - " + jsond.info.formats[c].audioBitrate + "kbps (audio) [size not avaliable]";
+																option.innerHTML = jsond.datainfo[c].qualityLabel + " (video) - " + jsond.datainfo[c].audioBitrate + "kbps (audio) [size not avaliable]";
 															}
 														} else {
-															option.innerHTML = jsond.info.formats[c].qualityLabel + " (video) - " + jsond.info.formats[c].audioBitrate + "kbps (audio)";
+															option.innerHTML = jsond.datainfo[c].qualityLabel + " (video) - " + jsond.datainfo[c].audioBitrate + "kbps (audio)";
 														} 
 													} else {
-														option.innerHTML = jsond.info.formats[c].qualityLabel + " (video) - " + jsond.info.formats[c].audioBitrate + "kbps (audio)";
+														option.innerHTML = jsond.datainfo[c].qualityLabel + " (video) - " + jsond.datainfo[c].audioBitrate + "kbps (audio)";
 													}
 													option.value = jsond.info.formats[c].itag;
 													document.getElementById("qOptions").appendChild(option);
