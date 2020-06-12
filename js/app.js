@@ -2390,7 +2390,7 @@ function getClickedId(parentString, substring) {
     return parentString.substring(parentString.indexOf(substring) + substring.length)
 }
 
-function home(connections) {
+function home() {
 	document.getElementById("player").pause();
 	document.title = "vidpolaris"
 	document.getElementById("vidViewer").style.display = 'none';
@@ -2414,24 +2414,23 @@ function home(connections) {
 	document.getElementById("trendingLoader").style.display = "";
 	document.getElementById("trending").style.display = "none";
 	document.getElementById("redditTrending").style.display = "none";
-	if (!connections) {
-		if (!localStorage.getItem("homePage") | localStorage.getItem("homePage") == "inv") {
-			if (localStorage.getItem("sLoc")) {
-				if (localStorage.getItem("invIns")) {
-					getTrending(localStorage.getItem("sLoc"), localStorage.getItem("invIns"))
-				} else {
-					getTrending(localStorage.getItem("sLoc"));
-				}
+	if (!localStorage.getItem("homePage") | localStorage.getItem("homePage") == "inv") {
+		if (localStorage.getItem("sLoc")) {
+			if (localStorage.getItem("invIns")) {
+				getTrending(localStorage.getItem("sLoc"), localStorage.getItem("invIns"))
 			} else {
-				getTrending()
+				getTrending(localStorage.getItem("sLoc"));
 			}
 		} else {
-			if (localStorage.getItem("sLoc")) {
-				redditTrending(localStorage.getItem("sLoc"));
-			} else {
-				redditTrending();
-			}
+			getTrending()
 		}
+	} else {
+		if (localStorage.getItem("sLoc")) {
+			redditTrending(localStorage.getItem("sLoc"));
+		} else {
+			redditTrending();
+		}
+	}
 	} else {
 		console.log("skipped loading of trending due to request.");
 	}
