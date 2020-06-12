@@ -14,11 +14,19 @@ Light theme.
 
 ![A screenshot of VidPolaris - Velvet Theme](https://i.ibb.co/qB7rKd7/image.png)
 Velvet theme.
-
 *screenshots taken on june 11, 2020 at (around) 6:50pm*
 
-## powered by
-see [here](https://github.com/n0rmancodes/vidpolarisAPI/blob/master/README.md#sources) for all sources that run this site.
+## instances
+
+#### frontends
+- [github sites](https://n0rmancodes.github.io/)
+- [electrohaxz](https://normandotmp4.electrohaxz.tk/)
+
+#### backends
+
+- [electrohaxz](https://normandotmp4.electrohaxz.tk:9019/)
+- [heroku (us east)](https://vidpolaris.herokuapp.com/)
+- [heroku (eu west)](https://vidpolaris-europe.herokuapp.com/)
 
 ### notice
 please support the original creator of the content you watch, since vidpolaris cannot show advertisments, please purchase their merchandise, donate to them, and do NOT reupload content if the original is still available.
