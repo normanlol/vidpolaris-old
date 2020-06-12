@@ -270,14 +270,15 @@ document.addEventListener('keydown', function (event) {
 				document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
 			}
 		} else if (key == 't' || key == 'T' || key == 84) {
-			if (sessionStorage.getItem("embed") == "y") {
-				theatre("embed");
-			} else {
-				theatre();
+			if (!document.getElementById("vidPage").style.display == "") {
+				if (document.getElementById("embedContainer").style.display == "") {
+					theatre("embed");
+				} else {
+					theatre();
+				}
 			}
 		} else if (key == 'f' || key == 'F' || key == 70) {
-			if (!document.getElementById("embedContainer").style.display == "") {
-				// credit: https://stackoverflow.com/questions/36672561/how-to-exit-fullscreen-onclick-using-javascript
+			if (!document.getElementById("vidPage").style.display == "") {
 				var isInFullScreen = (document.fullscreenElement && document.fullscreenElement !== null) ||
 					(document.webkitFullscreenElement && document.webkitFullscreenElement !== null) ||
 					(document.mozFullScreenElement && document.mozFullScreenElement !== null) ||
@@ -594,72 +595,72 @@ function resize(actType, size) {
 				localStorage.setItem("theme" , "d_v1");
 			}
 			if (w < 1200) {
-				document.getElementById("theme").href = "css/v1/dark/mobile.css";
+				document.getElementById("theme").href = "css/dark/mobile.css";
 				document.getElementById("mScale").value = "m";
 				if (localStorage.getItem("theater") == "n") {
 					theatre();
 				}
 			} else if (w < 1430) {
-				document.getElementById("theme").href = "css/v1/dark/smaller.css";
+				document.getElementById("theme").href = "css/dark/smaller.css";
 				document.getElementById("mScale").value = "s";
 			} else {
-				document.getElementById("theme").href = "css/v1/dark/style.css";
+				document.getElementById("theme").href = "css/dark/style.css";
 				document.getElementById("mScale").value = "f";
 			}
 		} else if (localStorage.getItem("theme") == "w_v1") {
 			if (w < 1200) {
-				document.getElementById("theme").href = "css/v1/white/mobile.css";
+				document.getElementById("theme").href = "css/white/mobile.css";
 				document.getElementById("mScale").value = "m";
 				if (localStorage.getItem("theater") == "n") {
 					theatre();
 				}
 			} else if (w < 1430) {
-				document.getElementById("theme").href = "css/v1/white/smaller.css";
+				document.getElementById("theme").href = "css/white/smaller.css";
 				document.getElementById("mScale").value = "s";
 			} else {
-				document.getElementById("theme").href = "css/v1/white/style.css";
+				document.getElementById("theme").href = "css/white/style.css";
 				document.getElementById("mScale").value = "f";
 			}
 		} else if (localStorage.getItem("theme") == "b_v1") {
 			if (w < 1200) {
-				document.getElementById("theme").href = "css/v1/black/mobile.css";
+				document.getElementById("theme").href = "css/black/mobile.css";
 				if (localStorage.getItem("theater") == "n") {
 					theatre();
 				}
 				document.getElementById("mScale").value = "m";
 			} else if (w < 1430) {
-				document.getElementById("theme").href = "css/v1/black/smaller.css";
+				document.getElementById("theme").href = "css/black/smaller.css";
 				document.getElementById("mScale").value = "s";
 			} else {
-				document.getElementById("theme").href = "css/v1/black/style.css";
+				document.getElementById("theme").href = "css/black/style.css";
 				document.getElementById("mScale").value = "f";
 			}
 		} else if (localStorage.getItem("theme") == "m_v1") {
 			if (w < 1200) {
-				document.getElementById("theme").href = "css/v1/maroon/mobile.css";
+				document.getElementById("theme").href = "css/maroon/mobile.css";
 				if (localStorage.getItem("theater") == "n") {
 					theatre();
 				}
 				document.getElementById("mScale").value = "m";
 			} else if (w < 1430) {
-				document.getElementById("theme").href = "css/v1/maroon/smaller.css";
+				document.getElementById("theme").href = "css/maroon/smaller.css";
 				document.getElementById("mScale").value = "s";
 			} else {
-				document.getElementById("theme").href = "css/v1/maroon/style.css";
+				document.getElementById("theme").href = "css/maroon/style.css";
 				document.getElementById("mScale").value = "f";
 			}
 		} else if (localStorage.getItem("theme") == "v_v1") {
 			if (w < 1200) {
-				document.getElementById("theme").href = "css/v1/velvet/mobile.css";
+				document.getElementById("theme").href = "css/velvet/mobile.css";
 				if (localStorage.getItem("theater") == "n") {
 					theatre();
 				}
 				document.getElementById("mScale").value = "m";
 			} else if (w < 1430) {
-				document.getElementById("theme").href = "css/v1/velvet/smaller.css";
+				document.getElementById("theme").href = "css/velvet/smaller.css";
 				document.getElementById("mScale").value = "s";
 			} else {
-				document.getElementById("theme").href = "css/v1/velvet/style.css";
+				document.getElementById("theme").href = "css/velvet/style.css";
 				document.getElementById("mScale").value = "f";
 			}
 		}
@@ -669,72 +670,72 @@ function resize(actType, size) {
 				localStorage.setItem("theme" , "d_v1");
 			}
 			if (size == "m") {
-				document.getElementById("theme").href = "css/v1/dark/mobile.css";
+				document.getElementById("theme").href = "css/dark/mobile.css";
 				if (localStorage.getItem("theater") == "n") {
 					theatre();
 				}
 				document.getElementById("mScale").value = "m";
 			} else if (size == "s") {
-				document.getElementById("theme").href = "css/v1/dark/smaller.css";
+				document.getElementById("theme").href = "css/dark/smaller.css";
 				document.getElementById("mScale").value = "s";
 			} else {
-				document.getElementById("theme").href = "css/v1/dark/style.css";
+				document.getElementById("theme").href = "css/dark/style.css";
 				document.getElementById("mScale").value = "f";
 			}
 		} else if (localStorage.getItem("theme") == "w_v1") {
 			if (size == "m") {
-				document.getElementById("theme").href = "css/v1/white/mobile.css";
+				document.getElementById("theme").href = "css/white/mobile.css";
 				if (localStorage.getItem("theater") == "n") {
 					theatre();
 				}
 				document.getElementById("mScale").value = "m";
 			} else if (size == "s") {
-				document.getElementById("theme").href = "css/v1/white/smaller.css";
+				document.getElementById("theme").href = "css/white/smaller.css";
 				document.getElementById("mScale").value = "s";
 			} else {
-				document.getElementById("theme").href = "css/v1/white/style.css";
+				document.getElementById("theme").href = "css/white/style.css";
 				document.getElementById("mScale").value = "f";
 			}
 		} else if (localStorage.getItem("theme") == "b_v1") {
 			if (size == "m") {
-				document.getElementById("theme").href = "css/v1/black/mobile.css";
+				document.getElementById("theme").href = "css/black/mobile.css";
 				if (localStorage.getItem("theater") == "n") {
 					theatre();
 				}
 				document.getElementById("mScale").value = "m";
 			} else if (size == "s") {
-				document.getElementById("theme").href = "css/v1/black/smaller.css";
+				document.getElementById("theme").href = "css/black/smaller.css";
 				document.getElementById("mScale").value = "s";
 			} else {
-				document.getElementById("theme").href = "css/v1/black/style.css";
+				document.getElementById("theme").href = "css/black/style.css";
 				document.getElementById("mScale").value = "f";
 			}
 		} else if (localStorage.getItem("theme") == "m_v1") {
 			if (size == "m") {
-				document.getElementById("theme").href = "css/v1/maroon/mobile.css";
+				document.getElementById("theme").href = "css/maroon/mobile.css";
 				if (localStorage.getItem("theater") == "n") {
 					theatre();
 				}
 				document.getElementById("mScale").value = "m";
 			} else if (size == "s") {
-				document.getElementById("theme").href = "css/v1/maroon/smaller.css";
+				document.getElementById("theme").href = "css/maroon/smaller.css";
 				document.getElementById("mScale").value = "s";
 			} else {
-				document.getElementById("theme").href = "css/v1/maroon/style.css";
+				document.getElementById("theme").href = "css/maroon/style.css";
 				document.getElementById("mScale").value = "f";
 			}
 		} else if (localStorage.getItem("theme") == "v_v1") {
 			if (size == "m") {
-				document.getElementById("theme").href = "css/v1/velvet/mobile.css";
+				document.getElementById("theme").href = "css/velvet/mobile.css";
 				if (localStorage.getItem("theater") == "n") {
 					theatre();
 				}
 				document.getElementById("mScale").value = "m";
 			} else if (size == "s") {
-				document.getElementById("theme").href = "css/v1/velvet/smaller.css";
+				document.getElementById("theme").href = "css/velvet/smaller.css";
 				document.getElementById("mScale").value = "s";
 			} else {
-				document.getElementById("theme").href = "css/v1/velvet/style.css";
+				document.getElementById("theme").href = "css/velvet/style.css";
 				document.getElementById("mScale").value = "f";
 			}
 		}
