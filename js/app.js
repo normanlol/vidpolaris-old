@@ -2455,7 +2455,7 @@ function share() {
 		document.getElementById("sharDiv").style.display = '';
 		const http = new XMLHttpRequest();
 		var id = getClickedId(window.location.href, "#w#");
-		var fullUrl = "https://n0rmancodes.github.io/vidpolaris/#w#" + id;
+		var fullUrl = window.location.href + "/#w#" + id;
 		document.getElementById("fUrlShar").value = fullUrl;
 		document.getElementById("youtubeLink").value = "https://youtube.com/watch?v=" + id;
 		document.getElementById("sUrlShar").value = "[Loading...]";
