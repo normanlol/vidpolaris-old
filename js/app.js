@@ -2524,8 +2524,8 @@ function refresh() {
 		adaptBookmark();
 	} else if (window.location.href.includes("#p")){
 		openPlaylist(localStorage.getItem("sLoc"))
-	} else if (window.location.href.includes("#")) {
-
+	} else {
+		home();
 	}
 }
 
