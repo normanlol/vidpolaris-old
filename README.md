@@ -14,11 +14,7 @@ Light theme.
 
 ![A screenshot of VidPolaris - Velvet Theme](https://i.ibb.co/qB7rKd7/image.png)
 Velvet theme.
-
 *screenshots taken on june 11, 2020 at (around) 6:50pm*
-
-## powered by
-see [here](https://github.com/n0rmancodes/vidpolarisAPI/blob/master/README.md#sources) for all sources that run this site.
 
 ## instances
 
