@@ -3,7 +3,7 @@ console.log("script loaded.");
 console.log("==================");
 resize("auto");
 const http = new XMLHttpRequest();
-if (!localStorage.getItem("sLoc") | !localStorage.getItem("sLoc")  == "a") {
+if (localStorage.getItem("sLoc") == "b" | localStorage.getItem("sLoc") == "c") {
 	document.getElementById("homeLoadDeet").innerHTML = "waking server...";
 	if (localStorage.getItem("sLoc") == "b"){
 		var url = "https://vidpolaris.herokuapp.com"
@@ -45,7 +45,7 @@ if (!localStorage.getItem("sLoc") | !localStorage.getItem("sLoc")  == "a") {
 		document.getElementById("serverdown").style.display = "";
 		document.getElementById("trendingLoader").style.display = "none";
 	}
-} else {
+} else if (!localStorage.getItem("sLoc") | localStorage.getItem("sLoc") == "a"){
 	document.getElementById("searchContainer").style.display = "";
 	if (!localStorage.getItem("homePage") | localStorage.getItem("homePage") == "inv") {
 		if (!localStorage.getItem("country")) {
