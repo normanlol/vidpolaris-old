@@ -45,31 +45,34 @@ if (localStorage.getItem("sLoc") == "b" | localStorage.getItem("sLoc") == "c") {
 		document.getElementById("trendingLoader").style.display = "none";
 	}
 } else if (!localStorage.getItem("sLoc") | localStorage.getItem("sLoc") == "a"){
-	refresh();
-	document.getElementById("searchContainer").style.display = "";
-	if (!localStorage.getItem("homePage") | localStorage.getItem("homePage") == "inv") {
-		if (!localStorage.getItem("country")) {
-			localStorage.setItem("country", "us");
-			document.getElementById("country").value = localStorage.getItem("country");
-		} else {
-			document.getElementById("country").value = localStorage.getItem("country");
-		}
-		if (localStorage.getItem("sLoc")) {
-			if (localStorage.getItem("invIns")) {
-				getTrending(localStorage.getItem("sLoc"), localStorage.getItem("invIns"))
+	if (!window.location.href.inmc())
+	if (window.location.href.includes("#c") | window.location.href.includes("#adapt#") | window.location.href.includes("#w") | window.location.href.includes("#s") | window.location.href.includes("#p")) {
+		document.getElementById("searchContainer").style.display = "";
+		if (!localStorage.getItem("homePage") | localStorage.getItem("homePage") == "inv") {
+			if (!localStorage.getItem("country")) {
+				localStorage.setItem("country", "us");
+				document.getElementById("country").value = localStorage.getItem("country");
 			} else {
-				getTrending(localStorage.getItem("sLoc"));
+				document.getElementById("country").value = localStorage.getItem("country");
+			}
+			if (localStorage.getItem("sLoc")) {
+				if (localStorage.getItem("invIns")) {
+					getTrending(localStorage.getItem("sLoc"), localStorage.getItem("invIns"))
+				} else {
+					getTrending(localStorage.getItem("sLoc"));
+				}
+			} else {
+				getTrending()
 			}
 		} else {
-			getTrending()
-		}
-	} else {
-		if (localStorage.getItem("sLoc")) {
-			redditTrending(localStorage.getItem("sLoc"));
-		} else {
-			redditTrending();
+			if (localStorage.getItem("sLoc")) {
+				redditTrending(localStorage.getItem("sLoc"));
+			} else {
+				redditTrending();
+			}
 		}
 	}
+	
 }
 
 document.getElementById("trendingLoader").style.display = "";
@@ -2081,10 +2084,14 @@ function openVideo(opt,ret) {
 									if (c == 0) {
 										var option = document.createElement("OPTION");
 										if (localStorage.getItem("showSize")) {
-											if (localStorage.getItem("showSize") == "y" && jsond.info.formats[c].contentLength) {
-												option.innerHTML = jsond.info.formats[c].qualityLabel + " (video) - " + jsond.info.formats[c].audioBitrate + "kbps (audio) [" + formatBytes(parseInt(jsond.info.formats[c].contentLength)) + "]";
+											if (localStorage.getItem("showSize") == "y") {
+												if (jsond.info.formats[c].contentLength) {
+													option.innerHTML = jsond.info.formats[c].qualityLabel + " (video) - " + jsond.info.formats[c].audioBitrate + "kbps (audio) [" + formatBytes(parseInt(jsond.info.formats[c].contentLength)) + "]";
+												} else {
+													option.innerHTML = jsond.info.formats[c].qualityLabel + " (video) - " + jsond.info.formats[c].audioBitrate + "kbps (audio) [size not avaliable]";
+												}
 											} else {
-												option.innerHTML = jsond.info.formats[c].qualityLabel + " (video) - " + jsond.info.formats[c].audioBitrate + "kbps (audio) [size not avaliable]";
+												option.innerHTML = jsond.info.formats[c].qualityLabel + " (video) - " + jsond.info.formats[c].audioBitrate + "kbps (audio)";
 											} 
 										} else {
 											option.innerHTML = jsond.info.formats[c].qualityLabel + " (video) - " + jsond.info.formats[c].audioBitrate + "kbps (audio)";
@@ -2102,9 +2109,13 @@ function openVideo(opt,ret) {
 													var option = document.createElement("OPTION");
 													if (localStorage.getItem("showSize")) {
 														if (localStorage.getItem("showSize") == "y" && jsond.info.formats[c].contentLength) {
-															option.innerHTML = jsond.info.formats[c].qualityLabel + " (video) - " + jsond.info.formats[c].audioBitrate + "kbps (audio) [" + formatBytes(parseInt(jsond.info.formats[c].contentLength)) + "]";
+															if (jsond.info.formats[c].contentLength) {
+																option.innerHTML = jsond.info.formats[c].qualityLabel + " (video) - " + jsond.info.formats[c].audioBitrate + "kbps (audio) [" + formatBytes(parseInt(jsond.info.formats[c].contentLength)) + "]";
+															} else {
+																option.innerHTML = jsond.info.formats[c].qualityLabel + " (video) - " + jsond.info.formats[c].audioBitrate + "kbps (audio) [size not avaliable]";
+															}
 														} else {
-															option.innerHTML = jsond.info.formats[c].qualityLabel + " (video) - " + jsond.info.formats[c].audioBitrate + "kbps (audio) [size not avaliable]";
+															option.innerHTML = jsond.info.formats[c].qualityLabel + " (video) - " + jsond.info.formats[c].audioBitrate + "kbps (audio)";
 														} 
 													} else {
 														option.innerHTML = jsond.info.formats[c].qualityLabel + " (video) - " + jsond.info.formats[c].audioBitrate + "kbps (audio)";
@@ -2237,6 +2248,11 @@ function openVideo(opt,ret) {
 							var option = document.createElement("OPTION");
 							if (localStorage.getItem("showSize")) {
 								if (localStorage.getItem("showSize") == "y") {
+									if (jsond.info.formats[c].contentLength) {
+											option.innerHTML = jsond.info.formats[c].qualityLabel + " (video) - " + jsond.info.formats[c].audioBitrate + "kbps (audio) [" + formatBytes(parseInt(jsond.info.formats[c].contentLength)) + "]";
+												} else {
+													option.innerHTML = jsond.info.formats[c].qualityLabel + " (video) - " + jsond.info.formats[c].audioBitrate + "kbps (audio) [size not avaliable]";
+												}
 									option.innerHTML = jsond.datainfo[c].qualityLabel + " (video) - " + jsond.datainfo[c].audioBitrate + "kbps (audio) [" + formatBytes(parseInt(jsond.datainfo[c].contentLength)) + "]";
 								} else {
 									option.innerHTML = jsond.datainfo[c].qualityLabel + " (video) - " + jsond.datainfo[c].audioBitrate + "kbps (audio) [size not avaliable]";
