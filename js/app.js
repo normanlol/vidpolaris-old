@@ -1961,21 +1961,14 @@ function openVideo(opt,ret) {
 									document.getElementById("vidLoader").style.display = 'none';
 									document.getElementById("title").innerHTML = titl;
 									document.title = titl +  " | vidpolaris";
-									if (desc) {
-										if (desc.length > 300) {
-											var shortDesc = desc.substring(0,300) + "..."
-											document.getElementById("desc").innerHTML = varLinks(shortDesc);
-											document.getElementById("longDesc").innerHTML = varLinks(desc);
-											document.getElementById("ldBtn").style.display = '';
-											document.getElementById("ldDiv").style.display = 'none';
-										} else {
-											document.getElementById("desc").innerHTML = varLinks(desc);
-											document.getElementById("ldBtn").style.display = 'none';
-											document.getElementById("ldDiv").style.display = 'none';
-										}
+									if (desc.length > 300) {
+										var shortDesc = desc.substring(0,300) + "..."
+										document.getElementById("desc").innerHTML = varLinks(shortDesc);
+										document.getElementById("longDesc").innerHTML = varLinks(desc);
+										document.getElementById("ldBtn").style.display = '';
+										document.getElementById("ldDiv").style.display = 'none';
 									} else {
-										document.getElementById("desc").innerHTML = "";
-										document.getElementById("longDesc").innerHTML = "";
+										document.getElementById("desc").innerHTML = varLinks(desc);
 										document.getElementById("ldBtn").style.display = 'none';
 										document.getElementById("ldDiv").style.display = 'none';
 									}
