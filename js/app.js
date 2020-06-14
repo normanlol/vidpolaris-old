@@ -2415,11 +2415,6 @@ function refresh() {
 			search(localStorage.getItem("sLoc"));
 		}
 	} else if (window.location.href.includes("#settings")) {
-		if (window.location.href.includes("#settings#")) {
-			document.getElementById("importSettings").style.display = "";
-			home();
-			return;
-		}
 		document.getElementById("player").pause();
 		document.getElementById("homePage").style.display = 'none';
 		document.getElementById("vidPage").style.display = 'none';
@@ -2431,6 +2426,7 @@ function refresh() {
 		document.getElementById("helpOut").style.display = '';
 		toggleManual();
 		hideCountry();
+		createBookmark();
 		document.title = "settings | vidpolaris";
 	} else if (window.location.href.includes("#c#")){
 		if (!localStorage.getItem("invIns") | localStorage.getItem("invIns") == "o") {
@@ -2445,6 +2441,15 @@ function refresh() {
 	} else {
 		home();
 	}
+}
+
+function createBookmark() {
+	var w = window.location.href.replace("#settings", "");
+	var b = "javascript:void(window.open('" + w + "#adapt#' + location.href, '_self'))"
+	var a = document.createElement("A");
+	a.innerHTML = "watch on vidpolaris";
+	a.href = b;
+	document.getElementById("bcm").appendChild(a);
 }
 
 function openPlaylist(opt) {
