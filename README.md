@@ -19,8 +19,8 @@ Velvet theme.
 ## instances
 
 #### frontends
+- [vidpolaris.ml (managed by electrohaxz)](https://vidpolaris.ml)
 - [github sites](https://n0rmancodes.github.io/)
-- [electrohaxz](https://normandotmp4.electrohaxz.tk/)
 
 #### backends
 
