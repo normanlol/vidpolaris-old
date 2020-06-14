@@ -4015,7 +4015,7 @@ function rSearch(opt, f) {
 					stats.innerHTML = jsond[c].postScore.toLocaleString() + " upvotes and " + jsond[c].postComNum.toLocaleString() + " comments • posted on /" + jsond[c].postSub + " by " + jsond[c].postAuthor;
 					stats.classList.add("cText");
 					stats.classList.add("stat");
-					if (c <= 5) {
+					if (c <= 4) {
 						document.getElementById("rPosts").appendChild(linkTP);
 						linkTP.appendChild(div);
 						div.appendChild(tit);
