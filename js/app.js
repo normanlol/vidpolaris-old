@@ -1512,7 +1512,13 @@ function openVideo(opt,ret) {
 							} else {
 								document.getElementById("authorL").href = aLink;
 							}
-							var desc = jsond.info.player_response.videoDetails.shortDescription.replace(/\n/g, "<br>")
+							if (jsond.description) {
+								var desc = jsond.description;
+							} else if (jsond.info.playerResponse) {
+								var desc = jsond.info.playerResponse.videoDetails.shortDescription.replace(/\n/g, "<br>") || jsond.info.playerResponse.microformat.playerMicroformatRenderer.description.simpleText.replace(/\n/g, "<br>");
+							} else {
+								var desc = jsond.info.player_response.videoDetails.shortDescription.replace(/\n/g, "<br>");
+							}
 							if (jsond.info.published == null) {
 								document.getElementById("vidDate").style.display = "none";
 							} else {
