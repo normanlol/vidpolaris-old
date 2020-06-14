@@ -2444,12 +2444,15 @@ function refresh() {
 }
 
 function createBookmark() {
-	var w = window.location.href.replace("#settings", "");
-	var b = "javascript:void(window.open('" + w + "#adapt#' + location.href, '_self'))"
-	var a = document.createElement("A");
-	a.innerHTML = "watch on vidpolaris";
-	a.href = b;
-	document.getElementById("bcm").appendChild(a);
+	if (!document.getElementById("bm")) {
+		var w = window.location.href.replace("#settings", "");
+		var b = "javascript:void(window.open('" + w + "#adapt#' + location.href, '_self'))"
+		var a = document.createElement("A");
+		a.innerHTML = "watch on vidpolaris";
+		a.id = "bm"
+		a.href = b;
+		document.getElementById("bcm").appendChild(a);
+	}
 }
 
 function openPlaylist(opt) {
