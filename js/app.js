@@ -1829,6 +1829,34 @@ function openVideo(opt,ret) {
 							document.getElementById("pubM").innerHTML = m;
 							document.getElementById("pubY").innerHTML = year;
 							document.getElementById("pubD").innerHTML = day;
+							if (!jsond.info.likes) {
+								document.getElementById("vidRatings").style.display = "none";
+								document.getElementById("subText").style.display = "none";
+							} else {
+								var dlik = jsond.info.dislikes.toLocaleString();
+								var like = jsond.info.likes.toLocaleString();
+								var totl = jsond.info.dislikes + jsond.info.likes;
+								sessionStorage.setItem("total", totl.toLocaleString());
+								if (!totl == 0){
+									var untRatio = jsond.info.likes / totl;
+									var percent = 100 * untRatio;
+									var ratio = percent.toPrecision(4);
+									sessionStorage.setItem("ratio", ratio);
+								} else {
+									var ratio = 0;
+									sessionStorage.setItem("ratio", ratio);
+								}
+								if (jsond.info.author.subscriber_count) {
+									document.getElementById("subText").innerHTML = "[" + jsond.info.author.subscriber_count.toLocaleString() + " subscribers]";
+								} else {
+									document.getElementById("subText").innerHTML = "";
+								}
+								document.getElementById("likeNum").innerHTML = like;
+								document.getElementById("dlikNum").innerHTML = dlik;
+								document.getElementById("ldRatio").innerHTML = ratio;
+								document.getElementById("vidRatings").style.display = "";
+								document.getElementById("subText").style.display = "";
+							}
 							if (localStorage.getItem("smart") == "y") {
 								document.getElementById("vidLoaderTxt").innerHTML = "getting HQ audio and video...";
 								console.log(opt);
@@ -1961,7 +1989,6 @@ function openVideo(opt,ret) {
 											
 										}
 									}
-
 									document.getElementById("vidLoaderTxt").innerHTML = "readying up...";
 									document.getElementById("qOptions").value = document.getElementById("itag").innerHTML;
 									document.getElementById("vidLoader").style.display = 'none';
@@ -1977,58 +2004,6 @@ function openVideo(opt,ret) {
 										document.getElementById("desc").innerHTML = varLinks(desc);
 										document.getElementById("ldBtn").style.display = 'none';
 										document.getElementById("ldDiv").style.display = 'none';
-									}
-									document.getElementById("searchContainer").style.display = '';
-									sessionStorage.removeItem("currentlyOpening");
-									if (localStorage.getItem("invIns") == "o" | !localStorage.getItem("invIns")) {
-										if (opt == "a" | !opt) {
-											var url = "https://normandotmp4.electrohaxz.tk:9019/?md=1&url=" + fullUrl;
-										} else if (opt == "b"){
-											var url = "https://vidpolaris.herokuapp.com/?md=1&url=" + fullUrl;
-										} else if (opt == "c") {
-											var url = "https://vidpolaris-europe.herokuapp.com/?md=1&url=" + fullUrl;
-										}
-									} else {
-										if (opt == "a" | !opt) {
-											var url = "https://normandotmp4.electrohaxz.tk:9019/?md=1&inst=" + localStorage.getItem("invIns") + "&url=" + fullUrl;
-										} else if (opt == "b"){
-											var url = "https://vidpolaris.herokuapp.com/?md=1&inst=" + localStorage.getItem("invIns") + "&url=" + fullUrl;
-										} else if (opt == "c") {
-											var url = "https://vidpolaris-europe.herokuapp.com/?md=1&inst=" + localStorage.getItem("invIns") + "&url=" + fullUrl;
-										}
-									}
-									http.open("GET", url);
-									http.send();
-									http.onload=(e)=>{
-										var jsond = JSON.parse(http.responseText);
-										if (!jsond.meta.dislikeCount && !jsond.meta.likeCount) {
-											document.getElementById("vidRatings").style.display = "none";
-											document.getElementById("subText").style.display = "none";
-										} else {
-											var dlik = jsond.meta.dislikeCount.toLocaleString();
-											var like = jsond.meta.likeCount.toLocaleString();
-											var totl = jsond.meta.dislikeCount + jsond.meta.likeCount;
-											sessionStorage.setItem("total", totl.toLocaleString());
-											if (!totl == 0){
-												var untRatio = jsond.meta.likeCount / totl;
-												var percent = 100 * untRatio;
-												var ratio = percent.toPrecision(4);
-												sessionStorage.setItem("ratio", ratio);
-											} else {
-												var ratio = 0;
-												sessionStorage.setItem("ratio", ratio);
-											}
-											if (jsond.meta.subText) {
-												document.getElementById("subText").innerHTML = "[" + jsond.meta.subText + " subscribers]";
-											} else {
-												document.getElementById("subText").innerHTML = "";
-											}
-											document.getElementById("likeNum").innerHTML = like;
-											document.getElementById("dlikNum").innerHTML = dlik;
-											document.getElementById("ldRatio").innerHTML = ratio;
-											document.getElementById("vidRatings").style.display = "";
-											document.getElementById("subText").style.display = "";
-										}
 									}
 									document.getElementById("vidViewer").style.display = '';
 									sync();
@@ -2048,6 +2023,7 @@ function openVideo(opt,ret) {
 									setSpeed();
 									rSearch(opt);
 									document.getElementById("player").play();
+									document.getElementById("searchContainer").style.display = "";
 									return;
 								}
 								return;
@@ -2119,23 +2095,6 @@ function openVideo(opt,ret) {
 								document.getElementById("player").play();
 								document.getElementById("searchContainer").style.display = '';
 								sessionStorage.removeItem("currentlyOpening");
-								if (localStorage.getItem("invIns") == "o" | !localStorage.getItem("invIns")) {
-									if (opt == "a" | !opt) {
-										var url = "https://normandotmp4.electrohaxz.tk:9019/?md=1&url=" + fullUrl;
-									} else if (opt == "b"){
-										var url = "https://vidpolaris.herokuapp.com/?md=1&url=" + fullUrl;
-									} else if (opt == "c") {
-										var url = "https://vidpolaris-europe.herokuapp.com/?md=1&url=" + fullUrl;
-									}
-								} else {
-									if (opt == "a" | !opt) {
-										var url = "https://normandotmp4.electrohaxz.tk:9019/?md=1&inst=" + localStorage.getItem("invIns") + "&url=" + fullUrl;
-									} else if (opt == "b"){
-										var url = "https://vidpolaris.herokuapp.com/?md=1&inst=" + localStorage.getItem("invIns") + "&url=" + fullUrl;
-									} else if (opt == "c") {
-										var url = "https://vidpolaris-europe.herokuapp.com/?md=1&inst=" + localStorage.getItem("invIns") + "&url=" + fullUrl;
-									}
-								}
 								if (localStorage.getItem("loadComm") == "y") {
 									getComments("none", opt);
 								} else {
@@ -2146,42 +2105,6 @@ function openVideo(opt,ret) {
 									document.getElementById("errorC").style.display = 'none';
 								}
 								setSpeed();
-								http.open("GET", url);
-								http.send();
-								http.onload=(e)=>{
-									var jsond = JSON.parse(http.responseText);
-									if (!jsond.meta.dislikeCount && !jsond.meta.likeCount) {
-										document.getElementById("vidRatings").style.display = "none";
-										document.getElementById("subText").style.display = "none";
-									} else {
-										var dlik = jsond.meta.dislikeCount.toLocaleString();
-										var like = jsond.meta.likeCount.toLocaleString();
-										var totl = jsond.meta.dislikeCount + jsond.meta.likeCount;
-										sessionStorage.setItem("total", totl.toLocaleString());
-										if (!totl == 0){
-											var untRatio = jsond.meta.likeCount / totl;
-											var percent = 100 * untRatio;
-											var ratio = percent.toPrecision(4);
-											sessionStorage.setItem("ratio", ratio);
-										} else {
-											var ratio = 0;
-											sessionStorage.setItem("ratio", ratio);
-										}
-										if (jsond.meta.subText) {
-											document.getElementById("subText").innerHTML = "[" + jsond.meta.subText + " subscribers]";
-										} else {
-											document.getElementById("subText").innerHTML = "";
-										}
-										document.getElementById("likeNum").innerHTML = like;
-										document.getElementById("dlikNum").innerHTML = dlik;
-										document.getElementById("ldRatio").innerHTML = ratio;
-										document.getElementById("vidRatings").style.display = "";
-										document.getElementById("subText").style.display = "";
-									}
-									if (!document.getElementById("vidViewer").style.display == 'none') {
-										document.getElementById("player").play()
-									}
-								}
 							}
 						}
 					}
@@ -3941,61 +3864,6 @@ function suggest(opt) {
 	}
 }
 
-function getMeta(opt,inst) {
-	var id = getClickedId(window.location.href, "#w#");
-	var fullUrl = "https://youtube.com/watch?v=" + id;
-	if (localStorage.getItem("invIns") == "o" | !localStorage.getItem("invIns") && !inst) {
-		if (opt == "a" | !opt) {
-			var url = "https://normandotmp4.electrohaxz.tk:9019/?md=1&url=" + fullUrl;
-		} else if (opt == "b") {
-			var url = "https://vidpolaris.herokuapp.com/?md=1&url=" + fullUrl;
-		} else if (opt == "c") {
-			var url = "https://vidpolaris-europe.herokuapp.com/?md=1&url=" + fullUrl;
-		}
-	} else {
-		if (opt == "a" | !opt) {
-			var url = "https://normandotmp4.electrohaxz.tk:9019/?md=1&inst=" + localStorage.getItem("invIns") + "&url=" + fullUrl;
-		} else if (opt == "b"){
-			var url = "https://vidpolaris.herokuapp.com/?md=1&inst=" + localStorage.getItem("invIns") + "&url=" + fullUrl;
-		} else if (opt == "c") {
-			var url = "https://vidpolaris-europe.herokuapp.com/?md=1&inst=" + localStorage.getItem("invIns") + "&url=" + fullUrl;
-		}
-	}
-	const http = new XMLHttpRequest();
- 	http.open("GET", url);
- 	http.send();
- 	http.onload=(e)=>{
- 		var jsond = JSON.parse(http.responseText);
- 		if (!jsond.meta.dislikeCount && !jsond.meta.likeCount) {
-			document.getElementById("vidRatings").style.display = "";
-		} else {
-			var dlik = jsond.meta.dislikeCount.toLocaleString();
-			var like = jsond.meta.likeCount.toLocaleString();
-			var totl = jsond.meta.dislikeCount + jsond.meta.likeCount;
-			sessionStorage.setItem("total", totl.toLocaleString());
-			if (!totl == 0){
-				var untRatio = jsond.meta.likeCount / totl;
-				var percent = 100 * untRatio;
-				var ratio = percent.toPrecision(4);
-				sessionStorage.setItem("ratio", ratio);
-			} else {
-				var ratio = 0;
-				sessionStorage.setItem("ratio", ratio);
-			}
-			if (jsond.meta.subText) {
-				document.getElementById("subText").innerHTML = "[" + jsond.meta.subText + " subscribers]";
-			} else {
-				document.getElementById("subText").innerHTML = "";
-			}
-			document.getElementById("likeNum").innerHTML = like;
-			document.getElementById("dlikNum").innerHTML = dlik;
-			document.getElementById("ldRatio").innerHTML = ratio;
-			document.getElementById("vidRatings").style.display = "";
-			document.getElementById("subText").style.display = "";
-		}
-	}
-}
-
 function swap(intent) {
 	if (intent == "over") {
 		if (sessionStorage.getItem("total")) {
@@ -4097,27 +3965,70 @@ function rSearch(opt, f) {
 				document.getElementById("redditBtn").style.display = "none";
 				return;
 			}
-			document.getElementById("redditBtn").style.display = "none";
-			for (var c in jsond) {
-				var linkTP = document.createElement("A");
-				linkTP.href = jsond[c].postLink;
-				linkTP.classList.add("channelLink");
-				linkTP.id = "rePoLi" + c;
-				var div = document.createElement("DIV");
-				div.classList.add("comment");
-				div.id = "rePo" + c;
-				var tit = document.createElement("H3");
-				tit.innerHTML = jsond[c].postTitle;
-				tit.classList.add("cText");
-				tit.classList.add("stat");
-				var stats = document.createElement("P");
-				stats.innerHTML = jsond[c].postScore.toLocaleString() + " upvotes and " + jsond[c].postComNum.toLocaleString() + " comments • posted on /" + jsond[c].postSub + " by " + jsond[c].postAuthor;
-				stats.classList.add("cText");
-				stats.classList.add("stat");
-				document.getElementById("rPosts").appendChild(linkTP);
-				linkTP.appendChild(div);
-				div.appendChild(tit);
-				div.appendChild(stats);
+			var leng = jsond.length;
+			if (leng <= 5) {
+				document.getElementById("redditBtn").style.display = "none";
+				for (var c in jsond) {
+					var linkTP = document.createElement("A");
+					linkTP.href = jsond[c].postLink;
+					linkTP.classList.add("channelLink");
+					linkTP.id = "rePoLi" + c;
+					var div = document.createElement("DIV");
+					div.classList.add("comment");
+					div.id = "rePo" + c;
+					var tit = document.createElement("H3");
+					tit.innerHTML = jsond[c].postTitle;
+					tit.classList.add("cText");
+					tit.classList.add("stat");
+					var stats = document.createElement("P");
+					stats.innerHTML = jsond[c].postScore.toLocaleString() + " upvotes and " + jsond[c].postComNum.toLocaleString() + " comments • posted on /" + jsond[c].postSub + " by " + jsond[c].postAuthor;
+					stats.classList.add("cText");
+					stats.classList.add("stat");
+					document.getElementById("rPosts").appendChild(linkTP);
+					linkTP.appendChild(div);
+					div.appendChild(tit);
+					div.appendChild(stats);
+				}
+			} else {
+				document.getElementById("redditBtn").style.display = "none";
+				for (var c in jsond) {
+					var linkTP = document.createElement("A");
+					linkTP.href = jsond[c].postLink;
+					linkTP.classList.add("channelLink");
+					linkTP.id = "rePoLi" + c;
+					var div = document.createElement("DIV");
+					div.classList.add("comment");
+					div.id = "rePo" + c;
+					var tit = document.createElement("H3");
+					tit.innerHTML = jsond[c].postTitle;
+					tit.classList.add("cText");
+					tit.classList.add("stat");
+					var stats = document.createElement("P");
+					stats.innerHTML = jsond[c].postScore.toLocaleString() + " upvotes and " + jsond[c].postComNum.toLocaleString() + " comments • posted on /" + jsond[c].postSub + " by " + jsond[c].postAuthor;
+					stats.classList.add("cText");
+					stats.classList.add("stat");
+					if (c <= 5) {
+						document.getElementById("rPosts").appendChild(linkTP);
+						linkTP.appendChild(div);
+						div.appendChild(tit);
+						div.appendChild(stats);
+					} else {
+						if (!document.getElementById("rPostExt")) {
+							var div2 = document.createElement("DIV");
+							div2.id = "rPostExt";
+							div2.style = "display:none;"
+							document.getElementById("rPosts").appendChild(div2);
+							var btn = document.createElement("BUTTON");
+							btn.setAttribute("onclick", "document.getElementById('rPostExt').style.display='';this.style='display:none;'")
+							btn.innerHTML = "show more";
+							document.getElementById("rPosts").appendChild(btn);
+						}
+						linkTP.appendChild(div);
+						div.appendChild(tit);
+						div.appendChild(stats);
+						document.getElementById("rPostExt").appendChild(linkTP);
+					}
+				}
 			}
 		}
 	} else {
