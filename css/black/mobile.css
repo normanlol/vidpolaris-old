@@ -139,3 +139,11 @@ select {
 	background:#2d2d2d;
 	color:#999;
 }
+
+#filters {
+	background:#2d2d2d;
+	width:90%;
+	margin-left:4%;
+	height:250px;
+	padding:10px;
+}

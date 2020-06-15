@@ -131,3 +131,11 @@ select {
 	background:#2d2d2d;
 	color:#999;
 }
+
+#filters {
+	background:#2d2d2d;
+	width:64.7%;
+	margin-left:17%;
+	height:250px;
+	padding:10px;
+}

@@ -500,3 +500,10 @@ iframe {
 	min-width:59%;
 	max-width:59%;
 }
+
+#filters {
+	text-align:left;
+	border-radius:10px;
+	margin-top:20px;
+	
+}

@@ -745,12 +745,22 @@ function search(opt) {
 	document.getElementById("player").pause();
 	document.getElementById("bannerPfpContainer").style.display = 'none';
 	const http = new XMLHttpRequest();
-	if (opt == "a" | !opt) {
-		var url = "https://vidpolaris.ml:9019/?search=" + q;
-	} else if (opt == "b"){
-		var url = "https://vidpolaris.herokuapp.com/?search=" + q;
-	} else if (opt == "c") {
-		var url = "https://vidpolaris-europe.herokuapp.com/?search=" + q;
+	if (document.getElementById("sType").value == "all") {
+		if (opt == "a" | !opt) {
+			var url = "https://vidpolaris.ml:9019/?search=" + q;
+		} else if (opt == "b"){
+			var url = "https://vidpolaris.herokuapp.com/?search=" + q;
+		} else if (opt == "c") {
+			var url = "https://vidpolaris-europe.herokuapp.com/?search=" + q;
+		}
+	} else {
+		if (opt == "a" | !opt) {
+			var url = "https://vidpolaris.ml:9019/?search=" + q + "&type=" + document.getElementById("sType").value;
+		} else if (opt == "b"){
+			var url = "https://vidpolaris.herokuapp.com/?search=" + q + "&type=" + document.getElementById("sType").value;
+		} else if (opt == "c") {
+			var url = "https://vidpolaris-europe.herokuapp.com/?search=" + q + "&type=" + document.getElementById("sType").value;
+		}
 	}
 	http.open("GET", url);
 	http.send();
@@ -1519,6 +1529,17 @@ function openVideo(opt,ret) {
 							} else {
 								var desc = jsond.info.player_response.videoDetails.shortDescription.replace(/\n/g, "<br>");
 							}
+							if (desc.length > 300) {
+								var shortDesc = desc.substring(0,300) + "..."
+								document.getElementById("desc").innerHTML = varLinks(shortDesc);
+								document.getElementById("longDesc").innerHTML = varLinks(desc);
+								document.getElementById("ldBtn").style.display = '';
+								document.getElementById("ldDiv").style.display = 'none';
+							} else {
+								document.getElementById("desc").innerHTML = varLinks(desc);
+								document.getElementById("ldBtn").style.display = 'none';
+								document.getElementById("ldDiv").style.display = 'none';
+							}
 							if (jsond.info.published == null) {
 								document.getElementById("vidDate").style.display = "none";
 							} else {
@@ -1994,17 +2015,6 @@ function openVideo(opt,ret) {
 									document.getElementById("vidLoader").style.display = 'none';
 									document.getElementById("title").innerHTML = titl;
 									document.title = titl +  " | vidpolaris";
-									if (desc.length > 300) {
-										var shortDesc = desc.substring(0,300) + "..."
-										document.getElementById("desc").innerHTML = varLinks(shortDesc);
-										document.getElementById("longDesc").innerHTML = varLinks(desc);
-										document.getElementById("ldBtn").style.display = '';
-										document.getElementById("ldDiv").style.display = 'none';
-									} else {
-										document.getElementById("desc").innerHTML = varLinks(desc);
-										document.getElementById("ldBtn").style.display = 'none';
-										document.getElementById("ldDiv").style.display = 'none';
-									}
 									document.getElementById("vidViewer").style.display = '';
 									sync();
 									document.getElementById("player").load();
@@ -2081,17 +2091,6 @@ function openVideo(opt,ret) {
 								}
 								document.getElementById("aqOptions").style.display = "none";
 								document.title = titl +  " | vidpolaris";
-								if (desc.length > 300) {
-									var shortDesc = desc.substring(0,300) + "..."
-									document.getElementById("desc").innerHTML = shortDesc;
-									document.getElementById("longDesc").innerHTML = desc;
-									document.getElementById("ldBtn").style.display = '';
-									document.getElementById("ldDiv").style.display = 'none';
-								} else {
-									document.getElementById("desc").innerHTML = desc;
-									document.getElementById("ldBtn").style.display = 'none';
-									document.getElementById("ldDiv").style.display = 'none';
-								}
 								document.getElementById("player").play();
 								document.getElementById("searchContainer").style.display = '';
 								sessionStorage.removeItem("currentlyOpening");
@@ -2666,6 +2665,14 @@ function toggleManual() {
 		document.getElementById("mScale").disabled = true;
 	} else {
 		document.getElementById("mScale").removeAttribute("disabled");
+	}
+}
+
+function toggleFilters() {
+	if (!document.getElementById("filters").style.display == "") {
+		document.getElementById("filters").style.display = "";
+	} else {
+		document.getElementById("filters").style.display = "none";
 	}
 }
 

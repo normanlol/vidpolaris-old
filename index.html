@@ -256,9 +256,21 @@
 				</div>
 			</div>
 			<div id="searchPage" style="display:none;" class="centerMe">
-				<div id="seaLoader" class="loader centerMe"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+				<div id="seaLoader" class="centerMe">
+					<div class="loader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+				</div>
 				<div id="searchTerm" style="display:none;">
 					<h3 class="noCenter" style="margin-left:17%;float:left;width:45%;"><span class="material-icons ico">search</span> search results for <span id="searchQuery"></span></h3>
+					<button onclick="toggleFilters()"><span class="material-icons ico">filter_alt</span> filters</button>
+					<div id="filters" style="display:none;">
+						<p class="stat">Content to search:</p>
+						<select id="sType" onInput="search(localStorage.getItem('sLoc'))">
+							<option value="all">all content</option>
+							<option value="video">videos</option>
+							<option value="channel">channels</option>
+							<option value="playlist">playlists</option>
+						</select>
+					</div>
 				</div>
 				<div id="resultsContainer" class="centerMe"></div>
 			</div>
@@ -414,7 +426,6 @@
 						<option value="o">official (default)</option>
 						<option value="snopyta">snopyta</option>
 						<option value="13ad">13ad</option>
-						<option value="yew" disabled>yewtube</option>
 						<option value="gcc">gcc project</option>
 					</select>
 				</div>
@@ -427,7 +438,6 @@
 				<div style="width:1px; height:10px;"></div>
 				<div id="bcm" class="setting">
 					<label>tired of being directed to youtube? drag the bookmarklet below to watch videos on vidpolaris with the click of a button.</label><br>
-					
 				</div>
 				<div style="width:1px; height:10px;"></div>
 				<button id="saveB" onclick="saveSettings()"><span class="material-icons ico">save</span> save settings</button> <p></p>
