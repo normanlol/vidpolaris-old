@@ -1859,15 +1859,15 @@ function openVideo(opt,ret) {
 								document.getElementById("vidRatings").style.display = "none";
 								document.getElementById("subText").style.display = "none";
 							} else {
-								if (!jsond.info.dislikes == null) {
-									var dlik = jsond.info.dislikes.toLocaleString();
-								} else {
+								if (jsond.info.dislikes == null) {
 									var dlik = 0;
+								} else {
+									var dlik = jsond.info.dislikes;
 								}
 								if (!jsond.info.likes == null) {
-									var like = jsond.info.likes.toLocaleString() || 0;
-								} else {
 									var like = 0;
+								} else {
+									var like = jsond.info.likes;
 								}
 								var totl = dlik + like;
 								sessionStorage.setItem("total", totl.toLocaleString());
@@ -1885,8 +1885,8 @@ function openVideo(opt,ret) {
 								} else {
 									document.getElementById("subText").innerHTML = "";
 								}
-								document.getElementById("likeNum").innerHTML = like;
-								document.getElementById("dlikNum").innerHTML = dlik;
+								document.getElementById("likeNum").innerHTML = like.toLocaleString();
+								document.getElementById("dlikNum").innerHTML = dlik.toLocaleString();
 								document.getElementById("ldRatio").innerHTML = ratio;
 								document.getElementById("vidRatings").style.display = "";
 								document.getElementById("subText").style.display = "";
