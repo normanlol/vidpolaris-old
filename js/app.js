@@ -1508,9 +1508,18 @@ function openVideo(opt,ret) {
 						var jsond = JSON.parse(http.responseText);
 						document.getElementById("vidLoaderTxt").innerHTML = "parsing request...";
 						if (jsond.err) {
-							notPlayable();
+							notPlayable(jsond.err);
 							sessionStorage.removeItem("currentlyOpening");
 						} else {
+							if (jsond.info.player_response.playabilityStatus.status == "UNPLAYABLE") {
+								notPlayable(jsond.info.player_response.playabilityStatus.reason || jsond.info.player_response.playablityStatus.errorScreen.playerErrorMessageRenderer.reason.runs[0].text);
+								sessionStorage.removeItem("currentlyOpening");
+								return;
+							} else if (jsond.info.playerResponse.playabilityStatus.status == "UNPLAYABLE") {
+								notPlayable(jsond.info.player_response.playabilityStatus.errorScreen.playerErrorMessageRenderer.subreason.runs[0].text || jsond.info.player_response.playabilityStatus.reason);
+								sessionStorage.removeItem("currentlyOpening");
+								return;
+							}
 							document.getElementById("vidLoaderTxt").innerHTML = "defining basic video information...";
 							var wUrl = jsond.info.formats[0].url;
 							var titl = jsond.info.player_response.videoDetails.title;
@@ -1576,10 +1585,6 @@ function openVideo(opt,ret) {
 							}
 							if (jsond.info.age_restricted == true) {
 								showWarning();
-							}
-							if (!jsond.info.player_response.playabilityStatus.status == "OK") {
-								notPlayable();
-								sessionStorage.removeItem("currentlyOpening");
 							}
 							document.getElementById("viewNum").innerHTML = parseInt(jsond.info.player_response.videoDetails.viewCount).toLocaleString();
 							document.getElementById("vidViews").style.display = "";
@@ -1854,9 +1859,17 @@ function openVideo(opt,ret) {
 								document.getElementById("vidRatings").style.display = "none";
 								document.getElementById("subText").style.display = "none";
 							} else {
-								var dlik = jsond.info.dislikes.toLocaleString() | 0;
-								var like = jsond.info.likes.toLocaleString() | 0;
-								var totl = jsond.info.dislikes + jsond.info.likes | 0;
+								if (!jsond.info.dislikes == null) {
+									var dlik = jsond.info.dislikes.toLocaleString();
+								} else {
+									var dlik = 0;
+								}
+								if (!jsond.info.likes == null) {
+									var like = jsond.info.likes.toLocaleString() || 0;
+								} else {
+									var like = 0;
+								}
+								var totl = dlik + like;
 								sessionStorage.setItem("total", totl.toLocaleString());
 								if (!totl == 0){
 									var untRatio = jsond.info.likes / totl;
@@ -3323,9 +3336,13 @@ function showContent(choice) {
 	}
 }
 
-function notPlayable() {
+function notPlayable(rs) {
 	document.getElementById("errorPage").style.display = '';
-	document.getElementById("errorTxt").innerHTML = "for one reason or another, this video cannot be played. try again or watch it on youtube itself."
+	if (!rs) {
+		document.getElementById("errorTxt").innerHTML = "for one reason or another, this video cannot be played. try again or watch it on youtube itself."
+	} else {
+		document.getElementById("errorTxt").innerHTML = rs
+	}
 	document.getElementById("vidPage").style.display = 'none';
 	document.getElementById("nsWarnPage").style.display = 'none';
 	document.getElementById("settingsPage").style.display = 'none';
