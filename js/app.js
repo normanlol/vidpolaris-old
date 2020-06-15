@@ -1854,9 +1854,9 @@ function openVideo(opt,ret) {
 								document.getElementById("vidRatings").style.display = "none";
 								document.getElementById("subText").style.display = "none";
 							} else {
-								var dlik = jsond.info.dislikes.toLocaleString();
-								var like = jsond.info.likes.toLocaleString();
-								var totl = jsond.info.dislikes + jsond.info.likes;
+								var dlik = jsond.info.dislikes.toLocaleString() | 0;
+								var like = jsond.info.likes.toLocaleString() | 0;
+								var totl = jsond.info.dislikes + jsond.info.likes | 0;
 								sessionStorage.setItem("total", totl.toLocaleString());
 								if (!totl == 0){
 									var untRatio = jsond.info.likes / totl;
