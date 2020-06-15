@@ -132,3 +132,11 @@ video {
 	background:#c1c1c1;
 	color:white;
 }
+
+#filters {
+	background:#c1c1c1;
+	width:90%;
+	margin-left:4%;
+	height:250px;
+	padding:10px;
+}

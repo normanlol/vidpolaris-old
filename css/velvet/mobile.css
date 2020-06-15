@@ -134,3 +134,11 @@ video {
 	background-color:#f0f0f0;
 	color:white;
 }
+
+#filters {
+	background:#f0f0f0;
+	width:90%;
+	margin-left:4%;
+	height:250px;
+	padding:10px;
+}

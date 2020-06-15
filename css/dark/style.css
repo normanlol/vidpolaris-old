@@ -123,3 +123,11 @@ video {
 	background:#c1c1c1;
 	color:white;
 }
+
+#filters {
+	background:#c1c1c1;
+	width:65.7%;
+	margin-left:17%;
+	height:250px;
+	padding:10px;
+}
