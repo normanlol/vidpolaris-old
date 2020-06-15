@@ -3,9 +3,11 @@ console.log("script loaded.");
 console.log("==================");
 resize("auto");
 const http = new XMLHttpRequest();
-if (localStorage.getItem("sLoc") == "b" | localStorage.getItem("sLoc") == "c") {
+if (localStorage.getItem("sLoc")) {
 	document.getElementById("homeLoadDeet").innerHTML = "waking server...";
-	if (localStorage.getItem("sLoc") == "b"){
+	if (localStorage.getItem("sLoc") == "a") {
+		var url = "https://vidpolaris.ml:9019/"
+	} else if (localStorage.getItem("sLoc") == "b"){
 		var url = "https://vidpolaris.herokuapp.com"
 	} else if (localStorage.getItem("sLoc") == "c") {
 		var url = "https://vidpolaris-europe.herokuapp.com/"
