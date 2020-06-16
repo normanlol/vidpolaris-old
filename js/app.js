@@ -4157,6 +4157,12 @@ function skipSponsors(opt) {
 							document.getElementById("player").pause();
 							document.getElementById("player").currentTime = jsond[0].segment[1];
 							window.clearInterval(a);
+							var aa = setTimeout(function() {
+								if (document.getElementById("player").readyState >= 3 && document.getElementById("audioPlayer").readyState >=3) {
+									document.getElementById("player").play();
+									window.clearInterval(aa);
+								}
+							})
 						}
 					},10)
 				}
@@ -4167,6 +4173,12 @@ function skipSponsors(opt) {
 							document.getElementById("player").pause();
 							document.getElementById("player").currentTime = jsond[1].segment[1];
 							window.clearInterval(b);
+							var ba = setTimeout(function() {
+								if (document.getElementById("player").readyState >= 3 && document.getElementById("audioPlayer").readyState >=3) {
+									document.getElementById("player").play();
+									window.clearInterval(ba);
+								}
+							})
 						}
 					},10)
 				}
@@ -4177,6 +4189,12 @@ function skipSponsors(opt) {
 							document.getElementById("player").pause();
 							document.getElementById("player").currentTime = jsond[2].segment[1];
 							window.clearInterval(c);
+							var ca = setTimeout(function() {
+								if (document.getElementById("player").readyState >= 3 && document.getElementById("audioPlayer").readyState >=3) {
+									document.getElementById("player").play();
+									window.clearInterval(ca);
+								}
+							})
 						}
 					},10)
 				}
@@ -4187,6 +4205,12 @@ function skipSponsors(opt) {
 							document.getElementById("player").pause();
 							document.getElementById("player").currentTime = jsond[1].segment[1];
 							window.clearInterval(d);
+							var da = setTimeout(function() {
+								if (document.getElementById("player").readyState >= 3 && document.getElementById("audioPlayer").readyState >=3) {
+									document.getElementById("player").play();
+									window.clearInterval(da);
+								}
+							})
 						}
 					},10)
 				}
@@ -4197,6 +4221,12 @@ function skipSponsors(opt) {
 							document.getElementById("player").pause();
 							document.getElementById("player").currentTime = jsond[1].segment[1];
 							window.clearInterval(e);
+							var ea = setTimeout(function() {
+								if (document.getElementById("player").readyState >= 3 && document.getElementById("audioPlayer").readyState >=3) {
+									document.getElementById("player").play();
+									window.clearInterval(ea);
+								}
+							})
 						}
 					},10)
 				}
