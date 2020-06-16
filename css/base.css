@@ -42,6 +42,7 @@ body {
 	overflow-x:hidden;
 	max-width:100%;
 	margin:0;
+	overflow-wrap:break-word;
 }
 
 #searchPage {
@@ -432,11 +433,6 @@ input:checked + .slider:before {
 .setting {
 	margin-top:5px;
 	margin-bottom:5px;
-}
-
-.cText {
-	max-width:100%;
-	overflow-wrap:break-word;
 }
 
 .homeTitle {
