@@ -39,6 +39,7 @@ body {
 	width:95%;
 	height:525px;
 	background-color:#260000;
+	float:none;
 }
 
 .smallVideo:hover {
