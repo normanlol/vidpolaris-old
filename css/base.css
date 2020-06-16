@@ -373,6 +373,10 @@ input:checked + .slider:before {
 	text-align:right;
 }
 
+#autoPlayBlock p {
+	width:62px;
+}
+
 #banner {
 	width:100%;
 	height:350px;

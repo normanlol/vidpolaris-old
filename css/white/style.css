@@ -136,3 +136,8 @@ video {
 	height:250px;
 	padding:10px;
 }
+
+#sharDiv {
+	min-height:105px;
+	max-height:225px;
+}
