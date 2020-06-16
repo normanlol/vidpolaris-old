@@ -1504,6 +1504,7 @@ function openVideo(opt,ret) {
 					sessionStorage.setItem("currentlyOpening", "y");
 					document.getElementById("qOptions").innerHTML = "";
 					document.getElementById("aqOptions").innerHTML = "";
+					document.getElementById("skipped").innerHTML = "";
 					if (document.getElementById("ldBtn").innerHTML == "see less") {
 						document.getElementById("ldBtn").click();
 					}
@@ -1910,7 +1911,6 @@ function openVideo(opt,ret) {
 							}
 							if (localStorage.getItem("smart") == "y") {
 								document.getElementById("vidLoaderTxt").innerHTML = "getting HQ audio and video...";
-								console.log(opt);
 								if (opt == "a" | !opt) {
 									var url = "https://vidpolaris.ml:9019/?smart=1&url=" + fullUrl;
 								} else if (opt == "b"){
@@ -2224,6 +2224,9 @@ function openVideo(opt,ret) {
 							sessionStorage.removeItem("currentlyOpening");
 							document.title = document.getElementById("title").innerHTML + " | vidpolaris";
 							document.getElementById("audioPlayer").src = "";
+							setSpeed();
+							rSearch(opt);
+							skipSponsors(opt);
 						}
 						sessionStorage.setItem("tried2", "y");
 					}
@@ -2341,6 +2344,9 @@ function openVideo(opt,ret) {
 						document.getElementById("qOptions").style.display = "";
 						document.getElementById("loadErr").style.display = "none";
 						sessionStorage.setItem("tried2", "y");
+						setSpeed();
+						rSearch(opt);
+						skipSponsors(opt);
 					}
 				}
 			}
@@ -4144,53 +4150,54 @@ function skipSponsors(opt) {
 		http.send();
 		http.onload=(e)=>{
 			var jsond = JSON.parse(http.responseText);
-			for (var c in jsond) {
-				if (jsond[c].category == "sponsor") {
-					var t = setInterval(function () {
-						var ti = jsond[c].segment[0]
-						if (document.getElementById("player").currentTime >= jsond[c].segment[0]) {
+			if (!jsond.err) {
+				if (jsond[0] && jsond[0].category == "sponsor") {
+					var a = setInterval(function () {
+						var ti = jsond[0].segment[0]
+						if (document.getElementById("player").currentTime >= jsond[0].segment[0]) {
 							document.getElementById("player").pause();
-							document.getElementById("player").currentTime = jsond[c].segment[1];
-							window.clearInterval(t);
-							var l = setInterval(function () {
-								if (document.getElementById("audioPlayer").src){
-									if (document.getElementById("player").readyState >= 3 && document.getElementById("audioPlayer").readyState >= 3) {
-										document.getElementById("player").play();
-										window.clearInterval(l);
-										var h3 = document.createElement("H3");
-										var ic = document.createElement("SPAN");
-										ic.classList.add("material-icons");
-										ic.classList.add("ico");
-										ic.style = "padding-right:1px;"
-										ic.innerHTML = "skip_next";
-										h3.appendChild(ic);
-										h3.classList.add("stat");
-										h3.classList.add("channelLink");
-										h3.style = "cursor:pointer;"
-										h3.innerHTML = "skipped sponsor. wanna see it?";
-										h3.setAttribute("onclick", "skipTo(" + ti + ");this.style.display='none';");
-										document.getElementById("skipped").appendChild(h3);
-									}
-								} else {
-									if (document.getElementById("player").readyState >= 3) {
-										document.getElementById("player").play();
-										window.clearInterval(l);
-										var h3 = document.createElement("H3");
-										var ic = document.createElement("SPAN");
-										ic.classList.add("material-icons");
-										ic.classList.add("ico");
-										ic.style = "padding-right:1px;"
-										ic.innerHTML = "skip_next";
-										h3.appendChild(ic);
-										h3.classList.add("stat");
-										h3.classList.add("channelLink");
-										h3.style = "cursor:pointer;"
-										h3.innerHTML = "skipped sponsor. wanna see it?";
-										h3.setAttribute("onclick", "skipTo(" + ti + ");this.style.display='none';");
-										document.getElementById("skipped").appendChild(h3);
-									}
-								}
-							},10)
+							document.getElementById("player").currentTime = jsond[0].segment[1];
+							window.clearInterval(a);
+						}
+					},10)
+				}
+				if (jsond[1] && jsond[1].category == "sponsor") {
+					var b = setInterval(function () {
+						var ti = jsond[1].segment[0]
+						if (document.getElementById("player").currentTime >= jsond[1].segment[0]) {
+							document.getElementById("player").pause();
+							document.getElementById("player").currentTime = jsond[1].segment[1];
+							window.clearInterval(b);
+						}
+					},10)
+				}
+				if (jsond[2] && jsond[2].category == "sponsor") {
+					var c = setInterval(function () {
+						var ti = jsond[2].segment[0]
+						if (document.getElementById("player").currentTime >= jsond[2].segment[0]) {
+							document.getElementById("player").pause();
+							document.getElementById("player").currentTime = jsond[2].segment[1];
+							window.clearInterval(c);
+						}
+					},10)
+				}
+				if (jsond[3] &&jsond[3].category == "sponsor") {
+					var d = setInterval(function () {
+						var ti = jsond[1].segment[0]
+						if (document.getElementById("player").currentTime >= jsond[1].segment[0]) {
+							document.getElementById("player").pause();
+							document.getElementById("player").currentTime = jsond[1].segment[1];
+							window.clearInterval(d);
+						}
+					},10)
+				}
+				if (jsond[4] && jsond[4].category == "sponsor") {
+					var e = setInterval(function () {
+						var ti = jsond[1].segment[0]
+						if (document.getElementById("player").currentTime >= jsond[1].segment[0]) {
+							document.getElementById("player").pause();
+							document.getElementById("player").currentTime = jsond[1].segment[1];
+							window.clearInterval(e);
 						}
 					},10)
 				}
