@@ -793,6 +793,7 @@ function search(opt) {
 			document.getElementById("vidPage").style.display = 'none';
 			document.getElementById("nsWarnPage").style.display = 'none';
 			document.getElementById("settingsPage").style.display = 'none';
+			document.getElementById("errorPage").style.display = 'none';
 			document.getElementById("searchPage").style.display = 'none';
 			document.getElementById("homePage").style.display = 'none';
 			document.getElementById("bannerPfpContainer").style.display = 'none';
@@ -2473,6 +2474,13 @@ function refresh() {
 		document.getElementById("settingsPage").style.display = '';
 		document.getElementById("searchContainer").style.display = '';
 		document.getElementById("helpOut").style.display = '';
+		if (window.location.href.split("/#")[0].includes("vidpolaris.ml")) {
+			document.getElementById("userscriptLink").href = "https://greasyfork.org/en/scripts/405545-vidpolaris-redirect-userscript-vidpolaris-ml";
+		} else if (window.location.href.split("/#")[0].includes("github.io")) {
+			document.getElementById("userscriptLink").href = "https://greasyfork.org/en/scripts/405547-vidpolaris-redirect-userscript-github-io";
+		} else {
+			document.getElementById("userscriptLink").href = "https://greasyfork.org/en/script_versions/new";
+		}
 		toggleManual();
 		hideCountry();
 		createBookmark();
