@@ -1504,7 +1504,6 @@ function openVideo(opt,ret) {
 					sessionStorage.setItem("currentlyOpening", "y");
 					document.getElementById("qOptions").innerHTML = "";
 					document.getElementById("aqOptions").innerHTML = "";
-					document.getElementById("skipped").innerHTML = "";
 					if (document.getElementById("ldBtn").innerHTML == "see less") {
 						document.getElementById("ldBtn").click();
 					}
