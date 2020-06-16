@@ -2434,7 +2434,11 @@ function share() {
 		http.onload=(e)=>{
 			var jsond = JSON.parse(http.responseText);
 			var shorter = "https://rel.ink/" + jsond.hashid;
-			document.getElementById("sUrlShar").value = shorter
+			if (jsond.hashid) {
+				document.getElementById("sUrlShar").value = shorter;
+			} else {
+				document.getElementById("sUrlShar").value = "[error]";
+			}
 		}
 	} else {
 		document.getElementById("sharDiv").style.display = 'none';
