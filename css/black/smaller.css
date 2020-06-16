@@ -3,6 +3,11 @@ body {
 	color:#999;
 }
 
+.details {
+	width:60%;
+	margin-left:20%;
+}
+
 #trending, #redditTrending {
 	max-width:1800px;
 	margin-left:2.5%;

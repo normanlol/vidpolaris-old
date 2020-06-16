@@ -585,6 +585,9 @@ console.log("server: " + localStorage.getItem('sLoc'));
 // end onload functions
 
 function resize(actType, size) {
+	if (document.getElementById("theme").href.includes("mobile.css")) {
+		document.getElementById("player").style = "";
+	}
 	if (localStorage.getItem("allowAutoScale") == "y" && actType == "auto") {
 		var w = window.innerWidth;
 		if (!localStorage.getItem("theme") | localStorage.getItem("theme") == "d_v1") {
@@ -3325,31 +3328,35 @@ function translate(elem) {
 }
 
 function theatre(mode) {
-	if (!mode){
-		if (document.getElementById("player").style.width == "60%" | !document.getElementById("player").style.width) {
-			document.getElementById("player").style = "max-height:840px;";
-			document.getElementById("player").style.width = "100%";
-			document.getElementById("theat_native").innerHTML = "back to normal"
-			localStorage.setItem("theatre" , "y")
-		} else {
-			document.getElementById("player").style = "max-height:645px;";
-			document.getElementById("player").style.width = "60%";
-			document.getElementById("theat_native").innerHTML = "theater mode"
-			localStorage.setItem("theatre" , "n")
-		}
+	if (document.getElementById("theme").href.includes("mobile.css")) {
+		console.log("error - mobile css on");
 	} else {
-		if (document.getElementById("embedContainer").style.width == "60%" | !document.getElementById("embedContainer").style.width) {
-			document.getElementById("embedContainer").style = "height:860px;";
-			document.getElementById("frame").style = "height:840px;";
-			document.getElementById("embedContainer").style.width = "100%";
-			document.getElementById("theat_embed").innerHTML = "back to normal"
-			localStorage.setItem("theatre" , "y")
+		if (!mode){
+			if (document.getElementById("player").style.width == "60%" | !document.getElementById("player").style.width) {
+				document.getElementById("player").style = "max-height:840px;";
+				document.getElementById("player").style.width = "100%";
+				document.getElementById("theat_native").innerHTML = "back to normal"
+				localStorage.setItem("theatre" , "y")
+			} else {
+				document.getElementById("player").style = "max-height:645px;";
+				document.getElementById("player").style.width = "60%";
+				document.getElementById("theat_native").innerHTML = "theater mode"
+				localStorage.setItem("theatre" , "n")
+			}
 		} else {
-			document.getElementById("embedContainer").style = "height:670px;margin-left:20%;";
-			document.getElementById("frame").style = "height:645px;";
-			document.getElementById("embedContainer").style.width = "60%";
-			document.getElementById("theat_embed").innerHTML = "theater mode"
-			localStorage.setItem("theatre" , "n")
+			if (document.getElementById("embedContainer").style.width == "60%" | !document.getElementById("embedContainer").style.width) {
+				document.getElementById("embedContainer").style = "height:860px;";
+				document.getElementById("frame").style = "height:840px;";
+				document.getElementById("embedContainer").style.width = "100%";
+				document.getElementById("theat_embed").innerHTML = "back to normal"
+				localStorage.setItem("theatre" , "y")
+			} else {
+				document.getElementById("embedContainer").style = "height:670px;margin-left:20%;";
+				document.getElementById("frame").style = "height:645px;";
+				document.getElementById("embedContainer").style.width = "60%";
+				document.getElementById("theat_embed").innerHTML = "theater mode"
+				localStorage.setItem("theatre" , "n")
+			}
 		}
 	}
 }

@@ -18,6 +18,11 @@ body {
 	background-color:#888;
 }
 
+.details {
+	width:60%;
+	margin-left:20%;
+}
+
 .smallVideo {
 	width:31%;
 	height:255px;

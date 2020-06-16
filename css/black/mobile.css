@@ -8,6 +8,19 @@ body {
 	margin-right:12.5%;
 }
 
+.details {
+	width:90%;
+	margin-left:7%;
+}
+
+#autoPlayBlock {
+	margin-right:4%;
+}
+
+#theat_native, #theat_embed {
+	display:none;
+}
+
 .video {
 	width:94%;
 	height:415px;
@@ -23,8 +36,8 @@ body {
 }
 
 .smallVideo {
-	width:94%;
-	height:350px;
+	width:95%;
+	height:525px;
 	background-color:#111;
 }
 
@@ -42,7 +55,7 @@ body {
 
 .altSmallVideo {
 	width:94%;
-	height:245px;
+	height:525px;
 	background-color:#111;
 }
 
@@ -80,7 +93,7 @@ body {
 
 .relatedThumb {
 	width:100%;
-	height:70%;
+	height:75%;
 }
 
 .largeThumb {
@@ -111,9 +124,9 @@ button:hover {
 }
 
 video {
-	width:65%;
+	width:100%;
 	height:10%;
-	max-height:645px;
+	max-height:840px;
 }
 
 .invisibleLink {
@@ -146,4 +159,10 @@ select {
 	margin-left:4%;
 	height:250px;
 	padding:10px;
+}
+
+#settingsPage {
+	margin-top:10px;
+	margin-left:50px;
+	margin-right:50px;
 }

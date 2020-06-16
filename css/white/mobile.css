@@ -18,13 +18,26 @@ body {
 	background-color:#bfbfbf;
 }
 
+.details {
+	width:90%;
+	margin-left:7%;
+}
+
+#autoPlayBlock {
+	margin-right:4%;
+}
+
 .resultD {
 	max-width:53%;
 }
 
+#theat_native, #theat_embed {
+	display:none;
+}
+
 .smallVideo {
-	width:94%;
-	height:350px;
+	width:95%;
+	height:525px;
 	background-color:#ececec;
 }
 
@@ -42,7 +55,7 @@ body {
 
 .altSmallVideo {
 	width:94%;
-	height:245px;
+	height:525px;
 	background-color:#ececec;
 }
 
@@ -85,7 +98,7 @@ body {
 
 .relatedThumb {
 	width:100%;
-	height:70%;
+	height:75%;
 }
 
 a {
@@ -111,9 +124,9 @@ button:hover {
 }
 
 video {
-	width:65%;
+	width:100%;
 	height:10%;
-	max-height:645px;
+	max-height:840px;
 }
 
 .invisibleLink {
@@ -140,4 +153,10 @@ video {
 	margin-left:4%;
 	height:250px;
 	padding:10px;
+}
+
+#settingsPage {
+	margin-top:10px;
+	margin-left:50px;
+	margin-right:50px;
 }
