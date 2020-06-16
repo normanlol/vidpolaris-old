@@ -195,6 +195,20 @@ if (!localStorage.getItem("showSize")) {
 	document.getElementById("showSize").value = localStorage.getItem("showSize");
 }
 
+if (!localStorage.getItem("skipSponsors")) {
+	localStorage.setItem("skipSponsors","n");
+	document.getElementById("skipSponsors").value = "n";
+} else {
+	document.getElementById("skipSponsors").value = localStorage.getItem("skipSponsors");
+}
+
+if (!localStorage.getItem("supportHDR")) {
+	localStorage.setItem("supportHDR","n");
+	document.getElementById("hdrSupport").value = "n";
+} else {
+	document.getElementById("hdrSupport").value = localStorage.getItem("supportHDR");
+}
+
 if (!localStorage.getItem("allowAutoScale")) {
 	localStorage.setItem("allowAutoScale" , "y");
 	document.getElementById("aas").value = "y";
@@ -1457,6 +1471,7 @@ function openVideo(opt,ret) {
 					document.getElementById("settingsPage").style.display = 'none';
 					document.getElementById("searchTerm").style.display = "none";
 					document.getElementById("channelPage").style.display = 'none';
+					document.getElementById("errorPage").style.display = 'none';
 					document.getElementById("loadErr").style.display = 'none';
 					document.getElementById("embedContainer").innerHTML = '';
 					document.getElementById("embedContainer").style.display = "none";
@@ -1936,25 +1951,8 @@ function openVideo(opt,ret) {
 										document.getElementById("player").src = videoUrl;
 										for (var c in jsond.video) {
 											if (c == 0) {
-												var option = document.createElement("OPTION");
-												option.value = jsond.video[c].itag;
-												if (localStorage.getItem("showSize")) {
-													if (localStorage.getItem("showSize") == "y") {
-														if (jsond.video[c].contentLength) {
-															option.innerHTML = jsond.video[c].qualityLabel + " [" + formatBytes(parseInt(jsond.video[c].contentLength)) + "]";
-														} else {
-															option.innerHTML = jsond.video[c].qualityLabel + " [size not avaliable]";
-														}
-													} else {
-														option.innerHTML = jsond.video[c].qualityLabel;
-													} 
-												} else {
-													option.innerHTML = jsond.video[c].qualityLabel;
-												}
-												document.getElementById("qOptions").appendChild(option);
-											} else {
-												if (jsond.video[c-1].qualityLabel == jsond.video[c].qualityLabel) {
-													// do nothing
+												if (jsond.video[c].codecs == "vp9.2" && localStorage.getItem("hdrSupport") == "n" | jsond.video[c].codecs.includes("av01") && jsond.video[c].codecs.substring(jsond.video[c].codec.length - 2, jsond.video[c].codecs.length) == ".0" && localStorage.getItem("hdrSupport") == "n") {
+													console.log("skipped because it's HDR | " + jsond.video[c].codecs);
 												} else {
 													var option = document.createElement("OPTION");
 													option.value = jsond.video[c].itag;
@@ -1972,6 +1970,31 @@ function openVideo(opt,ret) {
 														option.innerHTML = jsond.video[c].qualityLabel;
 													}
 													document.getElementById("qOptions").appendChild(option);
+												}
+											} else {
+												if (jsond.video[c-1].qualityLabel == jsond.video[c].qualityLabel) {
+													// do nothing
+												} else {
+													if (jsond.video[c].codecs == "vp9.2" && localStorage.getItem("hdrSupport") == "n" | jsond.video[c].codecs.includes("av01") && jsond.video[c].codecs.substring(jsond.video[c].codec.length - 2, jsond.video[c].codecs.length) == ".0" && localStorage.getItem("hdrSupport") == "n") {
+														console.log("skipped because it's HDR | " + jsond.video[c].codecs);
+													} else {
+														var option = document.createElement("OPTION");
+														option.value = jsond.video[c].itag;
+														if (localStorage.getItem("showSize")) {
+															if (localStorage.getItem("showSize") == "y") {
+																if (jsond.video[c].contentLength) {
+																	option.innerHTML = jsond.video[c].qualityLabel + " [" + formatBytes(parseInt(jsond.video[c].contentLength)) + "]";
+																} else {
+																	option.innerHTML = jsond.video[c].qualityLabel + " [size not avaliable]";
+																}
+															} else {
+																option.innerHTML = jsond.video[c].qualityLabel;
+															} 
+														} else {
+															option.innerHTML = jsond.video[c].qualityLabel;
+														}
+														document.getElementById("qOptions").appendChild(option);
+													}
 												}
 											}
 										}
@@ -2047,6 +2070,7 @@ function openVideo(opt,ret) {
 									}
 									setSpeed();
 									rSearch(opt);
+									skipSponsors(opt);
 									document.getElementById("player").play();
 									document.getElementById("searchContainer").style.display = "";
 									return;
@@ -2119,6 +2143,8 @@ function openVideo(opt,ret) {
 									document.getElementById("errorC").style.display = 'none';
 								}
 								setSpeed();
+								rSearch(opt);
+								skipSponsors(opt);
 							}
 						}
 					}
@@ -2437,6 +2463,7 @@ function refresh() {
 		document.getElementById("errorPage").style.display = 'none';
 		document.getElementById("searchPage").style.display = 'none';
 		document.getElementById("settingsPage").style.display = '';
+		document.getElementById("searchContainer").style.display = '';
 		document.getElementById("helpOut").style.display = '';
 		toggleManual();
 		hideCountry();
@@ -2619,6 +2646,16 @@ function sync() {
 			document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
 		}
 	});
+	document.getElementById("player").addEventListener("seeked", function() { 
+		if (localStorage.getItem("smart") == 'y') {
+			document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
+		}
+	});
+	document.getElementById("player").addEventListener("seeking", function() { 
+		if (localStorage.getItem("smart") == 'y') {
+			document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
+		}
+	});
 	document.getElementById('player').addEventListener('ended', function() {
 		if (localStorage.getItem("smart") == 'y') {
 			document.getElementById("audioPlayer").pause();
@@ -2655,6 +2692,8 @@ function saveSettings() {
 	localStorage.setItem("allowAutoScale", document.getElementById("aas").value);
 	localStorage.setItem("invIns", document.getElementById("invIns").value);
 	localStorage.setItem("showSize", document.getElementById("showSize").value);
+	localStorage.setItem("skipSponsors", document.getElementById("skipSponsors").value);
+	localStorage.setItem("supportHDR", document.getElementById("hdrSupport").value);
 	if (document.getElementById("aas").value == "n") {
 		localStorage.setItem("mScale", document.getElementById("mScale").value);
 		resize("manual", localStorage.getItem("mScale"));
@@ -4086,4 +4125,88 @@ function varLinks(text) {
 		replacePattern1 = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim;
 		return text.replace(replacePattern1, '<a href="$1" class="channelLink" target="_blank">$1</a>');
 	}
+}
+
+function skipSponsors(opt) {
+	if (localStorage.getItem("skipSponsors") == "y") {
+		document.getElementById("redditBtn").style.display = "none";
+		document.getElementById("rPosts").innerHTML = "";
+		var id = getClickedId(window.location.href, "#w#");
+		if (opt == "a" | !opt) {
+			var url = "https://vidpolaris.ml:9019/?sponsors=" + id;
+		} else if (opt == "b") {
+			var url = "https://vidpolaris.herokuapp.com/?sponsors=" + id;
+		} else if (opt == "c") {
+			var url = "https://vidpolaris-europe.herokuapp.com/?sponsors=" + id;
+		}
+		const http = new XMLHttpRequest();
+		http.open("GET", url);
+		http.send();
+		http.onload=(e)=>{
+			var jsond = JSON.parse(http.responseText);
+			for (var c in jsond) {
+				if (jsond[c].category == "sponsor") {
+					var t = setInterval(function () {
+						var ti = jsond[c].segment[0]
+						if (document.getElementById("player").currentTime >= jsond[c].segment[0]) {
+							document.getElementById("player").pause();
+							document.getElementById("player").currentTime = jsond[c].segment[1];
+							window.clearInterval(t);
+							var l = setInterval(function () {
+								if (document.getElementById("audioPlayer").src){
+									if (document.getElementById("player").readyState >= 3 && document.getElementById("audioPlayer").readyState >= 3) {
+										document.getElementById("player").play();
+										window.clearInterval(l);
+										var h3 = document.createElement("H3");
+										var ic = document.createElement("SPAN");
+										ic.classList.add("material-icons");
+										ic.classList.add("ico");
+										ic.style = "padding-right:1px;"
+										ic.innerHTML = "skip_next";
+										h3.appendChild(ic);
+										h3.classList.add("stat");
+										h3.classList.add("channelLink");
+										h3.style = "cursor:pointer;"
+										h3.innerHTML = "skipped sponsor. wanna see it?";
+										h3.setAttribute("onclick", "skipTo(" + ti + ");this.style.display='none';");
+										document.getElementById("skipped").appendChild(h3);
+									}
+								} else {
+									if (document.getElementById("player").readyState >= 3) {
+										document.getElementById("player").play();
+										window.clearInterval(l);
+										var h3 = document.createElement("H3");
+										var ic = document.createElement("SPAN");
+										ic.classList.add("material-icons");
+										ic.classList.add("ico");
+										ic.style = "padding-right:1px;"
+										ic.innerHTML = "skip_next";
+										h3.appendChild(ic);
+										h3.classList.add("stat");
+										h3.classList.add("channelLink");
+										h3.style = "cursor:pointer;"
+										h3.innerHTML = "skipped sponsor. wanna see it?";
+										h3.setAttribute("onclick", "skipTo(" + ti + ");this.style.display='none';");
+										document.getElementById("skipped").appendChild(h3);
+									}
+								}
+							},10)
+						}
+					},10)
+				}
+			}
+		}
+	} else {
+		return;
+	}
+}
+
+function skipTo(to,sub) {
+	if (!sub) {
+		document.getElementById("player").pause();
+		document.getElementById("player").currentTime = parseInt(to);
+		if (document.getElementById("audioPlayer").src) {
+			document.getElementById("audioPlayer").load();
+		}
+	} 
 }

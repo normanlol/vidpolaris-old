@@ -13,7 +13,7 @@
 		<meta name="description" content="a simpler, faster loading, slicker youtube">
 		<meta property="og:title" content="vidpolaris | alternative youtube client">
 		<meta property="og:type" content="website" />
-		<meta property="og:image" content="img/favicon.ico" />
+		<meta property="og:image" content="img/favicon.png" />
 		<meta property="og:description" content="a simpler, faster loading, slicker youtube" />
 		<link href="css/base.css" rel="stylesheet">
 	</head>
@@ -124,6 +124,9 @@
 							</select></h3>
 							<div id="cardContainer"></div>
 							<h3 class="stat" id="itag" style="display:none;"></h3>
+							<div id="skipped">
+							
+							</div>
 						</div>
 						<p id="desc"></p>
 						<div id="ldDiv" style="display:none;">
@@ -406,6 +409,20 @@
 					<select id="sqFailure">
 						<option value="dg">downgrade quality and load the video as normal (default)</option>
 						<option value="rl">reload and try again automatically</option>
+					</select>
+				</div>
+				<div class="setting" title="automatically skips sponsorships on each video you load. crowd sourced from SponsorBlock.">
+					<label>skip sponsors [beta] (courtesy of <a href="https://github.com/ajayyy/SponsorBlock/" class="channelLink">sponsorblock</a>)</label>
+					<select id="skipSponsors">
+						<option value="n">disabled (default)</option>
+						<option value="y">enabled</option>
+					</select>
+				</div>
+				<div class="setting" title="if disabled, HDR codec will not be added to the stream list.">
+					<label>HDR support:</label>
+					<select id="hdrSupport">
+						<option value="n">disabled (default)</option>
+						<option value="y">enabled</option>
 					</select>
 				</div>
 				<div class="setting" title="if this is enabled, automatic scaling will choose a stylesheet it thinks best for you.">
