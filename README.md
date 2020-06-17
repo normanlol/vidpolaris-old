@@ -24,7 +24,7 @@ Velvet theme.
 
 #### backends
 
-- [electrohaxz](https://normandotmp4.electrohaxz.tk:9019/)
+- [electrohaxz](https://vidpolaris.ml:9019/)
 - [heroku (us east)](https://vidpolaris.herokuapp.com/)
 - [heroku (eu west)](https://vidpolaris-europe.herokuapp.com/)
 
