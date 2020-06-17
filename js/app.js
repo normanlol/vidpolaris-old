@@ -2584,7 +2584,7 @@ function refresh() {
 
 function redir() {
 	var url = getClickedId(window.location.href, "#redir#");
-	console.log(url)
+	document.title = "[redirecting...] vidpolaris"
 	if (url.includes("youtu")) {
 		if (url.includes("v=") | url.includes("youtu.be")) {
 			if (url.includes("v=")) {
