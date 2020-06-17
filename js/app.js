@@ -16,7 +16,7 @@ if (localStorage.getItem("sLoc")) {
 	http.send();
 	http.onload=(e)=>{
 		if (http.status == 404) {
-			if (window.location.href.includes("#c") | window.location.href.includes("#w") | window.location.href.includes("#s") | window.location.href.includes("#adapt") | window.location.href.includes("#p")) {
+			if (window.location.href.includes("#c") | window.location.href.includes("#redir") | window.location.href.includes("#w") | window.location.href.includes("#s") | window.location.href.includes("#adapt") | window.location.href.includes("#p")) {
 				refresh();
 			} else {
 				home();
@@ -30,13 +30,7 @@ if (localStorage.getItem("sLoc")) {
 		document.getElementById("serverdown").style.display = "";
 		document.getElementById("trendingLoader").style.display = "none";
 	}
-} else if (!localStorage.getItem("sLoc") | localStorage.getItem("sLoc") == "a"){
-	if (window.location.href.includes("#c") | window.location.href.includes("#w") | window.location.href.includes("#s") | window.location.href.includes("#adapt") | window.location.href.includes("#p")) {
-		refresh();
-	} else {
-		home();
-	}
-}
+} 
 
 document.getElementById("trendingLoader").style.display = "";
 
@@ -2581,8 +2575,55 @@ function refresh() {
 		adaptBookmark();
 	} else if (window.location.href.includes("#p")){
 		openPlaylist(localStorage.getItem("sLoc"))
+	} else if (window.location.href.includes("#redir")) {
+		redir()
 	} else {
 		home();
+	}
+}
+
+function redir() {
+	var url = getClickedId(window.location.href, "#redir#");
+	console.log(url)
+	if (url.includes("youtu")) {
+		if (url.includes("v=") | url.includes("youtu.be")) {
+			if (url.includes("v=")) {
+				var id = getClickedId(url, "v=");
+				var fId = id.substring(0,11);
+				window.open("#w#" + fId, "_self");
+				console.log("redirecting...");
+			} else if (url.includes("youtu.be")) {
+				var id = getClickedId(url, "/");
+				var fId = id.substring(0,11);
+				window.open("#w#" + fId, "_self");
+				console.log("redirecting...");
+			}
+		} else if (url.includes("?search_query=")) {
+			var query = decodeURIComponent(getClickedId(url, "?search_query="));
+			if (query.includes("&")) {
+				var rQuery = "&" + getClickedId(query, "&");
+				var fullQuery = query.replace(rQuery, "");
+				window.open("#s#" + fullQuery.replace("+", " "), "_self");
+			} else {
+				window.open("#s#" + query.replace("+", " "), "_self");
+			}
+		} else if (url.includes("/c/") | url.includes("/channel/") | url.includes("/user/")){
+			if (url.includes("/channel/")) {
+				var cId = getClickedId(url, "/channel/");
+				window.open("#c#" + cId, "_self")
+			} else if (url.includes("/c/")) {
+				var cId = getClickedId(url, "/c/");
+				window.open("#c#" + cId, "_self")
+			} else if (url.includes("/user/")) {
+				var cId = getClickedId(url, "/user/");
+				window.open("#c#" + cId, "_self")
+			}
+		} else if (url.includes("list=")) {
+			var pId = getClickedId(url, "list=");
+			window.open("#p#"+pId);
+		}
+	} else {
+		window.open(url, "_self");
 	}
 }
 
@@ -4229,7 +4270,7 @@ function varLinks(text) {
 		return text;
 	} else {
 		replacePattern1 = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim;
-		return text.replace(replacePattern1, '<a href="$1" class="channelLink" target="_blank">$1</a>');
+		return text.replace(replacePattern1, '<a href="#redir#$1" class="channelLink">$1</a>');
 	}
 }
 
