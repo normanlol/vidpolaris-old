@@ -62,6 +62,26 @@ if (sessionStorage.getItem("embed")) {
 	console.log("-- removed 'embed' item");
 }
 
+if (sessionStorage.getItem("audioUrl")) {
+	sessionStorage.removeItem("audioUrl");
+	console.log("-- removed 'audioUrl' item");
+}
+
+if (sessionStorage.getItem("goToFirst")) {
+	sessionStorage.removeItem("goToFirst");
+	console.log("-- removed 'goToFirst' item");
+}
+
+if (sessionStorage.getItem("ratio")) {
+	sessionStorage.removeItem("ratio");
+	console.log("-- removed 'ratio' item");
+}
+
+if (sessionStorage.getItem("total")) {
+	sessionStorage.removeItem("total");
+	console.log("-- removed 'ratio' item");
+}
+
 console.log("- checking and setting localStorage items")
 
 if (!localStorage.getItem("disableCards")) {
@@ -113,6 +133,13 @@ if (!localStorage.getItem("sLoc")) {
 	localStorage.setItem("sLoc", "a");
 } else {
 	document.getElementById("server").value = localStorage.getItem("sLoc");
+}
+
+if (!localStorage.getItem("injectRedir")) {
+	document.getElementById("injectRedir").value = "y";
+	localStorage.setItem("injectRedir", "y");
+} else {
+	document.getElementById("injectRedir").value = localStorage.getItem("injectRedir");
 }
 
 if (!localStorage.getItem("loadComm")) {
@@ -2765,8 +2792,10 @@ function adaptBookmark() {
 		} else if (url.includes("list=")) {
 			var pId = getClickedId(url, "list=");
 			window.open("#p#"+pId);
-		} else {
-			window.open("#", "_self")
+		} else if (url.includes("/embed/")){
+			var id = getClickedId(url, "/embed/");
+			var fId = id.substring(0,11);
+			window.open("embed#w#" + fId, "_self");
 		}
 	}
 }
@@ -2836,6 +2865,7 @@ function saveSettings() {
 	localStorage.setItem("invIns", document.getElementById("invIns").value);
 	localStorage.setItem("showSize", document.getElementById("showSize").value);
 	localStorage.setItem("skipSponsors", document.getElementById("skipSponsors").value);
+	localStorage.setItem("injectRedir", document.getElementById("injectRedir").value);
 	localStorage.setItem("supportHDR", document.getElementById("hdrSupport").value);
 	if (document.getElementById("aas").value == "n") {
 		localStorage.setItem("mScale", document.getElementById("mScale").value);
@@ -4270,7 +4300,11 @@ function varLinks(text) {
 		return text;
 	} else {
 		replacePattern1 = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim;
-		return text.replace(replacePattern1, '<a href="#redir#$1" class="channelLink">$1</a>');
+		if (localStorage.getItem("injectRedir") == "y" | !localStorage.getItem("injectRedir")) {
+			return text.replace(replacePattern1, '<a href="#redir#$1" class="channelLink">$1</a>');
+		} else {
+			return text.replace(replacePattern1, '<a href="$1" class="channelLink">$1</a>');
+		}
 	}
 }
 
