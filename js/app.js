@@ -275,7 +275,7 @@ document.addEventListener('keydown', function (event) {
 				document.getElementById("audioPlayer").currentTime = document.getElementById("player").currentTime;
 			}
 		} else if (key == 'k' || key == 'K' || key == 75) {
-			if (!document.getElementById("embedContainer").style.display == "") {
+			if (!document.getElementById("embedContainer").style.display == "" && document.getElementById("vidViewer").style.display == "") {
 				if (!document.getElementById("player").paused) {
 					document.getElementById('player').pause();
 				} else {
