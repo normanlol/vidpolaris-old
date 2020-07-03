@@ -1960,10 +1960,10 @@ function openVideo(opt,ret) {
 																option.innerHTML = jsond.video[c].qualityLabel + " [size not avaliable - " + jsond.video[c].codecs + "]";
 															}
 														} else {
-															option.innerHTML = jsond.video[c].qualityLabel + "[" + jsond.video[c].codecs + "]";
+															option.innerHTML = jsond.video[c].qualityLabel + " [" + jsond.video[c].codecs + "]";
 														} 
 													} else {
-														option.innerHTML = jsond.video[c].qualityLabel + "[" + jsond.video[c].codecs + "]";
+														option.innerHTML = jsond.video[c].qualityLabel + " [" + jsond.video[c].codecs + "]";
 													}
 													document.getElementById("qOptions").appendChild(option);
 													document.getElementById("itag").innerHTML = jsond.video[c].itag;
@@ -1980,10 +1980,10 @@ function openVideo(opt,ret) {
 															option.innerHTML = jsond.video[c].qualityLabel + " [size not avaliable - " + jsond.video[c].codecs + "]";
 														}
 													} else {
-														option.innerHTML = jsond.video[c].qualityLabel + "[" + jsond.video[c].codecs + "]";
+														option.innerHTML = jsond.video[c].qualityLabel + " [" + jsond.video[c].codecs + "]";
 													} 
 												} else {
-													option.innerHTML = jsond.video[c].qualityLabel + "[" + jsond.video[c].codecs + "]";
+													option.innerHTML = jsond.video[c].qualityLabel + " [" + jsond.video[c].codecs + "]";
 												}
 												document.getElementById("qOptions").appendChild(option);
 											}
@@ -2007,10 +2007,10 @@ function openVideo(opt,ret) {
 																	option.innerHTML = jsond.video[c].qualityLabel + " [size not avaliable - " + jsond.video[c].codecs + "]";
 																}
 															} else {
-																option.innerHTML = jsond.video[c].qualityLabel + "[" + jsond.video[c].codecs + "]";
+																option.innerHTML = jsond.video[c].qualityLabel + " [" + jsond.video[c].codecs + "]";
 															} 
 														} else {
-															option.innerHTML = jsond.video[c].qualityLabel + "[" + jsond.video[c].codecs + "]";
+															option.innerHTML = jsond.video[c].qualityLabel + " [" + jsond.video[c].codecs + "]";
 														}
 														document.getElementById("qOptions").appendChild(option);
 													}
@@ -2023,10 +2023,10 @@ function openVideo(opt,ret) {
 																option.innerHTML = jsond.video[c].qualityLabel + " [size not avaliable - " + jsond.video[c].codecs + "]";
 															}
 														} else {
-															option.innerHTML = jsond.video[c].qualityLabel + "[" + jsond.video[c].codecs + "]";
+															option.innerHTML = jsond.video[c].qualityLabel + " [" + jsond.video[c].codecs + "]";
 														} 
 													} else {
-														option.innerHTML = jsond.video[c].qualityLabel + "[" + jsond.video[c].codecs + "]";
+														option.innerHTML = jsond.video[c].qualityLabel + " [" + jsond.video[c].codecs + "]";
 													}
 													document.getElementById("qOptions").appendChild(option);
 												}
