@@ -1934,7 +1934,7 @@ function openVideo(opt,ret) {
 								document.getElementById("subText").style.display = "";
 							}
 							if (localStorage.getItem("smart") == "y") {
-								document.getElementById("vidLoaderTxt").innerHTML = "adding qualities";
+								document.getElementById("vidLoaderTxt").innerHTML = "adding qualities...";
 								document.getElementById("qSelector").style.display = '';
 								var jsond = JSON.parse(http.responseText);
 								if (!jsond.audio[0].isMPDDash == true | !jsond.video[0].isMPDDash == true) {
@@ -2076,9 +2076,9 @@ function openVideo(opt,ret) {
 									}
 									document.getElementById("aqOptions").style.display = "";
 								} else {
-									
+									openVideo(opt, "y");
+									return;
 								}
-								document.getElementById("vidLoaderTxt").innerHTML = "readying up...";
 								document.getElementById("qOptions").value = document.getElementById("itag").innerHTML;
 								document.getElementById("title").innerHTML = titl;
 								document.title = titl +  " | vidpolaris";
@@ -2123,6 +2123,29 @@ function openVideo(opt,ret) {
 											document.getElementById("searchContainer").style.display = "";
 											return;
 										}
+									} else {
+										document.getElementById("vidLoader").style.display = 'none';
+										document.getElementById("vidViewer").style.display = '';
+										sync();
+										document.getElementById("player").load();
+										document.getElementById("audioPlayer").load();
+										if (localStorage.getItem("loadComm") == "y") {
+											getComments("none", opt);
+											sessionStorage.removeItem("currentlyOpening");
+										} else {
+											document.getElementById("loadC").style.display = '';
+											document.getElementById("loadedC").style.display = 'none';
+											document.getElementById("loadedComments").style.display = 'none';
+											document.getElementById("loadinC").style.display = 'none';
+											document.getElementById("errorC").style.display = 'none';
+											sessionStorage.removeItem("currentlyOpening");
+										}
+										setSpeed();
+										rSearch(opt);
+										skipSponsors(opt);
+										document.getElementById("player").play();
+										document.getElementById("searchContainer").style.display = "";
+										document.getElementById("searchContainer").style.display = "";
 									}
 								}
 							} else {
