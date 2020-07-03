@@ -1543,7 +1543,7 @@ function openVideo(opt,ret) {
 					} else if (opt == "c") {
 						var url = "https://vidpolaris-europe.herokuapp.com/?info=1&url=" + fullUrl;
 					}
-					document.getElementById("vidLoaderTxt").innerHTML = "generating first request...";
+					document.getElementById("vidLoaderTxt").innerHTML = "generating request...";
 					http.open("GET", url);
 					http.send();
 					http.onload=(e)=>{
@@ -1934,53 +1934,70 @@ function openVideo(opt,ret) {
 								document.getElementById("subText").style.display = "";
 							}
 							if (localStorage.getItem("smart") == "y") {
-								document.getElementById("vidLoaderTxt").innerHTML = "getting HQ audio and video...";
-								if (opt == "a" | !opt) {
-									var url = "https://vidpolaris.ml:9019/?smart=1&url=" + fullUrl;
-								} else if (opt == "b"){
-									var url = "https://vidpolaris.herokuapp.com/?smart=1&url=" + fullUrl;
-								} else if (opt == "c") {
-									var url = "https://vidpolaris-europe.herokuapp.com/?smart=1&url=" + fullUrl;
-								}
-								http.open("GET", url);
-								http.send();
-								http.onload=(e)=>{
-									document.getElementById("qSelector").style.display = '';
-									var jsond = JSON.parse(http.responseText);
-									if (jsond.datainfo) {
-										document.getElementById("vidLoaderTxt").innerHTML = "improper response, please wait...";
-										if (!localStorage.getItem("sqFail") | localStorage.getItem("sqFail") == "dg") {
-											openVideo(opt, "y");
-											return;
+								document.getElementById("vidLoaderTxt").innerHTML = "adding qualities";
+								document.getElementById("qSelector").style.display = '';
+								var jsond = JSON.parse(http.responseText);
+								if (!jsond.audio[0].isMPDDash == true | !jsond.video[0].isMPDDash == true) {
+									for (var c in jsond.video) {
+										if (c == 0) {
+											var option = document.createElement("OPTION");
+											option.value = jsond.video[c].itag;
+											if (localStorage.getItem("supportHDR") == "n" | !localStorage.getItem("supportHDR")) {
+												if (jsond.video[c].codecs.substring(jsond.video[c].codecs.length - 2,  jsond.video[c].codecs.length) == ".0") {
+													console.log("HDR skipped | " + jsond.video[c].codecs);
+													sessionStorage.setItem("goToFirst", "y");
+													sessionStorage.setItem("audioUrl", jsond.audio[0].url);
+												} else if (jsond.video[c].codecs == "vp9.2") {
+													console.log("HDR skipped | " + jsond.video[c].codecs);
+													sessionStorage.setItem("goToFirst", "y");
+													sessionStorage.setItem("audioUrl", jsond.audio[0].url);
+												} else {
+													if (localStorage.getItem("showSize")) {
+														if (localStorage.getItem("showSize") == "y") {
+															if (jsond.video[c].contentLength) {
+																option.innerHTML = jsond.video[c].qualityLabel + " [" + formatBytes(parseInt(jsond.video[c].contentLength)) + " - " + jsond.video[c].codecs +"]";
+															} else {
+																option.innerHTML = jsond.video[c].qualityLabel + " [size not avaliable - " + jsond.video[c].codecs + "]";
+															}
+														} else {
+															option.innerHTML = jsond.video[c].qualityLabel + "[" + jsond.video[c].codecs + "]";
+														} 
+													} else {
+														option.innerHTML = jsond.video[c].qualityLabel + "[" + jsond.video[c].codecs + "]";
+													}
+													document.getElementById("qOptions").appendChild(option);
+													document.getElementById("itag").innerHTML = jsond.video[c].itag;
+													document.getElementById("player").src = jsond.video[c].url;
+													document.getElementById("audioPlayer").src = jsond.audio[0].url;
+													document.getElementById("qOptions").value = jsond.video[c].itag;
+												}
+											} else {
+												if (localStorage.getItem("showSize")) {
+													if (localStorage.getItem("showSize") == "y") {
+														if (jsond.video[c].contentLength) {
+															option.innerHTML = jsond.video[c].qualityLabel + " [" + formatBytes(parseInt(jsond.video[c].contentLength)) + " - " + jsond.video[c].codecs +"]";
+														} else {
+															option.innerHTML = jsond.video[c].qualityLabel + " [size not avaliable - " + jsond.video[c].codecs + "]";
+														}
+													} else {
+														option.innerHTML = jsond.video[c].qualityLabel + "[" + jsond.video[c].codecs + "]";
+													} 
+												} else {
+													option.innerHTML = jsond.video[c].qualityLabel + "[" + jsond.video[c].codecs + "]";
+												}
+												document.getElementById("qOptions").appendChild(option);
+											}
 										} else {
-											window.location.reload();
-											return;
-										}
-									}
-									if (!jsond.audio) {
-										document.getElementById("vidLoaderTxt").innerHTML = "improper response, please wait...";
-										if (!localStorage.getItem("sqFail") | localStorage.getItem("sqFail") == "dg") {
-											openVideo(opt, "y");
-											return;
-										} else {
-											window.location.reload();
-											return;
-										}
-									}
-									if (!jsond.audio[0].isMPDDash == true | !jsond.video[0].isMPDDash == true) {
-										for (var c in jsond.video) {
-											if (c == 0) {
+											if (jsond.video[c-1].qualityLabel == jsond.video[c].qualityLabel) {
+												// do nothing
+											} else {
 												var option = document.createElement("OPTION");
 												option.value = jsond.video[c].itag;
 												if (localStorage.getItem("supportHDR") == "n" | !localStorage.getItem("supportHDR")) {
 													if (jsond.video[c].codecs.substring(jsond.video[c].codecs.length - 2,  jsond.video[c].codecs.length) == ".0") {
 														console.log("HDR skipped | " + jsond.video[c].codecs);
-														sessionStorage.setItem("goToFirst", "y");
-														sessionStorage.setItem("audioUrl", jsond.audio[0].url);
 													} else if (jsond.video[c].codecs == "vp9.2") {
 														console.log("HDR skipped | " + jsond.video[c].codecs);
-														sessionStorage.setItem("goToFirst", "y");
-														sessionStorage.setItem("audioUrl", jsond.audio[0].url);
 													} else {
 														if (localStorage.getItem("showSize")) {
 															if (localStorage.getItem("showSize") == "y") {
@@ -1996,10 +2013,6 @@ function openVideo(opt,ret) {
 															option.innerHTML = jsond.video[c].qualityLabel + "[" + jsond.video[c].codecs + "]";
 														}
 														document.getElementById("qOptions").appendChild(option);
-														document.getElementById("itag").innerHTML = jsond.video[c].itag;
-														document.getElementById("player").src = jsond.video[c].url;
-														document.getElementById("audioPlayer").src = jsond.audio[0].url;
-														document.getElementById("qOptions").value = jsond.video[c].itag;
 													}
 												} else {
 													if (localStorage.getItem("showSize")) {
@@ -2017,54 +2030,31 @@ function openVideo(opt,ret) {
 													}
 													document.getElementById("qOptions").appendChild(option);
 												}
-											} else {
-												if (jsond.video[c-1].qualityLabel == jsond.video[c].qualityLabel) {
-													// do nothing
-												} else {
-													var option = document.createElement("OPTION");
-													option.value = jsond.video[c].itag;
-													if (localStorage.getItem("supportHDR") == "n" | !localStorage.getItem("supportHDR")) {
-														if (jsond.video[c].codecs.substring(jsond.video[c].codecs.length - 2,  jsond.video[c].codecs.length) == ".0") {
-															console.log("HDR skipped | " + jsond.video[c].codecs);
-														} else if (jsond.video[c].codecs == "vp9.2") {
-															console.log("HDR skipped | " + jsond.video[c].codecs);
-														} else {
-															if (localStorage.getItem("showSize")) {
-																if (localStorage.getItem("showSize") == "y") {
-																	if (jsond.video[c].contentLength) {
-																		option.innerHTML = jsond.video[c].qualityLabel + " [" + formatBytes(parseInt(jsond.video[c].contentLength)) + " - " + jsond.video[c].codecs +"]";
-																	} else {
-																		option.innerHTML = jsond.video[c].qualityLabel + " [size not avaliable - " + jsond.video[c].codecs + "]";
-																	}
-																} else {
-																	option.innerHTML = jsond.video[c].qualityLabel + "[" + jsond.video[c].codecs + "]";
-																} 
-															} else {
-																option.innerHTML = jsond.video[c].qualityLabel + "[" + jsond.video[c].codecs + "]";
-															}
-															document.getElementById("qOptions").appendChild(option);
-														}
-													} else {
-														if (localStorage.getItem("showSize")) {
-															if (localStorage.getItem("showSize") == "y") {
-																if (jsond.video[c].contentLength) {
-																	option.innerHTML = jsond.video[c].qualityLabel + " [" + formatBytes(parseInt(jsond.video[c].contentLength)) + " - " + jsond.video[c].codecs +"]";
-																} else {
-																	option.innerHTML = jsond.video[c].qualityLabel + " [size not avaliable - " + jsond.video[c].codecs + "]";
-																}
-															} else {
-																option.innerHTML = jsond.video[c].qualityLabel + "[" + jsond.video[c].codecs + "]";
-															} 
-														} else {
-															option.innerHTML = jsond.video[c].qualityLabel + "[" + jsond.video[c].codecs + "]";
-														}
-														document.getElementById("qOptions").appendChild(option);
-													}
-												}
 											}
 										}
-										for (var c in jsond.audio) {
-											if (c == 0) {
+									}
+									for (var c in jsond.audio) {
+										if (c == 0) {
+											var option = document.createElement("OPTION");
+											option.value = jsond.audio[c].itag;
+											if (localStorage.getItem("showSize")) {
+												if (localStorage.getItem("showSize") == "y") {
+													if (jsond.audio[c].contentLength) {
+														option.innerHTML = jsond.audio[c].audioBitrate + "kbps" + " [" + formatBytes(parseInt(jsond.audio[c].contentLength)) + " - " + jsond.audio[c].codecs + "]";
+													} else {
+														option.innerHTML = jsond.audio[c].audioBitrate + "kbps [size not avaliable - " + jsond.audio[c].codecs + "]";
+													}
+												} else {
+													option.innerHTML = jsond.audio[c].audioBitrate + "kbps [" + jsond.audio[c].codecs + "]";
+												} 
+											} else {
+												option.innerHTML = jsond.audio[c].audioBitrate + "kbps [" + jsond.audio[c].codecs + "]";
+											}
+											document.getElementById("aqOptions").appendChild(option);
+										} else {
+											if (jsond.audio[c-1].audioBitrate == jsond.audio[c].audioBitrate) {
+												// do nothing
+											} else {
 												var option = document.createElement("OPTION");
 												option.value = jsond.audio[c].itag;
 												if (localStorage.getItem("showSize")) {
@@ -2080,42 +2070,19 @@ function openVideo(opt,ret) {
 												} else {
 													option.innerHTML = jsond.audio[c].audioBitrate + "kbps [" + jsond.audio[c].codecs + "]";
 												}
-												document.getElementById("aqOptions").appendChild(option);
-											} else {
-												if (jsond.audio[c-1].audioBitrate == jsond.audio[c].audioBitrate) {
-													// do nothing
-												} else {
-													var option = document.createElement("OPTION");
-													option.value = jsond.audio[c].itag;
-													if (localStorage.getItem("showSize")) {
-														if (localStorage.getItem("showSize") == "y") {
-															if (jsond.audio[c].contentLength) {
-																option.innerHTML = jsond.audio[c].audioBitrate + "kbps" + " [" + formatBytes(parseInt(jsond.audio[c].contentLength)) + " - " + jsond.audio[c].codecs + "]";
-															} else {
-																option.innerHTML = jsond.audio[c].audioBitrate + "kbps [size not avaliable - " + jsond.audio[c].codecs + "]";
-															}
-														} else {
-															option.innerHTML = jsond.audio[c].audioBitrate + "kbps [" + jsond.audio[c].codecs + "]";
-														} 
-													} else {
-														option.innerHTML = jsond.audio[c].audioBitrate + "kbps [" + jsond.audio[c].codecs + "]";
-													}
 													document.getElementById("aqOptions").appendChild(option);
 												}
 											}
-										}
-										document.getElementById("aqOptions").style.display = "";
-									} else {
-										document.getElementById("aqOptions").style.display = "none";
-										if (jsond.info.formats[0].qualityLabel && jsond.info.formats[0].audioBitrate && jsond.info.formats[0].isDashMPD == false) {
-											document.getElementById("player").src = jsond.info.formats[0].url;
-											document.getElementById("audioPlayer").src = "";
-										}
 									}
-									document.getElementById("vidLoaderTxt").innerHTML = "readying up...";
-									document.getElementById("qOptions").value = document.getElementById("itag").innerHTML;
-									document.getElementById("title").innerHTML = titl;
-									document.title = titl +  " | vidpolaris";
+									document.getElementById("aqOptions").style.display = "";
+								} else {
+									
+								}
+								document.getElementById("vidLoaderTxt").innerHTML = "readying up...";
+								document.getElementById("qOptions").value = document.getElementById("itag").innerHTML;
+								document.getElementById("title").innerHTML = titl;
+								document.title = titl +  " | vidpolaris";
+								if (localStorage.getItem("smart") == "y") {
 									if (sessionStorage.getItem("goToFirst")) {
 										sessionStorage.removeItem("goToFirst");
 										document.getElementById("qOptions").value = document.getElementById("qOptions").options[0].value;
@@ -2156,83 +2123,28 @@ function openVideo(opt,ret) {
 											document.getElementById("searchContainer").style.display = "";
 											return;
 										}
-									} else {
-										document.getElementById("vidLoader").style.display = 'none';
-										document.getElementById("vidViewer").style.display = '';
-										sync();
-										document.getElementById("player").load();
-										document.getElementById("audioPlayer").load();
-										if (localStorage.getItem("loadComm") == "y") {
-											getComments("none", opt);
-											sessionStorage.removeItem("currentlyOpening");
-										} else {
-											document.getElementById("loadC").style.display = '';
-											document.getElementById("loadedC").style.display = 'none';
-											document.getElementById("loadedComments").style.display = 'none';
-											document.getElementById("loadinC").style.display = 'none';
-											document.getElementById("errorC").style.display = 'none';
-											sessionStorage.removeItem("currentlyOpening");
-										}
-										setSpeed();
-										rSearch(opt);
-										skipSponsors(opt);
-										document.getElementById("player").play();
-										document.getElementById("searchContainer").style.display = "";
-										return;
 									}
 								}
-								return;
 							} else {
-								document.getElementById("vidLoaderTxt").innerHTML = "parsing compatible qualities...";
 								document.getElementById("vidViewer").style.display = '';
 								document.getElementById("vidLoader").style.display = 'none';
 								document.getElementById("player").src = wUrl;
-								for (var c in jsond.info.formats) {
-									if (c == 0) {
-										var option = document.createElement("OPTION");
-										if (localStorage.getItem("showSize")) {
-											if (localStorage.getItem("showSize") == "y") {
-												if (jsond.datainfo[c].contentLength) {
-													option.innerHTML = jsond.datainfo[c].qualityLabel + " (video) - " + jsond.datainfo[c].audioBitrate + "kbps (audio) [" + formatBytes(parseInt(jsond.datainfo[c].contentLength)) + "]";
-												} else {
-													option.innerHTML = jsond.datainfo[c].qualityLabel + " (video) - " + jsond.datainfo[c].audioBitrate + "kbps (audio) [size not avaliable]";
-												}
+								for (var c in jsond.joined) {
+									var option = document.createElement("OPTION")
+									if (localStorage.getItem("showSize")) {
+										if (localStorage.getItem("showSize") == "y") {
+											if (jsond.joined[c].contentLength) {
+												option.innerHTML = jsond.joined[c].qualityLabel + " (video) - " + jsond.joined[c].audioBitrate + "kbps (audio) [" + formatBytes(parseInt(jsond.joined[c].contentLength)) + "]";
 											} else {
-												option.innerHTML = jsond.datainfo[c].qualityLabel + " (video) - " + jsond.datainfo[c].audioBitrate + "kbps (audio)";
-											} 
-										} else {
-											option.innerHTML = jsond.datainfo[c].qualityLabel + " (video) - " + jsond.datainfo[c].audioBitrate + "kbps (audio)";
-										}
-										option.value = jsond.info.formats[c].itag;
-										document.getElementById("qOptions").appendChild(option);
-									} else {
-										//credit for *more* duplication: https://stackoverflow.com/questions/8069315/create-array-of-all-integers-between-two-numbers-inclusive-in-javascript-jquer
-										var result = range(0, c);
-										for (var cc in result) {
-											if (!jsond.info.formats[c].qualityLabel == jsond.info.formats[cc].qualityLabel) {
-												// do nothing
-											} else {
-												if (jsond.info.formats[c].audioBitrate && !jsond.info.formats[c].audioBitrate == null && jsond.info.formats[c].qualityLabel && !jsond.info.formats[c].qualityLabel == null) {
-													var option = document.createElement("OPTION");
-													if (localStorage.getItem("showSize")) {
-														if (localStorage.getItem("showSize") == "y") {
-															if (jsond.datainfo[c].contentLength) {
-																option.innerHTML = jsond.datainfo[c].qualityLabel + " (video) - " + jsond.datainfo[c].audioBitrate + "kbps (audio) [" + formatBytes(parseInt(jsond.datainfo[c].contentLength)) + "]";
-															} else {
-																option.innerHTML = jsond.datainfo[c].qualityLabel + " (video) - " + jsond.datainfo[c].audioBitrate + "kbps (audio) [size not avaliable]";
-															}
-														} else {
-															option.innerHTML = jsond.datainfo[c].qualityLabel + " (video) - " + jsond.datainfo[c].audioBitrate + "kbps (audio)";
-														} 
-													} else {
-														option.innerHTML = jsond.datainfo[c].qualityLabel + " (video) - " + jsond.datainfo[c].audioBitrate + "kbps (audio)";
-													}
-													option.value = jsond.info.formats[c].itag;
-													document.getElementById("qOptions").appendChild(option);
-												}
+												option.innerHTML = jsond.joined[c].qualityLabel + " (video) - " + jsond.joined[c].audioBitrate + "kbps (audio) [size not avaliable]";
 											}
-										}
-									}	
+										} else {
+											option.innerHTML = jsond.joined[c].qualityLabel + " (video) - " + jsond.joined[c].audioBitrate + "kbps (audio)";
+										} 
+									} else {
+										option.innerHTML = jsond.joined[c].qualityLabel + " (video) - " + jsond.joined[c].audioBitrate + "kbps (audio)";
+									}
+									document.getElementById("qOptions").appendChild(option);
 								}
 								document.getElementById("aqOptions").style.display = "none";
 								document.title = titl +  " | vidpolaris";
@@ -2359,11 +2271,11 @@ function openVideo(opt,ret) {
 					const http = new XMLHttpRequest();
 					var fullUrl = "https://www.youtube.com/watch?v=" + getClickedId(window.location.href, "#w#");
 					if (!opt | opt == "a") {
-						var url = "https://vidpolaris.ml:9019/?smart=1&url=" + fullUrl;
+						var url = "https://vidpolaris.ml:9019/?info=1&url=" + fullUrl;
 					} else if (opt == "b") {
-						var url = "https://vidpolaris.herokuapp.com/?smart=1&url=" + fullUrl;
+						var url = "https://vidpolaris.herokuapp.com/?info=1&url=" + fullUrl;
 					} else  if (opt == "c") {
-						var url = "https://vidpolaris-europe.herokuapp.com/?smart=1&url=" + fullUrl;
+						var url = "https://vidpolaris-europe.herokuapp.com/?info=1&url=" + fullUrl;
 					}
 					http.open("GET", url);
 					http.send();
