@@ -3,34 +3,33 @@ console.log("script loaded.");
 console.log("==================");
 resize("auto");
 const http = new XMLHttpRequest();
-if (localStorage.getItem("sLoc")) {
-	document.getElementById("homeLoadDeet").innerHTML = "waking server...";
-	if (localStorage.getItem("sLoc") == "a") {
-		var url = "https://vidpolaris.ml:9019/"
-	} else if (localStorage.getItem("sLoc") == "b"){
-		var url = "https://vidpolaris.herokuapp.com"
-	} else if (localStorage.getItem("sLoc") == "c") {
-		var url = "https://vidpolaris-europe.herokuapp.com/"
-	}
-	http.open("GET", url);
-	http.send();
-	http.onload=(e)=>{
-		if (http.status == 404) {
-			if (window.location.href.includes("#c") | window.location.href.includes("#redir") | window.location.href.includes("#w") | window.location.href.includes("#s") | window.location.href.includes("#adapt") | window.location.href.includes("#p")) {
-				refresh();
-			} else {
-				home();
-			}
+document.getElementById("homeLoadDeet").innerHTML = "waking server...";
+if (localStorage.getItem("sLoc") == "a" | !localStorage.getItem("sLoc")) {
+	var url = "https://vidpolaris.ml:9019/"
+} else if (localStorage.getItem("sLoc") == "b"){
+	var url = "https://vidpolaris.herokuapp.com"
+} else if (localStorage.getItem("sLoc") == "c") {
+	var url = "https://vidpolaris-europe.herokuapp.com/"
+}
+http.open("GET", url);
+http.send();
+http.onload=(e)=>{
+	if (http.status == 404) {
+		if (window.location.href.includes("#c") | window.location.href.includes("#redir") | window.location.href.includes("#w") | window.location.href.includes("#s") | window.location.href.includes("#adapt") | window.location.href.includes("#p")) {
+			refresh();
 		} else {
-			document.getElementById("serverdown").style.display = "";
-			document.getElementById("trendingLoader").style.display = "none";
+			home();
 		}
-	}
-	http.onerror=(e)=>{
+	} else {
 		document.getElementById("serverdown").style.display = "";
 		document.getElementById("trendingLoader").style.display = "none";
 	}
-} 
+}
+http.onerror=(e)=>{
+	document.getElementById("serverdown").style.display = "";
+	document.getElementById("trendingLoader").style.display = "none";
+}
+ 
 
 document.getElementById("trendingLoader").style.display = "";
 
