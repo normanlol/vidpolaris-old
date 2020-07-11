@@ -1748,6 +1748,16 @@ function openVideo(opt,ret) {
 								}
 								document.getElementById("autoPlayBlock").style.display = '';
 								document.getElementById("moreVideos").style.display = 'none';
+								if (jsond.info.related_videos.length / 3) {
+									var n = (jsond.info.related_videos.length / 3).toString();
+									if (Number.isInteger(n)) {
+										document.getElementById("commentContainer").style.display = "";
+										document.getElementById("helpOut").style.display = "";
+									} else {
+										document.getElementById("commentContainer").style.display = "none";
+										document.getElementById("helpOut").style.display = "none";
+									}
+								}
 								for (var c in jsond.info.related_videos) {
 									var l = document.createElement("A");
 									l.href = "#w#" + jsond.info.related_videos[c].id;
