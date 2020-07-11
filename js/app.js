@@ -1488,8 +1488,8 @@ function openVideo(opt,ret) {
 				document.getElementById("vidLoaderTxt").innerHTML = "getting ready...";
 				if (!sessionStorage.getItem("currentlyOpening")) {
 					document.title = "[loading...] vidpolaris";
+					document.getElementById("player").pause();
 					document.getElementById("homePage").style.display = 'none';
-					document.getElementById("aqOptions").style.display = '';
 					document.getElementById("searchContainer").style.display = 'none';
 					document.getElementById("searchPage").style.display = 'none';
 					document.getElementById("settingsPage").style.display = 'none';
@@ -1497,7 +1497,6 @@ function openVideo(opt,ret) {
 					document.getElementById("channelPage").style.display = 'none';
 					document.getElementById("errorPage").style.display = 'none';
 					document.getElementById("loadErr").style.display = 'none';
-					document.getElementById("embedContainer").innerHTML = '';
 					document.getElementById("embedContainer").style.display = "none";
 					document.getElementById("vidAuthor").style.display = 'none';
 					document.getElementById("vidViews").style.display = 'none';
@@ -1505,19 +1504,21 @@ function openVideo(opt,ret) {
 					document.getElementById("vidRatings").style.display = 'none';
 					document.getElementById("theat_embed").style.display = 'none';
 					document.getElementById("playlistPage").style.display = 'none';
-					document.getElementById("player").pause();
+					document.getElementById("vidViewer").style.display = 'none';
+					document.getElementById("sharDiv").style.display = 'none';
+					document.getElementById("aqOptions").style.display = '';
 					document.getElementById("vidPage").style.display = '';
 					document.getElementById("helpOut").style.display = '';
 					document.getElementById("qSelector").style.display = '';
 					document.getElementById("speedSelector").style.display = '';
 					document.getElementById("theat_native").style.display = '';
 					document.getElementById("embedPlayer").style.display = '';
-					document.getElementById("player").innerHTML = '';
-					document.getElementById("vidViewer").style.display = 'none';
 					document.getElementById("vidLoader").style.display = '';
 					document.getElementById("playerContainer").style.display = '';
-					document.getElementById("sharDiv").style.display = 'none';
 					document.getElementById("lpSwitch").checked = false;
+					document.getElementById("embedContainer").innerHTML = '';
+					document.getElementById("relatedVideos").innerHTML = '';
+					document.getElementById("moreVideos").innerHTML = '';
 					document.getElementById("player").removeAttribute("loop");
 					sessionStorage.removeItem("tried2");
 					sessionStorage.removeItem("ewv");
@@ -1740,156 +1741,56 @@ function openVideo(opt,ret) {
 								document.getElementById("autoPlayBlock").style.display = 'none';
 							} else {
 								document.getElementById("relatedVideos").style.display = '';
-								document.getElementById("autoPlayBlock").style.display = '';
-								var r1L = "#w#" + jsond.info.related_videos[0].id;
-								var r1T = jsond.info.related_videos[0].title;
-								var r1A = "https://img.youtube.com/vi/" + jsond.info.related_videos[0].id + "/hqdefault.jpg";
-								var r1Au = jsond.info.related_videos[0].author;
-								var r1V = jsond.info.related_videos[0].short_view_count_text;
-								document.getElementById("rv1").href = r1L;
-								document.getElementById("rTit1").innerHTML = r1T;
-								document.getElementById("rTh1").src = r1A;
-								document.getElementById("rAut1").innerHTML = r1Au;
-								document.getElementById("rVie1").innerHTML = r1V;
-								if (jsond.info.related_videos[1]) {
-									var r2L = "#w#" + jsond.info.related_videos[1].id;
-									var r2T = jsond.info.related_videos[1].title;
-									var r2A = "https://img.youtube.com/vi/" + jsond.info.related_videos[1].id + "/hqdefault.jpg";
-									var r2Au = jsond.info.related_videos[1].author;
-									var r2V = jsond.info.related_videos[1].short_view_count_text;
-									document.getElementById("rv2").href = r2L;
-									document.getElementById("rTit2").innerHTML = r2T;
-									document.getElementById("rTh2").src = r2A;
-									document.getElementById("rAut2").innerHTML = r2Au;
-									document.getElementById("rVie2").innerHTML = r2V;
-									if (jsond.info.related_videos[2]) {
-										var r3L = "#w#" + jsond.info.related_videos[2].id;
-										var r3T = jsond.info.related_videos[2].title;
-										var r3A = "https://img.youtube.com/vi/" + jsond.info.related_videos[2].id + "/hqdefault.jpg";
-										var r3Au = jsond.info.related_videos[2].author;
-										var r3V = jsond.info.related_videos[2].short_view_count_text;
-										document.getElementById("rv3").href = r3L;
-										document.getElementById("rTit3").innerHTML = r3T;
-										document.getElementById("rTh3").src = r3A;
-										document.getElementById("rAut3").innerHTML = r3Au;
-										document.getElementById("rVie3").innerHTML = r3V;
-										if (jsond.info.related_videos[3]) {
-											var r4L = "#w#" + jsond.info.related_videos[3].id;
-											var r4T = jsond.info.related_videos[3].title;
-											var r4A = "https://img.youtube.com/vi/" + jsond.info.related_videos[3].id + "/hqdefault.jpg";
-											var r4Au = jsond.info.related_videos[3].author;
-											var r4V = jsond.info.related_videos[3].short_view_count_text;
-											document.getElementById("rv4").href = r4L;
-											document.getElementById("rTit4").innerHTML = r4T;
-											document.getElementById("rTh4").src = r4A;
-											document.getElementById("rAut4").innerHTML = r4Au;
-											document.getElementById("rVie4").innerHTML = r4V;
-											if (jsond.info.related_videos[4]) {
-												var r5L = "#w#" + jsond.info.related_videos[4].id;
-												var r5T = jsond.info.related_videos[4].title;
-												var r5A = "https://img.youtube.com/vi/" + jsond.info.related_videos[4].id + "/hqdefault.jpg";
-												var r5Au = jsond.info.related_videos[4].author;
-												var r5V = jsond.info.related_videos[4].short_view_count_text;
-												document.getElementById("rv5").href = r5L;
-												document.getElementById("rTit5").innerHTML = r5T;
-												document.getElementById("rTh5").src = r5A;
-												document.getElementById("rAut5").innerHTML = r5Au;
-												document.getElementById("rVie5").innerHTML = r5V;
-												if (jsond.info.related_videos[5]) {
-													var r6L = "#w#" + jsond.info.related_videos[5].id;
-													var r6T = jsond.info.related_videos[5].title;
-													var r6A = "https://img.youtube.com/vi/" + jsond.info.related_videos[5].id + "/hqdefault.jpg";
-													var r6Au = jsond.info.related_videos[5].author;
-													var r6V = jsond.info.related_videos[5].short_view_count_text;
-													document.getElementById("rv6").href = r6L;
-													document.getElementById("rTit6").innerHTML = r6T;
-													document.getElementById("rTh6").src = r6A;
-													document.getElementById("rAut6").innerHTML = r6Au;
-													document.getElementById("rVie6").innerHTML = r6V;
-													if  (jsond.info.related_videos[6]) {
-														var r7L = "#w#" + jsond.info.related_videos[6].id;
-														var r7T = jsond.info.related_videos[6].title;
-														var r7A = "https://img.youtube.com/vi/" + jsond.info.related_videos[6].id + "/hqdefault.jpg";
-														var r7Au = jsond.info.related_videos[6].author;
-														var r7V = jsond.info.related_videos[6].short_view_count_text;
-														document.getElementById("rv7").href = r7L;
-														document.getElementById("rTit7").innerHTML = r7T;
-														document.getElementById("rTh7").src = r7A;
-														document.getElementById("rAut7").innerHTML = r7Au;
-														document.getElementById("rVie7").innerHTML = r7V;
-														if (jsond.info.related_videos[7]) {
-															var r8L = "#w#" + jsond.info.related_videos[7].id;
-															var r8T = jsond.info.related_videos[7].title;
-															var r8A = "https://img.youtube.com/vi/" + jsond.info.related_videos[7].id + "/hqdefault.jpg";
-															var r8Au = jsond.info.related_videos[7].author;
-															var r8V = jsond.info.related_videos[7].short_view_count_text;
-															document.getElementById("rv8").href = r8L;
-															document.getElementById("rTit8").innerHTML = r8T;
-															document.getElementById("rTh8").src = r8A;
-															document.getElementById("rAut8").innerHTML = r8Au;
-															document.getElementById("rVie8").innerHTML = r8V;
-															if (jsond.info.related_videos[8]) {
-																var r9T = jsond.info.related_videos[8].title;
-																var r9A = "https://img.youtube.com/vi/" + jsond.info.related_videos[8].id + "/hqdefault.jpg";
-																var r9Au = jsond.info.related_videos[8].author;
-																var r9V = jsond.info.related_videos[8].short_view_count_text;
-																var r9L = "#w#" + jsond.info.related_videos[8].id;
-																document.getElementById("rTit9").innerHTML = r9T;
-																document.getElementById("rTh9").src = r9A;
-																document.getElementById("rAut9").innerHTML = r9Au;
-																document.getElementById("rVie9").innerHTML = r9V;
-																document.getElementById("rv9").href = r9L;
-															} else {
-																document.getElementById("rv9").style.display = 'none';
-															}
-														} else {
-															document.getElementById("rv8").style.display = 'none';
-															document.getElementById("rv9").style.display = 'none';
-														}
-													} else {
-														document.getElementById("rv7").style.display = 'none';
-														document.getElementById("rv8").style.display = 'none';
-														document.getElementById("rv9").style.display = 'none';
-													}
-												} else {
-													document.getElementById("rv6").style.display = 'none';
-													document.getElementById("rv7").style.display = 'none';
-													document.getElementById("rv8").style.display = 'none';
-													document.getElementById("rv9").style.display = 'none';
-												}
-											} else {
-												document.getElementById("rv5").style.display = 'none';
-												document.getElementById("rv6").style.display = 'none';
-												document.getElementById("rv7").style.display = 'none';
-												document.getElementById("rv8").style.display = 'none';
-												document.getElementById("rv9").style.display = 'none';
-											}
-										} else {
-											document.getElementById("rv4").style.display = 'none'
-											document.getElementById("rv5").style.display = 'none';
-											document.getElementById("rv6").style.display = 'none';
-											document.getElementById("rv7").style.display = 'none';
-											document.getElementById("rv8").style.display = 'none';
-											document.getElementById("rv9").style.display = 'none';
-										}
-									} else {
-										document.getElementById("rv3").style.display = 'none';
-										document.getElementById("rv4").style.display = 'none';
-										document.getElementById("rv5").style.display = 'none';
-										document.getElementById("rv6").style.display = 'none';
-										document.getElementById("rv7").style.display = 'none';
-										document.getElementById("rv8").style.display = 'none';
-										document.getElementById("rv9").style.display = 'none';
-									}
+								if (jsond.info.related_videos.length > 9) {
+									document.getElementById("expandRelated").style.display = '';
 								} else {
-									document.getElementById("rv2").style.display = 'none';
-									document.getElementById("rv3").style.display = 'none';
-									document.getElementById("rv4").style.display = 'none';
-									document.getElementById("rv5").style.display = 'none';
-									document.getElementById("rv6").style.display = 'none';
-									document.getElementById("rv7").style.display = 'none';
-									document.getElementById("rv8").style.display = 'none';
-									document.getElementById("rv9").style.display = 'none';
+									document.getElementById("expandRelated").style.display = 'none';
+								}
+								document.getElementById("autoPlayBlock").style.display = '';
+								document.getElementById("moreVideos").style.display = 'none';
+								for (var c in jsond.info.related_videos) {
+									var l = document.createElement("A");
+									l.href = "#w#" + jsond.info.related_videos[c].id;
+									var d = document.createElement("DIV");
+									d.classList.add("smallVideo")
+									var img = document.createElement("IMG");
+									img.src = "https://img.youtube.com/vi/" + jsond.info.related_videos[c].id + "/hqdefault.jpg";
+									img.classList.add("relatedThumb");
+									var h4 = document.createElement("H4");
+									h4.classList.add("stat");
+									h4.innerHTML = jsond.info.related_videos[c].title;
+									var stat1 = document.createElement("H5");
+									stat1.classList.add("stat");
+									var aIco = document.createElement("SPAN");
+									aIco.classList.add("material-icons");
+									aIco.classList.add("ico");
+									aIco.innerHTML = "person";
+									stat1.appendChild(aIco);
+									stat1.innerHTML = stat1.innerHTML + " " + jsond.info.related_videos[c].author;
+									var stat2 = document.createElement("H5");
+									stat2.classList.add("stat");
+									var vIco = document.createElement("SPAN");
+									vIco.classList.add("material-icons");
+									vIco.classList.add("ico");
+									vIco.innerHTML = "remove_red_eye";
+									stat2.appendChild(vIco);
+									stat2.innerHTML = stat2.innerHTML + " " + jsond.info.related_videos[0].short_view_count_text + " views";
+									if (c < 9) {
+										d.appendChild(img);
+										d.appendChild(h4);
+										d.appendChild(stat1);
+										d.appendChild(stat2);
+										l.appendChild(d);
+										document.getElementById("relatedVideos").appendChild(l);
+									} else {
+										d.appendChild(img);
+										d.appendChild(h4);
+										d.appendChild(stat1);
+										d.appendChild(stat2);
+										d.classList.add("noCenter");
+										l.appendChild(d);
+										document.getElementById("moreVideos").appendChild(l);
+									}
 								}
 							}
 							document.getElementById("title").innerHTML = titl;
