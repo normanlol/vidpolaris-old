@@ -1751,10 +1751,10 @@ function openVideo(opt,ret) {
 								if (jsond.info.related_videos.length / 3) {
 									var n = (jsond.info.related_videos.length / 3).toString();
 									if (Number.isInteger(n)) {
-										document.getElementById("commentContainer").style.display = "";
+										document.getElementById("commentsContainer").style.display = "";
 										document.getElementById("helpOut").style.display = "";
 									} else {
-										document.getElementById("commentContainer").style.display = "none";
+										document.getElementById("commentsContainer").style.display = "none";
 										document.getElementById("helpOut").style.display = "none";
 									}
 								}
