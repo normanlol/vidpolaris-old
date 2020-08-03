@@ -1,11 +1,13 @@
-# vidpolaris
+# A REWRITE IS IN PROGRESS RIGHT NOW!! [HERE](https://github.com/n0rmancodes/vidpolaris-rw)
+
+## vidpolaris
 vidpolaris is an alternative youtube client that focuses on simplicity, quality, and speed.
 
 **NOTE: This project is in no way affiliated with or endorsed by YouTube™ or Google™. YouTube is owned and operated by Google and I do not claim to own any of Google's properties. Use this at your own risk.**
 
 [use it right now](https://n0rmancodes.github.io/vidpolaris) - [api](https://github.com/n0rmancodes/vidpolarisAPI)
 
-## screenshots
+### screenshots
 ![A screenshot of VidPolaris - Dark Theme](https://i.ibb.co/PxZGRkD/image.png)
 a screenshot of vidpolaris. using the default dark theme.
 
@@ -16,13 +18,13 @@ Light theme.
 Velvet theme.
 *screenshots taken on june 11, 2020 at (around) 6:50pm*
 
-## instances
+### instances
 
-#### frontends
+##### frontends
 - [vidpolaris.ml (managed by electrohaxz)](https://vidpolaris.ml)
 - [github sites](https://n0rmancodes.github.io/)
 
-#### backends
+##### backends
 
 - [electrohaxz](https://vidpolaris.ml:9019/)
 - [heroku (us east)](https://vidpolaris.herokuapp.com/)
