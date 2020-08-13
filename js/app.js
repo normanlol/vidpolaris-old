@@ -1728,7 +1728,7 @@ function openVideo(opt,ret) {
 								}
 							}
 							document.getElementById("vidLoaderTxt").innerHTML = "defining more things...";
-							var cat = jsond.info.media.category;
+							var cat = jsond.info.videoDetails.category;
 							if (cat == undefined) {
 								document.getElementById("catCont").style.display = "none";
 							} else {
